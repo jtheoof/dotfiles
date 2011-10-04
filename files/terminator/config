@@ -1,0 +1,23 @@
+[global_config]
+  title_transmit_bg_color = "#a6888c"
+  borderless = True
+[keybindings]
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    palette = "#3f3f3f:#ff0000:#efefef:#e3ceab:#dfaf8f:#cc9393:#7f9f7f:#dcdccc:#3f3f3f:#ffcfcf:#efefef:#e3ceab:#dfaf8f:#cc9393:#7f9f7f:#dcdccc"
+    use_system_font = False
+    foreground_color = "#bdbdbd"
+    icon_bell = False
+    font = MonteCarlo Medium 10
+    background_color = "#402b2b"
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
