@@ -1,0 +1,10 @@
+:ReloadScript	reload.txt	/*:ReloadScript*
+g:reload_on_write	reload.txt	/*g:reload_on_write*
+reload-alternatives	reload.txt	/*reload-alternatives*
+reload-contact	reload.txt	/*reload-contact*
+reload-install-first-use	reload.txt	/*reload-install-first-use*
+reload-license	reload.txt	/*reload-license*
+reload-references	reload.txt	/*reload-references*
+reload-use-automatic-command-groups	reload.txt	/*reload-use-automatic-command-groups*
+reload.txt	reload.txt	/*reload.txt*
+things-that-prevent-reloading	reload.txt	/*things-that-prevent-reloading*

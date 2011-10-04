@@ -1,0 +1,9 @@
+/home/jeremy/.bash_aliases
+/home/jeremy/.bash_exports
+/home/jeremy/.bash_profile
+/home/jeremy/.bash_scripts
+/home/jeremy/.bashrc
+/home/jeremy/.config/terminator/
+/home/jeremy/.gitignore
+/home/jeremy/.vim
+/home/jeremy/.vimrc
