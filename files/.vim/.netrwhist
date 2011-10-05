@@ -1,6 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/jeremy/dev/workspaces/JeremyDev/SQ.System.OS/Sources'
-let g:netrw_dirhist_2='/home/jeremy/dev/workspaces/JeremyDev/SQ.System.OS'
-let g:netrw_dirhist_3='/home/jeremy/dev/workspaces/JeremyDev/SQ.System.OS/Sources'
-let g:netrw_dirhist_4='/home/jeremy/dev'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/home/jeremy/dev/workspaces/JeremyDev/SQ.CM.Server/Sources'

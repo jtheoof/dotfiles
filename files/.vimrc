@@ -121,7 +121,7 @@ let g:mapleader = ","
 nmap <Leader>cd :cd %:p:h<CR>
 
 " change to root dev directory
-nmap <Leader>cr :cd $HOME/dev/workspaces/JeremyDev<CR>
+nmap <Leader>cr :cd $HOME/dev/sq/JeremyDev<CR>
 
 " Fast saving
 nmap <Leader>w :w!<CR>
@@ -150,6 +150,7 @@ map <Leader>vv :so $MYVIMRC<CR>
 
 " Opening closing tabs
 map <Leader>tc :tabclose<CR>
+map <Leader>td ,bd,tc
 map <Leader>tt :tabnew %<CR>
 map <Leader>tn :tabnew<CR>
 "}}}
