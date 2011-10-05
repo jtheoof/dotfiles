@@ -4,7 +4,7 @@
 /home/jeremy/.bash_scripts
 /home/jeremy/.bashrc
 /home/jeremy/.config/terminator/
-/home/jeremy/.gitignore
+/home/jeremy/.gitconfig
 /home/jeremy/.toprc
 /home/jeremy/.vim
 /home/jeremy/.vimrc

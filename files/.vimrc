@@ -30,13 +30,11 @@ let g:reload_on_write = 0
 set backspace=indent,eol,start                 " more powerful backspacing
 set nobackup                       " do not keep a backup file
 set cursorline                     "Highlight current line"
-"set cindent                        " cindent
 set clipboard=unnamed                " copy things to general clipboard
 set esckeys                        " allow usage of curs keys within insert mode 
 set encoding=utf8				   " utf-8 encoding
 set ignorecase                     " ignore case when searching
 set smartcase                      " ignore case only if all chars are lower case
-"set noignorecase                  " don't ignore case
 set incsearch                      " do incremental searching
 set foldlevel=0                    " fold to level 0 when opening file
 set foldmethod=marker              " basic marker as default folding method
@@ -68,7 +66,7 @@ set wildmode=longest,full
 set copyindent
 set preserveindent
 set tabstop=4
-"set softtabstop=4
+set softtabstop=4
 set shiftwidth=4
 set expandtab
 
@@ -88,7 +86,7 @@ if has("gui_running")
     "set guifont=Monaco\ 8
     colorscheme zenburn
 	if has("gui_gtk2")
-		set guifont=Monte\ Carlo 
+		set guifont=Consolas\ 10
 	elseif has("gui_win32")
 	    set guifont=Consolas:h10
 	endif
@@ -132,16 +130,16 @@ nmap <Leader>w :w!<CR>
 " Thanks to: http://technotales.wordpress.com/2010/04/29/vim-splits-a-guide-to-doing-exactly-what-you-want/
 
 " window
-nmap <leader>sw<left>  :topleft  vnew<CR>
-nmap <leader>sw<right> :botright vnew<CR>
-nmap <leader>sw<up>    :topleft  new<CR>
-nmap <leader>sw<down>  :botright new<CR>
+nmap <Leader>sw<Left>  :topleft  vnew<CR>
+nmap <Leader>sw<Right> :botright vnew<CR>
+nmap <Leader>sw<Up>    :topleft  new<CR>
+nmap <Leader>sw<Down>  :botright new<CR>
 
 " buffer
-nmap <leader>s<left>   :leftabove  vnew<CR>
-nmap <leader>s<right>  :rightbelow vnew<CR>
-nmap <leader>s<up>     :leftabove  new<CR>
-nmap <leader>s<down>   :rightbelow new<CR>
+nmap <Leader>s<Left>   :leftabove  vnew<CR>
+nmap <Leader>s<Right>  :rightbelow vnew<CR>
+nmap <Leader>s<Up>     :leftabove  new<CR>
+nmap <Leader>s<Down>   :rightbelow new<CR>
 
 " Fast editing of .vimrc
 map <Leader>ve :e! $MYVIMRC<CR>
@@ -449,7 +447,6 @@ nnoremap <silent> se     :FufEditDataFile<CR>
 nnoremap <silent> sr     :FufRenewCache<CR>
 nnoremap <silent> s*     :FufCoverageFile<CR>
 "}}}
-
 
 " License {{{
 " ---------------------------------------------------------------------

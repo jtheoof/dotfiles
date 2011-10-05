@@ -1,0 +1,41 @@
+[alias]
+    edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
+    add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+
+    aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
+    br = branch
+    ci = commit
+    co = checkout
+    df = diff
+    gr = grep --full-name -n
+    k = !gitk
+    lc = log --pretty=oneline --decorate=full --stat --no-merges ORIG_HEAD..
+    lg = log -p
+    logp = log --pretty=oneline --decorate=full -20
+    post-review = send-email --no-chain-reply-to --suppress-cc all --suppress-from --no-signed-off-by-cc --annotate --compose --to corp.software.review@news.intersec.com -C -C -M
+    post-review-test = send-email --no-chain-reply-to --suppress-cc all --suppress-from --no-signed-off-by-cc --annotate --compose --to corp.test@news.intersec.com -C -C -M
+    st = status
+    who = shortlog -s --
+[user]
+    name = Jeremy Attali
+    email = jeremy.attali@gmail.com
+[color]
+    status = auto
+    diff = auto
+    branch = auto
+    interactive = auto
+    grep = auto
+[color "status"] 
+    header = bold blue 
+    added = green 
+    changed = bold red 
+    untracked = bold yellow
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold 
+[push] 
+    default = tracking 
+[branch]
+    autosetuprebase = always
