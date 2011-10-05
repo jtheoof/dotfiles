@@ -25,17 +25,17 @@
     branch = auto
     interactive = auto
     grep = auto
-[color "status"] 
-    header = bold blue 
-    added = green 
-    changed = bold red 
+[color "status"]
+    header = bold blue
+    added = green
+    changed = bold red
     untracked = bold yellow
 [color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold 
-[push] 
-    default = tracking 
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[push]
+    default = tracking
 [branch]
     autosetuprebase = always
