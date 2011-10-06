@@ -84,9 +84,15 @@ if [ -f ~/.bash_exports ]; then
  . ~/.bash_exports
 fi
 
-# Run actions on startup
+# Run actions on startup.
 if [ -f ~/.bash_scripts ]; then
  . ~/.bash_scripts
+fi
+
+# Specific alias, exports, scripts specific to work.
+# This will not be commited.
+if [ -f ~/.bash_work ]; then
+ . ~/.bash_work
 fi
 
 # enable color support of ls and also add handy aliases
