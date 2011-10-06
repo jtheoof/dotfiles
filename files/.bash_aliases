@@ -28,7 +28,6 @@ alias fd='find . -type d -name'
 alias f.='find . -name'
 
 # database
-alias msq='mysql -u sq -p squareclock'a
 
 # diff
 alias diff='colordiff'
