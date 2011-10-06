@@ -15,17 +15,23 @@ alias vdir='ls --color=auto --format=long'
 alias h='history'
 alias hl='history | less'
 
+# search
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias sgrep='grep --color=auto -inIEr'
+
 alias ack='ack-grep'
 
 alias ff='find . -type f -name'
 alias fd='find . -type d -name'
 alias f.='find . -name'
 
-alias msq='mysql -u sq -p squareclock'
+# database
+alias msq='mysql -u sq -p squareclock'a
+
+# diff
+alias diff='colordiff'
 
 # apt aliases
 alias  AF='sudo apt-get -f install' #Fix missing or uninstalled packages.
