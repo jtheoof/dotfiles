@@ -1,11 +1,3 @@
-#export CDPATH=$HOME/dev/mmsx/
+# Append previous history commands to new PS1
+# See: http://www.thegeekstuff.com/2008/09/bash-shell-take-control-of-ps1-ps2-ps3-ps4-and-prompt_command/
 export PROMPT_COMMAND='history -a'
-export PATH=/usr/lib/ccache:$PATH:/srv/nfs/madcoder/dotfiles/+bin:/home/jeremy/local/bin
-export MCMS_HOME=/home/jeremy/dev/mmsx/mcms
-
-#IEs4Linux
-export IES4LINUX=/opt/ies4linux-2.99.0.1
-
-#UTF-8
-#export LANG=en_US.UTF-8 UTF-8
-#export LESSCHARSET=utf-8
