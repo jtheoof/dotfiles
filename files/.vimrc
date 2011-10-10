@@ -232,16 +232,7 @@ autocmd FileType html setlocal softtabstop=2 shiftwidth=2
 autocmd FileType tpl setlocal softtabstop=2 shiftwidth=2 
 autocmd FileType smarty setlocal softtabstop=2 shiftwidth=2 
 
-" Specific filetypes
-augroup filetypedetect
-  autocmd BufRead,BufNewFile *.iop setfiletype d
-  autocmd BufRead,BufNewFile *.blk setfiletype c
-
-  " ReadTypes (TagHighlight plugin) on each Read, NewFile
-  " Can probably be done directly in the plugin but I haven't found a way yet
-  autocmd BufRead,BufNewFile *.[ch] ReadTypes
-  autocmd BufRead,BufNewFile *.cpp ReadTypes
-augroup END
+" CPP Files
 "}}}
 
 " Files, backups and undo {{{
@@ -346,14 +337,15 @@ endfunction
 
 " C / C++ Section {{{
 "---------------------------------------------------------------------
-"autocmd FileType c,cpp syn match cCustomParen "(" contains=cParen,cCppParen
-"autocmd FileType c,cpp syn match cCustomFunc  "\w\+\s*(" contains=cCustomParen
-"autocmd FileType c,cpp syn match cCustomScope "::"
-"autocmd FileType c,cpp syn match cCustomClass "\w\+\s*::" contains=cCustomScope
-"
-"autocmd FileType c,cpp hi def link cCustomFunc  Function
-"autocmd FileType c,cpp hi def link cCustomClass Identifier
-
+augroup cpp
+  " ReadTypes (TagHighlight plugin) on each Read, NewFile.
+  " Can probably be done directly in the plugin but I haven't found a way yet.
+  " This can lead to slow opening of .c, .cpp and .h files.
+  autocmd BufRead,BufNewFile *.[ch] ReadTypes
+  autocmd BufRead,BufNewFile *.cpp ReadTypes
+  "autocmd BufRead,BufNewFile *.[ch] setlocal tabstop=4 shiftwidth=4 noexpandtab
+  "autocmd BufRead,BufNewFile *.cpp setlocal tabstop=4 shiftwidth=4 noexpandtab
+augroup END
 "}}}
 
 " Python section {{{
