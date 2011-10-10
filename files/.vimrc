@@ -61,14 +61,14 @@ set wildchar=<Tab> wildmenu wildmode=full
 set wildcharm=<C-Z>
 set wildmode=longest,full
 
-" Tabs
-"set autoindent                     " always set autoindenting on
+" Indentation
+set tabstop=4
+set shiftwidth=4
+set noexpandtab 					" most important part.
 set copyindent
 set preserveindent
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
+set smarttab
+set autoindent
 
 " Don't flash errors and disable sound
 set novisualbell
@@ -222,7 +222,7 @@ vmap ! y<Esc>:%s/<C-R>"/
 " Auto save when focus is lost
 autocmd FocusLost * execute ":silent! wa"
 " Auto change directory on Buffer Entering
-autocmd BufEnter * execute ":silent! lcd %:p:h"
+" autocmd BufEnter * execute ":silent! lcd %:p:h"
 
 " Local completion
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
