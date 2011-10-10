@@ -231,8 +231,6 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType html setlocal softtabstop=2 shiftwidth=2 
 autocmd FileType tpl setlocal softtabstop=2 shiftwidth=2 
 autocmd FileType smarty setlocal softtabstop=2 shiftwidth=2 
-
-" CPP Files
 "}}}
 
 " Files, backups and undo {{{
