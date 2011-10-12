@@ -7,3 +7,6 @@
 [submodule "files/.vim/bundle/vim-fugitive"]
 	path = files/.vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule "files/.vim/bundle/conque-term"]
+	path = files/.vim/bundle/conque-term
+	url = https://github.com/rosenfeld/conque-term.git
