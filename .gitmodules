@@ -4,3 +4,6 @@
 [submodule "files/.vim/bundle/FuzzyFinder"]
 	path = files/.vim/bundle/FuzzyFinder
 	url = https://github.com/vim-scripts/FuzzyFinder.git
+[submodule "files/.vim/bundle/vim-fugitive"]
+	path = files/.vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
