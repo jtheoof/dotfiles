@@ -1,3 +1,0 @@
-[submodule "files/.vim/bundle/vim-colors-solarized"]
-	path = files/.vim/bundle/vim-colors-solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
