@@ -1,0 +1,6 @@
+[submodule "files/.vim/bundle/L9"]
+	path = files/.vim/bundle/L9
+	url = https://github.com/vim-scripts/L9.git
+[submodule "files/.vim/bundle/FuzzyFinder"]
+	path = files/.vim/bundle/FuzzyFinder
+	url = https://github.com/vim-scripts/FuzzyFinder.git
