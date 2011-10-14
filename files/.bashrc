@@ -9,6 +9,8 @@
 export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
+# ignore some commands for the history
+export HISTIGNORE="ls:cd:[bf]g:exit:ll:l"
 
 # history size and file size
 export HISTSIZE=100000

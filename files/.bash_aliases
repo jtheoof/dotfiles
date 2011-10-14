@@ -4,6 +4,7 @@ alias vi='vim'
 
 alias functions='set | grep "()"'
 
+# Listing
 alias ls='ls --color=auto'
 alias ll='ls -lah --group-directories-first'
 alias l='ll'
@@ -15,7 +16,7 @@ alias vdir='ls --color=auto --format=long'
 alias h='history'
 alias hl='history | less'
 
-# search
+# Search
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -27,12 +28,13 @@ alias ff='find . -type f -name'
 alias fd='find . -type d -name'
 alias f.='find . -name'
 
-# database
+# Usage
+alias ducks='du -cks * | sort -rn | head -11'
 
 # diff
 alias diff='colordiff'
 
-# apt aliases
+# APT aliases
 alias  AF='sudo apt-get -f install' #Fix missing or uninstalled packages.
 alias  AU='sudo apt-get update' #Update the list of available packages
 alias  AUG='sudo apt-get upgrade' #Apply available upgrades
