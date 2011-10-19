@@ -8,7 +8,7 @@
 
 runtime macros/matchit.vim    " smarter use of '%'
 
-" Pathogen {{{
+" Pathogen {{{1
 "---------------------------------------------------------------------
 " Needed on some linux distros.
 " " see
@@ -16,7 +16,7 @@ runtime macros/matchit.vim    " smarter use of '%'
 filetype off 
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
-"}}}
+"1}}}
 
 filetype plugin on            " put filetype plugin back on after pathogen
 filetype indent on            " enable indents on filetype (ex: html, tpl, ...)
@@ -24,7 +24,7 @@ set nocompatible              " use vim defaults
 syntax on                     " enable syntax
 let g:reload_on_write = 0
 
-" Main options {{{
+" Main options {{{1
 "---------------------------------------------------------------------
 "set autochdir                      " Automatically follow current directory
 set backspace=indent,eol,start                 " more powerful backspacing
@@ -76,9 +76,28 @@ set noerrorbells
 "set noerrorbells visualbell t_vb=
 
 let mapleader=","
-"}}}
+"1}}}
 
-" GUI {{{
+" Functions {{{1
+"---------------------------------------------------------------------
+
+" Quickfix toggle window
+command! -bang -nargs=? QFix call QFixToggle(<bang>0)
+function! QFixToggle(forced)
+  if exists("g:qfix_win") && a:forced == 0
+    cclose
+    unlet g:qfix_win
+  else
+    botright cwindow
+    let g:qfix_win = bufnr("$")
+  endif
+endfunction
+
+map <C-F9> :QFix<CR>
+
+"1}}}
+
+" GUI {{{1
 "---------------------------------------------------------------------
 if has("gui_running")
     set background=dark             " adapt colors for background
@@ -110,7 +129,7 @@ else
 endif
 " }}}
 
-" Main leader commands {{{
+" Main leader commands {{{1
 "---------------------------------------------------------------------
 " With a map leader it's possible to do extra key combinations
 " like <Leader>w saves the current file
@@ -153,9 +172,12 @@ map <Leader>tc :tabclose<CR>
 map <Leader>td ,bd,tc
 map <Leader>tt :tabnew %<CR>
 map <Leader>tn :tabnew<CR>
-"}}}
 
-" Mappings {{{
+map <Leader>fc :cs find s <C-R>=expand("<cword>")<CR><CR>
+
+"1}}}
+
+" Mappings {{{1
 "---------------------------------------------------------------------
 " Don't do this because it causes problems to open with ":lw or :cw
 
@@ -193,10 +215,10 @@ map <F5> <Esc>:w<CR>
 imap <F5> <Esc>:w<CR>a
 map <F7> :make<CR>
 imap <F7> <Esc>:make<CR>a
-map <F8> :%! tidy -qi -xml % <CR>
+"map <F8> :%! tidy -qi -xml % <CR>
+map <F8> :%! tidy -qmi -utf8 % <CR>
 map <C-F8> :r ! python -mjson.tool < % <CR>ggdd
 map <F9> :TlistToggle<CR>
-map <C-F9> :botright cwindow<CR> 
 map <F11> zz:sp<CR><C-W><Down>
 map <F12> zz:vsp<CR><C-W><Right>
 
@@ -211,9 +233,17 @@ vmap <Tab> >gv
 vmap <BS> <gv
 vmap <Space> zf
 vmap ! y<Esc>:%s/<C-R>"/
-"}}}
 
-" Auto commands {{{
+" Alt-right/left to navigate forward/backward in the tags stack
+map <M-Left> <C-T>
+map <M-Right> <C-]>
+
+" Map Ctrl-Space to cscope find current word
+nmap <C-@><C-@> :cs find s <C-R>=expand("<cword>")<CR><CR>
+
+"1}}}
+
+" Auto commands {{{1
 "---------------------------------------------------------------------
 
 " Auto name title to filename opened
@@ -231,9 +261,9 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType html setlocal softtabstop=2 shiftwidth=2 
 autocmd FileType tpl setlocal softtabstop=2 shiftwidth=2 
 autocmd FileType smarty setlocal softtabstop=2 shiftwidth=2 
-"}}}
+"1}}}
 
-" Files, backups and undo {{{
+" Files, backups and undo {{{1
 "---------------------------------------------------------------------
 " Turn backup off, since most stuff is in SVN, git anyway...
 set nobackup
@@ -251,9 +281,9 @@ try
     set undofile
 catch
 endtry
-"}}}
+"1}}}
     
-" Spell checking {{{
+" Spell checking {{{1
 "---------------------------------------------------------------------
 
 " Use :mkspell! ~/.vim/spell/en.utf-8.add to regenerate spelling binary files
@@ -266,9 +296,9 @@ map <Leader>sn ]s
 map <Leader>sp [s
 map <Leader>sa zg
 map <Leader>s? z=
-"}}}
+"1}}}
 
-" Search {{{
+" Search {{{1
 "---------------------------------------------------------------------
 
 " Make searches appear in the middle of the screen
@@ -331,10 +361,54 @@ function! s:ScopeSearch(navigator, mode)
   endif
   return "\b"
 endfunction
-"}}}
 
-" C / C++ Section {{{
+" CScope {{{2
+" cscope commands taken from help cscope
+nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+" Using 'CTRL-spacebar' then a search type makes the vim window
+" split horizontally, with search result displayed in
+" the new window.
+nmap <C-Space>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-Space>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-Space>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+
+" Hitting CTRL-space *twice* before the search type does a vertical
+" split instead of a horizontal one
+nmap <C-Space><C-Space>s
+	\:vert scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space><C-Space>g
+	\:vert scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space><C-Space>c
+	\:vert scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space><C-Space>t
+	\:vert scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space><C-Space>e
+	\:vert scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space><C-Space>i
+	\:vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-Space><C-Space>d
+	\:vert scs find d <C-R>=expand("<cword>")<CR><CR>
+"2}}}
+
+"1}}}
+
+" Programming {{{1
 "---------------------------------------------------------------------
+
+" C / C++ Section {{{2
 augroup cpp
   " ReadTypes (TagHighlight plugin) on each Read, NewFile.
   " Can probably be done directly in the plugin but I haven't found a way yet.
@@ -344,10 +418,27 @@ augroup cpp
   "autocmd BufRead,BufNewFile *.[ch] setlocal tabstop=4 shiftwidth=4 noexpandtab
   "autocmd BufRead,BufNewFile *.cpp setlocal tabstop=4 shiftwidth=4 noexpandtab
 augroup END
-"}}}
 
-" Python section {{{
-"---------------------------------------------------------------------
+if has('cscope')
+  set cscopetag cscopeverbose
+
+  if has('quickfix')
+    set cscopequickfix=s-,c-,d-,i-,t-,e-
+  endif
+
+  cnoreabbrev csa cs add
+  cnoreabbrev csf cs find
+  cnoreabbrev csk cs kill
+  cnoreabbrev csr cs reset
+  cnoreabbrev css cs show
+  cnoreabbrev csh cs help
+
+  command! -nargs=0 Cscope cs add $VIMSRC/src/cscope.out $VIMSRC/src
+endif
+
+"2}}}
+
+" Python section {{{2
 let python_highlight_all = 1
 autocmd FileType python syn keyword pythonDecorator True None False self
 
@@ -362,37 +453,38 @@ autocmd FileType python map <buffer> <Leader>1 /class
 autocmd FileType python map <buffer> <Leader>2 /def
 autocmd FileType python map <buffer> <Leader>C ?class
 autocmd FileType python map <buffer> <Leader>D ?def
-"}}}
+"2}}}
 
-" Javascript section {{{
-"---------------------------------------------------------------------
+" Javascript section {{{2
 " Use jquery plugin
 autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
-"}}}
+"2}}}
 
-" Vim grep {{{
+"1}}}
+
+" Plugins {{{1
 "---------------------------------------------------------------------
+
+" Vim grep {{{2
+
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
 set grepprg=/bin/grep\ -nH
-"}}}
+"2}}}
 
-" Buff Explorer {{{
-"---------------------------------------------------------------------
+" Buff Explorer {{{2
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerShowRelativePath=1
 map <silent> <C-Tab> :BufExplorer<CR>
 map <silent> <Leader>o :BufExplorer<CR>
-"}}}
+"2}}}
 
-" Zencoding {{{
-"---------------------------------------------------------------------
+" Zencoding {{{2
 let g:user_zen_settings = {
 \  'indentation' : '  '
 \}
-"}}}
+"2}}}
 
-" Fuzzy Finder {{{
-"---------------------------------------------------------------------
+" Fuzzy Finder {{{2
 let g:fuf_modesDisable = []
 let g:fuf_mrufile_maxItem = 400
 let g:fuf_mrucmd_maxItem = 400
@@ -437,9 +529,11 @@ nnoremap <silent> sh     :FufHelp<CR>
 nnoremap <silent> se     :FufEditDataFile<CR>
 nnoremap <silent> sr     :FufRenewCache<CR>
 nnoremap <silent> s*     :FufCoverageFile<CR>
-"}}}
+"2}}}
 
-" License {{{
+"1}}}
+
+" License {{{1
 " ---------------------------------------------------------------------
 "
 " Copyright (c) 2011 Jeremy Attali
@@ -461,4 +555,4 @@ nnoremap <silent> s*     :FufCoverageFile<CR>
 " LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 " THE SOFTWARE.
-"}}}
+"1}}}
