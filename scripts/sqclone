@@ -1,0 +1,36 @@
+#!/bin/bash
+
+workspace=${@: -1}
+if [ -z $workspace ]; then
+	echo "You need to specify the workspace to clone"
+	exit
+fi
+
+echo "Cloning $workspace..."
+
+remotework=/mnt/share/workspaces
+remotedir=$remotework/$workspace
+homework=/home/jeremy/dev/sq
+homedir=$homework/$workspace
+
+if [ ! -d $remotedir ]; then
+	echo "Error: $remotedir does not exist or is not a directory"
+	exit
+fi
+
+if [ ! -d $homedir ]; then
+	echo "Creating: $homedir"
+	mkdir -p $homedir
+fi
+
+while getopts  "f" opt; do
+	case $opt in
+		f)
+			echo "removing previous directories execpt for Generated"
+			ls $homedir | grep -v Generated | xargs rm -rf
+			;;
+	esac
+	echo "$opt" $OPTIND $OPTARG
+	echo "copying files from $remotedir to $homedir"
+	ls -d -1 $remotedir/* | grep -v Generated | xargs -i cp -r {} $homedir
+done
