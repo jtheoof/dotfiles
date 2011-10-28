@@ -26,8 +26,8 @@ fi
 while getopts  "f" opt; do
 	case $opt in
 		f)
-			echo "removing previous directories execpt for Generated"
-			ls $homedir | grep -v Generated | xargs rm -rf
+			echo "removing previous directories except for Generated"
+			ls -d -1 $homedir/* | grep -v Generated | xargs rm -rf
 			;;
 	esac
 	echo "$opt" $OPTIND $OPTARG
