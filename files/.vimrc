@@ -205,6 +205,7 @@ imap <C-D> <Esc>dda
 map <C-K> :let @/ = ""<CR>
 
 map <F1> :Explore<CR>
+map <C-F1> :tabe **/<cfile><CR>
 map <F2> <C-]>
 map g<F2> g<C-]>
 map <C-F2> g]
