@@ -139,9 +139,6 @@ let g:mapleader = ","
 " change to directory containing current file
 nmap <Leader>cd :cd %:p:h<CR>
 
-" change to root dev directory
-nmap <Leader>cr :cd $HOME/dev/sq/JeremyDev<CR>
-
 " Fast saving
 nmap <Leader>w :w!<CR>
 
@@ -531,6 +528,17 @@ nnoremap <silent> se     :FufEditDataFile<CR>
 nnoremap <silent> sr     :FufRenewCache<CR>
 nnoremap <silent> s*     :FufCoverageFile<CR>
 "2}}}
+
+"1}}}
+
+" Temporary work commands {{{1
+"---------------------------------------------------------------------
+
+" include more files
+set path+=$HOME/dev/sq/JeremyDev/*/Interfaces
+
+" change to root dev directory
+nmap <Leader>cr :cd $HOME/dev/sq/JeremyDev<CR>
 
 "1}}}
 
