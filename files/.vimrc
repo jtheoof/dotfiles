@@ -54,7 +54,8 @@ set showcmd                        " display incomplete commands
 set tags=tags;/,.tags;/,TAGS;/
 set title                          " show title in console title bar
 set ttyfast                        " smoother changes
-set viminfo='10,\"100			   " 10 marks, 100 lines
+"set viminfo='10,\"100			   " 10 marks, 100 lines
+set viminfo='10,\"100,:20,% 	   " 10 marks, 100 lines, up to 20 command lins and save/restore buffer list
 "set whichwrap=b,s,h,l,<,>,[,]                  " move freely between files
 set wildmenu
 set wildchar=<Tab> wildmenu wildmode=full
@@ -243,6 +244,10 @@ nmap <C-@><C-@> :cs find s <C-R>=expand("<cword>")<CR><CR>
 
 " Auto commands {{{1
 "---------------------------------------------------------------------
+
+" This autocommand jumps to the last known position in a file
+" just after opening it, if the '"' mark is set:
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " Auto name title to filename opened
 " autocmd BufRead * let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
