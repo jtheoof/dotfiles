@@ -468,12 +468,6 @@ autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
 " Plugins {{{1
 "---------------------------------------------------------------------
 
-" Vim grep {{{2
-
-let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
-set grepprg=/bin/grep\ -nH
-"2}}}
-
 " Buff Explorer {{{2
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerShowRelativePath=1

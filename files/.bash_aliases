@@ -34,6 +34,9 @@ alias ducks='du -cks * | sort -rn | head -11'
 # diff
 alias diff='colordiff'
 
+# navigation
+alias n.='nautilus .'
+
 # APT aliases
 alias  AF='sudo apt-get -f install' #Fix missing or uninstalled packages.
 alias  AU='sudo apt-get update' #Update the list of available packages
@@ -127,6 +130,16 @@ function unhold {
 # What packages are held
 function held {
     dpkg --get-selections | grep hold
+}
+
+# Hex to Dec
+function h2d() {
+  echo "ibase=16; $(echo $@ | tr '[:lower:]' '[:upper:]')"|bc
+}
+
+# Dec to Hex
+function d2h() {
+  echo "obase=16; $@"|bc
 }
 
 function apt-history() {
