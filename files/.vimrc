@@ -31,6 +31,7 @@ set backspace=indent,eol,start                 " more powerful backspacing
 set nobackup                       " do not keep a backup file
 set cursorline                     "Highlight current line"
 set clipboard=unnamed                " copy things to general clipboard
+set diffopt+=vertical 			   " make vertical default split
 set esckeys                        " allow usage of curs keys within insert mode 
 set encoding=utf8				   " utf-8 encoding
 set ignorecase                     " ignore case when searching
@@ -130,6 +131,14 @@ else
 endif
 " }}}
 
+" OS Specific {{{1
+"---------------------------------------------------------------------
+if has("unix")
+	let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+elseif has("win32")
+endif
+" }}}
+
 " Main leader commands {{{1
 "---------------------------------------------------------------------
 " With a map leader it's possible to do extra key combinations
@@ -214,12 +223,9 @@ map <F5> <Esc>:w<CR>
 imap <F5> <Esc>:w<CR>a
 map <F7> :make<CR>
 imap <F7> <Esc>:make<CR>a
-"map <F8> :%! tidy -qi -xml % <CR>
-map <F8> :%! tidy -qmi -utf8 % <CR>
-map <C-F8> :r ! python -mjson.tool < % <CR>ggdd
 map <F9> :TlistToggle<CR>
-map <F11> zz:sp<CR><C-W><Down>
-map <F12> zz:vsp<CR><C-W><Right>
+map <F12> :! tidy -qmi -xml -utf8 % <CR>
+map <C-F12> :r ! python -mjson.tool < % <CR>ggdd
 
 " map control-backspace to delete the previous word
 imap <C-BS> <C-W>
