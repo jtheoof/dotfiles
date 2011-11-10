@@ -10,3 +10,6 @@
 [submodule "files/.vim/bundle/conque-term"]
 	path = files/.vim/bundle/conque-term
 	url = https://github.com/rosenfeld/conque-term.git
+[submodule "files/.vim/bundle/ack.vim"]
+	path = files/.vim/bundle/ack.vim
+	url = https://github.com/mileszs/ack.vim.git
