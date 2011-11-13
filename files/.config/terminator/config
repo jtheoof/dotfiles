@@ -4,12 +4,11 @@
 [keybindings]
 [profiles]
   [[default]]
-    scrollbar_position = hidden
     palette = "#3f3f3f:#ff0000:#efefef:#e3ceab:#dfaf8f:#cc9393:#7f9f7f:#dcdccc:#3f3f3f:#ffcfcf:#efefef:#e3ceab:#dfaf8f:#cc9393:#7f9f7f:#dcdccc"
-    use_system_font = False
+    background_darkness = 0.91
+    scrollbar_position = hidden
     foreground_color = "#bdbdbd"
     icon_bell = False
-    font = MonteCarlo Medium 10
     background_color = "#402b2b"
     scrollback_infinite = True
 [layouts]
