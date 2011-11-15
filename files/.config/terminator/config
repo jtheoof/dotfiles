@@ -2,14 +2,15 @@
   title_transmit_bg_color = "#a6888c"
   borderless = True
 [keybindings]
+  toggle_scrollbar = <Control>s
 [profiles]
   [[default]]
-    palette = "#3f3f3f:#ff0000:#efefef:#e3ceab:#dfaf8f:#cc9393:#7f9f7f:#dcdccc:#3f3f3f:#ffcfcf:#efefef:#e3ceab:#dfaf8f:#cc9393:#7f9f7f:#dcdccc"
+    palette = "#2E2E34343636:#CCCC00000000:#4E4E9A9A0606:#C4C4A0A00000:#34346565A4A4:#757550507B7B:#060698209A9A:#D3D3D7D7CFCF:#555557575353:#EFEF29292929:#8A8AE2E23434:#FCFCE9E94F4F:#72729F9FCFCF:#ADAD7F7FA8A8:#3434E2E2E2E2:#EEEEEEEEECEC"
     background_darkness = 0.91
     scrollbar_position = hidden
-    foreground_color = "#bdbdbd"
+    foreground_color = "#FFFFFF"
     icon_bell = False
-    background_color = "#402b2b"
+    background_color = "#300A24"
     scrollback_infinite = True
 [layouts]
   [[default]]
