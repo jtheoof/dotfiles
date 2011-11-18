@@ -123,10 +123,7 @@ if has("gui_running")
     map <silent> <C-S> :w<CR>
     imap <silent> <C-S> <Esc>:w<CR>a
 else
-    "set background=dark              " adapt colors for background
-    "colorscheme solarized            " use this color scheme
-    "set t_Co=256                    " enable 256 colors in vim
-    colorscheme zenburn				  " zenburn color scheme (better to have dark grey background)
+    colorscheme wombat256			 " use wombat for non gui vim sessions
 
 endif
 " }}}
