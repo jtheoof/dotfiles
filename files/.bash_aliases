@@ -31,7 +31,7 @@ alias f.='find . -name'
 # Usage
 alias ducks='du -cks * | sort -rn | head -11'
 
-# diff
+# Diff
 alias diff='colordiff'
 
 # navigation
@@ -50,9 +50,9 @@ alias  AI='sudo apt-get install' #Install package(s) from a Debian repository.
 alias  AR='sudo apt-get remove' #Remove package, leave config files
 alias  ARP='sudo apt-get remove --purge' #Remove including config files
 alias  AIR='sudo apt-get install --reinstall' #Reinstall package
-alias  AA='sudo apt-get autoremove'
-alias  ABD='sudo apt-get build-dep' # install dependencies for source built packages using deb-src
-alias  AGS='sudo apt-get source' # download Debian source to $PWD - requires deb-src enabled in sources.list 
+alias  AGA='sudo apt-get autoremove'
+alias  AGBD='sudo apt-get build-dep' # install dependencies for source built packages using deb-src
+alias  AGS='apt-get source' # download Debian source to $PWD - requires deb-src enabled in sources.list 
 alias  AH='apt-history' # not native to sudo apt-get - apt-history function required
 alias  AV='apt-show-versions' # not native to sudo apt-get - apt-show-versions required
 alias  AVE='apt-show-versions|grep /experimental' #List all packages from /experimental
@@ -75,6 +75,12 @@ alias  DR='dpkg-reconfigure' #Reconfigure a package that's already installed
 alias  DB='dpkg-buildpackage' #Build from Debianized source
 
 # Functions
+
+# Compression
+function ctar() {
+	tar czf $1.tar.gz $1
+}
+
 # Track experimental
 function TE {
     ln -sf /etc/apt/experimental.list /etc/apt/sources.list
