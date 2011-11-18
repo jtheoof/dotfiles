@@ -1,0 +1,21 @@
+# General Ack Settings
+####################################################################
+
+# only search with case sensitivity if there is mixed case
+--smart-case
+# follow symlinks
+--follow
+
+# Ack Type Settings
+####################################################################
+
+# add markdown, textile, and reStructuredText
+--type-set=plaintext=.md,.mdown,.markdown,.mkdn,.textile,.rst,.txt
+# plain text CSV files
+--type-set=csv=.txt,.csv,.tsv
+# add in a type for gettext messages
+--type-set=gettext=.pot,.po
+
+# types to ignore by default
+--noplaintext
+--nogettext
