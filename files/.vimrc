@@ -239,6 +239,9 @@ vmap ! y<Esc>:%s/<C-R>"/
 " Alt-right/left to navigate forward/backward in the tags stack
 map <M-Left> <C-T>
 map <M-Right> <C-]>
+" Alt-up/down to navigate through history
+map <M-Down> <C-o>
+map <M-Up> <C-i>
 
 " Map Ctrl-Space to cscope find current word
 nmap <C-@><C-@> :cs find s <C-R>=expand("<cword>")<CR><CR>
@@ -529,6 +532,7 @@ nnoremap <silent> sh     :FufHelp<CR>
 nnoremap <silent> se     :FufEditDataFile<CR>
 nnoremap <silent> sr     :FufRenewCache<CR>
 nnoremap <silent> s*     :FufCoverageFile<CR>
+nnoremap <silent> sc     :%s///n<CR>
 "2}}}
 
 "1}}}
