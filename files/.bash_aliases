@@ -32,7 +32,7 @@ alias f.='find . -name'
 alias ducks='du -cks * | sort -rn | head -11'
 
 # Diff
-alias diff='colordiff'
+alias diff='colordiff -u'
 
 # navigation
 alias n.='nautilus .'
