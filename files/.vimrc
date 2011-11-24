@@ -236,6 +236,14 @@ vmap <BS> <gv
 vmap <Space> zf
 vmap ! y<Esc>:%s/<C-R>"/
 
+" Navigate through tags
+map <M-b> :tselect<CR>
+map <M-n> :tnext<CR>
+map <M-m> :tprevious<CR>
+map <M-Home> :tselect<CR>
+map <M-PageDown> :tnext<CR>
+map <M-PageUp> :tprevious<CR>
+
 " Alt-right/left to navigate forward/backward in the tags stack
 map <M-Left> <C-T>
 map <M-Right> <C-]>
