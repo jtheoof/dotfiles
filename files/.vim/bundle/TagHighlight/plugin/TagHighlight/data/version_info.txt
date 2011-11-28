@@ -1,0 +1,3 @@
+release_clean:1
+release_revid:5c34f11a58a868670a16f1d96e740685b62b2e7f
+release_date:2011-08-30 13:57:44 +0100
