@@ -21,6 +21,31 @@ set nocompatible              " use vim defaults
 syntax on                     " enable syntax
 let g:reload_on_write = 0
 
+" Bundles {{{1
+"---------------------------------------------------------------------
+" See: https://github.com/bronson/vim-update-bundles
+
+" Programming
+" Bundle: vim-scripts/jQuery
+" Bundle: vim-scripts/TagHighlight
+" Text
+" Bundle: vim-scripts/ack.vim
+" Bundle: tpope/vim-markdown
+" Bundle: ervandew/supertab
+" Bundle: vim-scripts/FuzzyFinder
+" Bundle: vim-scripts/L9
+" VCS
+" Bundle: tpope/vim-git
+" Bundle: tpope/vim-fugitive
+" IDE
+" Bundle: bcaccinolo/bclose
+" Bundle: mattn/zencoding-vim
+" Bundle: vim-scripts/bufexplorer.zip
+" Bundle: vim-scripts/OmniCppComplete
+" Bundle: vim-scripts/Color-Sampler-Pack
+"---------------------------------------------------------------------
+"1}}}
+
 " Main options {{{1
 "---------------------------------------------------------------------
 "set autochdir                      " Automatically follow current directory
@@ -107,8 +132,8 @@ if has("gui_running")
     "set guifont=Monaco\ 8
     colorscheme zenburn
 	if has("gui_gtk2")
-		"set guifont=Ubuntu\ Mono\ 8
-		set guifont=Ubuntu\ Mono\ 10
+		set guifont=Ubuntu\ Mono\ 8
+		"set guifont=Ubuntu\ Mono\ 10
 	    "set guifont=Consolas\ 10
 	elseif has("gui_win32")
 	    set guifont=Consolas:h10
@@ -477,30 +502,6 @@ autocmd FileType python map <buffer> <Leader>D ?def
 autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
 "2}}}
 
-"1}}}
-
-" Bundles {{{1
-"---------------------------------------------------------------------
-" See: https://github.com/bronson/vim-update-bundles
-
-" Programming
-" Bundle: vim-scripts/jQuery
-" Bundle: vim-scripts/TagHighlight
-" Text
-" Bundle: vim-scripts/ack.vim
-" Bundle: tpope/vim-markdown
-" Bundle: vim-scripts/FuzzyFinder
-" Bundle: vim-scripts/L9
-" VCS
-" Bundle: tpope/vim-git
-" Bundle: tpope/vim-fugitive
-" IDE
-" Bundle: bcaccinolo/bclose
-" Bundle: mattn/zencoding-vim
-" Bundle: vim-scripts/bufexplorer.zip
-" Bundle: vim-scripts/OmniCppComplete
-" Bundle: vim-scripts/Color-Sampler-Pack
-"---------------------------------------------------------------------
 "1}}}
 
 " Plugins {{{1
