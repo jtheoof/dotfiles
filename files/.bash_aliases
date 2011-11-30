@@ -55,24 +55,26 @@ alias  AGBD='sudo apt-get build-dep' # install dependencies for source built pac
 alias  AGS='apt-get source' # download Debian source to $PWD - requires deb-src enabled in sources.list 
 alias  AH='apt-history' # not native to sudo apt-get - apt-history function required
 alias  AV='apt-show-versions' # not native to sudo apt-get - apt-show-versions required
-alias  AVE='apt-show-versions|grep /experimental' #List all packages from /experimental
-alias  AVU='apt-show-versions|grep /unstable'
-alias  AVT='apt-show-versions|grep /testing'
-alias  AVS='apt-show-versions|grep /stable'
-alias  AVEC='apt-show-versions|grep -c /experimental' #Display total number of pacakges from /experimental
-alias  AVUC='apt-show-versions|grep -c /unstable' 
-alias  AVTC='apt-show-versions|grep -c /testing'
-alias  AVSC='apt-show-versions|grep -c /stable'
+alias  AVE='apt-show-versions | grep /experimental' #List all packages from /experimental
+alias  AVU='apt-show-versions | grep /unstable'
+alias  AVT='apt-show-versions | grep /testing'
+alias  AVS='apt-show-versions | grep /stable'
+alias  AVEC='apt-show-versions | grep -c /experimental' #Display total number of pacakges from /experimental
+alias  AVUC='apt-show-versions | grep -c /unstable' 
+alias  AVTC='apt-show-versions | grep -c /testing'
+alias  AVSC='apt-show-versions | grep -c /stable'
 
 # dpkg aliases
-alias  DI='dpkg -i' #Install <package>.deb
-alias  DL='dpkg -l|grep' # list installed packages, search for string
-alias  DP='dpkg --purge' #Remove package and config files
-alias  DC='dpkg -c' #list contents of a .deb package
-alias  DCS='dpkg --configure -a' #use then when you fuck up dpkg mid-install or something
-alias  DIF='dpkg -i --force-overwrite' #use when you get "trying to overwrite <something> which is also in package <something>"
-alias  DR='dpkg-reconfigure' #Reconfigure a package that's already installed
-alias  DB='dpkg-buildpackage' #Build from Debianized source
+alias  DL='dpkg -l' # list all installed packages
+alias  DF='dpkg -L' # list files installed by <package>
+alias  DI='dpkg -i' # install <package>.deb
+alias  DS='dpkg -l | ack' # list installed packages, search for string
+alias  DP='dpkg -p' # show details of package, same as apt-cache show
+alias  DC='dpkg -c' # list contents of a .deb package
+alias  DCS='dpkg --configure -a' # use then when you fuck up dpkg mid-install or something
+alias  DIF='dpkg -i --force-overwrite' # use when you get "trying to overwrite <something> which is also in package <something>"
+alias  DR='dpkg-reconfigure' # reconfigure a package that's already installed
+alias  DB='dpkg-buildpackage' # build from Debianized source
 
 # Functions
 
