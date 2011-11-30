@@ -43,7 +43,6 @@ let g:reload_on_write = 0
 " Bundle: vim-scripts/bufexplorer.zip
 " Bundle: vim-scripts/OmniCppComplete
 " Bundle: vim-scripts/Color-Sampler-Pack
-" Bundle: adrianolaru/vim-mustang
 "---------------------------------------------------------------------
 "1}}}
 
@@ -85,9 +84,16 @@ set wildchar=<Tab> wildmenu wildmode=full
 set wildcharm=<C-Z>
 set wildmode=longest,full
 
-" List invisible chars
-set listchars=tab:▸\ ,eol:¬
-" set list 							" use <Leader>l switch list usage
+" Turn backup off, since most stuff is in SVN, git anyway...
+set nobackup
+set nowb
+set noswapfile
+
+" Persistent undo
+set undodir=~/.vim/undodir
+set undofile
+set undolevels=1000 "maximum number of changes that can be undone
+set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
 " Word wrapping
 set wrap
@@ -113,6 +119,10 @@ set noerrorbells
 set tags=tags;/,.tags;/,TAGS;/
 set tags+=~/.vim/tags/x11
 set tags+=~/.vim/tags/gl
+
+" List invisible chars
+set listchars=tab:▸\ ,eol:¬
+" set list 							" use <Leader>l switch list usage
 
 let mapleader=","
 "1}}}
@@ -228,7 +238,11 @@ nmap <leader>l :set list!<CR>
 " Mappings {{{1
 "---------------------------------------------------------------------
 
-map <Home> ^
+" Easier navigation through code
+nnoremap <Tab> %
+
+nnoremap <Home> ^
+inoremap <Home> <Esc>^i
 
 map <C-Right> <C-w><Right>
 map! <C-Right>  <Esc> <C-w><Right>
@@ -249,9 +263,7 @@ map <C-K> :let @/ = ""<CR>
 
 map <F1> :Explore<CR>
 map <C-F1> :tabe **/<cfile><CR>
-map <F2> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-map g<F2> g<C-]>
-map <C-F2> g]
+nnoremap <F2> :BufExplorer<CR>
 nnoremap <F3> :exec("Ack '".expand("<cword>")."'")<CR>
 nnoremap <F4> :call HighlightWord()<CR>
 nnoremap <C-F4> :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
@@ -328,26 +340,6 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType html setlocal softtabstop=2 shiftwidth=2
 autocmd FileType tpl setlocal softtabstop=2 shiftwidth=2
 autocmd FileType smarty setlocal softtabstop=2 shiftwidth=2
-"1}}}
-
-" Files, backups and undo {{{1
-"---------------------------------------------------------------------
-" Turn backup off, since most stuff is in SVN, git anyway...
-set nobackup
-set nowb
-set noswapfile
-
-"Persistent undo
-try
-    if MySys() == "windows"
-      set undodir=C:\Windows\Temp
-    else
-      set undodir=~/.vim/undodir
-    endif
-
-    set undofile
-catch
-endtry
 "1}}}
 
 " Spell checking {{{1
