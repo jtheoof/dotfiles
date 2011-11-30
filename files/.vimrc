@@ -43,6 +43,7 @@ let g:reload_on_write = 0
 " Bundle: vim-scripts/bufexplorer.zip
 " Bundle: vim-scripts/OmniCppComplete
 " Bundle: vim-scripts/Color-Sampler-Pack
+" Bundle: adrianolaru/vim-mustang
 "---------------------------------------------------------------------
 "1}}}
 
@@ -138,10 +139,12 @@ if has("gui_running")
     set background=dark             " adapt colors for background
     "colorscheme solarized
     "set guifont=Monaco\ 8
-    colorscheme zenburn
+    "colorscheme zenburn
+    colorscheme mustang
 	if has("gui_gtk2")
+		set guifont=Ubuntu\ Mono\ 8
 		"set guifont=Ubuntu\ Mono\ 8
-		set guifont=Ubuntu\ Mono\ 10
+		"set guifont=Monaco\ 8
 	    "set guifont=Consolas\ 10
 	elseif has("gui_win32")
 	    set guifont=Consolas:h10
