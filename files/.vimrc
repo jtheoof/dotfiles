@@ -1,6 +1,6 @@
 " Name:     Jeremy Attali's .vimrc
 " Author:   Jeremy Attali
-" URL:      
+" URL:
 " License:  MIT license (see end of this file)
 " Created:  In Paris
 " Modified: 2011 Apr 14
@@ -29,7 +29,7 @@ let g:reload_on_write = 0
 " Bundle: vim-scripts/jQuery
 " Bundle: vim-scripts/TagHighlight
 " Text
-" Bundle: vim-scripts/ack.vim
+" Bundle: mileszs/ack.vim
 " Bundle: tpope/vim-markdown
 " Bundle: ervandew/supertab
 " Bundle: vim-scripts/FuzzyFinder
@@ -54,8 +54,9 @@ set nobackup                       " do not keep a backup file
 set cursorline                     "Highlight current line"
 set clipboard=unnamed                " copy things to general clipboard
 set diffopt+=vertical 			   " make vertical default split
-set esckeys                        " allow usage of curs keys within insert mode 
+set esckeys                        " allow usage of curs keys within insert mode
 set encoding=utf8				   " utf-8 encoding
+set gdefault 					   " default global in regex
 set ignorecase                     " ignore case when searching
 set smartcase                      " ignore case only if all chars are lower case
 set incsearch                      " do incremental searching
@@ -70,7 +71,6 @@ set modeline                       " last lines in document sets vim mode
 set modelines=5                    " number lines checked for modelines
 set nolazyredraw                   " don't redraw while executing macros
 set nostartofline                  " don't jump to first character when paging
-set nowrap                         " don't wrap to new line
 set omnifunc=syntaxcomplete#Complete
 set shortmess=atI                  " Abbreviate messages
 set showcmd                        " display incomplete commands
@@ -83,6 +83,16 @@ set wildmenu
 set wildchar=<Tab> wildmenu wildmode=full
 set wildcharm=<C-Z>
 set wildmode=longest,full
+
+" List invisible chars
+set listchars=tab:▸\ ,eol:¬
+" set list 							" use <Leader>l switch list usage
+
+" Word wrapping
+set wrap
+set textwidth=79
+set formatoptions=qrn1
+"set colorcolumn=85
 
 " Indentation
 set tabstop=4
@@ -101,6 +111,7 @@ set noerrorbells
 " Set default tags file and some extra
 set tags=tags;/,.tags;/,TAGS;/
 set tags+=~/.vim/tags/x11
+set tags+=~/.vim/tags/gl
 
 let mapleader=","
 "1}}}
@@ -119,9 +130,6 @@ function! QFixToggle(forced)
     let g:qfix_win = bufnr("$")
   endif
 endfunction
-
-map <C-F9> :QFix<CR>
-
 "1}}}
 
 " GUI {{{1
@@ -132,8 +140,8 @@ if has("gui_running")
     "set guifont=Monaco\ 8
     colorscheme zenburn
 	if has("gui_gtk2")
-		set guifont=Ubuntu\ Mono\ 8
-		"set guifont=Ubuntu\ Mono\ 10
+		"set guifont=Ubuntu\ Mono\ 8
+		set guifont=Ubuntu\ Mono\ 10
 	    "set guifont=Consolas\ 10
 	elseif has("gui_win32")
 	    set guifont=Consolas:h10
@@ -156,10 +164,6 @@ endif
 
 " OS Specific {{{1
 "---------------------------------------------------------------------
-if has("unix")
-	let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-elseif has("win32")
-endif
 " }}}
 
 " Main leader commands {{{1
@@ -169,11 +173,17 @@ endif
 let mapleader = ","
 let g:mapleader = ","
 
+" Use Ack shortcut
+nnoremap <Leader>a :Ack ''<Left>
+
 " change to directory containing current file
 nmap <Leader>cd :cd %:p:h<CR>
 
 " Fast saving
 nmap <Leader>w :w!<CR>
+
+" Use <Leader>W to “strip all trailing whitespace in the current file”
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Splitting windows the right way
 " Thanks to: http://technotales.wordpress.com/2010/04/29/vim-splits-a-guide-to-doing-exactly-what-you-want/
@@ -203,16 +213,17 @@ map <Leader>td ,bd,tc
 map <Leader>tt :tabnew %<CR>
 map <Leader>tn :tabnew<CR>
 
-map <Leader>fc :cs find s <C-R>=expand("<cword>")<CR><CR>
+" Format to XML, JSON, ...
+map <Leader>fx :! tidy -qmi -xml -utf8 % <CR>
+map <Leader>fj :r ! python -mjson.tool < % <CR>ggdd
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
 
 "1}}}
 
 " Mappings {{{1
 "---------------------------------------------------------------------
-" Don't do this because it causes problems to open with ":lw or :cw
-
-"map <S-Enter> O<Esc>
-"map <CR> o<Esc>
 
 map <Home> ^
 
@@ -238,16 +249,21 @@ map <C-F1> :tabe **/<cfile><CR>
 map <F2> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 map g<F2> g<C-]>
 map <C-F2> g]
-"map <F5> <Esc>:w<CR>:!%:p<CR>
+nnoremap <F3> :exec("Ack '".expand("<cword>")."'")<CR>
 nnoremap <F4> :call HighlightWord()<CR>
 nnoremap <C-F4> :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
+
+" Editing / Compiling
 map <F5> <Esc>:w<CR>
 imap <F5> <Esc>:w<CR>a
 map <F7> :make<CR>
 imap <F7> <Esc>:make<CR>a
-map <F9> :TlistToggle<CR>
-map <F12> :! tidy -qmi -xml -utf8 % <CR>
-map <C-F12> :r ! python -mjson.tool < % <CR>ggdd
+
+" Display
+map <F9> :QFix<CR>
+map <C-F9> :TlistToggle<CR>
+nnoremap <F11> :split %<CR><C-w>jzz
+nnoremap <F12> :vsplit %<CR><C-w>lzz
 
 " map control-backspace to delete the previous word
 imap <C-BS> <C-W>
@@ -284,6 +300,12 @@ nmap <C-@><C-@> :cs find s <C-R>=expand("<cword>")<CR><CR>
 " Auto commands {{{1
 "---------------------------------------------------------------------
 
+" Automatically fitting a quickfix window height
+au FileType qf call AdjustWindowHeight(3, 20)
+function! AdjustWindowHeight(minheight, maxheight)
+  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
+
 " This autocommand jumps to the last known position in a file
 " just after opening it, if the '"' mark is set:
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -300,9 +322,9 @@ autocmd FocusLost * execute ":silent! wa"
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 " Local indentations
-autocmd FileType html setlocal softtabstop=2 shiftwidth=2 
-autocmd FileType tpl setlocal softtabstop=2 shiftwidth=2 
-autocmd FileType smarty setlocal softtabstop=2 shiftwidth=2 
+autocmd FileType html setlocal softtabstop=2 shiftwidth=2
+autocmd FileType tpl setlocal softtabstop=2 shiftwidth=2
+autocmd FileType smarty setlocal softtabstop=2 shiftwidth=2
 "1}}}
 
 " Files, backups and undo {{{1
@@ -324,7 +346,7 @@ try
 catch
 endtry
 "1}}}
-    
+
 " Spell checking {{{1
 "---------------------------------------------------------------------
 
@@ -443,6 +465,10 @@ nmap <C-Space><C-Space>i
 	\:vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-Space><C-Space>d
 	\:vert scs find d <C-R>=expand("<cword>")<CR><CR>
+
+" Find current word
+map <Leader>fc :cs find s <C-R>=expand("<cword>")<CR><CR>
+
 "2}}}
 
 "1}}}
@@ -451,15 +477,9 @@ nmap <C-Space><C-Space>d
 "---------------------------------------------------------------------
 
 " C / C++ Section {{{2
-augroup cpp
-  " OmniCPPComplete
-  autocmd BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
-  " ReadTypes (TagHighlight plugin) on each Read, NewFile.
-  " Can probably be done directly in the plugin but I haven't found a way yet.
-  " This can lead to slow opening of .c, .cpp and .h files.
-  autocmd BufRead,BufNewFile *.[ch] ReadTypes
-  autocmd BufRead,BufNewFile *.cpp ReadTypes
-augroup END
+
+" OmniCPPComplete
+autocmd BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 
 if has('cscope')
   set cscopetag cscopeverbose
@@ -506,6 +526,12 @@ autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
 
 " Plugins {{{1
 "---------------------------------------------------------------------
+
+" Ack {{{2
+if has("unix")
+	let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+endif
+"2}}}
 
 " Buff Explorer {{{2
 let g:bufExplorerDefaultHelp=0
