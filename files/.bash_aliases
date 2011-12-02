@@ -67,6 +67,7 @@ alias  AVSC='apt-show-versions | grep -c /stable'
 # dpkg aliases
 alias  DL='dpkg -l' # list all installed packages
 alias  DF='dpkg -L' # list files installed by <package>
+alias  DT='dpkg -L' # list files installed by <package>
 alias  DI='dpkg -i' # install <package>.deb
 alias  DS='dpkg -l | ack' # list installed packages, search for string
 alias  DP='dpkg -p' # show details of package, same as apt-cache show

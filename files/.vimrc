@@ -17,7 +17,7 @@ runtime macros/matchit.vim    " smarter use of '%'
 
 filetype plugin on            " put filetype plugin back on after pathogen
 filetype indent on            " enable indents on filetype (ex: html, tpl, ...)
-set nocompatible              " use vim defaults
+set nocompatible              " use vim defaults, we don't care about vi anymore
 syntax on                     " enable syntax
 let g:reload_on_write = 0
 
@@ -49,10 +49,10 @@ let g:reload_on_write = 0
 " Main options {{{1
 "---------------------------------------------------------------------
 "set autochdir                      " Automatically follow current directory
-set backspace=indent,eol,start                 " more powerful backspacing
+set backspace=indent,eol,start      " more powerful backspacing
 set nobackup                       " do not keep a backup file
-set cursorline                     "Highlight current line"
-set clipboard=unnamed                " copy things to general clipboard
+set cursorline                     " Highlight current line
+set clipboard=unnamed              " copy things to general clipboard
 set diffopt+=vertical 			   " make vertical default split
 set esckeys                        " allow usage of curs keys within insert mode
 set encoding=utf8				   " utf-8 encoding
@@ -74,6 +74,8 @@ set nostartofline                  " don't jump to first character when paging
 set omnifunc=syntaxcomplete#Complete
 set shortmess=atI                  " Abbreviate messages
 set showcmd                        " display incomplete commands
+set showmode 					   " Show current mode
+set scrolloff=5 				   " Make cursor offset (min lines before or after cursor)
 set title                          " show title in console title bar
 set ttyfast                        " smoother changes
 "set viminfo='10,\"100			   " 10 marks, 100 lines
@@ -145,15 +147,12 @@ endfunction
 
 " GUI {{{1
 "---------------------------------------------------------------------
+colorscheme mustang			 " use wombat for non gui vim sessions
 if has("gui_running")
     set background=dark             " adapt colors for background
-    "colorscheme solarized
-    "set guifont=Monaco\ 8
-    "colorscheme zenburn
-    colorscheme mustang
 	if has("gui_gtk2")
-		set guifont=Ubuntu\ Mono\ 8
 		"set guifont=Ubuntu\ Mono\ 8
+		set guifont=Ubuntu\ Mono\ 10
 		"set guifont=Monaco\ 8
 	    "set guifont=Consolas\ 10
 	elseif has("gui_win32")
@@ -170,13 +169,7 @@ if has("gui_running")
     "map <silent> <C-S> :if expand("%") == ""<CR>:browse confirm w<CR>:else<CR>:w<CR>:endif<CR>
     map <silent> <C-S> :w<CR>
     imap <silent> <C-S> <Esc>:w<CR>a
-else
-    colorscheme wombat256			 " use wombat for non gui vim sessions
 endif
-" }}}
-
-" OS Specific {{{1
-"---------------------------------------------------------------------
 " }}}
 
 " Main leader commands {{{1
@@ -264,7 +257,7 @@ map <C-K> :let @/ = ""<CR>
 map <F1> :Explore<CR>
 map <C-F1> :tabe **/<cfile><CR>
 nnoremap <F2> :BufExplorer<CR>
-nnoremap <F3> :exec("Ack '".expand("<cword>")."'")<CR>
+nnoremap <F3> :exec("Ack '\\b".expand("<cword>")."\\b'")<CR>
 nnoremap <F4> :call HighlightWord()<CR>
 nnoremap <C-F4> :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
 
@@ -330,6 +323,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 
 " Auto save when focus is lost
 autocmd FocusLost * execute ":silent! wa"
+
 " Auto change directory on Buffer Entering
 " autocmd BufEnter * execute ":silent! lcd %:p:h"
 
@@ -529,8 +523,9 @@ endif
 "2}}}
 
 " Buff Explorer {{{2
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerShowRelativePath=1
+let g:bufExplorerDefaultHelp=0 		 " Do not show default help
+let g:bufExplorerShowRelativePath=1  " Show relative path
+let g:bufExplorerFindActive=0 		 " Do not go to active window
 map <silent> <C-Tab> :BufExplorer<CR>
 map <silent> <Leader>o :BufExplorer<CR>
 "2}}}
