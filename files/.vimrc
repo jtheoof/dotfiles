@@ -41,7 +41,6 @@ let g:reload_on_write = 0
 " Bundle: bcaccinolo/bclose
 " Bundle: mattn/zencoding-vim
 " Bundle: vim-scripts/bufexplorer.zip
-" Bundle: vim-scripts/OmniCppComplete
 " Bundle: vim-scripts/Color-Sampler-Pack
 "---------------------------------------------------------------------
 "1}}}
@@ -468,7 +467,7 @@ map <Leader>fc :cs find s <C-R>=expand("<cword>")<CR><CR>
 " C / C++ Section {{{2
 
 " OmniCPPComplete
-autocmd BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
+"autocmd BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 
 if has('cscope')
   set cscopetag cscopeverbose
@@ -518,7 +517,7 @@ autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
 
 " Ack {{{2
 if has("unix")
-	let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+	let g:ackprg="ack-grep -H --nocolor --nogroup --column --sort-files"
 endif
 "2}}}
 
