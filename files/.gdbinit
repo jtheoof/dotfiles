@@ -1,3 +1,7 @@
+# Default settings
+set print pretty on
+set print array on
+
 define bpl
 info breakpoints
 end
@@ -70,28 +74,11 @@ end
 echo "\n
 end
 
-
 define argv
 show args
 end
 document argv
 Print program arguments
-end
-
-define stack
-info stack
-end
-document stack
-Print call stack
-end
-
-define frame
-info frame
-info args
-info locals
-end
-document frame
-Print stack frame
 end
 
 define flags
@@ -203,13 +190,6 @@ info signals
 end
 document sig
 Print signal actions for target
-end
-
-define thread
-info threads
-end
-document thread
-Print threads in target
 end
 
 define u
@@ -364,7 +344,7 @@ end
 
 # Calls "context" at every breakpoint.
 define hook-stop
-  context
+#  context
 end
 
 # Init parameters
