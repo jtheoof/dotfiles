@@ -30,6 +30,7 @@ alias f.='find . -name'
 
 # Usage
 alias ducks='du -cks * | sort -rn | head -11'
+alias psa='ps -ef | ack'
 
 # Diff
 alias diff='colordiff -u'
