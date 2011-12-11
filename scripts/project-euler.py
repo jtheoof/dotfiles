@@ -10,23 +10,27 @@ def problem_1():
 	total = sum(x for x in range(1000) if x % 3 == 0 or x % 5 == 0)
 	print total
 
+def problem_2():
+	un2 = 1
+	un1 = 2
+	un  = un1
+	total = 2
+	while 1:
+		un  = un2 + un1
+		if un >= 4000000:
+			break
+		if un % 2 == 0:
+			total += un
+		un2 = un1
+		un1 = un
+	print total
+
 def usage():
 	basename = os.path.basename(sys.argv[0]);
 	print '''
 usage: %s [option] filename
 Options:
-  -c --cleanup
-	Cleanup input file, removing unmatched lines
-	sorting it by time and printing results to standard output.
-	This option overrides -t -s and -n
-  -t --thread
-    Show only this thread id (number)
-  -s --severity
-    Show logs with given severity (number)
-  -n --no-sort
-	Assume the file is already sorted by time
-  -q --quiet
-	Don't show standard errors
+	-p --problem Print of solution of problem p
 ''' % basename
 
 def main():
@@ -49,8 +53,13 @@ def main():
 		else:
 			assert False, "unhandled option"
 
+	if problem == 0:
+		usage()
+		sys.exit(2)
 	if problem == 1:
 		problem_1()
+	elif problem == 2:
+		problem_2()
 	else:
 		print 'Unkown problem: %d' % problem
 
