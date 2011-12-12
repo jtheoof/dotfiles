@@ -6,6 +6,9 @@ import re
 import sys
 
 
+"""
+	Hard to be more condensed than that.
+"""
 def problem_1():
 	total = sum(x for x in range(1000) if x % 3 == 0 or x % 5 == 0)
 	print total
@@ -24,6 +27,44 @@ def problem_2():
 		un2 = un1
 		un1 = un
 	print total
+
+def problem_3():
+	n = 600851475143;
+	p = 2
+	while n > 1:
+		if n % p == 0:
+			n = n / p
+		else:
+			p += 1
+	print p
+
+"""
+	Could check for less numbers.
+
+	p = abccba
+	...
+	p = 11(9091a + 910b + 100c)
+
+	Also I don't need to store the palindromes in an
+	array but I find it fun.
+"""
+def problem_4():
+	palindromes = []
+	for i in range(100, 1000):
+		for j in range(100, 1000):
+			p = i * j
+			s = str(p)
+			palindrome = True
+			k = 0
+			l = len(s)
+			while k <= l / 2:
+				if s[k] != s[l - 1 - k]:
+					palindrome = False
+					break
+				k += 1
+			if palindrome:
+				palindromes.append(p)
+	print max(palindromes)
 
 def usage():
 	basename = os.path.basename(sys.argv[0]);
@@ -60,6 +101,10 @@ def main():
 		problem_1()
 	elif problem == 2:
 		problem_2()
+	elif problem == 3:
+		problem_3()
+	elif problem == 4:
+		problem_4()
 	else:
 		print 'Unkown problem: %d' % problem
 
