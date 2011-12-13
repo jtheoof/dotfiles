@@ -66,6 +66,17 @@ def problem_4():
 				palindromes.append(p)
 	print max(palindromes)
 
+"""
+	This one is easy to solve mathematically.
+
+	I just decomposed each integer from 1 to 20 in primes numbers
+	and used the biggest power of each prime number.
+	Multiplying them together will lead the minimum number divisble by
+	n, n belonging to [1, 20].
+"""
+def problem_5():
+	print 19 * 17 * 13 * 11 * 7 * 5 * 3 ^ 2 * 2 ^ 4
+
 def usage():
 	basename = os.path.basename(sys.argv[0]);
 	print '''
@@ -105,6 +116,8 @@ def main():
 		problem_3()
 	elif problem == 4:
 		problem_4()
+	elif problem == 5:
+		problem_5()
 	else:
 		print 'Unkown problem: %d' % problem
 
