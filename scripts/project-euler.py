@@ -75,7 +75,7 @@ def problem_4():
 	n, n belonging to [1, 20].
 """
 def problem_5():
-	print 19 * 17 * 13 * 11 * 7 * 5 * 3 ^ 2 * 2 ^ 4
+	print 19 * 17 * 13 * 11 * 7 * 5 * 3**2 * 2**4
 
 def usage():
 	basename = os.path.basename(sys.argv[0]);
