@@ -29,6 +29,7 @@ alias fd='find . -type d -name'
 alias f.='find . -name'
 
 # Usage
+alias du1='du --max-depth 1 -h .'
 alias ducks='du -cks * | sort -rn | head -11'
 alias psa='ps -ef | ack'
 

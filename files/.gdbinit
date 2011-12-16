@@ -1,7 +1,5 @@
-# Default settings
-set print pretty on
-set print array on
-
+# Intel functions {{{
+# ----------------------------------------------------------------------------
 define bpl
 info breakpoints
 end
@@ -60,7 +58,7 @@ Set a read/write breakpoint on address
 Usage: bpm addr
 end
 
-define wc_print
+define wprint
 echo "
 set $c = (wchar_t*)$arg0
 while ( *$c )
@@ -347,11 +345,6 @@ define hook-stop
 #  context
 end
 
-# Init parameters
-set output-radix 0x10
-set input-radix 0x10
-set disassembly-flavor intel
-
 # call with dump_breaks file.txt
 define dump_breaks
     set logging file $arg0
@@ -361,3 +354,28 @@ define dump_breaks
     set logging off
     set logging redirect off
 end
+# -----------------------------------------------------------------------------
+# }}}
+
+# GDB Options {{{
+# -----------------------------------------------------------------------------
+# Default settings
+set print pretty on
+set print array on
+
+set confirm off
+set verbose off
+set prompt \033[36mgdb$ \033[0m
+
+# Init parameters
+set output-radix 0x10
+set input-radix 0x10
+
+# These make gdb never pause in its output
+set height 0
+set width 0
+
+# Display instructions in Intel format
+set disassembly-flavor intel
+# -----------------------------------------------------------------------------
+#}}}

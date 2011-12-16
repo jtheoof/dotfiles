@@ -77,6 +77,14 @@ def problem_4():
 def problem_5():
 	print 19 * 17 * 13 * 11 * 7 * 5 * 3**2 * 2**4
 
+"""
+	Brut forcing it.
+"""
+def problem_6():
+	s1 = sum(x ** 2 for x in range(1, 101))
+	s2 = sum(x for x in range(1, 101)) ** 2
+	print s2 - s1
+
 def usage():
 	basename = os.path.basename(sys.argv[0]);
 	print '''
@@ -118,6 +126,8 @@ def main():
 		problem_4()
 	elif problem == 5:
 		problem_5()
+	elif problem == 6:
+		problem_6()
 	else:
 		print 'Unkown problem: %d' % problem
 
