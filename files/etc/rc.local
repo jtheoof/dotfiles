@@ -1,0 +1,19 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Control heat and noise. Make sure acpi_call is installed
+# http://ubuntuforums.org/showthread.php?t=1569380
+echo "\_SB.PCI0.PEG0.PEGP._DSM {0xF8,0xD8,0x86,0xA4,0xDA,0x0B,0x1B,0x47,0xA7,0x2B,0x60,0x42,0xA6,0xB5,0xBE,0xE0} 0x100 0x1A {0x1,0x0,0x0,0x3}" > /proc/acpi/call
+echo "\_SB.PCI0.PEG0.PEGP._PS3" > /proc/acpi/call
+
+exit 0
