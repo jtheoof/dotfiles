@@ -34,6 +34,7 @@ let g:reload_on_write = 0
 " Bundle: ervandew/supertab
 " Bundle: vim-scripts/FuzzyFinder
 " Bundle: vim-scripts/L9
+" Bundle: vim-scripts/hexman.vim
 " VCS
 " Bundle: tpope/vim-git
 " Bundle: tpope/vim-fugitive
