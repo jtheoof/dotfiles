@@ -6,6 +6,7 @@ alias functions='set | grep "()"'
 
 # Listing
 alias ls='ls --color=auto'
+alias lsf='find . -nowarn -type f -maxdepth 1'
 alias ll='ls -lah --group-directories-first'
 alias l='ll'
 alias lm='ll|more'
@@ -29,6 +30,7 @@ alias fd='find . -type d -name'
 alias f.='find . -name'
 
 # Usage
+alias du0='du --max-depth 0 -h .'
 alias du1='du --max-depth 1 -h .'
 alias ducks='du -cks * | sort -rn | head -11'
 alias psa='ps -ef | ack'
