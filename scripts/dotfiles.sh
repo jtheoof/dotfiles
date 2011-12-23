@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CUR_PATH=$PWD
-DOT_PATH=~/dev/me/config/test
+DOT_PATH=~/dev/me/config/files
 
 DOT_FILES=( 
 	.ackrc
