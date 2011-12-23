@@ -16,9 +16,8 @@
     post-review-test = send-email --no-chain-reply-to --suppress-cc all --suppress-from --no-signed-off-by-cc --annotate --compose --to corp.test@news.intersec.com -C -C -M
     st = status
     who = shortlog -s --
-[user]
-    name = Jeremy Attali
-    email = jeremy.attali@gmail.com
+[branch]
+    autosetuprebase = always
 [color]
     status = auto
     diff = auto
@@ -35,7 +34,10 @@
     frag = magenta bold
     old = red bold
     new = green bold
+[github]
+	user = jtheoof
 [push]
     default = tracking
-[branch]
-    autosetuprebase = always
+[user]
+    name = Jeremy Attali
+    email = jeremy.attali@gmail.com
