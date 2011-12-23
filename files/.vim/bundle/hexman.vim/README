@@ -1,0 +1,32 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=666
+
+Hexmanger provides keymapping to view quickly your file
+in hexmode (convertion is done over the program xxd).
+                                                              
+Additional features:
+- shows in statusline the current offset (hex and dec.)
+- move to next/previous hex character with <TAB> and <S-TAB>
+  If you don't like this mapping - please set in your vimrc:
+  let hex_movetab = 0
+- staying on a hex character it marks the related ascii column
+- Goto hex offset	
+- Delete hex character under cursor	
+- Insert ascii character before cursor	
+
+Available functions:
+                                                                    
+<leader> hm	HexManager: Call/Leave Hexmode (using xxd)
+<leader> hd  	HexDelete: delete hex character under cursor
+<leader> hi  	HexInsert: Insert Ascii character before cursor
+<leader> hg  	HexGoto: Goto hex offset. 
+<leader> hn  	HexNext: Goto next hex offset. 
+<leader> hp  	HexPrev: Goto previous hex offset. 
+<leader> hs  	HexStatus: Show / Hide hexoffset infos in statusline
+                         and related ascii column
+                                                                    
+If you want, you can change the mapping in your vimrc:
+Example (call with function key F6 the Hexmode:
+map <F6>  <Plug>HexManager                                          
+
+                     
+
