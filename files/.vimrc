@@ -465,7 +465,7 @@ map <Leader>fc :cs find s <C-R>=expand("<cword>")<CR><CR>
 " Programming {{{1
 "---------------------------------------------------------------------
 
-" C / C++ Section {{{2
+" C / C++ section {{{2
 
 " OmniCPPComplete
 "autocmd BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
@@ -509,6 +509,12 @@ autocmd FileType python map <buffer> <Leader>D ?def
 " Javascript section {{{2
 " Use jquery plugin
 autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
+"2}}}
+
+" HTML section {{{2
+" Disable underlines in <a> tags as well as bold, italic
+" See: :help html
+let html_no_rendering = 1
 "2}}}
 
 "1}}}
