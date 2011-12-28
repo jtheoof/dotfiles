@@ -1,10 +1,10 @@
 #!/usr/bin/python
 
 import getopt
+import math
 import os
 import re
 import sys
-
 
 """
 	Hard to be more condensed than that.
@@ -85,6 +85,20 @@ def problem_6():
 	s2 = sum(x for x in range(1, 101)) ** 2
 	print s2 - s1
 
+def problem_7():
+	primes = [2]
+	n = 3
+	while (len(primes) < 1000000):
+		root = math.floor(n ** 0.5)
+		for p in primes:
+			if p > root:
+				primes.append(n)
+				break
+			if n % p == 0:
+				break
+		n += 2
+	print primes[-1]
+
 def usage():
 	basename = os.path.basename(sys.argv[0]);
 	print '''
@@ -128,6 +142,8 @@ def main():
 		problem_5()
 	elif problem == 6:
 		problem_6()
+	elif problem == 7:
+		problem_7()
 	else:
 		print 'Unkown problem: %d' % problem
 
