@@ -188,19 +188,14 @@ def problem_10a():
 """
 def problem_10b():
 	limit = 2000000
-	# I don't think python allows index starting at 2 so I start from 0
+	# I don't python allows index starting at 2 so I start from 0
 	numbers = [True for i in range(0, limit)]
 	# Killing 0 and 1
 	numbers[0] = numbers[1] = False
 	for i in range(2, limit/2):
-		p = numbers[i]
-		if p:
-			k = 2
-			j = k * i
-			while (j < limit):
+		if numbers[i]:
+			for j in range(2*i, limit, i):
 				numbers[j] = False
-				k += 1
-				j = k * i
 	print sum(i for i, v in enumerate(numbers) if v is True)
 
 def usage():
