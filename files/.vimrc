@@ -8,9 +8,11 @@
 
 " Pathogen {{{1
 "---------------------------------------------------------------------
+" Pathogen must be the first plugin to load before anything else
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Bundle: tpope/vim-pathogen
 call pathogen#infect()
+"---------------------------------------------------------------------
 "1}}}
 
 runtime macros/matchit.vim    " smarter use of '%'
@@ -19,7 +21,6 @@ filetype plugin on            " put filetype plugin back on after pathogen
 filetype indent on            " enable indents on filetype (ex: html, tpl, ...)
 set nocompatible              " use vim defaults, we don't care about vi anymore
 syntax on                     " enable syntax
-let g:reload_on_write = 0
 
 " Bundles {{{1
 "---------------------------------------------------------------------
@@ -49,6 +50,7 @@ let g:reload_on_write = 0
 " Main options {{{1
 "---------------------------------------------------------------------
 "set autochdir                      " Automatically follow current directory
+set autoread                       " automatically reload files changed outside of vim
 set backspace=indent,eol,start      " more powerful backspacing
 set nobackup                       " do not keep a backup file
 set cursorline                     " Highlight current line
@@ -131,11 +133,11 @@ set listchars=tab:▸\ ,eol:¬
 " set list 							" use <Leader>l switch list usage
 
 let mapleader=","
+"---------------------------------------------------------------------
 "1}}}
 
 " Functions {{{1
 "---------------------------------------------------------------------
-
 " Quickfix toggle window
 command! -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
@@ -147,6 +149,7 @@ function! QFixToggle(forced)
     let g:qfix_win = bufnr("$")
   endif
 endfunction
+"---------------------------------------------------------------------
 "1}}}
 
 " GUI {{{1
@@ -229,12 +232,11 @@ map <Leader>fj :r ! python -mjson.tool < % <CR>ggdd
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
-
+"---------------------------------------------------------------------
 "1}}}
 
 " Mappings {{{1
 "---------------------------------------------------------------------
-
 " Easier navigation through code
 nnoremap <Tab> %
 
@@ -281,7 +283,7 @@ nnoremap <F12> :vsplit %<CR><C-w>lzz
 imap <C-BS> <C-W>
 
 " map control-del to remove word after cursor
-imap <C-Del> <Esc><Right>dwi
+imap <C-Del> <Esc><Right>dt<Space>i
 
 " Visual and select mode map
 vmap <Tab> >gv
@@ -303,10 +305,7 @@ map <M-Right> <C-]>
 " Alt-up/down to navigate through history
 map <M-Up> <C-o>
 map <M-Down> <C-i>
-
-" Map Ctrl-Space to cscope find current word
-nmap <C-@><C-@> :cs find s <C-R>=expand("<cword>")<CR><CR>
-
+"---------------------------------------------------------------------
 "1}}}
 
 " Auto commands {{{1
@@ -353,18 +352,14 @@ map <Leader>sn ]s
 map <Leader>sp [s
 map <Leader>sa zg
 map <Leader>s? z=
+"---------------------------------------------------------------------
 "1}}}
 
 " Search {{{1
 "---------------------------------------------------------------------
 
-" Make searches appear in the middle of the screen
-"nnoremap n nzz
-"nnoremap N Nzz
-"nnoremap * *zz
-"nnoremap # #zz
-"nnoremap g* g*zz
-"nnoremap g# g#zz
+" Count occurences of highlighted search
+nnoremap <silent> sc     :%s///n<CR>
 
 " Search within a scope (a {...} program block).
 " Version 2010-02-28 from http://vim.wikia.com/wiki/VimTip1530
@@ -463,7 +458,7 @@ nmap <C-Space><C-Space>d
 map <Leader>fc :cs find s <C-R>=expand("<cword>")<CR><CR>
 
 "2}}}
-
+"---------------------------------------------------------------------
 "1}}}
 
 " Programming {{{1
@@ -521,6 +516,7 @@ autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
 let html_no_rendering = 1
 "2}}}
 
+"---------------------------------------------------------------------
 "1}}}
 
 " Plugins {{{1
@@ -547,13 +543,15 @@ let g:user_zen_settings = {
 "2}}}
 
 " Fuzzy Finder {{{2
-let g:fuf_modesDisable = []
-let g:fuf_mrufile_maxItem = 400
-let g:fuf_mrucmd_maxItem = 400
+let g:fuf_coveragefile_exclude = '\v\~$|\.(o|obj|exe|&ll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+let g:fuf_keyNextPattern = '<C-d>'
 nnoremap <silent> sj     :FufBuffer<CR>
 nnoremap <silent> sk     :FufFileWithCurrentBufferDir<CR>
 nnoremap <silent> sK     :FufFileWithFullCwd<CR>
 nnoremap <silent> s<C-k> :FufFile<CR>
+nnoremap <silent> ss     :FufCoverageFile!<CR>
+nnoremap <silent> sS     :FufCoverageFile<CR>
+nnoremap <silent> s*     :FufCoverageFile<CR>
 nnoremap <silent> sl     :FufCoverageFileChange<CR>
 nnoremap <silent> sL     :FufCoverageFileChange<CR>
 nnoremap <silent> s<C-l> :FufCoverageFileRegister<CR>
@@ -590,10 +588,9 @@ nnoremap <silent> sy     :FufLine<CR>
 nnoremap <silent> sh     :FufHelp<CR>
 nnoremap <silent> se     :FufEditDataFile<CR>
 nnoremap <silent> sr     :FufRenewCache<CR>
-nnoremap <silent> s*     :FufCoverageFile<CR>
-nnoremap <silent> sc     :%s///n<CR>
 "2}}}
 
+"---------------------------------------------------------------------
 "1}}}
 
 " License {{{1
@@ -618,4 +615,5 @@ nnoremap <silent> sc     :%s///n<CR>
 " LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 " THE SOFTWARE.
+"---------------------------------------------------------------------
 "1}}}
