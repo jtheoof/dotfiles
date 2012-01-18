@@ -12,6 +12,8 @@ function install_packages() {
 	sudo apt-get install git-core tig subversion mercurial
 	# Networking
 	sudo apt-get install socat
+	# Scripting
+	sudo apt-get install python-django python-mysqldb mysql-admin
 }
 
 install_packages
