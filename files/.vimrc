@@ -21,14 +21,20 @@ filetype plugin on            " put filetype plugin back on after pathogen
 filetype indent on            " enable indents on filetype (ex: html, tpl, ...)
 set nocompatible              " use vim defaults, we don't care about vi anymore
 syntax on                     " enable syntax
+let g:reload_on_write = 0
 
 " Bundles {{{1
 "---------------------------------------------------------------------
 " See: https://github.com/bronson/vim-update-bundles
 
+" Ignore those
+" Static: autohighlight
+" Static: work
+
 " Programming
 " Bundle: vim-scripts/jQuery
 " Bundle: vim-scripts/TagHighlight
+
 " Text
 " Bundle: mileszs/ack.vim
 " Bundle: tpope/vim-markdown
@@ -36,9 +42,11 @@ syntax on                     " enable syntax
 " Bundle: vim-scripts/FuzzyFinder
 " Bundle: vim-scripts/L9
 " Bundle: vim-scripts/hexman.vim
+
 " VCS
 " Bundle: tpope/vim-git
 " Bundle: tpope/vim-fugitive
+
 " IDE
 " Bundle: bcaccinolo/bclose
 " Bundle: mattn/zencoding-vim
@@ -50,7 +58,6 @@ syntax on                     " enable syntax
 " Main options {{{1
 "---------------------------------------------------------------------
 "set autochdir                      " Automatically follow current directory
-set autoread                       " automatically reload files changed outside of vim
 set backspace=indent,eol,start      " more powerful backspacing
 set nobackup                       " do not keep a backup file
 set cursorline                     " Highlight current line
@@ -133,11 +140,11 @@ set listchars=tab:▸\ ,eol:¬
 " set list 							" use <Leader>l switch list usage
 
 let mapleader=","
-"---------------------------------------------------------------------
 "1}}}
 
 " Functions {{{1
 "---------------------------------------------------------------------
+
 " Quickfix toggle window
 command! -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
@@ -149,7 +156,6 @@ function! QFixToggle(forced)
     let g:qfix_win = bufnr("$")
   endif
 endfunction
-"---------------------------------------------------------------------
 "1}}}
 
 " GUI {{{1
@@ -179,8 +185,10 @@ if has("gui_running")
 endif
 " }}}
 
-" Main leader commands {{{1
+" Mappings {{{1
 "---------------------------------------------------------------------
+
+" Leader {{{2
 " With a map leader it's possible to do extra key combinations
 " like <Leader>w saves the current file
 let mapleader = ","
@@ -232,79 +240,87 @@ map <Leader>fj :r ! python -mjson.tool < % <CR>ggdd
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
-"---------------------------------------------------------------------
-"1}}}
+"2}}}
 
-" Mappings {{{1
-"---------------------------------------------------------------------
+" Normal mode {{{2
 " Easier navigation through code
-nnoremap <Tab> %
-
+" Deactivated it because it seems to conflit with <C-i> to jump forward
+" nnoremap <Tab> %
+" Go to first character
 nnoremap <Home> ^
-inoremap <Home> <Esc>^i
 
-map <C-Right> <C-w><Right>
-map! <C-Right>  <Esc> <C-w><Right>
-map <C-Left> <C-w><Left>
-map! <C-Left>  <Esc> <C-w><Left>
-map <C-Up> <C-w><Up>
-map! <C-Up> <Esc> <C-w><Up>
-map <C-Down> <C-w><Down>
-map! <C-Down>  <Esc> <C-w><Down>
-map <PageUp> <C-U>
-map <PageDown> <C-D>
+nnoremap <C-Right> <C-w><Right>
+nnoremap <C-Left> <C-w><Left>
+nnoremap <C-Up> <C-w><Up>
+nnoremap <C-Down> <C-w><Down>
 
-map <S-Down> <C-E>
-map <S-Up> <C-Y>
+" Useful navigation
+nnoremap <PageUp> <C-U>
+nnoremap <PageDown> <C-D>
+nnoremap <S-Down> <C-E>
+nnoremap <S-Up> <C-Y>
 
-imap <C-D> <Esc>dda
-map <C-K> :let @/ = ""<CR>
+" Cleanup search
+nnoremap <C-K> :let @/ = ""<CR>
 
-map <F1> :Explore<CR>
-map <C-F1> :tabe **/<cfile><CR>
+nnoremap <silent> <F1> :Explore<CR>
+nnoremap <C-F1> :tabe **/<cfile><CR>
 nnoremap <F2> :BufExplorer<CR>
 nnoremap <F3> :exec("Ack '\\b".expand("<cword>")."\\b'")<CR>
 nnoremap <F4> :call HighlightWord()<CR>
 nnoremap <C-F4> :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
-
-" Editing / Compiling
-map <F5> <Esc>:w<CR>
-imap <F5> <Esc>:w<CR>a
-map <F7> :make<CR>
-imap <F7> <Esc>:make<CR>a
+nnoremap <F7> :make<CR>
 
 " Display
-map <F9> :QFix<CR>
-map <C-F9> :TlistToggle<CR>
+nnoremap <F9> :QFix<CR>
+nnoremap <C-F9> :TlistToggle<CR>
 nnoremap <F11> :split %<CR><C-w>jzz
 nnoremap <F12> :vsplit %<CR><C-w>lzz
 
+" Navigate through tags
+nnoremap <M-b> :tselect<CR>
+nnoremap <M-n> :tnext<CR>
+nnoremap <M-m> :tprevious<CR>
+nnoremap <M-Home> :tselect<CR>
+nnoremap <M-PageDown> :tnext<CR>
+nnoremap <M-PageUp> :tprevious<CR>
+
+" Alt-right/left to navigate forward/backward in the tags stack
+nnoremap <M-Left> <C-T>
+nnoremap <M-Right> <C-]>
+" Alt-up/down to navigate through history
+nnoremap <M-Up> <C-o>
+nnoremap <M-Down> <C-i>
+
+" Map Ctrl-Space to cscope find current word
+nnoremap <C-@><C-@> :cs find s <C-R>=expand("<cword>")<CR><CR>
+"2}}}
+
+" Insert mode {{{2
+imap <C-Right>  <Esc><C-Right>a
+imap <C-Left>  <Esc><C-Left>a
+imap <C-Up> <Esc><C-Up>a
+imap <C-Down>  <Esc><C-Down>a
+
+imap <F5> <Esc>:w<CR>a
+imap <F7> <Esc>:make<CR>a
+inoremap <Home> <Esc>^i
+imap <C-D> <Esc>dda
 " map control-backspace to delete the previous word
 imap <C-BS> <C-W>
-
 " map control-del to remove word after cursor
-imap <C-Del> <Esc><Right>dt<Space>i
+imap <C-Del> <Esc><Right>dwi
+" Insert unicode characters
+imap <C-u> <C-v>u
+"2}}}
 
-" Visual and select mode map
+" Visual mode {{{2
 vmap <Tab> >gv
 vmap <BS> <gv
 vmap <Space> zf
 vmap ! y<Esc>:%s/<C-R>"/
+"2}}}
 
-" Navigate through tags
-map <M-b> :tselect<CR>
-map <M-n> :tnext<CR>
-map <M-m> :tprevious<CR>
-map <M-Home> :tselect<CR>
-map <M-PageDown> :tnext<CR>
-map <M-PageUp> :tprevious<CR>
-
-" Alt-right/left to navigate forward/backward in the tags stack
-map <M-Left> <C-T>
-map <M-Right> <C-]>
-" Alt-up/down to navigate through history
-map <M-Up> <C-o>
-map <M-Down> <C-i>
 "---------------------------------------------------------------------
 "1}}}
 
@@ -458,7 +474,7 @@ nmap <C-Space><C-Space>d
 map <Leader>fc :cs find s <C-R>=expand("<cword>")<CR><CR>
 
 "2}}}
-"---------------------------------------------------------------------
+
 "1}}}
 
 " Programming {{{1
@@ -516,7 +532,6 @@ autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
 let html_no_rendering = 1
 "2}}}
 
-"---------------------------------------------------------------------
 "1}}}
 
 " Plugins {{{1
@@ -588,9 +603,10 @@ nnoremap <silent> sy     :FufLine<CR>
 nnoremap <silent> sh     :FufHelp<CR>
 nnoremap <silent> se     :FufEditDataFile<CR>
 nnoremap <silent> sr     :FufRenewCache<CR>
+nnoremap <silent> s*     :FufCoverageFile<CR>
+nnoremap <silent> sc     :%s///n<CR>
 "2}}}
 
-"---------------------------------------------------------------------
 "1}}}
 
 " License {{{1
@@ -615,5 +631,4 @@ nnoremap <silent> sr     :FufRenewCache<CR>
 " LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 " THE SOFTWARE.
-"---------------------------------------------------------------------
 "1}}}
