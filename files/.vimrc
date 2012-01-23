@@ -7,12 +7,12 @@
 " Comment:  Big thanks to amix.dk: http://amix.dk/vim/vimrc.html
 
 " Pathogen {{{1
-"---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " Pathogen must be the first plugin to load before anything else
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Bundle: tpope/vim-pathogen
 call pathogen#infect()
-"---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 "1}}}
 
 runtime macros/matchit.vim    " smarter use of '%'
@@ -24,7 +24,7 @@ syntax on                     " enable syntax
 let g:reload_on_write = 0
 
 " Bundles {{{1
-"---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " See: https://github.com/bronson/vim-update-bundles
 
 " Ignore those
@@ -52,11 +52,11 @@ let g:reload_on_write = 0
 " Bundle: mattn/zencoding-vim
 " Bundle: vim-scripts/bufexplorer.zip
 " Bundle: vim-scripts/Color-Sampler-Pack
-"---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 "1}}}
 
 " Main options {{{1
-"---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 "set autochdir                      " Automatically follow current directory
 set backspace=indent,eol,start      " more powerful backspacing
 set nobackup                       " do not keep a backup file
@@ -140,10 +140,11 @@ set listchars=tab:▸\ ,eol:¬
 " set list 							" use <Leader>l switch list usage
 
 let mapleader=","
+"------------------------------------------------------------------------------
 "1}}}
 
 " Functions {{{1
-"---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 
 " Quickfix toggle window
 command! -bang -nargs=? QFix call QFixToggle(<bang>0)
@@ -156,10 +157,11 @@ function! QFixToggle(forced)
     let g:qfix_win = bufnr("$")
   endif
 endfunction
+"------------------------------------------------------------------------------
 "1}}}
 
 " GUI {{{1
-"---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 colorscheme mustang			 " use wombat for non gui vim sessions
 if has("gui_running")
     set background=dark             " adapt colors for background
@@ -186,7 +188,7 @@ endif
 " }}}
 
 " Mappings {{{1
-"---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 
 " Leader {{{2
 " With a map leader it's possible to do extra key combinations
@@ -321,11 +323,11 @@ vmap <Space> zf
 vmap ! y<Esc>:%s/<C-R>"/
 "2}}}
 
-"---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 "1}}}
 
 " Auto commands {{{1
-"---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 
 " Automatically fitting a quickfix window height
 au FileType qf call AdjustWindowHeight(3, 20)
@@ -353,10 +355,11 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType html setlocal softtabstop=2 shiftwidth=2
 autocmd FileType tpl setlocal softtabstop=2 shiftwidth=2
 autocmd FileType smarty setlocal softtabstop=2 shiftwidth=2
+"------------------------------------------------------------------------------
 "1}}}
 
 " Spell checking {{{1
-"---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 
 " Use :mkspell! ~/.vim/spell/en.utf-8.add to regenerate spelling binary files
 
@@ -368,11 +371,11 @@ map <Leader>sn ]s
 map <Leader>sp [s
 map <Leader>sa zg
 map <Leader>s? z=
-"---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 "1}}}
 
 " Search {{{1
-"---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 
 " Count occurences of highlighted search
 nnoremap <silent> sc     :%s///n<CR>
@@ -475,10 +478,11 @@ map <Leader>fc :cs find s <C-R>=expand("<cword>")<CR><CR>
 
 "2}}}
 
+"------------------------------------------------------------------------------
 "1}}}
 
 " Programming {{{1
-"---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 
 " C / C++ section {{{2
 
@@ -532,10 +536,11 @@ autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
 let html_no_rendering = 1
 "2}}}
 
+"------------------------------------------------------------------------------
 "1}}}
 
 " Plugins {{{1
-"---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 
 " Ack {{{2
 if has("unix")
@@ -607,10 +612,11 @@ nnoremap <silent> s*     :FufCoverageFile<CR>
 nnoremap <silent> sc     :%s///n<CR>
 "2}}}
 
+"------------------------------------------------------------------------------
 "1}}}
 
 " License {{{1
-" ---------------------------------------------------------------------
+"------------------------------------------------------------------------------
 "
 " Copyright (c) 2011 Jeremy Attali
 "
@@ -631,4 +637,5 @@ nnoremap <silent> sc     :%s///n<CR>
 " LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 " THE SOFTWARE.
+"------------------------------------------------------------------------------
 "1}}}
