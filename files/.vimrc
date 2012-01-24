@@ -58,6 +58,7 @@ let g:reload_on_write = 0
 " Main options {{{1
 "------------------------------------------------------------------------------
 "set autochdir                      " Automatically follow current directory
+set autoread                        " automatically reload file changes
 set backspace=indent,eol,start      " more powerful backspacing
 set nobackup                       " do not keep a backup file
 set cursorline                     " Highlight current line
