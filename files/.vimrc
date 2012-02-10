@@ -15,12 +15,12 @@ call pathogen#infect()
 "------------------------------------------------------------------------------
 "1}}}
 
-runtime macros/matchit.vim    " smarter use of '%'
+runtime macros/matchit.vim   " smarter use of '%'
 
-filetype plugin on            " put filetype plugin back on after pathogen
-filetype indent on            " enable indents on filetype (ex: html, tpl, ...)
-set nocompatible              " use vim defaults, we don't care about vi anymore
-syntax on                     " enable syntax
+filetype plugin on           " put filetype plugin back on after pathogen
+filetype indent on           " enable indents on filetype (ex: html, tpl, ...)
+set nocompatible             " use vim defaults, we don't care about vi anymore
+syntax on                    " enable syntax
 let g:reload_on_write = 0
 
 " Bundles {{{1
@@ -58,17 +58,17 @@ let g:reload_on_write = 0
 " Main options {{{1
 "------------------------------------------------------------------------------
 "set autochdir                      " Automatically follow current directory
-set autoread                        " automatically reload file changes
-set backspace=indent,eol,start      " more powerful backspacing
+set autoread                       " automatically reload file changes
+set backspace=indent,eol,start     " more powerful backspacing
 set nobackup                       " do not keep a backup file
 set cursorline                     " Highlight current line
 set clipboard=unnamed              " copy things to general clipboard
-set diffopt+=vertical 			   " make vertical default split
-set esckeys                        " allow usage of curs keys within insert mode
-set encoding=utf8				   " utf-8 encoding
-set gdefault 					   " default global in regex
+set diffopt+=vertical              " make vertical default split
+set esckeys                        " allow usage of cur keys within insert mode
+set encoding=utf8                  " utf-8 encoding
+set gdefault                       " default global in regex
 set ignorecase                     " ignore case when searching
-set smartcase                      " ignore case only if all chars are lower case
+set smartcase                      " ignore case only if all chars are lower
 set incsearch                      " do incremental searching
 set foldlevel=0                    " fold to level 0 when opening file
 set foldmethod=marker              " basic marker as default folding method
@@ -84,13 +84,13 @@ set nostartofline                  " don't jump to first character when paging
 set omnifunc=syntaxcomplete#Complete
 set shortmess=atI                  " Abbreviate messages
 set showcmd                        " display incomplete commands
-set showmode 					   " Show current mode
-set scrolloff=5 				   " Make cursor offset (min lines before or after cursor)
+set showmode                       " Show current mode
+set scrolloff=3                    " Make cursor offset
 set title                          " show title in console title bar
 set ttyfast                        " smoother changes
-"set viminfo='10,\"100			   " 10 marks, 100 lines
-set viminfo='10,\"100,:20,% 	   " 10 marks, 100 lines, up to 20 command lins and save/restore buffer list
-"set whichwrap=b,s,h,l,<,>,[,]                  " move freely between files
+"set viminfo='10,\"100             " 10 marks, 100 lines
+set viminfo='10,\"100,:20,%        " 10 marks, 100 lines, 20 command lines
+"set whichwrap=<,>,h,l,[,]         " move freely between lines (wrap)
 set wildmenu
 set wildchar=<Tab> wildmenu wildmode=full
 set wildcharm=<C-Z>
@@ -179,12 +179,6 @@ if has("gui_running")
     "set guioptions-=T               " remove toolbar
     "set guioptions-=r               " remove right-hand scroll bar
     set guioptions=                  " turns off every option
-
-    " If the current buffer has never been saved, it will have no name,
-    " call the file browser to save it, otherwise just save it.
-    "map <silent> <C-S> :if expand("%") == ""<CR>:browse confirm w<CR>:else<CR>:w<CR>:endif<CR>
-    map <silent> <C-S> :w<CR>
-    imap <silent> <C-S> <Esc>:w<CR>a
 endif
 " }}}
 
@@ -207,10 +201,10 @@ nmap <Leader>cd :cd %:p:h<CR>
 nmap <Leader>w :w!<CR>
 
 " Use <Leader>W to “strip all trailing whitespace in the current file”
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 " Splitting windows the right way
-" Thanks to: http://technotales.wordpress.com/2010/04/29/vim-splits-a-guide-to-doing-exactly-what-you-want/
+" Thanks to: http://goo.gl/R73uk
 
 " window
 nmap <Leader>sw<Left>  :topleft  vnew<CR>
@@ -242,7 +236,7 @@ map <Leader>fx :! tidy -qmi -xml -utf8 % <CR>
 map <Leader>fj :r ! python -mjson.tool < % <CR>ggdd
 
 " Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
+nmap <Leader>l :set list!<CR>
 "2}}}
 
 " Normal mode {{{2
@@ -252,6 +246,7 @@ nmap <leader>l :set list!<CR>
 " Go to first character
 nnoremap <Home> ^
 
+" Window navigation
 nnoremap <C-Right> <C-w><Right>
 nnoremap <C-Left> <C-w><Left>
 nnoremap <C-Up> <C-w><Up>
@@ -260,8 +255,11 @@ nnoremap <C-Down> <C-w><Down>
 " Useful navigation
 nnoremap <PageUp> <C-U>
 nnoremap <PageDown> <C-D>
-nnoremap <S-Down> <C-E>
-nnoremap <S-Up> <C-Y>
+nnoremap <S-Down> 5<C-E>
+nnoremap <S-Up> 5<C-Y>
+
+" Saving file
+nnoremap <silent> <C-S> :w<CR>
 
 " Cleanup search
 nnoremap <C-K> :let @/ = ""<CR>
@@ -300,15 +298,25 @@ nnoremap <C-@><C-@> :cs find s <C-R>=expand("<cword>")<CR><CR>
 "2}}}
 
 " Insert mode {{{2
+inoremap <Home> <Esc>^i
+
+" Easy navigation
 imap <C-Right>  <Esc><C-Right>a
 imap <C-Left>  <Esc><C-Left>a
 imap <C-Up> <Esc><C-Up>a
 imap <C-Down>  <Esc><C-Down>a
+imap <S-Down> <Esc><S-Down>a
+imap <S-Up> <Esc><S-Up>a
 
-imap <F5> <Esc>:w<CR>a
+" Saving file
+imap <silent> <C-S> <Esc><C-S>a
+
+" Delete current line
+inoremap <C-D> <Esc>dda
+
+" Function keys
 imap <F7> <Esc>:make<CR>a
-inoremap <Home> <Esc>^i
-imap <C-D> <Esc>dda
+
 " map control-backspace to delete the previous word
 imap <C-BS> <C-W>
 " map control-del to remove word after cursor
@@ -339,9 +347,6 @@ endfunction
 " This autocommand jumps to the last known position in a file
 " just after opening it, if the '"' mark is set:
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-
-" Auto name title to filename opened
-" autocmd BufRead * let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
 
 " Auto save when focus is lost
 autocmd FocusLost * execute ":silent! wa"
@@ -378,7 +383,7 @@ map <Leader>s? z=
 " Search {{{1
 "------------------------------------------------------------------------------
 
-" Count occurences of highlighted search
+" Count occurrences of highlighted search
 nnoremap <silent> sc     :%s///n<CR>
 
 " Search within a scope (a {...} program block).
@@ -519,11 +524,10 @@ autocmd FileType python syn keyword pythonDecorator True None False self
 autocmd FileType python inoremap <buffer> $r return
 autocmd FileType python inoremap <buffer> $i import
 autocmd FileType python inoremap <buffer> $p print
-autocmd FileType python inoremap <buffer> $f #--- PH ----------------------------------------------<esc>FP2xi
-autocmd FileType python map <buffer> <Leader>1 /class
-autocmd FileType python map <buffer> <Leader>2 /def
-autocmd FileType python map <buffer> <Leader>C ?class
-autocmd FileType python map <buffer> <Leader>D ?def
+autocmd FileType python map <buffer> <Leader>1 /class 
+autocmd FileType python map <buffer> <Leader>2 /def 
+autocmd FileType python map <buffer> <Leader>C ?class 
+autocmd FileType python map <buffer> <Leader>D ?def 
 "2}}}
 
 " Javascript section {{{2
