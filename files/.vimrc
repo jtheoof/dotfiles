@@ -1,3 +1,4 @@
+
 " Name:     Jeremy Attali's .vimrc
 " Author:   Jeremy Attali
 " URL:
@@ -328,8 +329,14 @@ imap <C-u> <C-v>u
 " Visual mode {{{2
 vmap <Tab> >gv
 vmap <BS> <gv
+
+" Folding
 vmap <Space> zf
+
+" Substitutiion
 vmap ! y<Esc>:%s/<C-R>"/
+
+vmap r "_dP
 "2}}}
 
 "------------------------------------------------------------------------------
