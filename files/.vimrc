@@ -1,4 +1,3 @@
-
 " Name:     Jeremy Attali's .vimrc
 " Author:   Jeremy Attali
 " URL:
@@ -114,8 +113,10 @@ set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
 " Word wrapping
 set wrap
+set linebreak
 set textwidth=79
 set formatoptions=qrn1
+command! -nargs=* Wrap set wrap linebreak nolist
 "set colorcolumn=85
 
 " Indentation
@@ -279,6 +280,13 @@ nnoremap <C-F9> :TlistToggle<CR>
 nnoremap <F11> :split %<CR><C-w>jzz
 nnoremap <F12> :vsplit %<CR><C-w>lzz
 
+" Navigate through folded line
+nnoremap <M-j> gj
+nnoremap <M-k> gk
+nnoremap <M-4> g$
+nnoremap <M-6> g^
+nnoremap <M-0> g^
+
 " Navigate through tags
 nnoremap <M-b> :tselect<CR>
 nnoremap <M-n> :tnext<CR>
@@ -327,6 +335,15 @@ imap <C-u> <C-v>u
 "2}}}
 
 " Visual mode {{{2
+
+" Navigate through folded line
+vnoremap <M-j> gj
+vnoremap <M-k> gk
+vnoremap <M-4> g$
+vnoremap <M-6> g^
+vnoremap <M-0> g^
+
+" Tabs
 vmap <Tab> >gv
 vmap <BS> <gv
 
