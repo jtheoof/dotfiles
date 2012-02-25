@@ -62,7 +62,6 @@ set autoread                       " automatically reload file changes
 set backspace=indent,eol,start     " more powerful backspacing
 set nobackup                       " do not keep a backup file
 set cursorline                     " Highlight current line
-set clipboard=unnamed              " copy things to general clipboard
 set diffopt+=vertical              " make vertical default split
 set esckeys                        " allow usage of cur keys within insert mode
 set encoding=utf8                  " utf-8 encoding
@@ -107,6 +106,14 @@ if has("win32")
 else
 	set undodir=~/.vim/undodir
 endif
+
+" X Clipboard
+if has("unix")
+	set clipboard=unnamedplus
+else
+	set clipboard=unnamed
+endif
+
 set undofile
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
@@ -170,8 +177,8 @@ if has("gui_running")
     set background=dark             " adapt colors for background
 	if has("gui_gtk2")
 		"set guifont=Ubuntu\ Mono\ 8
-		set guifont=Ubuntu\ Mono\ 10
-		"set guifont=Monaco\ 8
+		"set guifont=Ubuntu\ Mono\ 10
+		set guifont=Monaco\ 8
 	    "set guifont=Consolas\ 10
 	elseif has("gui_win32")
 	    set guifont=Consolas:h10
@@ -556,6 +563,8 @@ autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
 " Disable underlines in <a> tags as well as bold, italic
 " See: :help html
 let html_no_rendering = 1
+
+autocmd FileType html set softtabstop=2 shiftwidth=2 expandtab
 "2}}}
 
 "------------------------------------------------------------------------------
