@@ -29,8 +29,6 @@ let g:reload_on_write = 0
 
 " Ignore those
 " Static: autohighlight
-" Static: static
-" Static: work
 
 " Programming
 " Bundle: vim-scripts/jQuery
