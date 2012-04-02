@@ -29,6 +29,7 @@ let g:reload_on_write = 0
 
 " Ignore those
 " Static: autohighlight
+" Static: static
 " Static: work
 
 " Programming
@@ -42,6 +43,7 @@ let g:reload_on_write = 0
 " Bundle: vim-scripts/FuzzyFinder
 " Bundle: vim-scripts/L9
 " Bundle: vim-scripts/hexman.vim
+" Bundle: othree/html5.vim
 
 " VCS
 " Bundle: tpope/vim-git
@@ -565,6 +567,9 @@ autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
 let html_no_rendering = 1
 
 autocmd FileType html set softtabstop=2 shiftwidth=2 expandtab
+"2}}}
+
+" CSS section {{{2
 "2}}}
 
 "------------------------------------------------------------------------------
