@@ -1,4 +1,5 @@
 #!/bin/bash
+
 function install_packages() {
 	# Editors
 	sudo apt-get install -y exuberant-ctags
