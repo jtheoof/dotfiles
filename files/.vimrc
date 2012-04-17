@@ -28,11 +28,13 @@ let g:reload_on_write = 0
 " See: https://github.com/bronson/vim-update-bundles
 
 " Ignore those
-" Static: autohighlight
+" Static: static
 
 " Programming
 " Bundle: vim-scripts/jQuery
 " Bundle: vim-scripts/TagHighlight
+" Bundle: othree/html5.vim
+" Bundle: mattn/zencoding-vim
 
 " Text
 " Bundle: mileszs/ack.vim
@@ -41,7 +43,6 @@ let g:reload_on_write = 0
 " Bundle: vim-scripts/FuzzyFinder
 " Bundle: vim-scripts/L9
 " Bundle: vim-scripts/hexman.vim
-" Bundle: othree/html5.vim
 
 " VCS
 " Bundle: tpope/vim-git
@@ -49,8 +50,8 @@ let g:reload_on_write = 0
 
 " IDE
 " Bundle: bcaccinolo/bclose
-" Bundle: mattn/zencoding-vim
 " Bundle: vim-scripts/bufexplorer.zip
+" Bundle: scrooloose/nerdtree
 " Bundle: vim-scripts/Color-Sampler-Pack
 "------------------------------------------------------------------------------
 "1}}}
@@ -66,13 +67,9 @@ set diffopt+=vertical              " make vertical default split
 set esckeys                        " allow usage of cur keys within insert mode
 set encoding=utf8                  " utf-8 encoding
 set gdefault                       " default global in regex
-set ignorecase                     " ignore case when searching
-set smartcase                      " ignore case only if all chars are lower
-set incsearch                      " do incremental searching
 set foldlevel=0                    " fold to level 0 when opening file
 set foldmethod=marker              " basic marker as default folding method
 set history=1000                   " history back trace
-set hlsearch                       " highlight searches
 set laststatus=2                   " allways show status line
 set ruler                          " show the cursor position all the time
 set number                         " show line numbers
@@ -80,7 +77,6 @@ set modeline                       " last lines in document sets vim mode
 set modelines=5                    " number lines checked for modelines
 set nolazyredraw                   " don't redraw while executing macros
 set nostartofline                  " don't jump to first character when paging
-set omnifunc=syntaxcomplete#Complete
 set shortmess=atI                  " Abbreviate messages
 set showcmd                        " display incomplete commands
 set showmode                       " Show current mode
@@ -122,18 +118,28 @@ set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 set wrap
 set linebreak
 set textwidth=79
+"set colorcolumn=80
 set formatoptions=qrn1
 command! -nargs=* Wrap set wrap linebreak nolist
-"set colorcolumn=85
+
+" Search
+set ignorecase   " ignore case when searching
+set smartcase    " ignore case only if all chars are lower
+set incsearch    " do incremental searching
+set hlsearch     " highlight searches
 
 " Indentation
-set tabstop=4
-set shiftwidth=4
-set noexpandtab 					" most important part.
+"set smarttab
+set noexpandtab
 set copyindent
 set preserveindent
-set smarttab
-set autoindent
+set softtabstop=0
+set shiftwidth=4
+set tabstop=4
+
+" OmniCompletion
+set omnifunc=syntaxcomplete#Complete
+
 
 " Don't flash errors and disable sound
 set novisualbell
@@ -176,9 +182,9 @@ colorscheme mustang			 " use wombat for non gui vim sessions
 if has("gui_running")
     set background=dark             " adapt colors for background
 	if has("gui_gtk2")
-		"set guifont=Ubuntu\ Mono\ 8
+		set guifont=Ubuntu\ Mono\ 8
 		"set guifont=Ubuntu\ Mono\ 10
-		set guifont=Monaco\ 8
+		"set guifont=Monaco\ 8
 	    "set guifont=Consolas\ 10
 	elseif has("gui_win32")
 	    set guifont=Consolas:h10
@@ -211,6 +217,9 @@ nmap <Leader>w :w!<CR>
 
 " Use <Leader>W to “strip all trailing whitespace in the current file”
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
+
+" Mapping to NERDTree
+nmap <silent> <Leader>p :NERDTreeToggle<CR>
 
 " Splitting windows the right way
 " Thanks to: http://goo.gl/R73uk
@@ -385,13 +394,6 @@ autocmd FocusLost * execute ":silent! wa"
 " Auto change directory on Buffer Entering
 " autocmd BufEnter * execute ":silent! lcd %:p:h"
 
-" Local completion
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
-" Local indentations
-autocmd FileType html setlocal softtabstop=2 shiftwidth=2
-autocmd FileType tpl setlocal softtabstop=2 shiftwidth=2
-autocmd FileType smarty setlocal softtabstop=2 shiftwidth=2
 "------------------------------------------------------------------------------
 "1}}}
 
@@ -523,9 +525,6 @@ map <Leader>fc :cs find s <C-R>=expand("<cword>")<CR><CR>
 
 " C / C++ section {{{2
 
-" OmniCPPComplete
-"autocmd BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
-
 if has('cscope')
   set cscopetag cscopeverbose
 
@@ -545,6 +544,7 @@ autocmd FileType python syn keyword pythonDecorator True None False self
 "autocmd BufNewFile,BufRead *.jinja set syntax=htmljinja
 "autocmd BufNewFile,BufRead *.mako set ft=mako
 
+autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType python inoremap <buffer> $r return
 autocmd FileType python inoremap <buffer> $i import
 autocmd FileType python inoremap <buffer> $p print
@@ -556,6 +556,7 @@ autocmd FileType python map <buffer> <Leader>D ?def
 
 " Javascript section {{{2
 " Use jquery plugin
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
 "2}}}
 
@@ -564,10 +565,15 @@ autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
 " See: :help html
 let html_no_rendering = 1
 
-autocmd FileType html set softtabstop=2 shiftwidth=2 expandtab
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
+autocmd FileType xhtml set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
+autocmd FileType tpl set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
+autocmd FileType smarty set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
 "2}}}
 
 " CSS section {{{2
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 "2}}}
 
 "------------------------------------------------------------------------------
