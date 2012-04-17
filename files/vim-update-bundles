@@ -188,7 +188,7 @@ end
 
 def remove_bundle config, dir, log
   Dir.chdir(dir) { print_log_entry log, 'Del', dir, describe_head }
-  trash_dir = "#{config[:vimdir_path]}/Trashed-Bundles"
+  trash_dir = "#{config[:vimdir_path]}/trashed-bundles"
   ensure_dir trash_dir
   suffixes = [''] + (1..99).map { |i| "-#{"%02d" % i}" }
   suffixes.each do |suffix|
