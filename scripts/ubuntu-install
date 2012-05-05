@@ -1,0 +1,35 @@
+#!/bin/bash
+
+function install_ppa() {
+#	sudo add-apt-repository ppa:bumblebee/stable # Bumblebee
+	sudo add-apt-repository ppa:tualatrix/ppa # Ubuntu Tweak
+	sudo add-apt-repository ppa:tiheum/equinox # Faenza icons
+	sudo add-apt-repository ppa:caffeine-developers/ppa # Caffeine
+
+	sudo apt-get update
+}
+
+function install_packages() {
+	# Ubuntu
+	sudo apt-get install -y gnome-tweak-tool ubuntu-tweak faenza-icon-theme \
+ 	   	caffeine synapse
+#	sudo apt-get install -y bumblebee
+	# Editors
+	sudo apt-get install -y vim-gnome exuberant-ctags
+	# Shell
+	sudo apt-get install -y tree ack-grep terminator tilda
+	# Compiz
+	sudo apt-get install -y compizconfig-settings-manager compiz-plugins-extra
+	# Programming
+	sudo apt-get install -y python ruby build-essential
+	# VCS
+	sudo apt-get install -y git tig subversion mercurial
+	# Networking
+	sudo apt-get install -y socat
+	# Scripting
+#	sudo apt-get install -y python-django python-mysqldb mysql-server
+}
+
+install_ppa
+install_packages
+
