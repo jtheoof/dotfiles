@@ -1,6 +1,8 @@
 #!/bin/bash
 
+# Editing
 alias vi='vim'
+alias gv='gvim'
 
 alias functions='set | grep "()"'
 
