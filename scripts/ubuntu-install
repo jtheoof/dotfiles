@@ -22,6 +22,8 @@ function install_packages() {
 	sudo apt-get install -y compizconfig-settings-manager compiz-plugins-extra
 	# Programming
 	sudo apt-get install -y python ruby build-essential
+	# Graphics
+	sudo apt-get install -y gcolor2
 	# VCS
 	sudo apt-get install -y git tig subversion mercurial
 	# Networking
