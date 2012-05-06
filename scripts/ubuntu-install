@@ -23,7 +23,7 @@ function install_packages() {
 	# Programming
 	sudo apt-get install -y python ruby build-essential
 	# Graphics
-	sudo apt-get install -y gcolor2
+	sudo apt-get install -y gcolor2 colordiff
 	# VCS
 	sudo apt-get install -y git tig subversion mercurial
 	# Networking
