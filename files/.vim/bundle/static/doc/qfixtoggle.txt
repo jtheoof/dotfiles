@@ -1,0 +1,55 @@
+*qfixtoggle.txt*	Toggle the visibility of the quickfix window
+
+Author: Jason Heddings (jason@heddings.com)
+For Vim version 6.0 and above
+Last change: 05 October, 2005
+
+1. Overview                                     |qfixtoggle-about|
+2. Commands                                     |qfixtoggle-commands|
+3. Configuration 				|qfixtoggle-configure|
+
+==============================================================================
+                                                *qfixtoggle-about*
+1. Overview~
+
+QFixToggle allows you to toggle the visibility of the |quickfix| window
+easilly.  The goal is to provide easy access to the error list when
+programming or searching for text.
+
+Thanks to Hari for the help on the auto-commands.
+
+==============================================================================
+                                                *qfixtoggle-commands*
+2. Commands~
+
+The QFixToggle plugin does not create any automatic mappings, but provides the
+following commands:
+
+|:QFix|          toggle the visibility of the |quickfix| window
+
+                                                *:QFix*
+:QFix[!]
+        This command toggle the visibility
+        cause any existing preview windows to be closed.  If the file is
+        already open in another buffer, that buffer will be wiped out.
+
+Once open, the window accepts all preview window commands.  For example, to
+close the preview window, use |:pclose|.
+
+==============================================================================
+                                                *qfixtoggle-configure*
+2. Configuration~
+
+QFixToggle may be customized using variables set by the |let| command in your
+.vimrc file.  The default values for the options are shown in square brackets.
+
+|'QFixToggle_Height'|      Specify the height of the quickfix window [10]
+
+                                                *'QFixToggle_Height'*
+QFixToggle_Height~
+  Using this setting, you can alter the height of the quickfix window that is
+  created when |:QFix| is called.  >
+      let g:QFixToggle_Height = 12
+<
+==============================================================================
+vim:textwidth=78:tabstop=8:noexpandtab:filetype=help
