@@ -162,17 +162,6 @@ let mapleader=","
 " Functions {{{1
 "------------------------------------------------------------------------------
 
-" Quickfix toggle window
-command! -bang -nargs=? QFix call QFixToggle(<bang>0)
-function! QFixToggle(forced)
-  if exists("g:qfix_win") && a:forced == 0
-    cclose
-    unlet g:qfix_win
-  else
-    botright cwindow
-    let g:qfix_win = bufnr("$")
-  endif
-endfunction
 "------------------------------------------------------------------------------
 "1}}}
 
@@ -220,6 +209,11 @@ nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 " Mapping to NERDTree
 nmap <silent> <Leader>p :NERDTreeToggle<CR>
+
+" Highlight current work
+nnoremap <Leader>hcw :call HighlightWord()<CR>
+" Find current word
+nnoremap <Leader>fcw :exec("Ack '\\b".expand("<cword>")."\\b'")<CR>
 
 " Splitting windows the right way
 " Thanks to: http://goo.gl/R73uk
@@ -285,12 +279,10 @@ nnoremap <C-K> :let @/ = ""<CR>
 nnoremap <silent> <F1> :Explore<CR>
 nnoremap <C-F1> :tabe **/<cfile><CR>
 nnoremap <F2> :BufExplorer<CR>
-nnoremap <F3> :exec("Ack '\\b".expand("<cword>")."\\b'")<CR>
-nnoremap <F4> :call HighlightWord()<CR>
+nnoremap <F3> :NERDTreeToggle<CR>
+nnoremap <F4> :QFix<CR>
 nnoremap <C-F4> :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
 nnoremap <F7> :make<CR>
-
-" Display
 nnoremap <F9> :QFix<CR>
 nnoremap <C-F9> :TlistToggle<CR>
 nnoremap <F11> :split %<CR><C-w>jzz
@@ -548,10 +540,10 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType python inoremap <buffer> $r return
 autocmd FileType python inoremap <buffer> $i import
 autocmd FileType python inoremap <buffer> $p print
-autocmd FileType python map <buffer> <Leader>1 /class 
-autocmd FileType python map <buffer> <Leader>2 /def 
-autocmd FileType python map <buffer> <Leader>C ?class 
-autocmd FileType python map <buffer> <Leader>D ?def 
+autocmd FileType python map <buffer> <Leader>1 /class
+autocmd FileType python map <buffer> <Leader>2 /def
+autocmd FileType python map <buffer> <Leader>C ?class
+autocmd FileType python map <buffer> <Leader>D ?def
 "2}}}
 
 " Javascript section {{{2
