@@ -52,6 +52,10 @@ let g:reload_on_write = 0
 " Bundle: bcaccinolo/bclose
 " Bundle: vim-scripts/bufexplorer.zip
 " Bundle: scrooloose/nerdtree
+
+" Color
+" Bundle: altercation/vim-colors-solarized
+" Bundle: noahfrederick/Hemisu
 " Bundle: vim-scripts/Color-Sampler-Pack
 "------------------------------------------------------------------------------
 "1}}}
@@ -167,6 +171,9 @@ let mapleader=","
 
 " GUI {{{1
 "------------------------------------------------------------------------------
+"colorscheme mustang
+"colorscheme hemisu
+"colorscheme solarized
 colorscheme zenburn
 if has("gui_running")
     set background=dark             " adapt colors for background
