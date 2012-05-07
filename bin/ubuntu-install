@@ -32,6 +32,15 @@ function install_packages() {
 #	sudo apt-get install -y python-django python-mysqldb mysql-server
 }
 
+function make_links() {
+    cd ../files/
+    for i in ./.bash*; do
+        echo $i
+        ln -s $PWD/$i $HOME/$i
+    done
+    cd ../bin/
+}
+
 install_ppa
 install_packages
-
+make_links
