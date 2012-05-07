@@ -130,7 +130,7 @@ set hlsearch     " highlight searches
 
 " Indentation
 "set smarttab
-set noexpandtab
+set expandtab
 set copyindent
 set preserveindent
 set softtabstop=0
@@ -167,12 +167,12 @@ let mapleader=","
 
 " GUI {{{1
 "------------------------------------------------------------------------------
-colorscheme mustang			 " use wombat for non gui vim sessions
+colorscheme zenburn
 if has("gui_running")
     set background=dark             " adapt colors for background
 	if has("gui_gtk2")
 		"set guifont=Ubuntu\ Mono\ 8
-		set guifont=Ubuntu\ Mono\ 13
+		set guifont=Ubuntu\ Mono\ 12
 		"set guifont=Monaco\ 8
 	    "set guifont=Consolas\ 10
 	elseif has("gui_win32")
