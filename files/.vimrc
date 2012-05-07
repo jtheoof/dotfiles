@@ -173,8 +173,8 @@ let mapleader=","
 "------------------------------------------------------------------------------
 "colorscheme mustang
 "colorscheme hemisu
-"colorscheme solarized
-colorscheme zenburn
+colorscheme solarized
+"colorscheme zenburn
 if has("gui_running")
     set background=dark             " adapt colors for background
 	if has("gui_gtk2")
@@ -289,9 +289,9 @@ nnoremap <F2> :BufExplorer<CR>
 nnoremap <F3> :NERDTreeToggle<CR>
 nnoremap <F4> :QFix<CR>
 nnoremap <C-F4> :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
-nnoremap <F7> :make<CR>
-nnoremap <F9> :QFix<CR>
-nnoremap <C-F9> :TlistToggle<CR>
+nnoremap <F7> :make<Return>
+nnoremap <F9> :cprevious<Return>
+nnoremap <F10> :cnext<Return>
 nnoremap <F11> :split %<CR><C-w>jzz
 nnoremap <F12> :vsplit %<CR><C-w>lzz
 
@@ -385,7 +385,7 @@ endfunction
 
 " This autocommand jumps to the last known position in a file
 " just after opening it, if the '"' mark is set:
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+"autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " Auto save when focus is lost
 autocmd FocusLost * execute ":silent! wa"
@@ -471,108 +471,62 @@ function! s:ScopeSearch(navigator, mode)
   return "\b"
 endfunction
 
-" CScope {{{2
-" cscope commands taken from help cscope
-nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-
-" Using 'CTRL-spacebar' then a search type makes the vim window
-" split horizontally, with search result displayed in
-" the new window.
-nmap <C-Space>s :scs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space>g :scs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space>c :scs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space>t :scs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space>e :scs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-Space>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-Space>d :scs find d <C-R>=expand("<cword>")<CR><CR>
-
-" Hitting CTRL-space *twice* before the search type does a vertical
-" split instead of a horizontal one
-nmap <C-Space><C-Space>s
-	\:vert scs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space><C-Space>g
-	\:vert scs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space><C-Space>c
-	\:vert scs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space><C-Space>t
-	\:vert scs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space><C-Space>e
-	\:vert scs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space><C-Space>i
-	\:vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-Space><C-Space>d
-	\:vert scs find d <C-R>=expand("<cword>")<CR><CR>
-
-" Find current word
-map <Leader>fc :cs find s <C-R>=expand("<cword>")<CR><CR>
-
-"2}}}
-
 "------------------------------------------------------------------------------
 "1}}}
 
 " Programming {{{1
 "------------------------------------------------------------------------------
 
-" C / C++ section {{{2
-
-if has('cscope')
-  set cscopetag cscopeverbose
-
-  if has('quickfix')
-    set cscopequickfix=s-,c-,d-,i-,t-,e-
-  endif
-
-  command! -nargs=0 Cscope cs add $VIMSRC/src/cscope.out $VIMSRC/src
-endif
-
+" Java {{{2
+augroup filetype_java
+    autocmd!
+    autocmd Filetype java set makeprg=ant-android
+augroup END
 "2}}}
 
-" Python section {{{2
+" Python {{{2
 let python_highlight_all = 1
-autocmd FileType python syn keyword pythonDecorator True None False self
-
-"autocmd BufNewFile,BufRead *.jinja set syntax=htmljinja
-"autocmd BufNewFile,BufRead *.mako set ft=mako
-
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType python inoremap <buffer> $r return
-autocmd FileType python inoremap <buffer> $i import
-autocmd FileType python inoremap <buffer> $p print
-autocmd FileType python map <buffer> <Leader>1 /class
-autocmd FileType python map <buffer> <Leader>2 /def
-autocmd FileType python map <buffer> <Leader>C ?class
-autocmd FileType python map <buffer> <Leader>D ?def
+augroup filetype_python
+    autocmd!
+    autocmd FileType python syn keyword pythonDecorator True None False self
+    autocmd FileType python set omnifunc=pythoncomplete#Complete
+    autocmd FileType python inoremap <buffer> $r return
+    autocmd FileType python inoremap <buffer> $i import
+    autocmd FileType python inoremap <buffer> $p print
+    autocmd FileType python map <buffer> <Leader>1 /class
+    autocmd FileType python map <buffer> <Leader>2 /def
+    autocmd FileType python map <buffer> <Leader>C ?class
+    autocmd FileType python map <buffer> <Leader>D ?def
+augroup END
 "2}}}
 
-" Javascript section {{{2
-" Use jquery plugin
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
+" Javascript {{{2
+augroup filetype_javascript
+    autocmd!
+    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+    autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
+augroup END
 "2}}}
 
-" HTML section {{{2
+" HTML {{{2
 " Disable underlines in <a> tags as well as bold, italic
 " See: :help html
 let html_no_rendering = 1
-
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType html set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
-autocmd FileType xhtml set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
-autocmd FileType tpl set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
-autocmd FileType smarty set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
+augroup filetype_html
+    autocmd!
+    autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType html set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
+    autocmd FileType xhtml set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
+    autocmd FileType tpl set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
+    autocmd FileType smarty set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
+augroup END
 "2}}}
 
-" CSS section {{{2
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+" CSS {{{2
+augroup filetype_css
+    autocmd!
+    autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+augroup END
 "2}}}
 
 "------------------------------------------------------------------------------
