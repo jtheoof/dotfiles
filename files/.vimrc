@@ -21,7 +21,7 @@ filetype plugin on           " put filetype plugin back on after pathogen
 filetype indent on           " enable indents on filetype (ex: html, tpl, ...)
 set nocompatible             " use vim defaults, we don't care about vi anymore
 syntax on                    " enable syntax
-let g:reload_on_write = 0
+let g:reload_on_write = 0    " for reload.vim to make vim faster
 
 " Bundles {{{1
 "------------------------------------------------------------------------------
@@ -221,6 +221,9 @@ nmap <silent> <Leader>p :NERDTreeToggle<CR>
 nnoremap <Leader>hcw :call HighlightWord()<CR>
 " Find current word
 nnoremap <Leader>fcw :exec("Ack '\\b".expand("<cword>")."\\b'")<CR>
+
+" Load current file
+nmap <Leader>so :so %<CR>
 
 " Splitting windows the right way
 " Thanks to: http://goo.gl/R73uk
