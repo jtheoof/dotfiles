@@ -1,9 +1,9 @@
 [global_config]
-  title_transmit_bg_color = "#002b36"
+  title_transmit_bg_color = "#073642"
   borderless = True
   title_inactive_fg_color = "#829496"
   title_transmit_fg_color = "#829496"
-  title_inactive_bg_color = "#00141a"
+  title_inactive_bg_color = "#002b36"
 [keybindings]
   toggle_scrollbar = <Control>s
 [profiles]
