@@ -41,6 +41,7 @@ function make_links() {
     ln -s $PWD/.ackrc  ~/.ackrc
     ln -s $PWD/.dircolors.ansi-dark ~/.dircolors
     ln -s $PWD/.toprc  ~/.toprc
+    ln -s $PWD/.config/terminator/config ~/.config/terminator/config
     cd ../bin/
 }
 
