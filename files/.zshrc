@@ -12,7 +12,7 @@ ZSH_THEME="doubleend"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Comment this out to disable weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
@@ -35,3 +35,5 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/jeremy/.local/bin:/home/jeremy/dev/android/android-sdk-linux/tools:/home/jeremy/dev/android/android-sdk-linux/platform-tools
+
+[[ -f $HOME/.zsh_aliases ]] && . $HOME/.zsh_aliases
