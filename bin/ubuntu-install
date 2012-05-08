@@ -36,13 +36,15 @@ function make_links() {
     CURDIR=$PWD
 
     cd ../files/
-    for i in ./.bash*; do
+    for i in ./.bash_*; do
         echo $i
         ln -s $PWD/$i $HOME/$i
     done
-    ln -s $PWD/.ackrc  ~/.ackrc
+    for i in ./.*rc; do
+        echo $i
+        ln -s $PWD/$i $HOME/$i
+    done
     ln -s $PWD/.dircolors.ansi-dark ~/.dircolors
-    ln -s $PWD/.toprc  ~/.toprc
 
     # Terminator config
     if [ ! -d $HOME/.config/terminator ]; then
