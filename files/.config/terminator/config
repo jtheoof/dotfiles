@@ -8,7 +8,7 @@
   toggle_scrollbar = <Control>s
 [profiles]
   [[default]]
-    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#859900:#839496:#268bd2:#d33682:#2aa198:#fdf6e3"
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#859900:#b58900:#268bd2:#d33682:#2aa198:#fdf6e3"
     background_darkness = 0.91
     scrollbar_position = hidden
     foreground_color = "#829496"
