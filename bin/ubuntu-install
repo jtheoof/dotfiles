@@ -68,10 +68,12 @@ function make_links() {
         echo "linking config file: $i"
         ln -s $PWD/$i $HOME/$i
     done
+    echo "linking .vim"
+    ln -s $PWD/.vim $HOME/.vim
     echo "linking .dircolors"
-    ln -s $PWD/.dircolors.ansi-dark ~/.dircolors
+    ln -s $PWD/.dircolors.ansi-dark $HOME/.dircolors
     echo "linking .gitconfig"
-    ln -s $PWD/.gitconfig ~/.gitconfig
+    ln -s $PWD/.gitconfig $HOME/.gitconfig
 
     # Terminator config
     if [ ! -d $HOME/.config/terminator ]; then
@@ -80,7 +82,7 @@ function make_links() {
         rm $HOME/.config/terminator/config
     fi
     echo "linking terminator config"
-    ln -s $PWD/.config/terminator/config ~/.config/terminator/config
+    ln -s $PWD/.config/terminator/config $HOME/.config/terminator/config
 
     cd $olddir
 }
