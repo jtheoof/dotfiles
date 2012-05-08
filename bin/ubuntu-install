@@ -33,6 +33,8 @@ function install_packages() {
 }
 
 function make_links() {
+    CURDIR=$PWD
+
     cd ../files/
     for i in ./.bash*; do
         echo $i
@@ -41,8 +43,16 @@ function make_links() {
     ln -s $PWD/.ackrc  ~/.ackrc
     ln -s $PWD/.dircolors.ansi-dark ~/.dircolors
     ln -s $PWD/.toprc  ~/.toprc
+
+    # Terminator config
+    if [ ! -d $HOME/.config/terminator ]; then
+        mkdir -p $HOME/.config/terminator
+    elif [ -f $HOME/.config/terminator/config ]; then
+        rm $HOME/.config/terminator/config
+    fi
     ln -s $PWD/.config/terminator/config ~/.config/terminator/config
-    cd ../bin/
+
+    cd $CURDIR
 }
 
 install_ppa
