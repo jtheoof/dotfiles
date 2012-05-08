@@ -27,7 +27,7 @@ function install_packages() {
 	# VCS
 	sudo apt-get install -y git tig subversion mercurial
 	# Networking
-	sudo apt-get install -y socat
+	sudo apt-get install -y curl socat
 	# Scripting
 #	sudo apt-get install -y python-django python-mysqldb mysql-server
 }
