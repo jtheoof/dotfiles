@@ -45,6 +45,7 @@ function make_links() {
         ln -s $PWD/$i $HOME/$i
     done
     ln -s $PWD/.dircolors.ansi-dark ~/.dircolors
+    ln -s $PWD/.gitconfig ~/.gitconfig
 
     # Terminator config
     if [ ! -d $HOME/.config/terminator ]; then
