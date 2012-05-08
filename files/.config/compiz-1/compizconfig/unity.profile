@@ -1,5 +1,5 @@
 [core]
-s0_active_plugins = core;composite;opengl;decor;place;move;imgpng;session;compiztoolbox;mousepoll;wall;snap;regex;vpswitch;put;grid;animation;commands;unitymtgrabhandles;workarounds;resize;gnomecompat;screenshot;fade;expo;showdesktop;scale;scaleaddon;unityshell;
+s0_active_plugins = core;composite;opengl;imgjpeg;decor;place;move;imgpng;session;compiztoolbox;mousepoll;wall;snap;regex;vpswitch;put;grid;animation;commands;unitymtgrabhandles;workarounds;resize;gnomecompat;screenshot;fade;expo;showdesktop;scale;scaleaddon;unityshell;
 s0_audible_bell = true
 s0_ignore_hints_when_maximized = true
 s0_hide_skip_taskbar_windows = true
@@ -31,7 +31,7 @@ s0_maximize_window_vertically_key = Disabled
 s0_window_menu_key = <Alt>space
 s0_window_menu_button = <Alt>Button3
 s0_show_desktop_key = <Super>d
-s0_show_desktop_edge = Bottom
+s0_show_desktop_edge = 
 s0_toggle_window_maximized_key = <Super>Return
 s0_toggle_window_maximized_button = Disabled
 s0_toggle_window_maximized_horizontally_key = Disabled
@@ -761,14 +761,14 @@ s0_directory = Pictures/Screenshots/
 s0_launch_app = 
 
 [wallpaper]
-s0_bg_image = 
-s0_bg_image_pos = 
-s0_bg_fill_type = 
-s0_bg_color1 = 
-s0_bg_color2 = 
-s0_cycle_wallpapers = false
+s0_bg_image = /home/jeremy/Dropbox/Photos/Wallpapers/Single/Guild Wars 2/AsuraCharacter1920x1080.jpg;
+s0_bg_image_pos = 0;
+s0_bg_fill_type = 0;
+s0_bg_color1 = #000000ff;
+s0_bg_color2 = #000000ff;
+s0_cycle_wallpapers = true
 s0_cycle_timeout = 10.000000
-s0_fade_duration = 2.000000
+s0_fade_duration = 0.550000
 
 [cube]
 s0_unfold_key = <Control><Primary><Alt>Down
