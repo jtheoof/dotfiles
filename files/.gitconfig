@@ -27,7 +27,7 @@
     grep = auto
 [color "status"]
     header = bold blue
-    added = green
+    added = bold green
     changed = bold red
     untracked = bold yellow
 [color "diff"]
