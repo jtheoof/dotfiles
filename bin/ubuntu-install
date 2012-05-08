@@ -45,6 +45,10 @@ function config_zsh() {
     cd $olddir
 }
 
+function config_sudoers() {
+    sudo sed -i 's/\(^Defaults\(\s\+\)env_reset\)/\1\nDefaults\2timestamp_timeout=-1/g' /etc/sudoers
+}
+
 function make_links() {
     olddir=$PWD
 
@@ -74,4 +78,5 @@ function make_links() {
 install_ppa
 install_packages
 config_zsh
+config_sudoers
 make_links
