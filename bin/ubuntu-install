@@ -17,7 +17,7 @@ function install_packages() {
 	# Editors
 	sudo apt-get install -y vim-gnome exuberant-ctags
 	# Shell
-	sudo apt-get install -y tree ack-grep terminator tilda
+	sudo apt-get install -y tree ack-grep zsh terminator tilda
 	# Compiz
 	sudo apt-get install -y compizconfig-settings-manager compiz-plugins-extra
 	# Programming
@@ -32,8 +32,16 @@ function install_packages() {
 #	sudo apt-get install -y python-django python-mysqldb mysql-server
 }
 
+function config_zsh() {
+    olddir=$PWD
+    cd $HOME
+    wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+    cp $HOME/dev/me/config/files/.config/zsh/themes/* $HOME/.oh-my-zsh/themes/
+    cd $olddir
+}
+
 function make_links() {
-    CURDIR=$PWD
+    olddir=$PWD
 
     cd ../files/
     for i in ./.bash_*; do
@@ -55,9 +63,10 @@ function make_links() {
     fi
     ln -s $PWD/.config/terminator/config ~/.config/terminator/config
 
-    cd $CURDIR
+    cd $olddir
 }
 
 install_ppa
 install_packages
+config_zsh
 make_links
