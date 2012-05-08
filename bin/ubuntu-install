@@ -2,14 +2,17 @@
 
 function install_ppa() {
 #	sudo add-apt-repository ppa:bumblebee/stable # Bumblebee
+    echo "installing ppas"
 	sudo add-apt-repository ppa:tualatrix/ppa # Ubuntu Tweak
 	sudo add-apt-repository ppa:tiheum/equinox # Faenza icons
 	sudo add-apt-repository ppa:caffeine-developers/ppa # Caffeine
 
+    echo "updating apt repository database"
 	sudo apt-get update
 }
 
 function install_packages() {
+    echo "installing default packages"
 	# Ubuntu
 	sudo apt-get install -y gnome-tweak-tool ubuntu-tweak faenza-icon-theme \
  	   	caffeine synapse
@@ -35,17 +38,21 @@ function install_packages() {
 function config_zsh() {
     olddir=$PWD
     cd $HOME
+    echo "fetching oh-my-zsh"
     wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
     for i in $HOME/dev/me/config/files/.config/zsh/themes/*; do
-        echo $i
+        echo "linking theme: $i"
         basename $i
         ln -s $i $HOME/.oh-my-zsh/themes/$(basename $i)
     done
     cp $HOME/dev/me/config/files/.config/zsh/themes/* $HOME/.oh-my-zsh/themes/
+    echo "changing default shell to /bin/zsh"
+    chsh -s /bin/zsh
     cd $olddir
 }
 
 function config_sudoers() {
+    echo "configuring /etc/sudoers"
     sudo sed -i 's/\(^Defaults\(\s\+\)env_reset\)/\1\nDefaults\2timestamp_timeout=-1/g' /etc/sudoers
 }
 
@@ -53,15 +60,17 @@ function make_links() {
     olddir=$PWD
 
     cd ../files/
-    for i in ./.bash_*; do
-        echo $i
+    for i in ./.zsh_*; do
+        echo "linking config file: $i"
         ln -s $PWD/$i $HOME/$i
     done
     for i in ./.*rc; do
-        echo $i
+        echo "linking config file: $i"
         ln -s $PWD/$i $HOME/$i
     done
+    echo "linking .dircolors"
     ln -s $PWD/.dircolors.ansi-dark ~/.dircolors
+    echo "linking .gitconfig"
     ln -s $PWD/.gitconfig ~/.gitconfig
 
     # Terminator config
@@ -70,6 +79,7 @@ function make_links() {
     elif [ -f $HOME/.config/terminator/config ]; then
         rm $HOME/.config/terminator/config
     fi
+    echo "linking terminator config"
     ln -s $PWD/.config/terminator/config ~/.config/terminator/config
 
     cd $olddir
