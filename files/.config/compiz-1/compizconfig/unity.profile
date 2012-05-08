@@ -305,10 +305,10 @@ s0_y_offset = 155
 s0_radius = 200
 
 [opengl]
-s0_texture_filter = 0
+s0_texture_filter = 2
 s0_lighting = false
 s0_sync_to_vblank = true
-s0_texture_compression = false
+s0_texture_compression = true
 
 [ezoom]
 s0_zoom_in_button = Disabled
