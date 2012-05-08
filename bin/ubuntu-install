@@ -38,6 +38,9 @@ function make_links() {
         echo $i
         ln -s $PWD/$i $HOME/$i
     done
+    ln -s $PWD/.ackrc  ~/.ackrc
+    ln -s $PWD/.dircolors.ansi-dark ~/.dircolors
+    ln -s $PWD/.toprc  ~/.toprc
     cd ../bin/
 }
 

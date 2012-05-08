@@ -175,8 +175,8 @@ let mapleader=","
 "colorscheme hemisu
 colorscheme solarized
 "colorscheme zenburn
+set background=dark
 if has("gui_running")
-    set background=dark             " adapt colors for background
 	if has("gui_gtk2")
 		"set guifont=Ubuntu\ Mono\ 8
 		set guifont=Ubuntu\ Mono\ 12
@@ -190,6 +190,8 @@ if has("gui_running")
     "set guioptions-=T               " remove toolbar
     "set guioptions-=r               " remove right-hand scroll bar
     set guioptions=                  " turns off every option
+else
+    set t_Co=256
 endif
 " }}}
 
