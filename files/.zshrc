@@ -127,8 +127,11 @@ alias  DIF='dpkg -i --force-overwrite' # use when you get "trying to overwrite <
 alias  DR='dpkg-reconfigure' # reconfigure a package that's already installed
 alias  DB='dpkg-buildpackage' # build from Debianized source
 #2}}}
+#------------------------------------------------------------------------------
+#1}}}
 
-# Functions {{{2
+# Functions {{{1
+#------------------------------------------------------------------------------
 # Compression
 function ctar() {
 	tar czf $1.tar.gz $1
@@ -220,7 +223,11 @@ function apt-history() {
               ;;
       esac
 }
-#2}}}
+
+function chpwd() {
+    emulate -L zsh
+    ls -a
+}
 #------------------------------------------------------------------------------
 #1}}}
 
