@@ -136,7 +136,10 @@ end
 # If running in a submodule environment, chdirs to the submodule root
 # and then calls the block with inpath converted to be relative to the
 # subodule root.  If not running with submodules, returns false.
-def in_submodule_root inpath=nil
+def in_submodule_root config, inpath=nil
+  if config[:no_submodules]
+    return false
+  end
   path = File.join Dir.pwd, inpath if inpath
   parent = git 'rev-parse', '--show-cdup', :acceptable_exit_codes => :any, :stderr => :suppress
   if $?.exitstatus == 0
@@ -151,7 +154,7 @@ end
 
 
 def clone_bundle config, dir, url, tagstr, log
-  if in_submodule_root(dir) { |mod|
+  if in_submodule_root(config, dir) { |mod|
     puts "adding submodule #{dir} from #{url}#{tagstr}"
     git :submodule, :add, url, mod
   }
@@ -168,7 +171,7 @@ def remove_bundle_to config, dir, destination
   puts "Removing #{dir}, find it in #{destination}"
   FileUtils.mv dir, destination
 
-  in_submodule_root(dir) do |mod|
+  in_submodule_root(config, dir) do |mod|
     git :rm, mod
     fn = nil
     ['.gitmodules', '.git/config'].each do |filename|
@@ -274,7 +277,7 @@ def install_bundle config, dir, url, tag, doc, log
   end
 
   Dir.chdir(dir) { print_doc_entry dir, doc }
-  in_submodule_root(dir) { |mod| git :add, mod }
+  in_submodule_root(config, dir) { |mod| git :add, mod }
 end
 
 
@@ -474,12 +477,13 @@ def help
 <<EOL
 vim-update-bundles [options...]
   Updates the installed Vim plugins.
-    -n --no-updates: don't update bundles, only add or delete (faster)
-    -h -? --help:    print this message
-    -v --verbose:    print what's happening (multiple -v for more verbose)
+    -n --no-updates:    don't update bundles, only add or delete (faster)
+    -s --no-submodules: don't create submodules if .git folder already present
+    -h -? --help:       print this message
+    -v --verbose:       print what's happening (multiple -v for more verbose)
   optional configurations:
-    --vimdir-path:   path to ~/.vim directory
-    --vimrc-path:    path to ~/.vimrc directory
+    --vimdir-path:      path to ~/.vim directory
+    --vimrc-path:       path to ~/.vimrc directory
 EOL
 end
 
@@ -487,6 +491,7 @@ end
 config = {
   :verbose       => nil,     # Git commands are quiet by default; set verbose=true to see everything.
   :no_updates    => false,   # If true then don't update repos, only add or delete.
+  :no_submodules => false,   # If true then don't look for previous .git repo
 
   :help => lambda { |v| puts help; exit },
   :version => lambda { |v| puts "vim-update-bundles #{Version}"; exit },
@@ -494,6 +499,7 @@ config = {
   # single-character aliases for command-line options
   :v => :verbose, :n => :no_updates,
   :h => :help, :'?' => :help, :V => :version,
+  :s => :no_submodules,
 
   :vimdir_path   => nil,     # Full path to ~/.vim
   :vimrc_path    => nil,     # Full path to ~/.vimrc
