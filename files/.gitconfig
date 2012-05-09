@@ -36,7 +36,7 @@
     old = red bold
     new = green bold
 [github]
-	user = jtheoof
+    user = jtheoof
 [push]
     default = tracking
 [user]
