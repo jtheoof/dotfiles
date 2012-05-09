@@ -37,3 +37,4 @@ source $ZSH/oh-my-zsh.sh
 export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/jeremy/.local/bin:/home/jeremy/dev/android/android-sdk-linux/tools:/home/jeremy/dev/android/android-sdk-linux/platform-tools
 
 [[ -f $HOME/.zsh_aliases ]] && . $HOME/.zsh_aliases
+[[ -f /usr/bin/dircolors ]] && [[ -f $HOME/.dircolors ]] && eval $(dircolors -b $HOME/.dircolors)
