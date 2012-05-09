@@ -1,5 +1,7 @@
 #!/bin/bash
 
+GITPATH=$HOME/dev/me/config
+
 function install_ppa() {
 #	sudo add-apt-repository ppa:bumblebee/stable # Bumblebee
     echo "installing ppas"
@@ -56,10 +58,12 @@ function config_sudoers() {
     sudo sed -i 's/\(^Defaults\(\s\+\)env_reset\)/\1\nDefaults\2timestamp_timeout=-1/g' /etc/sudoers
 }
 
+# TODO Factorize link creation to a function
+# to handle existing links.
 function make_links() {
     olddir=$PWD
 
-    cd ../files/
+    cd $GITPATH/files/
     for i in ./.zsh_*; do
         echo "linking config file: $i"
         ln -s $PWD/$i $HOME/$i
