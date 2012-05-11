@@ -205,7 +205,9 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Use Ack shortcut
-nnoremap <Leader>a :Ack ''<Left>
+nnoremap <Leader>aa :Ack ''<Left>
+" Find current word
+nnoremap <Leader>acw :exec("Ack '\\b".expand("<cword>")."\\b'")<CR>
 
 " change to directory containing current file
 nmap <Leader>cd :cd %:p:h<CR>
@@ -221,8 +223,6 @@ nmap <silent> <Leader>p :NERDTreeToggle<CR>
 
 " Highlight current work
 nnoremap <Leader>hcw :call HighlightWord()<CR>
-" Find current word
-nnoremap <Leader>fcw :exec("Ack '\\b".expand("<cword>")."\\b'")<CR>
 
 " Load current file
 nmap <Leader>so :so %<CR>
