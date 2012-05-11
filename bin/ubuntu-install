@@ -61,23 +61,21 @@ function config_sudoers() {
 # TODO Factorize link creation to a function
 # to handle existing links.
 function make_links() {
-    olddir=$PWD
-
-    cd $GITPATH/files/
+    FILESPATH=$GITPATH/files
     for i in ./.zsh_*; do
         echo "linking config file: $i"
-        ln -s $PWD/$i $HOME/$i
+        ln -s $FILESPATH/$i $HOME/$i
     done
     for i in ./.*rc; do
         echo "linking config file: $i"
-        ln -s $PWD/$i $HOME/$i
+        ln -s $FILESPATH/$i $HOME/$i
     done
     echo "linking .vim"
-    ln -s $PWD/.vim $HOME/.vim
+    ln -s $FILESPATH/.vim $HOME/.vim
     echo "linking .dircolors"
-    ln -s $PWD/.dircolors.ansi-dark $HOME/.dircolors
+    ln -s $FILESPATH/.dircolors.ansi-dark $HOME/.dircolors
     echo "linking .gitconfig"
-    ln -s $PWD/.gitconfig $HOME/.gitconfig
+    ln -s $FILESPATH/.gitconfig $HOME/.gitconfig
 
     # Terminator config
     if [ ! -d $HOME/.config/terminator ]; then
@@ -86,9 +84,7 @@ function make_links() {
         rm $HOME/.config/terminator/config
     fi
     echo "linking terminator config"
-    ln -s $PWD/.config/terminator/config $HOME/.config/terminator/config
-
-    cd $olddir
+    ln -s $FILESPATH/.config/terminator/config $HOME/.config/terminator/config
 }
 
 install_ppa
