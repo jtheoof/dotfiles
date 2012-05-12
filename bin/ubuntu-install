@@ -1,81 +1,107 @@
 #!/bin/bash
 
 GITPATH=$HOME/dev/me/config
+FILESPATH=$GITPATH/files
+BINPATH=$GITPATH/bin
 
 function install_ppa() {
-#	sudo add-apt-repository ppa:bumblebee/stable # Bumblebee
+    read -p "Do you want to install the PPAs? "
+    if [ ! $REPLY == 'y' ]; then
+        return
+    fi
     echo "installing ppas"
-	sudo add-apt-repository ppa:tualatrix/ppa # Ubuntu Tweak
-	sudo add-apt-repository ppa:tiheum/equinox # Faenza icons
-	sudo add-apt-repository ppa:caffeine-developers/ppa # Caffeine
+    sudo add-apt-repository ppa:tualatrix/ppa # Ubuntu Tweak
+    sudo add-apt-repository ppa:tiheum/equinox # Faenza icons
+    sudo add-apt-repository ppa:caffeine-developers/ppa # Caffeine
 
     echo "updating apt repository database"
-	sudo apt-get update
+    sudo apt-get update
 }
 
 function install_packages() {
-    echo "installing default packages"
-	# Ubuntu
-	sudo apt-get install -y gnome-tweak-tool ubuntu-tweak faenza-icon-theme \
- 	   	caffeine synapse
-#	sudo apt-get install -y bumblebee
-	# Editors
-	sudo apt-get install -y vim-gnome exuberant-ctags
-	# Shell
-	sudo apt-get install -y tree ack-grep zsh terminator tilda
-	# Compiz
-	sudo apt-get install -y compizconfig-settings-manager compiz-plugins-extra
-	# Programming
-	sudo apt-get install -y python ruby build-essential ant
-	# Graphics
-	sudo apt-get install -y gcolor2 colordiff
-	# VCS
-	sudo apt-get install -y git tig subversion mercurial
-	# Networking
-	sudo apt-get install -y curl socat
-	# Scripting
-#	sudo apt-get install -y python-django python-mysqldb mysql-server
+    read -p "Do you want to install useful packages? "
+    if [ ! $REPLY == 'y' ]; then
+        return
+    fi
+    # Ubuntu
+    sudo apt-get install -y gnome-tweak-tool ubuntu-tweak faenza-icon-theme caffeine synapse
+    # Editors
+    sudo apt-get install -y vim-gnome exuberant-ctags
+    # Shell
+    sudo apt-get install -y tree ack-grep zsh terminator tilda
+    # Compiz
+    sudo apt-get install -y compizconfig-settings-manager compiz-plugins-extra
+    # Programming
+    sudo apt-get install -y python ruby build-essential ant
+    # Graphics
+    sudo apt-get install -y gcolor2 colordiff
+    # VCS
+    sudo apt-get install -y git tig subversion mercurial
+    # Networking
+    sudo apt-get install -y curl
 }
 
-function config_zsh() {
+function install_zsh() {
+    read -p "Do you want to configure .oh-my-zsh? "
+    if [ ! $REPLY == 'y' ]; then
+        return
+    fi
     olddir=$PWD
     cd $HOME
     echo "fetching oh-my-zsh"
     wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
-    for i in $HOME/dev/me/config/files/.config/zsh/themes/*; do
+    for i in $FILESPATH/.config/zsh/themes/*; do
         echo "linking theme: $i"
-        basename $i
-        ln -s $i $HOME/.oh-my-zsh/themes/$(basename $i)
+        ln -is $i $HOME/.oh-my-zsh/themes/$(basename $i)
     done
-    cp $HOME/dev/me/config/files/.config/zsh/themes/* $HOME/.oh-my-zsh/themes/
-    echo "changing default shell to /bin/zsh"
+    read -p "Do you want to switch by default to /bin/zsh? "
+    if [ ! $REPLY == 'y' ]; then
+        return
+    fi
     chsh -s /bin/zsh
-    cd $olddir
 }
 
 function config_sudoers() {
-    echo "configuring /etc/sudoers"
+    read -p "Do you want to configure /etc/sudoers? "
+    if [ ! $REPLY == 'y' ]; then
+        return
+    fi
     sudo sed -i 's/\(^Defaults\(\s\+\)env_reset\)/\1\nDefaults\2timestamp_timeout=-1/g' /etc/sudoers
+}
+
+function config_vim() {
+    read -p "Do you want to install vim bundles? "
+    if [ ! $REPLY == 'y' ]; then
+        return
+    fi
+    $BINPATH/vim-update-bundles -s
+}
+    
+
+function create_home_link() {
+    filename=$(basename $1)
+    echo $1
+    echo "linking to: $HOME/$filename"
+    if [ -d $HOME/$filename ]; then
+        rm -rI $HOME/$filename
+    fi
+    ln -is $FILESPATH/$filename $HOME/$filename
 }
 
 # TODO Factorize link creation to a function
 # to handle existing links.
 function make_links() {
-    FILESPATH=$GITPATH/files
-    for i in ./.zsh_*; do
+    read -p "Do you want to create $HOME symlinks? "
+    if [ ! $REPLY == 'y' ]; then
+        return
+    fi
+    for i in $FILESPATH/.*rc; do
         echo "linking config file: $i"
-        ln -s $FILESPATH/$i $HOME/$i
+        create_home_link $i
     done
-    for i in ./.*rc; do
-        echo "linking config file: $i"
-        ln -s $FILESPATH/$i $HOME/$i
-    done
-    echo "linking .vim"
-    ln -s $FILESPATH/.vim $HOME/.vim
-    echo "linking .dircolors"
-    ln -s $FILESPATH/.dircolors.ansi-dark $HOME/.dircolors
-    echo "linking .gitconfig"
-    ln -s $FILESPATH/.gitconfig $HOME/.gitconfig
+    create_home_link $FILESPATH/.dircolors
+    create_home_link $FILESPATH/.gitconfig
+    create_home_link $FILESPATH/.vim
 
     # Terminator config
     if [ ! -d $HOME/.config/terminator ]; then
@@ -84,11 +110,13 @@ function make_links() {
         rm $HOME/.config/terminator/config
     fi
     echo "linking terminator config"
-    ln -s $FILESPATH/.config/terminator/config $HOME/.config/terminator/config
+    ln -is $FILESPATH/.config/terminator/config $HOME/.config/terminator/config
+    ln -is $BINPATH $HOME/.local/bin
 }
 
 install_ppa
 install_packages
-config_zsh
-config_sudoers
+install_zsh
 make_links
+config_sudoers
+config_vim

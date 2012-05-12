@@ -37,7 +37,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Exports {{{1
 #------------------------------------------------------------------------------
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/jeremy/.local/bin:/home/jeremy/dev/android/android-sdk-linux/tools:/home/jeremy/dev/android/android-sdk-linux/platform-tools
+export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.local/bin:$HOME/dev/android/android-sdk-linux/tools:$HOME/dev/android/android-sdk-linux/platform-tools
 #------------------------------------------------------------------------------
 #1}}}
 
@@ -134,7 +134,7 @@ alias  DB='dpkg-buildpackage' # build from Debianized source
 #------------------------------------------------------------------------------
 # Compression
 function ctar() {
-	tar czf $1.tar.gz $1
+    tar czf $1.tar.gz $1
 }
 
 # Track experimental
