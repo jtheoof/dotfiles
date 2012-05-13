@@ -109,9 +109,14 @@ function make_links() {
     elif [ -f $HOME/.config/terminator/config ]; then
         rm $HOME/.config/terminator/config
     fi
+    echo "linking local bin"
+    ln -is $BINPATH $HOME/.local/bin
     echo "linking terminator config"
     ln -is $FILESPATH/.config/terminator/config $HOME/.config/terminator/config
-    ln -is $BINPATH $HOME/.local/bin
+    if [ ! -d $HOME/.tilda ]; then
+        mkdir -p $HOME/.tilda
+    fi
+    ln -is $FILESPATH/.tilda/config_0 $HOME/.tilda/config_0
 }
 
 # FIXME Not working because of a different format
