@@ -114,9 +114,45 @@ function make_links() {
     ln -is $BINPATH $HOME/.local/bin
 }
 
+# FIXME Not working because of a different format
+# between terminator color and gnome-terminal color
+# gcontool does not understand "#829496"
+function config_terminal() {
+    read -p "Do you want to configure the terminals? "
+    if [ ! $REPLY == 'y' ]; then
+        return
+    fi
+    #terminator_config=$FILESPATH/.config/terminator/config
+    #palette=$(ack-grep 'palette\s*=\s*"(.*)"' $terminator_config | \
+    #    ack-grep -o '".*"')
+    #foreground=$(ack-grep 'foreground_color\s*=\s*"(.*)"' $terminator_config | \
+    #    ack-grep -o '".*"')
+    #background=$(ack-grep 'background_color\s*=\s*"(.*)"' $terminator_config | \
+    #    ack-grep -o '".*"')
+    #echo "palette: $palette"
+    #echo "foreground: $foreground"
+    #echo "background: $background"
+    #gconftool-2 --set "/apps/gnome-terminal/profiles/Default/use_theme_background" --type bool false
+    #gconftool-2 --set "/apps/gnome-terminal/profiles/Default/use_theme_colors" --type bool false
+    #gconftool-2 --set "/apps/gnome-terminal/profiles/Default/palette" --type string $palette
+    #gconftool-2 --set "/apps/gnome-terminal/profiles/Default/background_color" --type string $background
+    #gconftool-2 --set "/apps/gnome-terminal/profiles/Default/foreground_color" --type string $foreground
+    PROFILE=${1:-Default}
+    gconftool-2 -s -t string /apps/gnome-terminal/profiles/$PROFILE/palette "#00002B2B3636:#DCDC32322F2F:#858599990000:#B5B589890000:#26268B8BD2D2:#D3D336368282:#2A2AA1A19898:#FDFDF6F6E3E3:#070736364242:#CBCB4B4B1616:#58586E6E7575:#65657B7B8383:#838394949696:#6C6C7171C4C4:#9393A1A1A1A1:#EEEEE8E8D5D5"
+    # set highlighted color to be different from foreground-color
+    gconftool-2 -s -t bool /apps/gnome-terminal/profiles/$PROFILE/bold_color_same_as_fg false
+    # set foreground to base0 and background to base03 and highlight color to base1
+    gconftool-2 -s -t string /apps/gnome-terminal/profiles/$PROFILE/background_color "#00002B2B3636"
+    gconftool-2 -s -t string /apps/gnome-terminal/profiles/$PROFILE/foreground_color "#838394949696"
+    gconftool-2 -s -t string /apps/gnome-terminal/profiles/$PROFILE/bold_color "#9393a1a1a1a1"
+    # make sure the profile is set to not use theme colors
+    gconftool-2 -s -t bool /apps/gnome-terminal/profiles/$PROFILE/use_theme_colors false
+}
+
 install_ppa
 install_packages
 install_zsh
 make_links
 config_sudoers
 config_vim
+config_terminal
