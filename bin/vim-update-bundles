@@ -136,7 +136,7 @@ end
 # If running in a submodule environment, chdirs to the submodule root
 # and then calls the block with inpath converted to be relative to the
 # subodule root.  If not running with submodules, returns false.
-def in_submodule_root config, inpath=nil
+def in_submodule_root inpath=nil, config={}
   if config[:no_submodules]
     return false
   end
@@ -154,7 +154,7 @@ end
 
 
 def clone_bundle config, dir, url, tagstr, log
-  if in_submodule_root(config, dir) { |mod|
+  if in_submodule_root(dir, config) { |mod|
     puts "adding submodule #{dir} from #{url}#{tagstr}"
     git :submodule, :add, url, mod
   }
@@ -171,7 +171,7 @@ def remove_bundle_to config, dir, destination
   puts "Removing #{dir}, find it in #{destination}"
   FileUtils.mv dir, destination
 
-  in_submodule_root(config, dir) do |mod|
+  in_submodule_root(dir, config) do |mod|
     git :rm, mod
     fn = nil
     ['.gitmodules', '.git/config'].each do |filename|
@@ -277,7 +277,7 @@ def install_bundle config, dir, url, tag, doc, log
   end
 
   Dir.chdir(dir) { print_doc_entry dir, doc }
-  in_submodule_root(config, dir) { |mod| git :add, mod }
+  in_submodule_root(dir, config) { |mod| git :add, mod }
 end
 
 
