@@ -43,6 +43,9 @@ export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/u
 
 # Aliases {{{1
 #------------------------------------------------------------------------------
+# Admin
+alias lgroups='cat /etc/passwd | cut -d: -f1'
+
 # Editing {{{2
 alias vi='vim'
 alias gv='gvim'
