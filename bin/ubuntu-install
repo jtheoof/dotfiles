@@ -32,7 +32,7 @@ function install_packages() {
     # Compiz
     sudo apt-get install -y compizconfig-settings-manager compiz-plugins-extra
     # Programming
-    sudo apt-get install -y python ruby build-essential ant
+    sudo apt-get install -y python ruby rubygems build-essential ant
     # Graphics
     sudo apt-get install -y gimp gcolor2 colordiff
     # VCS
