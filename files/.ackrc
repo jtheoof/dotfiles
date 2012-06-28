@@ -19,3 +19,9 @@
 # types to ignore by default
 --noplaintext
 --nogettext
+
+# Ignore directories
+####################################################################
+
+--ignore-dir=build
+--ignore-dir=libs

@@ -35,6 +35,7 @@ let g:reload_on_write = 0    " for reload.vim to make vim faster
 " Bundle: vim-scripts/TagHighlight
 " Bundle: othree/html5.vim
 " Bundle: mattn/zencoding-vim
+" Bundle: cakebaker/scss-syntax.vim
 
 " Text
 " Bundle: mileszs/ack.vim
@@ -520,10 +521,10 @@ let html_no_rendering = 1
 augroup filetype_html
     autocmd!
     autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType html set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
-    autocmd FileType xhtml set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
-    autocmd FileType tpl set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
-    autocmd FileType smarty set shiftwidth=2 tabstop=2 noexpandtab textwidth=0
+    autocmd FileType html set shiftwidth=2 tabstop=2 expandtab textwidth=0
+    autocmd FileType xhtml set shiftwidth=2 tabstop=2 expandtab textwidth=0
+    autocmd FileType tpl set shiftwidth=2 tabstop=2 expandtab textwidth=0
+    autocmd FileType smarty set shiftwidth=2 tabstop=2 expandtab textwidth=0
 augroup END
 "2}}}
 
