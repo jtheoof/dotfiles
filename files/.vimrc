@@ -12,16 +12,15 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Bundle: tpope/vim-pathogen
 call pathogen#infect()
+"call pathogen#helptags() don't call it everytime cause it's slow
 "------------------------------------------------------------------------------
 "1}}}
 
 runtime macros/matchit.vim   " smarter use of '%'
 
-filetype plugin on           " put filetype plugin back on after pathogen
-filetype indent on           " enable indents on filetype (ex: html, tpl, ...)
+filetype plugin indent on    " put filetype plugin back on after pathogen
 set nocompatible             " use vim defaults, we don't care about vi anymore
 syntax on                    " enable syntax
-let g:reload_on_write = 0    " for reload.vim to make vim faster
 
 " Bundles {{{1
 "------------------------------------------------------------------------------
@@ -65,6 +64,7 @@ let g:reload_on_write = 0    " for reload.vim to make vim faster
 "------------------------------------------------------------------------------
 "set autochdir                      " Automatically follow current directory
 set autoread                       " automatically reload file changes
+set autowrite                      " automatically save before :next or :make        
 set backspace=indent,eol,start     " more powerful backspacing
 set nobackup                       " do not keep a backup file
 set cursorline                     " Highlight current line
@@ -76,16 +76,22 @@ set foldlevel=0                    " fold to level 0 when opening file
 set foldmethod=marker              " basic marker as default folding method
 set history=1000                   " history back trace
 set laststatus=2                   " allways show status line
+set lazyredraw                     " don't redraw while executing macros
 set ruler                          " show the cursor position all the time
 set number                         " show line numbers
 set modeline                       " last lines in document sets vim mode
 set modelines=5                    " number lines checked for modelines
-set nolazyredraw                   " don't redraw while executing macros
 set nostartofline                  " don't jump to first character when paging
 set shortmess=atI                  " Abbreviate messages
 set showcmd                        " display incomplete commands
 set showmode                       " Show current mode
 set scrolloff=3                    " Make cursor offset
+set splitbelow                     " split at the bottom
+set splitright                     " vsplit on right
+if exists("+spelllang")
+  set spelllang=en_us              " english is good enough
+  set spellfile=~/.vim/spell/en.utf-8.add
+endif
 set title                          " show title in console title bar
 set ttyfast                        " smoother changes
 "set viminfo='10,\"100             " 10 marks, 100 lines
@@ -101,23 +107,38 @@ set nobackup
 set nowb
 set noswapfile
 
+" Status line
+set statusline=%t       "tail of the filename
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+
 " Persistent undo
-if has("win32")
-	set undodir=~/vimfiles/undodir
-else
-	set undodir=~/.vim/undodir
+if exists("+undofile")
+  set undofile
+  set undolevels=1000 "maximum number of changes that can be undone
+  set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+  if has("win32")
+    set undodir=~/vimfiles/undodir
+  else
+    set undodir=~/.vim/undodir
+  endif
 endif
 
 " X Clipboard
 if has("unix")
-	set clipboard=unnamedplus
+  set clipboard=unnamedplus
 else
-	set clipboard=unnamed
+  set clipboard=unnamed
 endif
 
-set undofile
-set undolevels=1000 "maximum number of changes that can be undone
-set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
 " Word wrapping
 set wrap
@@ -176,21 +197,21 @@ colorscheme solarized
 "colorscheme zenburn
 set background=dark
 if has("gui_running")
-	if has("gui_gtk2")
-		"set guifont=Ubuntu\ Mono\ 8
-		set guifont=Ubuntu\ Mono\ 12
-		"set guifont=Monaco\ 8
-	    "set guifont=Consolas\ 10
-	elseif has("gui_win32")
-	    set guifont=Consolas:h10
-	endif
+  if has("gui_gtk2")
+    "set guifont=Ubuntu\ Mono\ 10
+    set guifont=Ubuntu\ Mono\ 12
+    "set guifont=Monaco\ 8
+      "set guifont=Consolas\ 10
+  elseif has("gui_win32")
+      set guifont=Consolas:h10
+  endif
 
-    "set guioptions-=m               " remove menu bar
-    "set guioptions-=T               " remove toolbar
-    "set guioptions-=r               " remove right-hand scroll bar
-    set guioptions=                  " turns off every option
+  "set guioptions-=m               " remove menu bar
+  "set guioptions-=T               " remove toolbar
+  "set guioptions-=r               " remove right-hand scroll bar
+  set guioptions=                  " turns off every option
 else
-    set t_Co=256
+  set t_Co=256
 endif
 " }}}
 
@@ -296,8 +317,8 @@ nnoremap <C-F4> :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
 nnoremap <F7> :make<Return>
 nnoremap <F9> :cprevious<Return>
 nnoremap <F10> :cnext<Return>
-nnoremap <F11> :split %<CR><C-w>jzz
-nnoremap <F12> :vsplit %<CR><C-w>lzz
+nnoremap <F11> :split %<CR>
+nnoremap <F12> :vsplit %<CR>
 
 " Navigate through folded line
 nnoremap <M-j> gj
@@ -541,7 +562,7 @@ augroup END
 
 " Ack {{{2
 if has("unix")
-	let g:ackprg="ack-grep -H --nocolor --nogroup --column --sort-files"
+  let g:ackprg="ack-grep -H --nocolor --nogroup --column --sort-files"
 endif
 "2}}}
 
