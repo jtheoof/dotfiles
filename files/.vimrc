@@ -152,9 +152,7 @@ set noerrorbells
 "set noerrorbells visualbell t_vb=
 
 " Set default tags file and some extra
-set tags=tags;/,.tags;/,TAGS;/
-set tags+=~/.vim/tags/x11
-set tags+=~/.vim/tags/gl
+set tags=./tags;/
 
 " List invisible chars
 set listchars=tab:▸\ ,eol:¬
