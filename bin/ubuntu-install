@@ -1,6 +1,15 @@
 #!/bin/bash
 
-GITPATH=$HOME/dev/me/config
+# Get the path where the file is located.
+# Then resolve symbolic link just to make sure.
+BINPATH=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
+GITPATH=$(dirname $BINPATH)
+GITDIR=$GITPATH/.git
+if [ ! -d $GITDIR ]; then
+    echo "could not find .git directory, something is fishy" > /dev/stderr
+    exit 1
+fi
+echo "working in directory: $GITPATH"
 FILESPATH=$GITPATH/files
 BINPATH=$GITPATH/bin
 
