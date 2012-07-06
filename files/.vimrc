@@ -510,6 +510,7 @@ augroup END
 augroup filetype_javascript
     autocmd!
     autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType javascript set shiftwidth=4 tabstop=4 expandtab textwidth=0
     autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
 augroup END
 "2}}}
