@@ -46,6 +46,14 @@ export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/u
 # Admin
 alias lgroups='cat /etc/passwd | cut -d: -f1'
 
+# Work {{{2
+alias rsync-root='cd /home/jeremy; rsync -avz .ackrc .dircolors .gitconfig .oh-my-zsh .toprc .vim .vimrc .zshrc /root'
+alias rsync-jenkins='sudo su -c "rsync -avz --delete --exclude .svn --exclude build --exclude applications --exclude poc --exclude pocs --exclude documents /home/jeremy/dev/bt/galak/* ~/jobs/alwa/workspace/" - jenkins'
+alias node-jslint="node $HOME/dev/me/node-jslint/bin/jslint.js --maxerr 500 --nomen --plusplus --regexp --sloppy --undef --white"
+alias svn-df='svn diff | colordiff'
+alias mount-nfs='mount -t nfs -o nolock 192.168.1.3:/root/dev/bt/bewan/iad /etc/bewan/iad'
+#2}}}
+
 # Editing {{{2
 alias vi='vim'
 alias gv='gvim'
