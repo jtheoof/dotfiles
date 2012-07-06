@@ -38,6 +38,7 @@ source $ZSH/oh-my-zsh.sh
 # Exports {{{1
 #------------------------------------------------------------------------------
 export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.local/bin:$HOME/dev/android/android-sdk-linux/tools:$HOME/dev/android/android-sdk-linux/platform-tools:/opt/SenchaSDKTools-2.0.0-beta3
+export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
 #------------------------------------------------------------------------------
 #1}}}
 
