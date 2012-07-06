@@ -238,9 +238,6 @@ nmap <Leader>w :w!<CR>
 " Use <Leader>W to “strip all trailing whitespace in the current file”
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
-" Mapping to NERDTree
-nmap <silent> <Leader>p :NERDTreeToggle<CR>
-
 " Highlight current work
 nnoremap <Leader>hcw :call HighlightWord()<CR>
 
