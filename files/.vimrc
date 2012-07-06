@@ -12,7 +12,7 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Bundle: tpope/vim-pathogen
 call pathogen#infect()
-"call pathogen#helptags() don't call it everytime cause it's slow
+call pathogen#helptags()     " don't call it everytime cause it's slow?
 "------------------------------------------------------------------------------
 "1}}}
 
