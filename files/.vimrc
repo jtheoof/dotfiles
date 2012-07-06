@@ -575,12 +575,6 @@ map <silent> <C-Tab> :BufExplorer<CR>
 map <silent> <Leader>o :BufExplorer<CR>
 "2}}}
 
-" Zencoding {{{2
-let g:user_zen_settings = {
-\  'indentation' : '  '
-\}
-"2}}}
-
 " Fuzzy Finder {{{2
 let g:fuf_coveragefile_exclude = '\v\~$|\.(o|obj|exe|&ll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 let g:fuf_keyNextPattern = '<C-d>'
@@ -629,6 +623,22 @@ nnoremap <silent> se     :FufEditDataFile<CR>
 nnoremap <silent> sr     :FufRenewCache<CR>
 nnoremap <silent> s*     :FufCoverageFile<CR>
 nnoremap <silent> sc     :%s///n<CR>
+"2}}}
+
+" NERDTree {{{2
+noremap n. :execute "NERDTree ".expand("%:p:h")
+noremap <Leader>n :NERDTree<space>
+noremap <Leader>nb :NERDTreeFromBookmark<space>
+noremap <Leader>nn :NERDTreeToggle<cr>
+noremap <Leader>no :NERDTreeToggle<space>
+noremap <Leader>nf :NERDTreeFind<cr>
+noremap <Leader>nc :NERDTreeClose<cr>
+"2}}}
+
+" Zencoding {{{2
+let g:user_zen_settings = {
+\  'indentation' : '  '
+\}
 "2}}}
 
 "------------------------------------------------------------------------------
