@@ -373,6 +373,12 @@ imap <C-u> <C-v>u
 
 " Visual mode {{{2
 
+" Easy wrapping around visual selected text
+vmap sb "zdi<b><C-R>z</b><Esc>
+vmap st "zdi<?= <C-R>z ?><Esc>
+vmap s' "zdi'<C-R>z'<Esc>
+vmap s" "zdi"<C-R>z"<Esc>
+
 " Navigate through folded line
 vnoremap <M-j> gj
 vnoremap <M-k> gk
@@ -526,8 +532,7 @@ augroup END
 augroup filetype_javascript
     autocmd!
     autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType javascript set shiftwidth=4 tabstop=4 expandtab textwidth=0
-    autocmd BufRead,BufNewFile *.js set filetype=javascript syntax=javascript.jquery
+    autocmd FileType javascript set shiftwidth=2 tabstop=2 expandtab textwidth=0
 augroup END
 "2}}}
 
@@ -623,8 +628,7 @@ nnoremap <silent> sc     :%s///n<CR>
 "2}}}
 
 " NERDTree {{{2
-noremap n. :execute "NERDTree ".expand("%:p:h")
-noremap <Leader>n :NERDTree<space>
+noremap <Leader>n :NERDTree<space><cr>
 noremap <Leader>nb :NERDTreeFromBookmark<space>
 noremap <Leader>nn :NERDTreeToggle<cr>
 noremap <Leader>no :NERDTreeToggle<space>
