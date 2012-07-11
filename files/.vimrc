@@ -43,6 +43,7 @@ syntax on                    " enable syntax
 " Bundle: vim-scripts/FuzzyFinder
 " Bundle: vim-scripts/L9
 " Bundle: vim-scripts/hexman.vim
+" Bundle: scrooloose/nerdcommenter
 
 " VCS
 " Bundle: tpope/vim-git
