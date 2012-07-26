@@ -55,7 +55,6 @@ function install_zsh() {
     if [ ! $REPLY == 'y' ]; then
         return
     fi
-    olddir=$PWD
     cd $HOME
     echo "fetching oh-my-zsh"
     wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
@@ -63,11 +62,19 @@ function install_zsh() {
         echo "linking theme: $i"
         ln -is $i $HOME/.oh-my-zsh/themes/$(basename $i)
     done
+    read -p "Idem for root? "
+    if [ $REPLY == 'y' ]; then
+        root_links=true
+        sudo ln -is $HOME/.oh-my-zsh /root/.oh-my-zsh 
+    fi
     read -p "Do you want to switch by default to /bin/zsh? "
     if [ ! $REPLY == 'y' ]; then
         return
     fi
     chsh -s /bin/zsh
+    if $root_links ; then
+        sudo chsh -s /bin/zsh root
+    fi
 }
 
 function config_sudoers() {
@@ -87,30 +94,61 @@ function config_vim() {
 }
     
 
-function create_home_link() {
-    filename=$(basename $1)
-    echo $1
-    echo "linking to: $HOME/$filename"
-    if [ -d $HOME/$filename ]; then
-        rm -rI $HOME/$filename
+function link() {
+    filename=$(basename $2)
+    dir=$1
+    echo "linking to: $dir/$filename"
+    echo $dir
+    if [ $dir == "/root" ]; then
+        run_sudo=true
+    else
+        run_sudo=false
     fi
-    ln -is $FILESPATH/$filename $HOME/$filename
+    if [ -d $dir/$filename ]; then
+        if $run_sudo ; then
+            sudo rm -rI $dir/$filename
+        else
+            rm -rI $dir/$filename
+        fi
+    fi
+    if $run_sudo ; then
+        sudo ln -is $FILESPATH/$filename $dir/$filename
+    else
+        ln -is $FILESPATH/$filename $dir/$filename
+    fi
 }
 
 # TODO Factorize link creation to a function
 # to handle existing links.
-function make_links() {
+function make_links {
     read -p "Do you want to create $HOME symlinks? "
     if [ ! $REPLY == 'y' ]; then
         return
     fi
+    home_links=true
+    read -p "Idem for root? "
+    if [ ! $REPLY == 'y' ]; then
+        root_links=true
+    fi
     for i in $FILESPATH/.*rc; do
         echo "linking config file: $i"
-        create_home_link $i
+        if $home_links ; then
+            link $HOME $i
+        fi
+        if $root_links ; then
+            link /root $i
+        fi
     done
-    create_home_link $FILESPATH/.dircolors
-    create_home_link $FILESPATH/.gitconfig
-    create_home_link $FILESPATH/.vim
+    if $home_links ; then
+        link $HOME $FILESPATH/.dircolors
+        link $HOME $FILESPATH/.gitconfig
+        link $HOME $FILESPATH/.vim
+    fi
+    if $root_links ; then
+        link /root $FILESPATH/.dircolors
+        link /root $FILESPATH/.gitconfig
+        link /root $FILESPATH/.vim
+    fi
 
     # Terminator config
     if [ ! -d $HOME/.config/terminator ]; then
