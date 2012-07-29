@@ -229,6 +229,7 @@ let g:mapleader = ","
 nnoremap <Leader>aa :Ack ''<Left>
 " Find current word
 nnoremap <Leader>acw :exec("Ack '\\b".expand("<cword>")."\\b'")<CR>
+nnoremap <Leader>acW :exec("Ack '\\b".expand("<cWORD>")."\\b'")<CR>
 
 " change to directory containing current file
 nmap <Leader>cd :cd %:p:h<CR>
