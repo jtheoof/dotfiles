@@ -184,12 +184,6 @@ let mapleader=","
 "------------------------------------------------------------------------------
 "1}}}
 
-" Functions {{{1
-"------------------------------------------------------------------------------
-
-"------------------------------------------------------------------------------
-"1}}}
-
 " GUI {{{1
 "------------------------------------------------------------------------------
 "colorscheme mustang
@@ -228,8 +222,8 @@ let g:mapleader = ","
 " Use Ack shortcut
 nnoremap <Leader>aa :Ack ''<Left>
 " Find current word
-nnoremap <Leader>acw :exec("Ack '\\b".expand("<cword>")."\\b'")<CR>
-nnoremap <Leader>acW :exec("Ack '\\b".expand("<cWORD>")."\\b'")<CR>
+nnoremap <Leader>acw :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:exec("Ack '\\b".expand("<cword>")."\\b'")<CR>
+nnoremap <Leader>acW :let @/='\<<C-R>=expand("<cWORD>")<CR>\>'<CR>:exec("Ack '\\b".expand("<cWORD>")."\\b'")<CR>
 
 " change to directory containing current file
 nmap <Leader>cd :cd %:p:h<CR>
