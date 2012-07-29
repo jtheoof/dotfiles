@@ -224,6 +224,7 @@ nnoremap <Leader>aa :Ack ''<Left>
 " Find current word
 nnoremap <Leader>acw :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:exec("Ack '\\b".expand("<cword>")."\\b'")<CR>
 nnoremap <Leader>acW :let @/='\<<C-R>=expand("<cWORD>")<CR>\>'<CR>:exec("Ack '\\b".expand("<cWORD>")."\\b'")<CR>
+vnoremap <Leader>a y<Esc>:Ack '<C-R>"'<CR>:let @/='<C-R>"'<CR>
 
 " change to directory containing current file
 nmap <Leader>cd :cd %:p:h<CR>
