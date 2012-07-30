@@ -1,7 +1,7 @@
 tilda_config_version = "0.9.6"
 # image = ""
 # command = ""
-font = "Ubuntu Mono 12"
+font = "Ubuntu Mono 10"
 key = "<Super>grave"
 title = "Tilda"
 background_color = "white"
