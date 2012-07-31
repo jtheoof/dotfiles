@@ -6,6 +6,8 @@
 " Modified: 2011 Apr 14
 " Comment:  Big thanks to amix.dk: http://amix.dk/vim/vimrc.html
 
+set nocompatible             " use vim defaults, we don't care about vi anymore
+
 " Pathogen {{{1
 "------------------------------------------------------------------------------
 " Pathogen must be the first plugin to load before anything else
@@ -19,7 +21,6 @@ call pathogen#helptags()     " don't call it everytime cause it's slow?
 runtime macros/matchit.vim   " smarter use of '%'
 
 filetype plugin indent on    " put filetype plugin back on after pathogen
-set nocompatible             " use vim defaults, we don't care about vi anymore
 syntax on                    " enable syntax
 
 " Bundles {{{1
@@ -44,6 +45,7 @@ syntax on                    " enable syntax
 " Bundle: vim-scripts/L9
 " Bundle: vim-scripts/hexman.vim
 " Bundle: scrooloose/nerdcommenter
+" Bundle: kien/ctrlp.vim
 
 " VCS
 " Bundle: tpope/vim-git
