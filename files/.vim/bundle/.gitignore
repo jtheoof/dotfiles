@@ -1,22 +1,3 @@
-Color-Sampler-Pack/
-FuzzyFinder/
-Hemisu/
-L9/
-TagHighlight/
-ack.vim/
-bclose/
-bufexplorer.zip/
-hexman.vim/
-html5.vim/
-jQuery/
-nerdtree/
-scss-syntax.vim/
-static/doc/tags
-static/plugin/work.vim
-supertab/
-vim-colors-solarized/
-vim-fugitive/
-vim-git/
-vim-markdown/
-vim-pathogen/
-zencoding-vim/
+# Ignore every bundle except static
+*
+!static/
