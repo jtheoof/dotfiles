@@ -122,6 +122,8 @@ function link() {
 
 # TODO Factorize link creation to a function
 # to handle existing links.
+# Also, fix what happens when we try to symlink to program
+# which have not been installed such as sabnzbdplus on work installs.
 function make_links {
     read -p "Do you want to create $HOME symlinks? "
     if [ ! $REPLY == 'y' ]; then
@@ -162,6 +164,8 @@ function make_links {
     ln -is $BINPATH $HOME/.local/bin
     echo "linking terminator config"
     ln -is $FILESPATH/.config/terminator/config $HOME/.config/terminator/config
+    echo "linking sabnzbd config"
+    ln -is $FILESPATH/.sabnzbd/sabnzbd.ini $HOME/.sabnzbd/sabnzbd.ini
     if [ ! -d $HOME/.tilda ]; then
         mkdir -p $HOME/.tilda
     fi
