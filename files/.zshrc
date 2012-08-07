@@ -104,35 +104,29 @@ alias psa='ps -ef | ack'
 alias n.='nautilus .'
 #3}}}
 
-# apt {{{3
-alias  AF='sudo apt-get -f install' #Fix missing or uninstalled packages.
-alias  AU='sudo apt-get update' #Update the list of available packages
-alias  AUG='sudo apt-get upgrade' #Apply available upgrades
-alias  ADU='sudo apt-get dist-upgrade' #Apply available upgrades 
-alias  AD='apt-cache depends' #Show dependencies of <package>.deb
-alias  AS='apt-cache search' #Search for string
-alias  AC='sudo apt-get clean' #Clear out downloaded .debs from /var/cache/apt/archives
-alias  AP='apt-cache show' #Show details about packages
-alias  AI='sudo apt-get install' #Install package(s) from a Debian repository.
-alias  AR='sudo apt-get remove' #Remove package, leave config files
-alias  ARP='sudo apt-get remove --purge' #Remove including config files
-alias  AIR='sudo apt-get install --reinstall' #Reinstall package
-alias  AGA='sudo apt-get autoremove'
-alias  AGBD='sudo apt-get build-dep' # install dependencies for source built packages using deb-src
+# APT {{{3
+alias  ACD='apt-cache depends' # show dependencies of <package>.deb
+alias  ACS='apt-cache search' # search for string
+alias  ACS='apt-cache show' # show details about packages
+alias  AGA='sudo apt-get autoremove' # remove packages no longer needed
+alias  AGB='sudo apt-get build-dep' # install dependencies for source built packages using deb-src
+alias  AGC='sudo apt-get clean' # clear out downloaded .debs from /var/cache/apt/archives
+alias  AGDU='sudo apt-get dist-upgrade' # apply available upgrades 
+alias  AGG='sudo apt-get upgrade' # apply available upgrades
+alias  AGI='sudo apt-get install' # install package(s) from a Debian repository.
+alias  AGIR='sudo apt-get install --reinstall' # reinstall package
+alias  AGR='sudo apt-get remove' # remove package, leave config files
 alias  AGS='apt-get source' # download Debian source to $PWD - requires deb-src enabled in sources.list 
+alias  AGU='sudo apt-get update' # update the list of available packages
 alias  AH='apt-history' # not native to sudo apt-get - apt-history function required
-alias  AV='apt-show-versions' # not native to sudo apt-get - apt-show-versions required
-alias  AVE='apt-show-versions | grep /experimental' #List all packages from /experimental
-alias  AVU='apt-show-versions | grep /unstable'
-alias  AVT='apt-show-versions | grep /testing'
-alias  AVS='apt-show-versions | grep /stable'
-alias  AVEC='apt-show-versions | grep -c /experimental' #Display total number of pacakges from /experimental
-alias  AVUC='apt-show-versions | grep -c /unstable' 
-alias  AVTC='apt-show-versions | grep -c /testing'
-alias  AVSC='apt-show-versions | grep -c /stable'
+alias  ASV='apt-show-versions' # not native to sudo apt-get - apt-show-versions required
+alias  ASVE='apt-show-versions | grep /experimental' # list all packages from /experimental
+alias  ASVS='apt-show-versions | grep /stable' # list all packages from /stable
+alias  ASVT='apt-show-versions | grep /testing' # list all packages from /testing
+alias  ASVU='apt-show-versions | grep /unstable' # list all packages from /unstable
 #3}}}
 
-# dpkg {{{3
+# DPKG {{{3
 alias  DL='dpkg -l' # list all installed packages
 alias  DF='dpkg -L' # list files installed by <package>
 alias  DT='dpkg -L' # list files installed by <package>
