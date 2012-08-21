@@ -236,7 +236,7 @@ function apt-history() {
 
 function chpwd() {
     emulate -L zsh
-    ls -a
+    ls -a --group-directories-first
 }
 #2}}}
 #1}}}
