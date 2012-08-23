@@ -36,6 +36,7 @@ syntax on                    " enable syntax
 " Bundle: othree/html5.vim
 " Bundle: mattn/zencoding-vim
 " Bundle: cakebaker/scss-syntax.vim
+" Bundle: miripiruni/CSScomb-for-Vim
 
 " Text
 " Bundle: mileszs/ack.vim
