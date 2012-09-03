@@ -55,7 +55,8 @@ alias lgroups='cat /etc/passwd | cut -d: -f1'
 # Work {{{3
 alias rsync-root='cd /home/jeremy; rsync -avz .ackrc .dircolors .gitconfig .oh-my-zsh .toprc .vim .vimrc .zshrc /root'
 alias rsync-jenkins='sudo su -c "rsync -avz --delete --exclude .svn --exclude build --exclude applications --exclude poc --exclude pocs --exclude documents /home/jeremy/dev/bt/galak/* ~/jobs/alwa/workspace/" - jenkins'
-alias rsync-iad="rsync -av -C --exclude ssi --exclude cgi-bin deliver/6.9.44-20120717/GW-IHM-3965b-6.9.x/* iad/"
+alias rsync-i2s="rsync -avz -C --exclude ssi --exclude cgi-bin --exclude index.cgi iad/ IHM-GW/IHM-GW-8.0.0/IHM"
+alias rsync-s2i="rsync -avz -C --exclude ssi --exclude cgi-bin --exclude index.cgi IHM-GW/IHM-GW-8.0.0/IHM/ iad"
 alias node-jslint="node $HOME/dev/me/node-jslint/bin/jslint.js --maxerr 500 --nomen --plusplus --regexp --sloppy --undef --white"
 alias svn-df='svn diff | colordiff'
 alias mount-nfs='mount -t nfs -o nolock 192.168.2.2:/root/dev/bt/bewan/iad /etc/bewan/iad'
