@@ -377,10 +377,10 @@ imap <C-u> <C-v>u
 " Visual mode {{{2
 
 " Easy wrapping around visual selected text
-vmap sb "zdi<b><C-R>z</b><Esc>
-vmap st "zdi<?= <C-R>z ?><Esc>
-vmap s' "zdi'<C-R>z'<Esc>
-vmap s" "zdi"<C-R>z"<Esc>
+vnoremap sb "zdi<b><C-R>z</b><Esc>
+vnoremap st "zdi<?= <C-R>z ?><Esc>
+vnoremap s' "zdi'<C-R>z'<Esc>
+vnoremap s" "zdi"<C-R>z"<Esc>
 
 " Navigate through folded line
 vnoremap <M-j> gj
@@ -390,11 +390,12 @@ vnoremap <M-6> g^
 vnoremap <M-0> g^
 
 " Tabs
-vmap <Tab> >gv
-vmap <BS> <gv
+vnoremap <Tab> >gv
+vnoremap <BS> <gv
 
-" Folding
-vmap <Space> zf
+" Spaces
+vnoremap <Space> <C-v>I<Space><Esc>gvV
+vnoremap <Del> <C-v><Del>gvV
 
 " Substitutiion
 vmap ! y<Esc>:%s/<C-R>"/
