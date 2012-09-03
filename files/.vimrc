@@ -281,9 +281,14 @@ nmap <Leader>l :set list!<CR>
 "2}}}
 
 " Normal mode {{{2
+" Search should olways be 'very magic'
+nnoremap / /\v
+nnoremap ? ?\v
+
 " Easier navigation through code
 " Deactivated it because it seems to conflit with <C-i> to jump forward
 " nnoremap <Tab> %
+
 " Go to first character
 nnoremap <Home> ^
 
