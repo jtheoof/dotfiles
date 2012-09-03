@@ -296,11 +296,14 @@ nnoremap <C-Down> <C-w><Down>
 " Useful navigation
 nnoremap <PageUp> <C-U>
 nnoremap <PageDown> <C-D>
-nnoremap <S-Down> 5<C-E>
-nnoremap <S-Up> 5<C-Y>
+nnoremap <S-Down> 3<C-E>
+nnoremap <S-Up> 3<C-Y>
 
 " Saving file
 nnoremap <silent> <C-S> :w<CR>
+
+" Close buffer/window
+nnoremap <C-Q> :q<CR>
 
 " Cleanup search
 nnoremap <C-K> :let @/ = ""<CR>
@@ -395,8 +398,6 @@ vmap <Space> zf
 
 " Substitutiion
 vmap ! y<Esc>:%s/<C-R>"/
-
-vmap r "_dP
 "2}}}
 
 "------------------------------------------------------------------------------
