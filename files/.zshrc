@@ -1,4 +1,4 @@
-# Config {{{1
+# General {{{1
 #------------------------------------------------------------------------------
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -25,50 +25,43 @@ DISABLE_AUTO_UPDATE="true"
 # Uncomment following line if you want to disable autosetting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
-# Uncomment following line if you want red dots to be displayed while waiting for completion
+# Uncomment following line if you want red dots to be displayed while waiting 
+# for completion.
 # COMPLETION_WAITING_DOTS="true"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Which plugins would you like to load? (plugins can be found in
+# ~/.oh-my-zsh/plugins/*).
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-#------------------------------------------------------------------------------
-#1}}}
-
-# Customization {{{1
-#------------------------------------------------------------------------------
 
 # Dircolors
 [[ -f /usr/bin/dircolors ]] && [[ -f $HOME/.dircolors ]] && eval $(dircolors -b $HOME/.dircolors)
+#------------------------------------------------------------------------------
+#1}}}
 
+# Settings {{{1
+#------------------------------------------------------------------------------
 # Exports {{{2
 export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
 export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.local/bin:$HOME/dev/android/android-sdk-linux/tools:$HOME/dev/android/android-sdk-linux/platform-tools:/opt/SenchaSDKTools-2.0.0-beta3
 #2}}}
 
 # Aliases {{{2
+
+# General {{{3
 # Admin
 alias lgroups='cat /etc/passwd | cut -d: -f1'
 
-# Work {{{3
-alias rsync-root='cd /home/jeremy; rsync -avz .ackrc .dircolors .gitconfig .oh-my-zsh .toprc .vim .vimrc .zshrc /root'
-alias rsync-jenkins='sudo su -c "rsync -avz --delete --exclude .svn --exclude build --exclude applications --exclude poc --exclude pocs --exclude documents /home/jeremy/dev/bt/galak/* ~/jobs/alwa/workspace/" - jenkins'
-alias rsync-i2s="rsync -avz -C --exclude ssi --exclude cgi-bin --exclude index.cgi iad/ IHM-GW/IHM-GW-8.0.0/IHM"
-alias rsync-s2i="rsync -avz -C --exclude ssi --exclude cgi-bin --exclude index.cgi IHM-GW/IHM-GW-8.0.0/IHM/ iad"
-alias node-jslint="node $HOME/dev/me/node-jslint/bin/jslint.js --maxerr 500 --nomen --plusplus --regexp --sloppy --undef --white"
-alias svn-df='svn diff | colordiff'
-alias mount-nfs='mount -t nfs -o nolock 192.168.2.2:/root/dev/bt/bewan/iad /etc/bewan/iad'
-#3}}}
-
-# Editing {{{3
+# Editing
 alias vi='vim'
 alias gv='gvim'
 alias diff='colordiff'
-#3}}}
+alias less='less -R'
 
-# Listing {{{3
+# Listing
 alias ls='ls --color=auto'
 alias lsf='find . -nowarn -type f -maxdepth 1'
 alias ll='ls -lah --group-directories-first'
@@ -79,9 +72,8 @@ alias vdir='ls --color=auto --format=long'
 
 alias h='history'
 alias hl='history | less'
-#3}}}
 
-# Search {{{3
+# Search
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -92,16 +84,14 @@ alias ack='ack-grep'
 alias ff='find . -type f -name'
 alias fd='find . -type d -name'
 alias f.='find . -name'
-#3}}}
 
-# Usage {{{3
+# Usage
 alias du0='du --max-depth 0 -h .'
 alias du1='du --max-depth 1 -h .'
 alias ducks='du -cks * | sort -rn | head -11'
 alias psa='ps -ef | ack'
-#3}}}
 
-# Navigation {{{3
+# Navigation
 alias n.='nautilus .'
 #3}}}
 
@@ -140,6 +130,19 @@ alias  DIF='dpkg -i --force-overwrite' # use when you get "trying to overwrite <
 alias  DR='dpkg-reconfigure' # reconfigure a package that's already installed
 alias  DB='dpkg-buildpackage' # build from Debianized source
 #3}}}
+
+# Work {{{3
+alias diff-i2s="diff -x .svn -ruN iad IHM-GW/IHM-GW-8.0.0/IHM"
+alias diff-s2i="diff -x .svn -ruN IHM-GW/IHM-GW-8.0.0/IHM iad"
+alias rsync-root='cd /home/jeremy; rsync -avz .ackrc .dircolors .gitconfig .oh-my-zsh .toprc .vim .vimrc .zshrc /root'
+alias rsync-jenkins='sudo su -c "rsync -avz --delete --exclude .svn --exclude build --exclude applications --exclude poc --exclude pocs --exclude documents /home/jeremy/dev/bt/galak/* ~/jobs/alwa/workspace/" - jenkins'
+alias rsync-i2s="rsync -avz -C --exclude ssi --exclude cgi-bin --exclude index.cgi iad/ IHM-GW/IHM-GW-8.0.0/IHM"
+alias rsync-s2i="rsync -avz -C --exclude ssi --exclude cgi-bin --exclude index.cgi IHM-GW/IHM-GW-8.0.0/IHM/ iad"
+alias mount-nfs='mount -t nfs -o nolock 192.168.2.2:/root/dev/bt/bewan/iad /etc/bewan/iad'
+alias node-jslint="node $HOME/dev/me/node-jslint/bin/jslint.js --maxerr 500 --nomen --plusplus --regexp --sloppy --undef --white"
+alias svn-df='svn diff | colordiff'
+#3}}}
+
 #2}}}
 
 # Functions {{{2
