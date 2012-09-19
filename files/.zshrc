@@ -98,7 +98,6 @@ alias n.='nautilus .'
 # APT {{{3
 alias  ACD='apt-cache depends' # show dependencies of <package>.deb
 alias  ACS='apt-cache search' # search for string
-alias  ACS='apt-cache show' # show details about packages
 alias  AGA='sudo apt-get autoremove' # remove packages no longer needed
 alias  AGB='sudo apt-get build-dep' # install dependencies for source built packages using deb-src
 alias  AGC='sudo apt-get clean' # clear out downloaded .debs from /var/cache/apt/archives

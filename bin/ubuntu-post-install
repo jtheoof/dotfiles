@@ -36,6 +36,8 @@ function install_packages() {
     fi
     # Ubuntu
     sudo apt-get install -qy gnome-tweak-tool ubuntu-tweak faenza-icon-theme caffeine synapse activity-log-manager zeitgeist lightead
+    # Internet
+    sudo apt-get install -qy google-chrome-stable
     # Editors
     sudo apt-get install -qy vim-gnome exuberant-ctags
     # Shell
@@ -207,9 +209,18 @@ function config_terminal() {
     gconftool-2 -s -t bool /apps/gnome-terminal/profiles/$PROFILE/use_theme_colors false
 }
 
+function install_solarized_inspector() {
+    read -p "Do you want to install solarized for chrome web inspector? "
+    if [ ! $REPLY == 'y' ]; then
+        return
+    fi
+    wget -O $HOME/.config/google-chrome/Default/User\ StyleSheets/Custom.css https://raw.github.com/salazr/solarized-inspector/master/User%20StyleSheets/solarized-light.css
+}
+
 install_ppa
 install_packages
 install_zsh
+install_solarized_inspector
 make_links
 config_sudoers
 config_vim
