@@ -1,3 +1,4 @@
+" vim:set sw=4 ts=4 et:
 " Name:     Jeremy Attali's .vimrc
 " Author:   Jeremy Attali
 " URL:
