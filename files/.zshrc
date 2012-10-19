@@ -46,7 +46,8 @@ source $ZSH/oh-my-zsh.sh
 #------------------------------------------------------------------------------
 # Exports {{{2
 export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.local/bin:$HOME/dev/android/android-sdk-linux/tools:$HOME/dev/android/android-sdk-linux/platform-tools:/opt/SenchaSDKTools-2.0.0-beta3
+export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.local/bin:$HOME/dev/android/android-sdk-linux/tools:$HOME/dev/android/android-sdk-linux/platform-tools:$HOME/dev/android/android-ndk-r8b:/opt/SenchaSDKTools-2.0.0-beta3
+
 #2}}}
 
 # Aliases {{{2
