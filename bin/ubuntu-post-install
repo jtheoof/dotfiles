@@ -45,7 +45,7 @@ function install_packages() {
     # Compiz
     sudo apt-get install -qy compizconfig-settings-manager compiz-plugins-extra
     # Programming
-    sudo apt-get install -qy python ruby rubygems nodejs build-essential ant
+    sudo apt-get install -qy python ruby rubygems nodejs build-essential ant autoconf
     # Graphics
     sudo apt-get install -qy gimp gcolor2 colordiff
     # VCS
