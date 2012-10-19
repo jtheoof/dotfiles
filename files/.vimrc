@@ -93,8 +93,8 @@ set scrolloff=3                    " Make cursor offset
 set splitbelow                     " split at the bottom
 set splitright                     " vsplit on right
 if exists("+spelllang")
-  set spelllang=en_us              " english is good enough
-  set spellfile=~/.vim/spell/en.utf-8.add
+    set spelllang=en_us              " english is good enough
+    set spellfile=~/.vim/spell/en.utf-8.add
 endif
 set title                          " show title in console title bar
 set ttyfast                        " smoother changes
@@ -126,21 +126,21 @@ set statusline+=\ %P    "percent through file
 
 " Persistent undo
 if exists("+undofile")
-  set undofile
-  set undolevels=1000 "maximum number of changes that can be undone
-  set undoreload=10000 "maximum number lines to save for undo on a buffer reload
-  if has("win32")
-    set undodir=~/vimfiles/undodir
-  else
-    set undodir=~/.vim/undodir
-  endif
+    set undofile
+    set undolevels=1000 " maximum number of changes that can be undone
+    set undoreload=10000 "maximum number lines to save for undo
+    if has("win32")
+        set undodir=~/vimfiles/undodir
+    else
+        set undodir=~/.vim/undodir
+    endif
 endif
 
 " X Clipboard
 if has("unix")
-  set clipboard=unnamedplus
+    set clipboard=unnamedplus
 else
-  set clipboard=unnamed
+    set clipboard=unnamed
 endif
 
 
@@ -180,8 +180,8 @@ set noerrorbells
 set tags=./tags;/
 
 " List invisible chars
-set listchars=tab:▸\ ,eol:¬
-" set list 							" use <Leader>l switch list usage
+set listchars=tab:▸\ ,eol:¬,trail:.
+" set list " use <Leader>l switch list usage
 
 let mapleader=","
 "------------------------------------------------------------------------------
@@ -191,25 +191,26 @@ let mapleader=","
 "------------------------------------------------------------------------------
 "colorscheme mustang
 "colorscheme hemisu
+let g:solarized_visibility = "low"
 colorscheme solarized
 "colorscheme zenburn
 set background=dark
 if has("gui_running")
-  if has("gui_gtk2")
-    set guifont=Ubuntu\ Mono\ 10
-    "set guifont=Ubuntu\ Mono\ 12
-    "set guifont=Monaco\ 8
-      "set guifont=Consolas\ 10
-  elseif has("gui_win32")
-      set guifont=Consolas:h10
-  endif
+    if has("gui_gtk2")
+        set guifont=Ubuntu\ Mono\ 10
+        "set guifont=Ubuntu\ Mono\ 12
+        "set guifont=Monaco\ 8
+        "set guifont=Consolas\ 10
+    elseif has("gui_win32")
+        set guifont=Consolas:h10
+    endif
 
-  "set guioptions-=m               " remove menu bar
-  "set guioptions-=T               " remove toolbar
-  "set guioptions-=r               " remove right-hand scroll bar
-  set guioptions=                  " turns off every option
+    "set guioptions-=m               " remove menu bar
+    "set guioptions-=T               " remove toolbar
+    "set guioptions-=r               " remove right-hand scroll bar
+    set guioptions=                  " turns off every option
 else
-  set t_Co=256
+    set t_Co=256
 endif
 " }}}
 
@@ -231,9 +232,6 @@ vnoremap <Leader>a y<Esc>:Ack '<C-R>"'<CR>:let @/='<C-R>"'<CR>
 
 " change to directory containing current file
 nmap <Leader>cd :cd %:p:h<CR>
-
-" Fast saving
-nmap <Leader>w :w!<CR>
 
 " Use <Leader>W to “strip all trailing whitespace in the current file”
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
@@ -276,7 +274,8 @@ map <Leader>tn :tabnew<CR>
 map <Leader>fx :! tidy -qmi -xml -utf8 % <CR>
 map <Leader>fj :r ! python -mjson.tool < % <CR>ggdd
 
-" Shortcut to rapidly toggle `set list`
+" Quick toggles
+nmap <Leader>w :set wrap!<CR>
 nmap <Leader>l :set list!<CR>
 "2}}}
 
@@ -291,6 +290,10 @@ nnoremap ? ?\v
 
 " Go to first character
 nnoremap <Home> ^
+
+" Normal wrapping navigation
+nnoremap <Up> gk
+nnoremap <Down> gj
 
 " Window navigation
 nnoremap <C-Right> <C-w><Right>
@@ -415,7 +418,7 @@ vmap ! y<Esc>:%s/<C-R>"/
 " Automatically fitting a quickfix window height
 au FileType qf call AdjustWindowHeight(3, 20)
 function! AdjustWindowHeight(minheight, maxheight)
-  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
 endfunction
 
 " This autocommand jumps to the last known position in a file
@@ -482,28 +485,28 @@ vnoremap <M-/> <Esc>/\%V
 " navigator: a command to jump to the beginning of the desired scope
 " mode: 0=scope only; 1=scope+current word; 2=scope+visual selection
 function! s:ScopeSearch(navigator, mode)
-  if a:mode == 0
-    let pattern = ''
-  elseif a:mode == 1
-    let pattern = '\<' . expand('<cword>') . '\>'
-  else
-    let old_reg = getreg('@')
-    let old_regtype = getregtype('@')
-    normal! gvy
-    let pattern = escape(@@, '/\.*$^~[')
-    call setreg('@', old_reg, old_regtype)
-  endif
-  let saveview = winsaveview()
-  execute 'normal! ' . a:navigator
-  let first = line('.')
-  normal %
-  let last = line('.')
-  normal %
-  call winrestview(saveview)
-  if first < last
-    return printf('\%%>%dl\%%<%dl%s', first-1, last+1, pattern)
-  endif
-  return "\b"
+    if a:mode == 0
+        let pattern = ''
+    elseif a:mode == 1
+        let pattern = '\<' . expand('<cword>') . '\>'
+    else
+        let old_reg = getreg('@')
+        let old_regtype = getregtype('@')
+        normal! gvy
+        let pattern = escape(@@, '/\.*$^~[')
+        call setreg('@', old_reg, old_regtype)
+    endif
+    let saveview = winsaveview()
+    execute 'normal! ' . a:navigator
+    let first = line('.')
+    normal %
+    let last = line('.')
+    normal %
+    call winrestview(saveview)
+    if first < last
+        return printf('\%%>%dl\%%<%dl%s', first-1, last+1, pattern)
+    endif
+    return "\b"
 endfunction
 
 "------------------------------------------------------------------------------
@@ -580,14 +583,14 @@ augroup END
 
 " Ack {{{2
 if has("unix")
-  let g:ackprg="ack-grep -H --nocolor --nogroup --column --sort-files"
+    let g:ackprg="ack-grep -H --nocolor --nogroup --column --sort-files"
 endif
 "2}}}
 
 " Buff Explorer {{{2
-let g:bufExplorerDefaultHelp=0 		 " Do not show default help
-let g:bufExplorerShowRelativePath=1  " Show relative path
-let g:bufExplorerFindActive=0 		 " Do not go to active window
+let g:bufExplorerDefaultHelp=0          " Do not show default help
+let g:bufExplorerShowRelativePath=1     " Show relative path
+let g:bufExplorerFindActive=0           " Do not go to active window
 map <silent> <C-Tab> :BufExplorer<CR>
 map <silent> <Leader>o :BufExplorer<CR>
 "2}}}
