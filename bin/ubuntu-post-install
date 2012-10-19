@@ -35,7 +35,7 @@ function install_packages() {
         return
     fi
     # Ubuntu
-    sudo apt-get install -qy gnome-tweak-tool ubuntu-tweak faenza-icon-theme caffeine synapse activity-log-manager zeitgeist lightead
+    sudo apt-get install -qy gnome-tweak-tool synapse activity-log-manager zeitgeist
     # Internet
     sudo apt-get install -qy google-chrome-stable
     # Editors
