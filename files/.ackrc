@@ -1,6 +1,8 @@
 # General Ack Settings
 ####################################################################
 
+# sort files
+--sort-files
 # only search with case sensitivity if there is mixed case
 --smart-case
 # follow symlinks
