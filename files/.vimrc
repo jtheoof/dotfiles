@@ -564,6 +564,14 @@ augroup filetype_css
 augroup END
 "2}}}
 
+" Vala {{{2
+augroup filetype_vala
+    autocmd!
+    autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
+    au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
+augroup END
+"2}}}
+
 "------------------------------------------------------------------------------
 "1}}}
 
