@@ -32,9 +32,7 @@ syntax on                    " enable syntax
 " Static: static
 
 " Programming
-" Bundle: vim-scripts/jQuery
 " Bundle: vim-scripts/TagHighlight
-" Bundle: othree/html5.vim
 " Bundle: mattn/zencoding-vim
 " Bundle: cakebaker/scss-syntax.vim
 
