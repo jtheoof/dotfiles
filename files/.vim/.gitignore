@@ -1,2 +1,9 @@
-doc/
+# explorer
 .netrwhist
+
+# doc tags
+tags
+
+# vim-update-bundles
+bundle-log.txt
+bundles.txt

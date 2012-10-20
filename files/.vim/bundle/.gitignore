@@ -1,3 +1,2 @@
-# Ignore every bundle except static
-*
-!static/
+.git
+tags
