@@ -37,7 +37,6 @@ syntax on                    " enable syntax
 " Bundle: othree/html5.vim
 " Bundle: mattn/zencoding-vim
 " Bundle: cakebaker/scss-syntax.vim
-" Bundle: miripiruni/CSScomb-for-Vim
 
 " Text
 " Bundle: mileszs/ack.vim
@@ -54,14 +53,11 @@ syntax on                    " enable syntax
 " Bundle: tpope/vim-fugitive
 
 " IDE
-" Bundle: bcaccinolo/bclose
 " Bundle: vim-scripts/bufexplorer.zip
 " Bundle: scrooloose/nerdtree
 
 " Color
 " Bundle: altercation/vim-colors-solarized
-" Bundle: noahfrederick/Hemisu
-" Bundle: vim-scripts/Color-Sampler-Pack
 "------------------------------------------------------------------------------
 "1}}}
 
@@ -98,7 +94,6 @@ if exists("+spelllang")
     set spellfile=~/.vim/spell/en.utf-8.add
 endif
 set title                          " show title in console title bar
-set ttyfast                        " smoother changes
 "set viminfo='10,\"100             " 10 marks, 100 lines
 set viminfo='10,\"100,:20,%        " 10 marks, 100 lines, 20 command lines
 "set whichwrap=<,>,h,l,[,]         " move freely between lines (wrap)
@@ -191,7 +186,6 @@ let mapleader=","
 " GUI {{{1
 "------------------------------------------------------------------------------
 "colorscheme mustang
-"colorscheme hemisu
 let g:solarized_visibility = "low"
 colorscheme solarized
 "colorscheme zenburn
