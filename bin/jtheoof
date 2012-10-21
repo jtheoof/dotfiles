@@ -2,10 +2,35 @@
 # vim:set et ts=2 sw=2:
 
 echo $@
-echo $PATH
 
 print_error() {
   echo "\033[31m$1"
 }
 
-print_error "ERROR toto"
+handle_terminal() {
+  echo "1 is $1"
+  for i in $*; do
+    echo $i
+  done
+  exit
+  echo "$*"
+  case "$1" in
+    background)
+      shift
+      echo "$*" ;;
+  esac
+  echo "$1 - $2"
+  echo "$@"
+}
+
+case "$1" in
+
+  terminal|term)
+    shift
+    echo "1 is $1"
+    handle_terminal "$*" ;;
+
+  '') echo "Usage: `basename "$0"` <command> [options]" ;;
+
+  *) echo "`basename "$0"` $basename: unknown command." >&2; exit 1 ;;
+esac
