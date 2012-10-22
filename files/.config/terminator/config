@@ -18,9 +18,31 @@
     show_titlebar = False
     background_color = "#0a333c"
     scrollback_infinite = True
+  [[solarized-dark]]
+    background_color = "#0a333c"
+    background_darkness = 1.00
+    foreground_color = "#829496"
+    icon_bell = False
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#859900:#b58900:#268bd2:#d33682:#2aa198:#fdf6e3"
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    show_titlebar = False
+  [[solarized-light]]
+    background_color = "#eee8d5"
+    background_darkness = 1.00
+    cursor_color = "#002b36"
+    foreground_color = "#002b36"
+    icon_bell = False
+    palette = "#073642:#d30102:#859900:#b58900:#6c71c4:#d33682:#2aa198:#839496:#586e75:#cb4b16:#859900:#b58900:#268bd2:#d33682:#2aa198:#93a1a1"
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    show_titlebar = False
 [layouts]
   [[default]]
     [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[child2]]]
       type = Terminal
       parent = window0
     [[[window0]]]
