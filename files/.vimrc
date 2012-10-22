@@ -42,7 +42,6 @@ syntax on                    " enable syntax
 " Bundle: ervandew/supertab
 " Bundle: vim-scripts/FuzzyFinder
 " Bundle: vim-scripts/L9
-" Bundle: vim-scripts/hexman.vim
 " Bundle: scrooloose/nerdcommenter
 " Bundle: kien/ctrlp.vim
 
