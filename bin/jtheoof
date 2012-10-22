@@ -7,28 +7,39 @@ print_error() {
   echo "\033[31m$1"
 }
 
+print_info() {
+  echo "\033[33m$1"
+}
+
+print_success() {
+  echo "\033[32m$1"
+}
+
+handle_terminal_background() {
+  shift
+  case "$1" in
+    light)
+      print_success 'setting light background' ;;
+    dark)
+      print_success 'setting dark background' ;;
+   *) print_error "Invalid background: $1" exit 1 ;;
+  esac
+}
+
 handle_terminal() {
-  echo "1 is $1"
-  for i in $*; do
-    echo $i
-  done
-  exit
-  echo "$*"
+  shift
   case "$1" in
     background)
-      shift
-      echo "$*" ;;
+      handle_terminal_background "$@" ;;
   esac
-  echo "$1 - $2"
-  echo "$@"
 }
 
 case "$1" in
 
+  # Unable to shift before calling function
+  # because of shell limitations.
   terminal|term)
-    shift
-    echo "1 is $1"
-    handle_terminal "$*" ;;
+    handle_terminal "$@" ;;
 
   '') echo "Usage: `basename "$0"` <command> [options]" ;;
 
