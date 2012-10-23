@@ -218,6 +218,7 @@ let g:mapleader = ","
 " Use Ack shortcut
 nnoremap <Leader>aa :Ack ''<Left>
 " Find current word
+nnoremap <Leader># "ayiw:Ack '<C-R>a'<CR>
 nnoremap <Leader>acw :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:exec("Ack '\\b".expand("<cword>")."\\b'")<CR>
 nnoremap <Leader>acW :let @/='\<<C-R>=expand("<cWORD>")<CR>\>'<CR>:exec("Ack '\\b".expand("<cWORD>")."\\b'")<CR>
 vnoremap <Leader>a y<Esc>:Ack '<C-R>"'<CR>:let @/='<C-R>"'<CR>
