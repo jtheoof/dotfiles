@@ -42,10 +42,12 @@
     [[[child1]]]
       type = Terminal
       parent = window0
+      profile = solarized-light
     [[[child2]]]
       type = Terminal
       parent = window0
     [[[window0]]]
       type = Window
       parent = ""
+      profile = solarized-light
 [plugins]
