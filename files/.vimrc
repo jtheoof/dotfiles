@@ -268,8 +268,9 @@ map <Leader>fx :! tidy -qmi -xml -utf8 % <CR>
 map <Leader>fj :r ! python -mjson.tool < % <CR>ggdd
 
 " Quick toggles
-nmap <Leader>w :set wrap!<CR>
-nmap <Leader>l :set list!<CR>
+nmap <Leader>tb :call BackgroundToggle()<CR>
+nmap <Leader>tw :set wrap!<CR>
+nmap <Leader>tl :set list!<CR>
 "2}}}
 
 " Normal mode {{{2
@@ -401,6 +402,22 @@ vnoremap <Del> <C-v><Del>gvV
 " Substitutiion
 vmap ! y<Esc>:%s/<C-R>"/
 "2}}}
+
+"------------------------------------------------------------------------------
+"1}}}
+
+" Functions {{{1
+"------------------------------------------------------------------------------
+
+" Switch between light and dark background.
+" Quite useful for themes like solarized and time during the day.
+function! BackgroundToggle()
+    if &background == "light"
+        set background=dark
+    else
+        set background=light
+    endif
+endfunction
 
 "------------------------------------------------------------------------------
 "1}}}
