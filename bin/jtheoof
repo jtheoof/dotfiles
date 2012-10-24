@@ -4,15 +4,15 @@
 echo $@
 
 print_error() {
-  echo "\033[31m$1"
+  echo "\033[31m$1\033[0m"
 }
 
 print_info() {
-  echo "\033[33m$1"
+  echo "\033[33m$1\033[0m"
 }
 
 print_success() {
-  echo "\033[32m$1"
+  echo "\033[32m$1\033[0m"
 }
 
 handle_terminal_background() {
@@ -34,12 +34,41 @@ handle_terminal() {
   esac
 }
 
+handle_vim() {
+  shift
+  case "$1" in
+    package)
+      case "$2" in
+        windows)
+          print_info "Creating vim package"
+          tmp="/tmp/vim.package"
+          dir=$PWD
+          bak=$HOME/Dropbox/Backup/Vim
+          if [ -d  $tmp ]; then
+            rm -rf $tmp
+          fi
+          mkdir $tmp && cd $tmp
+          rsync -q -avz -C --exclude=undodir/ $HOME/.vim/ vimfiles
+          cp -rL $HOME/.vimrc _vimrc
+          zip -q -r vim-$(date +%Y%m%d).zip vimfiles _vimrc
+          if [ ! -d $bak ]; then
+            print_error "unable to find $bak"
+          fi
+          #mv vim-$(date +%Y%m%d).zip $bak
+          cd $dir
+      esac
+  esac
+}
+
 case "$1" in
 
   # Unable to shift before calling function
   # because of shell limitations.
   terminal|term)
     handle_terminal "$@" ;;
+
+  vim)
+    handle_vim "$@" ;;
 
   '') echo "Usage: `basename "$0"` <command> [options]" ;;
 
