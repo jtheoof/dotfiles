@@ -54,7 +54,7 @@ handle_vim() {
           if [ ! -d $bak ]; then
             print_error "unable to find $bak"
           fi
-          #mv vim-$(date +%Y%m%d).zip $bak
+          mv vim-$(date +%Y%m%d).zip $bak
           cd $dir
       esac
   esac
