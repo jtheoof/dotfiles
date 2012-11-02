@@ -395,10 +395,6 @@ vnoremap <M-0> g^
 vnoremap <Tab> >gv
 vnoremap <BS> <gv
 
-" Spaces
-vnoremap <Space> <C-v>I<Space><Esc>gvV
-vnoremap <Del> <C-v><Del>gvV
-
 " Substitutiion
 vmap ! y<Esc>:%s/<C-R>"/
 "2}}}
