@@ -53,6 +53,8 @@ handle_vim() {
           zip -q -r vim-$(date +%Y%m%d).zip vimfiles _vimrc
           if [ ! -d $bak ]; then
             print_error "unable to find $bak"
+            cd $dir
+            exit 1
           fi
           mv vim-$(date +%Y%m%d).zip $bak
           cd $dir
