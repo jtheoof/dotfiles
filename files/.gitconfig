@@ -3,6 +3,7 @@
     add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
+    amend = commit -s --amend
     br = branch
     ci = commit
     co = checkout
@@ -15,7 +16,9 @@
     logp = log --pretty=oneline --decorate=full -20
     post-review = send-email --no-chain-reply-to --suppress-cc all --suppress-from --no-signed-off-by-cc --annotate --compose --to corp.software.review@news.intersec.com -C -C -M
     post-review-test = send-email --no-chain-reply-to --suppress-cc all --suppress-from --no-signed-off-by-cc --annotate --compose --to corp.test@news.intersec.com -C -C -M
+    squash = commit -s --amend -C HEAD
     st = status
+    unstash = stash apply
     who = shortlog -s --
 [branch]
     autosetuprebase = always
@@ -37,6 +40,9 @@
     new = green bold
 [github]
     user = jtheoof
+[merge]
+    verbosity = 1
+    conflictstyle = diff3
 [push]
     default = tracking
 [user]

@@ -131,7 +131,8 @@ endif
 
 " X Clipboard
 if has("unix")
-    set clipboard=unnamedplus
+    "set clipboard=unnamedplus  need to be fixed for debians
+    set clipboard=unnamed
 else
     set clipboard=unnamed
 endif
