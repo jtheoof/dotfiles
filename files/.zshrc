@@ -1,5 +1,4 @@
 # Options {{{1
-#------------------------------------------------------------------------------
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -37,15 +36,12 @@ source $ZSH/oh-my-zsh.sh
 # Dircolors
 [[ -f /usr/bin/dircolors ]] && [[ -f $HOME/.dircolors ]] && eval $(dircolors -b $HOME/.dircolors)
 
-#------------------------------------------------------------------------------
 #1}}}
 
 # Settings {{{1
-#------------------------------------------------------------------------------
 
 # Exports {{{2
 
-export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
 export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.local/bin:$HOME/dev/android/android-sdk-linux/tools:$HOME/dev/android/android-sdk-linux/platform-tools:/opt/SenchaSDKTools-2.0.0-beta3:/opt/eclipse/eclipse-cpp-indigo-SR2-linux-gtk-x86_64-RTC-v4.0
 
 #2}}}
@@ -246,5 +242,9 @@ function chpwd() {
 
 #2}}}
 
-#------------------------------------------------------------------------------
 #1}}}
+
+# Sourcing zshrc_work if exists
+if [[ -f $HOME/.zshrc_work ]]; then
+    source $HOME/.zshrc_work
+fi
