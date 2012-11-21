@@ -5,8 +5,8 @@
 --sort-files
 # only search with case sensitivity if there is mixed case
 --smart-case
-# follow symlinks
---follow
+# do not follow symlinks
+--no-follow
 
 # Ack Type Settings
 ####################################################################
@@ -17,6 +17,8 @@
 --type-set=csv=.txt,.csv,.tsv
 # add in a type for gettext messages
 --type-set=gettext=.pot,.po
+# add tpl types
+--type-set=tpl=.tpl
 
 # types to ignore by default
 --noplaintext
