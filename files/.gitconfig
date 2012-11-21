@@ -14,10 +14,10 @@
     lc = log --pretty=oneline --decorate=full --stat --no-merges ORIG_HEAD..
     lg = log -p
     logp = log --pretty=oneline --decorate=full -20
-    post-review = send-email --no-chain-reply-to --suppress-cc all --suppress-from --no-signed-off-by-cc --annotate --compose --to corp.software.review@news.intersec.com -C -C -M
-    post-review-test = send-email --no-chain-reply-to --suppress-cc all --suppress-from --no-signed-off-by-cc --annotate --compose --to corp.test@news.intersec.com -C -C -M
+    post-review = push-for
     squash = commit -s --amend -C HEAD
     st = status
+    undo = git reset HEAD^
     unstash = stash apply
     who = shortlog -s --
 [branch]
