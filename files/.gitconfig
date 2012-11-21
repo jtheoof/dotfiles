@@ -17,7 +17,7 @@
     post-review = push-for
     squash = commit -s --amend -C HEAD
     st = status
-    undo = git reset HEAD^
+    undo = reset HEAD^
     unstash = stash apply
     who = shortlog -s --
 [branch]
