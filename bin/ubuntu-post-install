@@ -94,7 +94,6 @@ function link() {
     filename=$(basename $2)
     dir=$1
     echo "linking to: $dir/$filename"
-    echo $dir
     if [ -d $dir/$filename ]; then
         rm -rI $dir/$filename
     fi
