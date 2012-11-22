@@ -66,19 +66,11 @@ function install_zsh() {
         echo "linking theme: $i"
         ln -is $i $HOME/.oh-my-zsh/themes/$(basename $i)
     done
-    read -p "Idem for root? "
-    if [ $REPLY == 'y' ]; then
-        root_links=true
-        sudo ln -is $HOME/.oh-my-zsh /root/.oh-my-zsh 
-    fi
     read -p "Do you want to switch by default to /bin/zsh? "
     if [ ! $REPLY == 'y' ]; then
         return
     fi
     chsh -s /bin/zsh
-    if $root_links ; then
-        sudo chsh -s /bin/zsh root
-    fi
 }
 
 function config_sudoers() {
@@ -103,23 +95,10 @@ function link() {
     dir=$1
     echo "linking to: $dir/$filename"
     echo $dir
-    if [ $dir == "/root" ]; then
-        run_sudo=true
-    else
-        run_sudo=false
-    fi
     if [ -d $dir/$filename ]; then
-        if $run_sudo ; then
-            sudo rm -rI $dir/$filename
-        else
-            rm -rI $dir/$filename
-        fi
+        rm -rI $dir/$filename
     fi
-    if $run_sudo ; then
-        sudo ln -is $FILESPATH/$filename $dir/$filename
-    else
-        ln -is $FILESPATH/$filename $dir/$filename
-    fi
+    ln -is $FILESPATH/$filename $dir/$filename
 }
 
 # TODO Factorize link creation to a function
@@ -132,28 +111,16 @@ function make_links {
         return
     fi
     home_links=true
-    read -p "Idem for root? "
-    if [ ! $REPLY == 'y' ]; then
-        root_links=true
-    fi
     for i in $FILESPATH/.*rc; do
         echo "linking config file: $i"
         if $home_links ; then
             link $HOME $i
-        fi
-        if $root_links ; then
-            link /root $i
         fi
     done
     if $home_links ; then
         link $HOME $FILESPATH/.dircolors
         link $HOME $FILESPATH/.gitconfig
         link $HOME $FILESPATH/.vim
-    fi
-    if $root_links ; then
-        link /root $FILESPATH/.dircolors
-        link /root $FILESPATH/.gitconfig
-        link /root $FILESPATH/.vim
     fi
 
     # Terminator config
