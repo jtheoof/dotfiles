@@ -51,7 +51,7 @@ function install_packages() {
     # VCS
     sudo apt-get install -qy git tig subversion mercurial
     # Networking
-    sudo apt-get install -qy curl
+    sudo apt-get install -qy curl pidgin
 }
 
 function install_zsh() {
