@@ -1,1 +1,14 @@
 # Ignore every bundle except static
+TagHighlight/
+bufexplorer.zip/
+ctrlp.vim/
+nerdcommenter/
+nerdtree/
+scss-syntax.vim/
+supertab/
+vim-colors-solarized/
+vim-fugitive/
+vim-git/
+vim-markdown/
+vim-pathogen/
+zencoding-vim/
