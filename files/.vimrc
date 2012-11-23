@@ -39,8 +39,6 @@ syntax on                    " enable syntax
 " Text
 " Bundle: tpope/vim-markdown
 " Bundle: ervandew/supertab
-" Bundle: vim-scripts/FuzzyFinder
-" Bundle: vim-scripts/L9
 " Bundle: scrooloose/nerdcommenter
 " Bundle: kien/ctrlp.vim
 
