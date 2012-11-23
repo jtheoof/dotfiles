@@ -37,7 +37,6 @@ syntax on                    " enable syntax
 " Bundle: cakebaker/scss-syntax.vim
 
 " Text
-" Bundle: mileszs/ack.vim
 " Bundle: tpope/vim-markdown
 " Bundle: ervandew/supertab
 " Bundle: vim-scripts/FuzzyFinder
@@ -277,8 +276,12 @@ nmap <Leader>tl :set list!<CR>
 
 " Normal mode {{{2
 " Search should olways be 'very magic'
-nnoremap / /\v
-nnoremap ? ?\v
+" Fix ack.vim in order to work properly
+" Right now if you run AclFromSearch with a 'very magic' pattern
+" the \v is not removed so the grep command launched is looking
+" for it with the rest of the pattern
+" nnoremap / /\v
+" nnoremap ? ?\v
 
 " Easier navigation through code
 " Deactivated it because it seems to conflit with <C-i> to jump forward
@@ -591,7 +594,8 @@ augroup END
 
 " Ack {{{2
 if has("unix")
-    let g:ackprg="ack-grep -H --nocolor --nogroup --column --sort-files"
+    lef g:ackhighlight = 1
+    let g:ackprg = "ack-grep -H --nocolor --nogroup --column --sort-files"
 endif
 "2}}}
 
