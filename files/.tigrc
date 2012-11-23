@@ -1,0 +1,36 @@
+# vim:set sw=4 ts=4 et:
+# Name:     Jeremy Attali's .tigrc
+# Author:   Jeremy Attali
+# URL:
+# License:  MIT license (see .vimrc end of file)
+# Created:  In Paris
+
+# Variables {{{1
+#set author-width
+#set commit-encoding
+set horizontal-scroll = 33%
+set line-graphics = yes
+#set line-number-interval
+set show-author = yes
+set show-date = default
+set show-refs = yes
+set show-rev-graph = yes
+#set split-view-height
+#tet tab-size
+#1}}}
+
+# Bindings {{{1
+bind generic F !git fetch
+bind generic c !git checkout %(commit)
+#1}}}
+
+
+
+
+
+
+
+
+
+
+
