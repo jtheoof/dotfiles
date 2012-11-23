@@ -75,6 +75,7 @@ set foldmethod=marker              " basic marker as default folding method
 set history=1000                   " history back trace
 set laststatus=2                   " allways show status line
 set lazyredraw                     " don't redraw while executing macros
+set list                           " show specific characters, especially Tab and CR
 set ruler                          " show the cursor position all the time
 set number                         " show line numbers
 set modeline                       " last lines in document sets vim mode
@@ -94,9 +95,10 @@ set title                          " show title in console title bar
 "set viminfo='10,\"100             " 10 marks, 100 lines
 set viminfo='10,\"100,:20,%        " 10 marks, 100 lines, 20 command lines
 "set whichwrap=<,>,h,l,[,]         " move freely between lines (wrap)
-set wildmenu
 set wildchar=<Tab> wildmenu wildmode=full
 set wildcharm=<C-Z>
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/cache/*
+set wildmenu
 set wildmode=longest,full
 
 " Turn backup off, since most stuff is in SVN, git anyway...
@@ -175,7 +177,6 @@ set tags=./tags;/
 
 " List invisible chars
 set listchars=tab:▸\ ,eol:¬,trail:.
-" set list " use <Leader>l switch list usage
 
 let mapleader=","
 "------------------------------------------------------------------------------
@@ -650,6 +651,23 @@ nnoremap <silent> se     :FufEditDataFile<CR>
 nnoremap <silent> sr     :FufRenewCache<CR>
 nnoremap <silent> s*     :FufCoverageFile<CR>
 nnoremap <silent> sc     :%s///n<CR>
+"2}}}
+
+" CTRL-P {{{2
+" Search by filename. <C-D> to change.
+let g:ctrlp_by_filename = 1
+
+" Enable regular expressions search. <C-R> to change.
+let g:ctrlp_regexp = 1
+
+" Window on top
+let g:ctrlp_match_window_bottom = 0
+
+" Caching in $HOME
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+
+" Disable default 'ra' path mode
+let g:ctrlp_working_path_mode = ''
 "2}}}
 
 " NERDTree {{{2
