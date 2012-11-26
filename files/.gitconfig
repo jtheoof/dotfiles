@@ -14,6 +14,7 @@
     lc = log --pretty=oneline --decorate=full --stat --no-merges ORIG_HEAD..
     lg = log -p
     logp = log --pretty=oneline --decorate=full -20
+    p = commit -p
     post-review = push-for
     squash = commit -s --amend -C HEAD
     st = status
