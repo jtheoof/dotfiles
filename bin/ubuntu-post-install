@@ -88,7 +88,7 @@ function config_vim() {
     fi
     $BINPATH/vim-update-bundles -s
 }
-    
+
 
 function link() {
     filename=$(basename $2)
@@ -104,7 +104,7 @@ function link() {
 # to handle existing links.
 # Also, fix what happens when we try to symlink to program
 # which have not been installed such as sabnzbdplus on work installs.
-function make_links {
+function install_symlinks {
     read -p "Do you want to create $HOME symlinks? "
     if [ ! $REPLY == 'y' ]; then
         return
@@ -143,8 +143,8 @@ function make_links {
 # FIXME Not working because of a different format
 # between terminator color and gnome-terminal color
 # gcontool does not understand "#829496"
-function config_terminal() {
-    read -p "Do you want to configure the terminals? "
+function install_solarized() {
+    read -p "Do you want to install soloraized? "
     if [ ! $REPLY == 'y' ]; then
         return
     fi
@@ -173,6 +173,18 @@ function config_terminal() {
     gconftool-2 -s -t string /apps/gnome-terminal/profiles/$PROFILE/bold_color "#9393a1a1a1a1"
     # make sure the profile is set to not use theme colors
     gconftool-2 -s -t bool /apps/gnome-terminal/profiles/$PROFILE/use_theme_colors false
+
+    # Downloading solarized for gedit
+    if [ ! -e /usr/share/gtksourceview-2.0/styles/solarized-dark.xml ]; then
+        wget https://github.com/mattcan/solarized-gedit/archive/master.zip -O /tmp/master.zip
+        cd /tmp
+        unzip master.zip
+        cd solarized-gedit-master
+        echo "copying xml files to /usr/share/gtksourceview-2.0/styles"
+        sudo cp *.xml /usr/share/gtksourceview-2.0/styles
+    fi
+
+    # TODO Add auto configuration for gedit with gconftool
 }
 
 function install_solarized_inspector() {
@@ -187,7 +199,7 @@ install_ppa
 install_packages
 install_zsh
 install_solarized_inspector
-make_links
+install_symlinks
+install_solarized
 config_sudoers
 config_vim
-config_terminal
