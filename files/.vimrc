@@ -552,7 +552,7 @@ augroup END
 augroup filetype_javascript
     autocmd!
     autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType javascript set shiftwidth=2 tabstop=2 expandtab textwidth=0
+    autocmd FileType javascript set shiftwidth=4 tabstop=4 expandtab textwidth=0
 augroup END
 "2}}}
 
