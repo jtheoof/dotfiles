@@ -35,7 +35,7 @@ function install_packages() {
         return
     fi
     # Ubuntu
-    sudo apt-get install -qy gnome-tweak-tool synapse activity-log-manager zeitgeist
+    sudo apt-get install -qy gconf-editor gnome-tweak-tool synapse activity-log-manager zeitgeist
     # Internet
     sudo apt-get install -qy google-chrome-stable
     # Editors
@@ -52,6 +52,13 @@ function install_packages() {
     sudo apt-get install -qy git tig subversion mercurial
     # Networking
     sudo apt-get install -qy curl pidgin
+
+    # TODO Add
+    #   * google-chrome
+    #   * dropbox
+
+    echo "Installing dropbox"
+    sudo apt-get install -qy nautilus-dropbox
 }
 
 function install_zsh() {
@@ -130,9 +137,12 @@ function install_symlinks {
     fi
     echo "linking local bin"
     ln -is $BINPATH $HOME/.local/bin
+
     echo "linking terminator config"
     ln -is $FILESPATH/.config/terminator/config $HOME/.config/terminator/config
+    # TODO only if SABnzbd found
     echo "linking sabnzbd config"
+
     ln -is $FILESPATH/.sabnzbd/sabnzbd.ini $HOME/.sabnzbd/sabnzbd.ini
     if [ ! -d $HOME/.tilda ]; then
         mkdir -p $HOME/.tilda
@@ -174,17 +184,31 @@ function install_solarized() {
     # make sure the profile is set to not use theme colors
     gconftool-2 -s -t bool /apps/gnome-terminal/profiles/$PROFILE/use_theme_colors false
 
-    # Downloading solarized for gedit
-    if [ ! -e /usr/share/gtksourceview-2.0/styles/solarized-dark.xml ]; then
+    # Downloading solarized for ggtk applications
+    echo "Installing solarized for gnome"
+    if [ -d /usr/share/gtksourceview-2.0/styles ]; then
+        gtksourceview_dir=/usr/share/gtksourceview-2.0/styles
+    elif [ -d /usr/share/gtksourceview-3.0/styles ]; then
+        gtksourceview_dir=/usr/share/gtksourceview-3.0/styles
+    else
+        echo "Unable to find /usr/share/gtksourview-X.0 folder"
+        exit 128
+    fi
+    if [ ! -e $gtksourceview_dir/solarized-dark.xml ]; then
         wget https://github.com/mattcan/solarized-gedit/archive/master.zip -O /tmp/master.zip
         cd /tmp
         unzip master.zip
         cd solarized-gedit-master
-        echo "copying xml files to /usr/share/gtksourceview-2.0/styles"
-        sudo cp *.xml /usr/share/gtksourceview-2.0/styles
+        echo "copying xml files to $gtksourceview_dir"
+        sudo cp *.xml $gtksourceview_dir
     fi
 
     # TODO Add auto configuration for gedit with gconftool
+}
+
+function config_sabnzbd() {
+    sudo sed "s/USER=/USER=${whoami}/g" /etc/default/sabnzbdplus -i
+    sudo service sabnzbdplus start
 }
 
 function install_solarized_inspector() {
@@ -198,8 +222,9 @@ function install_solarized_inspector() {
 install_ppa
 install_packages
 install_zsh
-install_solarized_inspector
 install_symlinks
 install_solarized
+config_sabnzbd
+install_solarized_inspector
 config_sudoers
 config_vim
