@@ -382,6 +382,10 @@ imap <C-u> <C-v>u
 
 " Visual mode {{{2
 
+" Easy search through complex visual selections.
+" Using 'very nomagic' to handle special characters like [$.-*]
+vnoremap * y /\V<C-R>"<CR>
+
 " Easy wrapping around visual selected text
 vnoremap sb "zdi<b><C-R>z</b><Esc>
 vnoremap st "zdi<?= <C-R>z ?><Esc>
@@ -582,6 +586,13 @@ augroup filetype_vala
     autocmd!
     autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
     au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
+augroup END
+"2}}}
+
+" Intersec {{{2
+augroup filetype_intersec
+    autocmd!
+    autocmd BufRead *.iop setfiletype d
 augroup END
 "2}}}
 
