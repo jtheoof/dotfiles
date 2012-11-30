@@ -185,6 +185,7 @@ function install_solarized() {
     gconftool-2 -s -t bool /apps/gnome-terminal/profiles/$PROFILE/use_theme_colors false
 
     # Downloading solarized for ggtk applications
+    # TODO Add auto configuration for gedit with gconftool
     echo "Installing solarized for gnome"
     if [ -d /usr/share/gtksourceview-2.0/styles ]; then
         gtksourceview_dir=/usr/share/gtksourceview-2.0/styles
@@ -203,7 +204,15 @@ function install_solarized() {
         sudo cp *.xml $gtksourceview_dir
     fi
 
-    # TODO Add auto configuration for gedit with gconftool
+    echo "Installing gtk theme"
+    cd /usr/src
+    git clone https://github.com/heichblatt/gtk2-theme-solarizeddark.git
+    cd gtk2-theme-solarized
+    ./configure --prefix=/usr --enable-animation
+    make
+    make install
+
+    sudo ln -is $FILESPATH/.themes/SolarizedDark/index.theme /usr/share/themes/SolarizedDark/index.theme
 }
 
 function config_sabnzbd() {
