@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=SolarizedDark
+Type=X-GNOME-Metatheme
+Comment=
+
+[X-GNOME-Metatheme]
+GtkTheme=SolarizedDark
+MetacityTheme=Clearlooks
+IconTheme=Faenza
+GtkColorScheme=fg_color:#fdf6e3,bg_color:#002b36,base_color:#073642,text_color:#fdf6e3,selected_bg_color:#586e75,selected_fg_color:#fdf6e3
+CursorTheme=default
+CursorSize=18
+NotificationTheme=slider
+BackgroundImage=/usr/share/pixmaps/backgrounds/gnome/abstract/Flow.png
