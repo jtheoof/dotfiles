@@ -21,9 +21,13 @@ function install_ppa() {
     echo "installing ppas"
     sudo add-apt-repository -y ppa:tualatrix/ppa # Ubuntu Tweak
     sudo add-apt-repository -y ppa:tiheum/equinox # Faenza icons
-    sudo add-apt-repository -y ppa:caffeine-developers/ppa # Caffeine
-    sudo add-apt-repository -y ppa:cooperjona/lightread # Lightread
-    sudo add-apt-repository -y ppa:rwky/nodejs # NodeJS
+
+    # Spotify
+    sudo touch /etc/apt/sources.list.d/spotify.list
+    echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+
+    # adding keys
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59  # spotify
 
     echo "updating apt repository database"
     sudo apt-get update
@@ -52,6 +56,8 @@ function install_packages() {
     sudo apt-get install -qy git tig subversion mercurial
     # Networking
     sudo apt-get install -qy curl pidgin
+    # Mutlimedia
+    sudo apt-get install -qy spotify-client vlc
 
     # TODO Add
     #   * google-chrome
