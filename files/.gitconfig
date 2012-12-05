@@ -9,7 +9,7 @@
     co = checkout
     df = diff
     dfw = diff --color-words
-    gr = grep -n
+    gr = grep -n --untracked
     k = !gitk
     lc = log --pretty=oneline --decorate=full --stat --no-merges ORIG_HEAD..
     lg = log -p

@@ -55,7 +55,7 @@ alias lgroups='cat /etc/passwd | cut -d: -f1'
 # Editing
 alias vi='vim'
 alias gv='gvim'
-alias diff='colordiff'
+alias diff='colordiff -u'
 alias less='less -R'
 
 # Listing
