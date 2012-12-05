@@ -35,6 +35,7 @@ syntax on                    " enable syntax
 " Bundle: vim-scripts/TagHighlight
 " Bundle: mattn/zencoding-vim
 " Bundle: cakebaker/scss-syntax.vim
+" Bundle: maksimr/vim-jsbeautify
 
 " Text
 " Bundle: tpope/vim-markdown
@@ -269,8 +270,9 @@ map <Leader>fx :! tidy -qmi -xml -utf8 % <CR>
 
 " Quick toggles
 nmap <Leader>tb :call BackgroundToggle()<CR>
-nmap <Leader>tw :set wrap!<CR>
+nmap <Leader>tj :call JsBeautify()<CR>
 nmap <Leader>tl :set list!<CR>
+nmap <Leader>tw :set wrap!<CR>
 "2}}}
 
 " Normal mode {{{2
