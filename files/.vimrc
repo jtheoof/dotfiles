@@ -322,6 +322,8 @@ nnoremap <F2> :BufExplorer<CR>
 nnoremap <F3> :NERDTreeToggle<CR>
 nnoremap <F4> :QFix<CR>
 nnoremap <C-F4> :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
+nnoremap <F5> :cprevious<CR>
+nnoremap <F6> :cnext<CR>
 nnoremap <F7> :make<Return>
 nnoremap <F9> :cprevious<Return>
 nnoremap <F10> :cnext<Return>
@@ -592,9 +594,10 @@ augroup END
 "2}}}
 
 " Intersec {{{2
-augroup filetype_intersec
+augroup intersec
     autocmd!
     autocmd BufRead *.iop setfiletype d
+    autocmd BufRead *.blk setfiletype c
 augroup END
 "2}}}
 
