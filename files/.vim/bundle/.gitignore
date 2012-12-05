@@ -9,6 +9,7 @@ supertab/
 vim-colors-solarized/
 vim-fugitive/
 vim-git/
+vim-jsbeautify/
 vim-markdown/
 vim-pathogen/
 zencoding-vim/
