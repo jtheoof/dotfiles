@@ -19,18 +19,21 @@ set show-rev-graph = yes
 #tet tab-size
 #1}}}
 
-# Bindings {{{1
+# Bindings {{{
+
+# Generic {{{
 bind generic F !git fetch
 bind generic c !git checkout %(commit)
-#1}}}
+#}}}
 
+# Main {{{
+bind main R !git rebase -i
+bind main r refresh
+#}}}
 
+# Status {{{
+bind status R !git rebase -i
+#}}}
 
-
-
-
-
-
-
-
+#}}}
 

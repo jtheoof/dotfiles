@@ -41,9 +41,6 @@
     new = green bold
 [github]
     user = jtheoof
-[merge]
-    verbosity = 1
-    conflictstyle = diff3
 [push]
     default = tracking
 [user]
