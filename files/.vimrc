@@ -564,6 +564,16 @@ augroup filetype_javascript
 augroup END
 "2}}}
 
+" JSON {{{2
+augroup filetype_json
+    autocmd!
+    autocmd BufRead *.json setfiletype json
+    autocmd FileType json set textwidth=80
+    autocmd FileType json set tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd FileType json set expandtab
+augroup END
+"2}}}
+
 " HTML {{{2
 " Disable underlines in <a> tags as well as bold, italic
 " See: :help html
