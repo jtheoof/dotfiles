@@ -23,11 +23,11 @@ set show-rev-graph = yes
 
 # Generic {{{
 bind generic F !git fetch
-bind generic c !git checkout %(commit)
 #}}}
 
 # Main {{{
 bind main R !git rebase -i
+bind main c !?git checkout %(commit)
 bind main r refresh
 #}}}
 
