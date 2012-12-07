@@ -27,13 +27,33 @@ bind generic y !@sh -c "echo -n %(commit) | xclip -selection c"
 #}}}
 
 # Main {{{
-bind main R !git rebase -i
-bind main c !?git checkout %(commit)
-bind main r refresh
+bind main ! !git revert %(commit)     # Revert commit
+bind main B !git rebase -i %(commit)  # Interactive rebasing
+bind main C !?git checkout %(commit)  # Checkout commit
+bind main R !git rebase -i            # Interactive rebasing
+#}}}
+
+# Diff {{{
+# Move in diff view with arrow keys
+bind diff Up move-up
+bind diff Down move-down
+#}}}
+
+# Tree {{{
+bind tree V !vim %(file)
+#}}}
+
+# Branch {{{
+bind branch n !@git branch %(prompt) # Create a new branch
 #}}}
 
 # Status {{{
+bind status N !@git add -N %(file) # Intent to add
 bind status R !git rebase -i
+#}}}
+
+# Stage {{{
+bind stage 1 stage-update-line # Stage a single line
 #}}}
 
 #}}}
