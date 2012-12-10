@@ -34,9 +34,6 @@ bind main R !git rebase -i            # Interactive rebasing
 #}}}
 
 # Diff {{{
-# Move in diff view with arrow keys
-bind diff Up move-up
-bind diff Down move-down
 #}}}
 
 # Tree {{{
@@ -54,6 +51,7 @@ bind status R !git rebase -i
 
 # Stage {{{
 bind stage 1 stage-update-line # Stage a single line
+bind stage C !@git commit # Commit staging changes
 #}}}
 
 #}}}
