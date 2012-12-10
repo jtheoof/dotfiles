@@ -2,10 +2,13 @@
     edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
     add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
+    review-web = !git-push-for --to adrien.frediani@intersec.com --to guillaume.chevallereau@intersec.com --to romain.legodais@intersec.com
+
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
     amend = commit -s --amend
     br = branch
     ci = commit
+    ch = cherry-pick
     co = checkout
     df = diff
     dfw = diff --color-words
@@ -18,6 +21,7 @@
     post-review = push-for
     squash = commit -s --amend -C HEAD
     st = status
+    su = submodule update
     undo = reset HEAD^
     unstash = stash apply
     who = shortlog -s --
