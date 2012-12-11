@@ -1,4 +1,4 @@
-# Options {{{1
+# Options {{{
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -36,19 +36,17 @@ source $ZSH/oh-my-zsh.sh
 # Dircolors
 [[ -f /usr/bin/dircolors ]] && [[ -f $HOME/.dircolors ]] && eval $(dircolors -b $HOME/.dircolors)
 
-#1}}}
+#}}}
 
-# Settings {{{1
-
-# Exports {{{2
+# Exports {{{
 
 export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.local/bin:$HOME/dev/android/android-sdk-linux/tools:$HOME/dev/android/android-sdk-linux/platform-tools:/opt/SenchaSDKTools-2.0.0-beta3:/opt/eclipse/eclipse-cpp-indigo-SR2-linux-gtk-x86_64-RTC-v4.0
 
-#2}}}
+#}}}
 
-# Aliases {{{2
+# Aliases {{{
 
-# General {{{3
+# General {{{
 # Admin
 alias lgroups='cat /etc/passwd | cut -d: -f1'
 
@@ -90,9 +88,9 @@ alias psa='ps -ef | ack'
 
 # Navigation
 alias n.='nautilus .'
-#3}}}
+#}}}
 
-# APT {{{3
+# APT {{{
 alias  ACD='apt-cache depends' # show dependencies of <package>.deb
 alias  ACS='apt-cache search' # search for string
 alias  AGA='sudo apt-get autoremove' # remove packages no longer needed
@@ -111,9 +109,9 @@ alias  ASVE='apt-show-versions | grep /experimental' # list all packages from /e
 alias  ASVS='apt-show-versions | grep /stable' # list all packages from /stable
 alias  ASVT='apt-show-versions | grep /testing' # list all packages from /testing
 alias  ASVU='apt-show-versions | grep /unstable' # list all packages from /unstable
-#3}}}
+#}}}
 
-# DPKG {{{3
+# DPKG {{{
 alias  DL='dpkg -l' # list all installed packages
 alias  DF='dpkg -L' # list files installed by <package>
 alias  DT='dpkg -L' # list files installed by <package>
@@ -125,9 +123,9 @@ alias  DCS='dpkg --configure -a' # use then when you fuck up dpkg mid-install or
 alias  DIF='dpkg -i --force-overwrite' # use when you get "trying to overwrite <something> which is also in package <something>"
 alias  DR='dpkg-reconfigure' # reconfigure a package that's already installed
 alias  DB='dpkg-buildpackage' # build from Debianized source
-#3}}}
+#}}}
 
-# Work {{{3
+# Work {{{
 alias diff-i2s="diff -x .svn -ruN iad IHM-GW/IHM-GW-8.0.0/IHM"
 alias diff-s2i="diff -x .svn -ruN IHM-GW/IHM-GW-8.0.0/IHM iad"
 alias rsync-root='cd /home/jeremy; rsync -avz .ackrc .dircolors .gitconfig .oh-my-zsh .toprc .vim .vimrc .zshrc /root'
@@ -137,11 +135,11 @@ alias rsync-s2i="rsync -avz -C --exclude ssi --exclude cgi-bin --exclude index.c
 alias mount-nfs='mount -t nfs -o nolock 192.168.2.2:/root/dev/bt/bewan/iad /etc/bewan/iad'
 alias node-jslint="node $HOME/dev/me/node-jslint/bin/jslint.js --maxerr 500 --nomen --plusplus --regexp --sloppy --undef --white"
 alias svn-df='svn diff | colordiff'
-#3}}}
+#}}}
 
-#2}}}
+#}}}
 
-# Functions {{{2
+# Functions {{{
 
 # Compression
 function ctar() {
@@ -240,9 +238,7 @@ function chpwd() {
     ls -a --group-directories-first
 }
 
-#2}}}
-
-#1}}}
+#}}}
 
 # Sourcing zshrc_work if exists
 if [[ -f $HOME/.zshrc_work ]]; then
