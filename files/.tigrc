@@ -30,7 +30,9 @@ bind generic y !@sh -c "echo -n %(commit) | xclip -selection c"
 bind main ! !git revert %(commit)     # Revert commit
 bind main B !git rebase -i %(commit)  # Interactive rebasing
 bind main C !?git checkout %(commit)  # Checkout commit
+bind main P !?git push                # Push to tracking remote
 bind main R !git rebase -i            # Interactive rebasing
+bind main U !?git rebase              # Rebasing after fetch
 #}}}
 
 # Diff {{{
