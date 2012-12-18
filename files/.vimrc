@@ -95,7 +95,8 @@ set viminfo='10,\"100,:20,%        " 10 marks, 100 lines, 20 command lines
 "set whichwrap=<,>,h,l,[,]         " move freely between lines (wrap)
 set wildchar=<Tab> wildmenu wildmode=full
 set wildcharm=<C-Z>
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/cache/*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/cache/*,
+set wildignore+=*.pyc
 set wildmenu
 set wildmode=longest,full
 
