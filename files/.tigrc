@@ -4,8 +4,8 @@
 # URL:
 # License:  MIT license (see .vimrc end of file)
 # Created:  In Paris
+# Variables {{{
 
-# Variables {{{1
 #set author-width
 #set commit-encoding
 set horizontal-scroll = 33%
@@ -17,44 +17,51 @@ set show-refs = yes
 set show-rev-graph = yes
 #set split-view-height
 #tet tab-size
-#1}}}
 
+# }}}
 # Bindings {{{
 
 # Generic {{{
+
 bind generic F !git fetch
 bind generic y !@sh -c "echo -n %(commit) | xclip -selection c"
-#}}}
 
+# }}}
 # Main {{{
+
 bind main ! !git revert %(commit)     # Revert commit
 bind main B !git rebase -i %(commit)  # Interactive rebasing
 bind main C !?git checkout %(commit)  # Checkout commit
 bind main P !?git push                # Push to tracking remote
 bind main R !git rebase -i            # Interactive rebasing
 bind main U !?git rebase              # Rebasing after fetch
-#}}}
 
+# }}}
 # Diff {{{
-#}}}
 
+
+# }}}
 # Tree {{{
+
 bind tree V !vim %(file)
-#}}}
 
+# }}}
 # Branch {{{
-bind branch n !@git branch %(prompt) # Create a new branch
-#}}}
 
+bind branch n !@git branch %(prompt) # Create a new branch
+
+# }}}
 # Status {{{
+
 bind status N !@git add -N %(file) # Intent to add
 bind status R !git rebase -i
-#}}}
 
+# }}}
 # Stage {{{
+
 bind stage 1 stage-update-line # Stage a single line
 bind stage C !@git commit # Commit staging changes
-#}}}
 
-#}}}
+# }}}
 
+# }}}
