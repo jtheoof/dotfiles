@@ -2,6 +2,7 @@
 	"installed_packages":
 	[
 		"Emmet",
+		"Package Control",
 		"SublimeLinter"
 	]
 }
