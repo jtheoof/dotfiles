@@ -1,0 +1,9 @@
+# Backup
+Backup/
+
+# Generated
+*.cache
+*.sublime-package
+
+# Compiled
+*.pyc
