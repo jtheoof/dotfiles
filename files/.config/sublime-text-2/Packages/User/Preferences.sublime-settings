@@ -1,30 +1,18 @@
 {
-    // Sets the colors used within the text area
-    "color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
-
-    // Note that the font_face and font_size are overriden in the platform
-    // specific settings file, for example,
-    // "Preferences (Linux).sublime-settings".
-    // Because of this, setting them here will have no effect: you must set them
-    // in your User File Preferences.
-    "font_face": "Ubuntu Mono",
-    "font_size": 12,
-
-    // Set to true to insert spaces when tab is pressed
-    "translate_tabs_to_spaces": true,
-
-    // Set to true to removing trailing white space on save
-    "trim_trailing_white_space_on_save": true,
-
-    // Set to true to automatically save files when switching to a different file
-    // or application
-    "save_on_focus_lost": false,
-
-    // If enabled, will highlight any line with a caret
-    "highlight_line": true,
-
-    // Columns in which to display vertical rulers
-    "rulers": [80],
-
-    "ignored_packages": [ "Vintage" ]
+	"color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
+	"font_face": "Ubuntu Mono",
+	"font_size": 12,
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"rulers":
+	[
+		80
+	],
+	"save_on_focus_lost": false,
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"word_wrap": false
 }
