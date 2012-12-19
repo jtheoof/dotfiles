@@ -715,9 +715,7 @@ noremap <Leader>nc :NERDTreeClose<cr>
 "2}}}
 
 " Zencoding {{{2
-let g:user_zen_settings = {
-\  'indentation' : '  '
-\}
+let g:user_zen_settings = { 'indentation' : '  ' }
 "2}}}
 
 "------------------------------------------------------------------------------
