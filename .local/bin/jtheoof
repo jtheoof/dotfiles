@@ -35,7 +35,7 @@ link() {
         rm -rI $l
       fi
     fi
-    if [ !$FORCE_MODE ]; then
+    if $FORCE_MODE ; then
       print_info "forcing symlink $l"
       ln -sf $FILESPATH/$1 $l
       return
@@ -200,7 +200,6 @@ while [ $1 != -- ]
 do
   case $1 in
   -f)
-    print_debug 'force mode'
     FORCE_MODE=true ;;
   esac
   shift # next flag
