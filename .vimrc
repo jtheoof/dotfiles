@@ -185,7 +185,7 @@ let mapleader=","
 "------------------------------------------------------------------------------
 "colorscheme mustang
 let g:solarized_visibility = "low"
-colorscheme solarized
+colorscheme monokai
 "colorscheme zenburn
 set background=dark
 if has("gui_running")
