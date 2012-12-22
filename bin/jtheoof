@@ -1,18 +1,120 @@
 #!/bin/sh
 # vim:set et ts=2 sw=2:
 
-echo $@
+# Print functions {{{
 
-print_error() {
-  echo "\033[31m$1\033[0m"
+print_debug() {
+  echo "$1"
 }
 
 print_info() {
   echo "\033[33m$1\033[0m"
 }
 
+print_noop() {
+  echo "\033[35m$1\033[0m"
+}
+
 print_success() {
   echo "\033[32m$1\033[0m"
+}
+
+print_error() {
+  echo "\033[31m$1\033[0m"
+}
+
+# }}}
+# Handlers {{{
+
+link() {
+    l=$HOME/$1
+    print_debug "linking: $l"
+    if [ -d $l ]; then
+      if [ ! -h $l ]; then # not a symlink, we should remove the directory
+        print_info "$l is a directory"
+        rm -rI $l
+      fi
+    fi
+    if [ ! -h $l ]; then # not a symlink, we should make it one
+      ln -is $FILESPATH/$1 $l
+      if [ -h $l ]; then # checking user response after previous question
+        print_success "$l has been symlinked"
+      fi
+    else
+      print_noop "$l already a symlink"
+    fi
+}
+
+handle_install_dotfiles() {
+  print_info "installing symlinks"
+  for i in $FILESPATH/.*rc; do
+    link $(basename $i)
+  done
+
+  home_dirs=".dircolors .gitconfig .tilda .vim"
+  for i in $home_dirs; do
+    link "$i"
+  done
+
+  # .config directories
+  config_dirs="sublime-text-2 terminator"
+  for i in $config_dirs; do
+    link ".config/$i"
+  done
+}
+
+handle_install_packages() {
+  packages="\
+    ack-grep \
+    activity-log-manager \
+    ant \
+    autoconf \
+    build-essential \
+    colordiff
+    compiz-plugins-extra
+    compizconfig-settings-manager \
+    curl \
+    exuberant-ctags
+    gcolor2 \
+    gconf-editor \
+    gimp \
+    git \
+    gnome-tweak-tool \
+    google-chrome-stable \
+    mercurial \
+    nodejs \
+    npm \
+    pidgin \
+    python \
+    ruby \
+    rubygems \
+    spotify-client \
+    subversion \
+    synapse \
+    terminator \
+    tidy \
+    tig \
+    tilda \
+    tree \
+    vim-gnome \
+    vlc
+    zeitgeist \
+    zsh"
+
+  for p in $packages; do
+    print_info "installing $p"
+    sudo apt-get install -qy $p
+  done
+}
+
+handle_install() {
+  shift
+  case "$1" in
+    dotfiles)
+      handle_install_dotfiles ;;
+    packages)
+      handle_install_packages ;;
+  esac
 }
 
 handle_terminal_background() {
@@ -62,10 +164,32 @@ handle_vim() {
   esac
 }
 
+# }}}
+# Global variables {{{
+
+# Get the path where the file is located.
+# Then resolve symbolic link just to make sure.
+SCRIPTPATH=$(dirname $(readlink -f ${0}))
+GITPATH=$(dirname $SCRIPTPATH)
+GITDIR=$GITPATH/.git
+if [ ! -d $GITDIR ]; then
+    print_error "could not find .git directory, something is fishy"
+    exit 1
+fi
+print_info "git root folder found at: $GITPATH"
+FILESPATH=$GITPATH/files
+BINPATH=$GITPATH/bin
+
+# }}}
+
 case "$1" in
 
   # Unable to shift before calling function
   # because of shell limitations.
+
+  install)
+    handle_install "$@" ;;
+
   terminal|term)
     handle_terminal "$@" ;;
 
