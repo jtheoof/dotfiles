@@ -33,6 +33,9 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# Removing auto correction feature
+unsetopt correct_all
+
 # Dircolors
 [[ -f /usr/bin/dircolors ]] && [[ -f $HOME/.dircolors ]] && eval $(dircolors -b $HOME/.dircolors)
 
