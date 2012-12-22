@@ -35,6 +35,11 @@ link() {
         rm -rI $l
       fi
     fi
+    if [ !$FORCE_MODE ]; then
+      print_info "forcing symlink $l"
+      ln -sf $FILESPATH/$1 $l
+      return
+    fi
     if [ ! -h $l ]; then # not a symlink, we should make it one
       ln -is $FILESPATH/$1 $l
       if [ -h $l ]; then # checking user response after previous question
@@ -61,6 +66,10 @@ handle_install_dotfiles() {
   for i in $config_dirs; do
     link ".config/$i"
   done
+
+  link ".local/bin"
+
+  exit 0
 }
 
 handle_install_packages() {
@@ -170,15 +179,33 @@ handle_vim() {
 # Get the path where the file is located.
 # Then resolve symbolic link just to make sure.
 SCRIPTPATH=$(dirname $(readlink -f ${0}))
-GITPATH=$(dirname $SCRIPTPATH)
-GITDIR=$GITPATH/.git
-if [ ! -d $GITDIR ]; then
+cd $SCRIPTPATH
+GITPATH=$(git rev-parse --show-toplevel $SCRIPTPATH | head -1)
+cd $OLDPWD
+if [ ! -d $GITPATH ]; then
     print_error "could not find .git directory, something is fishy"
     exit 1
 fi
 print_info "git root folder found at: $GITPATH"
-FILESPATH=$GITPATH/files
-BINPATH=$GITPATH/bin
+FILESPATH=$GITPATH
+
+# }}}
+# Getting options {{{
+
+# Preserving initial argument
+MODE=$1
+FORCE_MODE=false
+set -- `getopt f $@`
+while [ $1 != -- ]
+do
+  case $1 in
+  -f)
+    print_debug 'force mode'
+    FORCE_MODE=true ;;
+  esac
+  shift # next flag
+done
+shift # removing '--'
 
 # }}}
 

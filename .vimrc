@@ -63,7 +63,7 @@ set autoread                       " automatically reload file changes
 set autowrite                      " automatically save before :next or :make        
 set backspace=indent,eol,start     " more powerful backspacing
 set nobackup                       " do not keep a backup file
-set cursorline                     " Highlight current line
+set nocursorline                   " Highlight current line
 set diffopt+=vertical              " make vertical default split
 set esckeys                        " allow usage of cur keys within insert mode
 set encoding=utf8                  " utf-8 encoding
