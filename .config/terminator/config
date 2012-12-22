@@ -20,6 +20,16 @@
     font = Ubuntu Mono 10
     background_color = "#0a333c"
     scrollback_infinite = True
+  [[monokai]]
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#859900:#b58900:#268bd2:#d33682:#2aa198:#fdf6e3"
+    background_darkness = 1.0
+    scrollbar_position = hidden
+    foreground_color = "#f8f8f2"
+    icon_bell = False
+    show_titlebar = False
+    font = Ubuntu Mono 10
+    background_color = "#272822"
+    scrollback_infinite = True
   [[solarized-dark]]
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#859900:#b58900:#268bd2:#d33682:#2aa198:#fdf6e3"
     background_darkness = 1.0
