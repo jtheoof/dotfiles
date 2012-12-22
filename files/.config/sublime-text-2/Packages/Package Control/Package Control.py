@@ -146,6 +146,12 @@ class DebuggableHTTPResponse(httplib.HTTPResponse):
                 print u"  %s" % line.rstrip()
         return return_value
 
+    def read(self, *args):
+        try:
+            return httplib.HTTPResponse.read(self, *args)
+        except (httplib.IncompleteRead) as (e):
+            return e.partial
+
 
 class DebuggableHTTPSResponse(DebuggableHTTPResponse):
     """
@@ -430,7 +436,7 @@ try:
                 if name == 'content-length':
                     content_length = int(value)
 
-                if name == 'connection' and value == 'close':
+                if name in ['connection', 'proxy-connection'] and value == 'close':
                     close_connection = True
 
                 if self.debuglevel in [-1, 5]:
@@ -4320,6 +4326,7 @@ class AutomaticUpgrader(threading.Thread):
         self.settings_file = '%s.sublime-settings' % __name__
         self.settings = sublime.load_settings(self.settings_file)
         self.installed_packages = self.settings.get('installed_packages', [])
+        self.should_install_missing = self.settings.get('install_missing')
         if not isinstance(self.installed_packages, list):
             self.installed_packages = []
 
@@ -4339,7 +4346,7 @@ class AutomaticUpgrader(threading.Thread):
         found on the filesystem and passed as `found_packages`.
         """
 
-        if not self.missing_packages or not self.settings.get('install_missing'):
+        if not self.missing_packages or not self.should_install_missing:
             return
 
         print '%s: Installing %s missing packages' % \
