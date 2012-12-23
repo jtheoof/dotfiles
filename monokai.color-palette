@@ -1,0 +1,16 @@
+black             #706449
+red               #E2302E
+green             #A6E22E
+yellow            #FD971F
+light blue        #3285D2
+magenta           #F92672
+cyan              #66D9EF
+white             #F8F8F2
+dark blue         #706449
+diff.deleted      #F92672
+diff.inserted     #A6E22E
+diff.changed      #E6DB74
+light blue        #3285D2
+light purple      #F92672
+cyan              #66D9EF
+white (bg: green) #F8F8F2

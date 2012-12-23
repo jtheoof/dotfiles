@@ -4,6 +4,12 @@
 # URL:
 # License:  MIT license (see .vimrc end of file)
 # Created:  In Paris
+
+# Colors {{{
+color cursor white black
+color main-head magenta default
+color main-tag magenta default
+# }}}
 # Variables {{{
 
 #set author-width
