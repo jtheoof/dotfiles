@@ -34,16 +34,25 @@
     branch = auto
     interactive = auto
     grep = auto
-[color "status"]
-    header = bold blue
-    added = bold green
-    changed = bold red
-    untracked = bold yellow
+[color "branch"]
+    current = magenta
+    local = magenta
+    remote = green
+[color "decorate"]
+    branch = magenta
+    remoteBranch = green
+    tag = yellow
+    HEAD = magenta
 [color "diff"]
     meta = yellow bold
     frag = magenta bold
     old = red bold
     new = green bold
+[color "status"]
+    header = bold blue
+    added = bold green
+    changed = bold red
+    untracked = bold yellow
 [github]
     user = jtheoof
 [push]
