@@ -63,7 +63,7 @@ set autoread                       " automatically reload file changes
 set autowrite                      " automatically save before :next or :make        
 set backspace=indent,eol,start     " more powerful backspacing
 set nobackup                       " do not keep a backup file
-set nocursorline                   " Highlight current line
+set nocursorline                     " Highlight current line
 set diffopt+=vertical              " make vertical default split
 set esckeys                        " allow usage of cur keys within insert mode
 set encoding=utf8                  " utf-8 encoding
@@ -73,7 +73,7 @@ set foldmethod=marker              " basic marker as default folding method
 set history=1000                   " history back trace
 set laststatus=2                   " allways show status line
 set lazyredraw                     " don't redraw while executing macros
-set list                           " show specific characters, especially Tab and CR
+set nolist                           " show specific characters, especially Tab and CR
 set ruler                          " show the cursor position all the time
 set number                         " show line numbers
 set modeline                       " last lines in document sets vim mode
