@@ -115,8 +115,8 @@ EIGHTBIT 1
 #   ANSI Color code       Solarized  Notes                Universal             SolDark              SolLight
 #   ~~~~~~~~~~~~~~~       ~~~~~~~~~  ~~~~~                ~~~~~~~~~             ~~~~~~~              ~~~~~~~~
 #   00    none                                            NORMAL, FILE          <SAME>               <SAME>
-#   30    black           base02                                                
-#   01;30 bright black    base03     bg of SolDark                                                                         
+#   30    black           base02
+#   01;30 bright black    base03     bg of SolDark
 #   31    red             red                             docs & mm src         <SAME>               <SAME>
 #   01;31 bright red      orange                          EXEC                  <SAME>               <SAME>
 #   32    green           green                           editable text         <SAME>               <SAME>
@@ -129,8 +129,8 @@ EIGHTBIT 1
 #   01;35 bright magenta  violet                          archive/compressed    <SAME>               <SAME>
 #   36    cyan            cyan                            DIR                   <SAME>               <SAME>
 #   01;36 bright cyan     base1                           unimportant non-text                       <SAME>
-#   37    white           base2                                                                      
-#   01;37 bright white    base3      bg in SolLight                                                                        
+#   37    white           base2
+#   01;37 bright white    base3      bg in SolLight
 #   05;37;41                         unclear in Putty dark
 
 
