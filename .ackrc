@@ -7,8 +7,6 @@
 --smart-case
 # do not follow symlinks
 --no-follow
-# use less as pager
---pager=less -r
 
 # Ack Type Settings
 ####################################################################
