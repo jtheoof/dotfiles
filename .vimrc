@@ -332,6 +332,7 @@ nnoremap <C-F4> :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
 nnoremap <F5> :cprevious<CR>
 nnoremap <F6> :cnext<CR>
 nnoremap <F7> :make<Return>
+nnoremap <S-F7> yy:<C-R>"<BS><CR>
 nnoremap <F9> :cprevious<Return>
 nnoremap <F10> :cnext<Return>
 nnoremap <F11> :split %<CR>
@@ -391,7 +392,7 @@ imap <F7> <Esc>:make<CR>a
 " map control-backspace to delete the previous word
 imap <C-BS> <C-W>
 " map control-del to remove word after cursor
-imap <C-Del> <Esc><Right>dwi
+imap <C-Del> <Esc><Right>"_dei
 " Insert unicode characters
 imap <C-u> <C-v>u
 "2}}}
@@ -701,14 +702,17 @@ let g:ctrlp_by_filename = 1
 " Enable regular expressions search. <C-R> to change.
 let g:ctrlp_regexp = 1
 
-" Window on top
-let g:ctrlp_match_window_bottom = 0
+" Window at the bottom
+let g:ctrlp_match_window_bottom = 1
 
 " Caching in $HOME
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 
+" Show hidder directories
+let g:ctrlp_show_hidden = 1
+
 " Disable default 'ra' path mode
-let g:ctrlp_working_path_mode = ''
+let g:ctrlp_working_path_mode = 'ra'
 "2}}}
 
 " NERDTree {{{2

@@ -1,8 +1,8 @@
 " Vim color file
-" Maintainer:  Damien Gombault <desintegr@gmail.com>
-" WWW:         http://desintegr.googlecode.com/svn/config/vim/colors/monokai.vim
-" Last Change: 2008 Feb 27
+" Maintainer:  Jeremy Attali
+" Last Change: 2012 Dec 25
 " Version:     0.2.0
+" Credits:     Damien Gombault <desintegr@gmail.com>
 
 set background=dark
 
@@ -32,7 +32,7 @@ hi VertSplit    guifg=#3B3A32 guibg=bg gui=none ctermfg=241 ctermbg=241 cterm=no
 hi Folded       guifg=#75715E guibg=bg gui=none ctermfg=242 ctermbg=235 cterm=none
 hi FoldColumn   guifg=#75715E guibg=#3E3D32 gui=none ctermfg=231 ctermbg=241 cterm=none
 hi SignColum    guifg=#75715E guibg=#3E3D32 gui=none ctermfg=231 ctermbg=241 cterm=none
-hi IncSearch    guifg=fg guibg=#383830 gui=none ctermfg=fg ctermbg=237 cterm=none
+hi IncSearch    guifg=bg guibg=#FFE792 gui=none ctermfg=bg ctermbg=186 cterm=none
 hi LineNr       guifg=#75715E guibg=#3E3D32 gui=none ctermfg=102 ctermbg=237 cterm=none
 hi MatchParen   guifg=fg guibg=bg gui=bold ctermfg=fg ctermbg=none cterm=bold
 hi ModeMsg      gui=none cterm=none
@@ -43,7 +43,7 @@ hi PmenuSel     guifg=bg guibg=#E6DB74 ctermfg=bg ctermbg=186
 hi PmenuSbar    guibg=bg ctermbg=bg
 hi PmenuThumb   guifg=fg ctermfg=fg
 hi Question     guifg=#A6E22E gui=none ctermfg=148
-hi Search       guifg=fg guibg=#383830 gui=none ctermfg=fg ctermbg=237 cterm=none
+hi Search       guifg=bg guibg=#FFE792 gui=none ctermfg=bg ctermbg=186 cterm=none
 hi SpecialKey   guifg=#3B3A32 gui=none ctermfg=241 cterm=none
 hi SpellBad     guisp=#F92672
 hi SpellCap     guisp=#65D9EF
@@ -54,8 +54,8 @@ hi StatusLineNC guifg=#75715E guibg=#3E3D32 gui=none ctermfg=231 ctermbg=241 cte
 hi TabLine      guifg=#75715E guibg=#3E3D32 gui=none ctermfg=8 ctermbg=9 cterm=none
 hi TabLineFill  guifg=fg guibg=#3E3D32 gui=none ctermfg=fg ctermbg=9 cterm=none
 hi TabLineSel   guifg=fg guibg=#3E3D32 gui=none ctermfg=fg ctermbg=9 cterm=none
-hi Title        guifg=#F92672 gui=none ctermfg=12 cterm=none
-hi Visual       guibg=#49483E gui=none ctermbg=9 cterm=none
+hi Title        guifg=#F92672 gui=none ctermfg=197 cterm=none
+hi Visual       guibg=#383830 gui=none ctermbg=237 cterm=none
 "hi VisualNOS
 hi WarningMsg   guifg=#F92672 gui=none ctermfg=1 cterm=none
 "hi WildMenu
@@ -70,10 +70,10 @@ hi MyTagListFileName guifg=#FD971F guibg=bg gui=none ctermfg=11 ctermbg=bg cterm
 " Color groups
 hi Blue    guifg=#66D9EF gui=none ctermfg=81  ctermbg=none cterm=none
 hi Green   guifg=#A6E22E gui=none ctermfg=148 ctermbg=none cterm=none
-hi Grey    guifg=#75715E gui=none ctermfg=242  ctermbg=none cterm=none
+hi Grey    guifg=#75715E gui=none ctermfg=242 ctermbg=none cterm=none
 hi Orange  guifg=#FD971F gui=none ctermfg=208 ctermbg=none cterm=none
 hi Purple  guifg=#AE81FF gui=none ctermfg=141 ctermbg=none cterm=none
-hi Red     guifg=#F92672 gui=none ctermfg=192 ctermbg=none cterm=none
+hi Red     guifg=#F92672 gui=none ctermfg=197 ctermbg=none cterm=none
 hi White   guifg=#F8F8F2 gui=none ctermfg=231 ctermbg=none cterm=none
 hi Yellow  guifg=#E6DB74 gui=none ctermfg=186 ctermbg=none cterm=none
 
