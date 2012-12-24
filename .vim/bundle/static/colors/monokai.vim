@@ -34,7 +34,7 @@ hi VertSplit    guifg=#3B3A32 guibg=bg gui=none ctermfg=9 ctermbg=bg cterm=none
 hi Folded       guifg=#75715E guibg=bg gui=none ctermfg=8 ctermbg=bg cterm=none
 hi FoldColumn   guifg=#75715E guibg=#3E3D32 gui=none ctermfg=8 ctermbg=9 cterm=none
 hi SignColum    guifg=#75715E guibg=#3E3D32 gui=none ctermfg=8 ctermbg=9 cterm=none
-hi IncSearch    guifg=bg guibg=#E6DB74 gui=none ctermfg=bg ctermbg=3 cterm=none
+hi IncSearch    guifg=fg guibg=#383830 gui=none ctermfg=bg ctermbg=3 cterm=none
 hi LineNr       guifg=#75715E guibg=#3E3D32 gui=none ctermfg=8 ctermbg=9 cterm=none
 hi MatchParen   guifg=fg guibg=bg gui=bold ctermfg=fg ctermbg=bg cterm=bold
 hi ModeMsg      gui=none cterm=none
@@ -45,7 +45,7 @@ hi PmenuSel     guifg=fg guibg=bg ctermfg=fg ctermbg=bg
 hi PmenuSbar    guibg=bg ctermbg=bg
 hi PmenuThumb   guifg=fg ctermfg=fg
 hi Question     guifg=#A6E22E gui=none ctermfg=2
-hi Search       guifg=bg guibg=#E6DB74 gui=none ctermfg=bg ctermbg=3 cterm=none
+hi Search       guifg=fg guibg=#383830 gui=none ctermfg=bg ctermbg=3 cterm=none
 hi SpecialKey   guifg=#3B3A32 gui=none ctermfg=9 cterm=none
 hi SpellBad     guisp=#F92672
 hi SpellCap     guisp=#65D9EF
