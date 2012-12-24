@@ -176,17 +176,22 @@ set tags=./tags;/
 " List invisible chars
 set listchars=tab:▸\ ,eol:¬,trail:.
 
-let mapleader=","
 "------------------------------------------------------------------------------
+"1}}}
+
+" Variables {{{1
+
+let mapleader=","
+let g:is_posix = 1
+" In Debian bug 361177, sh.vim learned a g:is_posix configuration value
+" See: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=552108
+
 "1}}}
 
 " GUI {{{1
 "------------------------------------------------------------------------------
 "colorscheme mustang
 let g:solarized_visibility = "low"
-colorscheme monokai
-"colorscheme zenburn
-set background=dark
 if has("gui_running")
     if has("gui_gtk2")
         set guifont=Ubuntu\ Mono\ 10
@@ -204,6 +209,8 @@ if has("gui_running")
 else
     set t_Co=256
 endif
+set background=dark
+colorscheme monokai
 " }}}
 
 " Mappings {{{1

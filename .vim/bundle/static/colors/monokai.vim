@@ -2,7 +2,7 @@
 " Maintainer:  Damien Gombault <desintegr@gmail.com>
 " WWW:         http://desintegr.googlecode.com/svn/config/vim/colors/monokai.vim
 " Last Change: 2008 Feb 27
-" Version:     0.1.3
+" Version:     0.2.0
 
 set background=dark
 
@@ -14,45 +14,43 @@ endif
 
 let colors_name = "monokai"
 
-hi Normal       guifg=#F8F8F2 guibg=#272822 ctermfg=7 ctermbg=0
+hi Normal       guifg=#F8F8F2 guibg=#272822 ctermfg=231 ctermbg=235
 
 
 " Main highlight groups
-hi Cursor       guibg=fg
-hi CursorLine   guibg=#3E3D32 gui=none ctermbg=9 cterm=none
-hi ColorColumn  guibg=#3E3D32 gui=none ctermbg=9 cterm=none
+hi Cursor       guibg=fg ctermfg=235 ctermbg=231 cterm=none
 "hi CursorIM
-"hi CursorColumn
-"hi CursorLine
-hi Directory    guifg=#66D9EF gui=none ctermfg=6 cterm=none
-hi DiffAdd      guifg=bg guibg=#A6E22E ctermfg=2 cterm=none
-hi DiffChange   guifg=bg guibg=#E6DB74 ctermfg=3 cterm=none
-hi DiffDelete   guifg=bg guibg=#F92672 ctermfg=1 cterm=none
-hi DiffText     guifg=bg guibg=#E6DB74 ctermfg=3 cterm=none
-hi ErrorMsg     guifg=#F92672 guibg=bg gui=none ctermfg=1 ctermbg=bg cterm=none
-hi VertSplit    guifg=#3B3A32 guibg=bg gui=none ctermfg=9 ctermbg=bg cterm=none
-hi Folded       guifg=#75715E guibg=bg gui=none ctermfg=8 ctermbg=bg cterm=none
-hi FoldColumn   guifg=#75715E guibg=#3E3D32 gui=none ctermfg=8 ctermbg=9 cterm=none
-hi SignColum    guifg=#75715E guibg=#3E3D32 gui=none ctermfg=8 ctermbg=9 cterm=none
-hi IncSearch    guifg=fg guibg=#383830 gui=none ctermfg=bg ctermbg=3 cterm=none
-hi LineNr       guifg=#75715E guibg=#3E3D32 gui=none ctermfg=8 ctermbg=9 cterm=none
-hi MatchParen   guifg=fg guibg=bg gui=bold ctermfg=fg ctermbg=bg cterm=bold
+hi CursorLine   guibg=#3E3D32 gui=none ctermfg=none ctermbg=237 cterm=none
+hi ColorColumn  guibg=#3E3D32 gui=none ctermfg=none ctermbg=237 cterm=none
+hi Directory    guifg=#66D9EF gui=none ctermfg=141 ctermbg=none cterm=none
+hi DiffAdd      guifg=bg guibg=#A6E22E ctermfg=231 ctermbg=64 cterm=bold
+hi DiffChange   guifg=bg guibg=#E6DB74 ctermfg=231 ctermbg=23 cterm=none
+hi DiffDelete   guifg=bg guibg=#F92672 ctermfg=88 ctermbg=none cterm=none
+hi DiffText     guifg=bg guibg=#E6DB74 ctermfg=231 ctermbg=24 cterm=bold
+hi ErrorMsg     guifg=#F92672 guibg=bg gui=none ctermfg=231 ctermbg=197 cterm=none
+hi VertSplit    guifg=#3B3A32 guibg=bg gui=none ctermfg=241 ctermbg=241 cterm=none
+hi Folded       guifg=#75715E guibg=bg gui=none ctermfg=242 ctermbg=235 cterm=none
+hi FoldColumn   guifg=#75715E guibg=#3E3D32 gui=none ctermfg=231 ctermbg=241 cterm=none
+hi SignColum    guifg=#75715E guibg=#3E3D32 gui=none ctermfg=231 ctermbg=241 cterm=none
+hi IncSearch    guifg=fg guibg=#383830 gui=none ctermfg=fg ctermbg=237 cterm=none
+hi LineNr       guifg=#75715E guibg=#3E3D32 gui=none ctermfg=102 ctermbg=237 cterm=none
+hi MatchParen   guifg=fg guibg=bg gui=bold ctermfg=fg ctermbg=none cterm=bold
 hi ModeMsg      gui=none cterm=none
-hi MoreMsg      guifg=#66D9EF gui=none ctermfg=4 cterm=none
-hi NonText      guifg=#3B3A32 gui=none ctermfg=9 cterm=none
-hi Pmenu        guifg=fg guibg=#3E3D32 ctermfg=fg ctermbg=9
-hi PmenuSel     guifg=fg guibg=bg ctermfg=fg ctermbg=bg
+hi MoreMsg      guifg=#66D9EF gui=none ctermfg=81 cterm=none
+hi NonText      guifg=#3B3A32 gui=none ctermfg=241 cterm=none
+hi Pmenu        guifg=fg guibg=#3E3D32 ctermfg=fg ctermbg=241
+hi PmenuSel     guifg=bg guibg=#E6DB74 ctermfg=bg ctermbg=186
 hi PmenuSbar    guibg=bg ctermbg=bg
 hi PmenuThumb   guifg=fg ctermfg=fg
-hi Question     guifg=#A6E22E gui=none ctermfg=2
-hi Search       guifg=fg guibg=#383830 gui=none ctermfg=bg ctermbg=3 cterm=none
-hi SpecialKey   guifg=#3B3A32 gui=none ctermfg=9 cterm=none
+hi Question     guifg=#A6E22E gui=none ctermfg=148
+hi Search       guifg=fg guibg=#383830 gui=none ctermfg=fg ctermbg=237 cterm=none
+hi SpecialKey   guifg=#3B3A32 gui=none ctermfg=241 cterm=none
 hi SpellBad     guisp=#F92672
 hi SpellCap     guisp=#65D9EF
 "hi SpellLocal
 hi SpellRare    guisp=#AE81FF
-hi StatusLine   guifg=fg guibg=#3E3D32 gui=none ctermfg=fg ctermbg=9 cterm=none
-hi StatusLineNC guifg=#75715E guibg=#3E3D32 gui=none ctermfg=8 ctermbg=9 cterm=none
+hi StatusLine   guifg=fg guibg=#3E3D32 gui=none ctermfg=231 ctermbg=241 cterm=bold
+hi StatusLineNC guifg=#75715E guibg=#3E3D32 gui=none ctermfg=231 ctermbg=241 cterm=none
 hi TabLine      guifg=#75715E guibg=#3E3D32 gui=none ctermfg=8 ctermbg=9 cterm=none
 hi TabLineFill  guifg=fg guibg=#3E3D32 gui=none ctermfg=fg ctermbg=9 cterm=none
 hi TabLineSel   guifg=fg guibg=#3E3D32 gui=none ctermfg=fg ctermbg=9 cterm=none
@@ -66,42 +64,38 @@ hi WarningMsg   guifg=#F92672 gui=none ctermfg=1 cterm=none
 "hi ScrollBar
 "hi Tooltip
 
-
 " Plugin specific highlight groups
 hi MyTagListFileName guifg=#FD971F guibg=bg gui=none ctermfg=11 ctermbg=bg cterm=none
 
-
 " Color groups
-hi Blue    guifg=#66D9EF gui=none ctermfg=6  cterm=none
-hi Green   guifg=#A6E22E gui=none ctermfg=2  cterm=none
-hi Grey    guifg=#75715E gui=none ctermfg=8  cterm=none
-hi Orange  guifg=#FD971F gui=none ctermfg=11 cterm=none
-hi Purple  guifg=#AE81FF gui=none ctermfg=5  cterm=none
-hi Red     guifg=#F92672 gui=none ctermfg=1  cterm=none
-hi White   guifg=#F8F8F2 gui=none ctermfg=7  cterm=none
-hi Yellow  guifg=#E6DB74 gui=none ctermfg=3  cterm=none
+hi Blue    guifg=#66D9EF gui=none ctermfg=81  ctermbg=none cterm=none
+hi Green   guifg=#A6E22E gui=none ctermfg=148 ctermbg=none cterm=none
+hi Grey    guifg=#75715E gui=none ctermfg=242  ctermbg=none cterm=none
+hi Orange  guifg=#FD971F gui=none ctermfg=208 ctermbg=none cterm=none
+hi Purple  guifg=#AE81FF gui=none ctermfg=141 ctermbg=none cterm=none
+hi Red     guifg=#F92672 gui=none ctermfg=192 ctermbg=none cterm=none
+hi White   guifg=#F8F8F2 gui=none ctermfg=231 ctermbg=none cterm=none
+hi Yellow  guifg=#E6DB74 gui=none ctermfg=186 ctermbg=none cterm=none
 
 hi BlueU   guifg=#66D9EF gui=underline ctermfg=6 cterm=underline
 
-hi RedR    guifg=fg guibg=#F92672 gui=none ctermfg=fg ctermbg=1 cterm=none
-hi YellowR guifg=bg guibg=#FD971F gui=none ctermfg=fg ctermbg=3 cterm=none
+hi RedR    guifg=fg guibg=#F92672 gui=none ctermfg=fg ctermbg=192 cterm=none
+hi YellowR guifg=bg guibg=#FD971F gui=none ctermfg=fg ctermbg=208 cterm=none
 
 
-" Syntax highligh groups
-hi! link Comment      Grey
-"
-hi! link Constant     Purple
-hi! link String       Yellow
+" Syntax highlight groups
 hi! link Character    Yellow
-"hi Number
-"hi Boolean
-"hi Float
-"
+hi! link Comment      Grey
+hi! link Constant     Purple
+hi! link Float        Purple
+hi! link String       Yellow
+hi! link Number       Purple
+hi! link Boolean      Purple
 hi! link Identifier   Green
-"hi Function
+hi! link Function     Green
 "
 hi! link Statement    Red
-"hi Conditional
+"hi Conditional ctermfg=197 ctermbg=none cterm=none
 "hi Repeat
 "hi Label
 hi! link Operator     Green
@@ -110,7 +104,7 @@ hi! link Operator     Green
 "
 hi! link PreProc      Orange
 "hi Include
-"hi Define
+"hi Define ctermfg=197 ctermbg=none cterm=none
 "hi Macro
 "hi PreCondit
 "
@@ -131,7 +125,7 @@ hi! link Underlined   BlueU
 hi! link Error        RedR
 hi! link Todo         YellowR
 
-" Language specific highligh groups
+" Language specific highlight groups
 " C
 hi link cStatement              Green
 " C++
