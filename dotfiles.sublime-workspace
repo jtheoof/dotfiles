@@ -1,0 +1,570 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/tmp/stdio.h",
+			"settings":
+			{
+				"buffer_size": 28783,
+				"line_ending": "Unix",
+				"name": "/* Define ISO C stdio on top of C++ iostreams."
+			}
+		},
+		{
+			"file": ".local/bin/jtheoof",
+			"settings":
+			{
+				"buffer_size": 4184,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/jeremy/.config/sublime-text-2/Packages/Color Scheme - Default/Monokai.tmTheme",
+			"settings":
+			{
+				"buffer_size": 8395,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 369.0,
+		"selected_items":
+		[
+			[
+				"hi",
+				"Git: Commit history"
+			],
+			[
+				"pack in",
+				"Package Control: Install Package"
+			],
+			[
+				"php",
+				"Set Syntax: PHP"
+			],
+			[
+				"histo",
+				"Git: Commit history"
+			],
+			[
+				"comm",
+				"Git: Commit history"
+			],
+			[
+				"bla",
+				"Git: Blame"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/jeremy/.dotfiles/monokai.color-palette",
+		"/home/jeremy/.dotfiles/.gitconfig",
+		"/home/jeremy/.dotfiles/.config/terminator/config",
+		"/home/jeremy/.dotfiles/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/home/jeremy/.dotfiles/.tigrc",
+		"/home/jeremy/.dotfiles/.dircolors",
+		"/home/jeremy/.dotfiles/test/colors/monokai.color-palette",
+		"/home/jeremy/.dotfiles/.vim/bundle/static/colors/monokai.vim",
+		"/home/jeremy/.dotfiles/dotfiles.sublime-project",
+		"/home/jeremy/.dotfiles/bin/ubuntu-post-install",
+		"/home/jeremy/.dotfiles/bin/jtheoof",
+		"/home/jeremy/.dotfiles/files/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/home/jeremy/.dotfiles/dotfiles.sublime-workspace",
+		"/home/jeremy/.dotfiles/files/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/jeremy/dev/github/jtheoof/dotfiles/files/.config/sublime-text-2/Packages/User/Package",
+		"/home/jeremy/dev/github/jtheoof/dotfiles/files/.config/sublime-text-2/Packages/User/.gitignore",
+		"/home/jeremy/dev/github/jtheoof/dotfiles/files/.config/sublime-text-2/Packages/User/Package Control.last-run",
+		"/home/jeremy/dev/github/jtheoof/dotfiles/files/.config/sublime-text-2/Packages/User/Control.last-run",
+		"/home/jeremy/dev/github/jtheoof/dotfiles/files/.config/sublime-text-2/Packages/SublimeLinter/Default (Linux).sublime-keymap",
+		"/home/jeremy/dev/github/jtheoof/dotfiles/files/.config/sublime-text-2/Packages/User/Package Control.sublime-settings",
+		"/home/jeremy/dev/github/jtheoof/dotfiles/files/.config/sublime-text-2/Control.sublime-settings",
+		"/home/jeremy/.config/sublime-text-2/Settings/Session.sublime_session",
+		"/home/jeremy/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/home/jeremy/dev/github/jtheoof/dotfiles/files/.config/sublime-text-2/Packages/PyV8/linux64/config.json",
+		"/home/jeremy/.config/sublime-text-2/Packages/Package Control/package-metadata.json",
+		"/home/jeremy/.config/sublime-text-2/Packages/Package Control/Package Control.sublime-settings",
+		"/home/jeremy/.config/sublime-text-2/Packages/Package Control/example-messages.json",
+		"/home/jeremy/.config/sublime-text-2/Packages/Emmet/emmet/context.py",
+		"/tmp/test.html",
+		"/home/jeremy/dev/github/jtheoof/dotfiles/files/.config/sublime-text-2/Settings/.gitignore",
+		"/home/jeremy/dev/github/jtheoof/dotfiles/files/.config/sublime-text-2/.gitignore",
+		"/home/jeremy/dev/github/jtheoof/dotfiles/files/.config/sublime-text-2/Pristine Packages/Go.sublime-package",
+		"/home/jeremy/.config/sublime-text-2/Packages/Package Control/readme.creole",
+		"/usr/share/applications/sublime.desktop"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"^#[\\w\\d]*\\s",
+			"diff.in",
+			"param",
+			"73ee",
+			"diff",
+			"#859900",
+			"function",
+			"string.*string.*string",
+			"string",
+			"red",
+			"warning",
+			"error",
+			"8B0807",
+			"link",
+			"8B0807",
+			"ee",
+			"^(.*\\w)\\s.*$",
+			"073642",
+			"handle_install",
+			"usage",
+			"false",
+			"trim_trailing_white_space_on_save",
+			"minimap",
+			"name",
+			"ignored_packages",
+			"outermost",
+			"function"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"",
+			"\\1"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/tmp/stdio.h",
+					"settings":
+					{
+						"buffer_size": 28783,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								28105,
+								28105
+							]
+						],
+						"settings":
+						{
+							"auto_name": "/* Define ISO C stdio on top of C++ iostreams.",
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 11842.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": ".local/bin/jtheoof",
+					"settings":
+					{
+						"buffer_size": 4184,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1230,
+								1230
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 585.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 2,
+					"file": "/home/jeremy/.config/sublime-text-2/Packages/Color Scheme - Default/Monokai.tmTheme",
+					"settings":
+					{
+						"buffer_size": 8395,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6924,
+								6924
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1227.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			0.5,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"gitcon",
+				".gitconfig"
+			],
+			[
+				"tig",
+				".tigrc"
+			],
+			[
+				"dirco",
+				".dircolors"
+			],
+			[
+				"mono",
+				".vim/bundle/static/colors/monokai.vim"
+			],
+			[
+				"con",
+				".config/terminator/config"
+			],
+			[
+				"ubuntu",
+				"bin/ubuntu-post-install"
+			],
+			[
+				"sublime-wo",
+				"dotfiles.sublime-workspace"
+			],
+			[
+				"userprefer",
+				"files/.config/sublime-text-2/Packages/User/Preferences.sublime-settings"
+			],
+			[
+				"preferences",
+				"files/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings"
+			],
+			[
+				"usersetti",
+				"files/.config/sublime-text-2/Packages/User/Preferences.sublime-settings"
+			],
+			[
+				"jtheoof",
+				"bin/jtheoof"
+			],
+			[
+				"usersett",
+				"Packages/User/Preferences.sublime-settings"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 242.0,
+	"status_bar_visible": true
+}
