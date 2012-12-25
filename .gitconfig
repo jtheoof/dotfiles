@@ -22,6 +22,7 @@
     post-review = push-for
     squash = commit -s --amend -C HEAD
     st = status
+    sta = status --ignored
     su = submodule update
     undo = reset HEAD^
     unstash = stash apply
