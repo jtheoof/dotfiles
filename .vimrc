@@ -697,23 +697,12 @@ nnoremap <silent> sc     :%s///n<CR>
 "2}}}
 
 " CTRL-P {{{2
-" Search by filename. <C-D> to change.
-let g:ctrlp_by_filename = 1
-
-" Enable regular expressions search. <C-R> to change.
-let g:ctrlp_regexp = 1
-
-" Window at the bottom
+let g:ctrlp_by_filename = 0
+let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_match_window_bottom = 1
-
-" Caching in $HOME
-let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-
-" Show hidder directories
-let g:ctrlp_show_hidden = 1
-
-" Disable default 'ra' path mode
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_regexp = 0
+let g:ctrlp_use_caching = 1
+let g:ctrlp_working_path_mode = ''
 "2}}}
 
 " NERDTree {{{2
