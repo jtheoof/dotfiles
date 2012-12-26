@@ -33,9 +33,6 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# Removing auto correction feature
-unsetopt correct_all
-
 # Dircolors
 [[ -f /usr/bin/dircolors ]] && [[ -f $HOME/.dircolors ]] && eval $(dircolors -b $HOME/.dircolors)
 
@@ -246,6 +243,9 @@ function chpwd() {
 }
 
 # 1}}}
+
+#bindkey -v setopt VI?
+unsetopt correct_all # removing auto correction feature
 
 # Sourcing zshrc_work if exists
 if [[ -f $HOME/.zshrc_work ]]; then
