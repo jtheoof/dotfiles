@@ -46,6 +46,14 @@ print -rP '
 $fg[green]%n $fg[yellow]%m $fg[blue]$(get_pwd)$(put_spacing)$(git_prompt_info) $(battery_charge)'
 }
 
+# set VIMODE according to the current mode (default “[i]”)
+VIMODE='[i]'
+function zle-keymap-select {
+ VIMODE="${${KEYMAP/vicmd/[n]}/(main|viins)/[i]}"
+ zle reset-prompt
+}
+
+#zle -N zle-keymap-select
 PROMPT='%{$reset_color%}> '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="[git:"
