@@ -11,7 +11,7 @@
 [profiles]
   [[default]]
     scrollbar_position = hidden
-    palette = "#706449:#E2302E:#A6E22E:#FD971F:#3285D2:#F92672:#66D9EF:#F8F8F2:#706449:#F92672:#A6E22E:#E6DB74:#3285D2:#F92672:#383830:#F8F8F2"
+    palette = "#706449:#E2302E:#A6E22E:#FD971F:#3285D2:#F92672:#66D9EF:#F8F8F2:#706449:#F92672:#A6E22E:#E6DB74:#3285D2:#F92672:#66D9EF:#F8F8F2"
     background_darkness = 1.0
     use_system_font = False
     foreground_color = "#F8F8F2"
@@ -22,7 +22,7 @@
     scrollback_infinite = True
   [[monokai]]
     scrollbar_position = hidden
-    palette = "#706449:#E2302E:#A6E22E:#FD971F:#3285D2:#F92672:#66D9EF:#F8F8F2:#706449:#F92672:#A6E22E:#E6DB74:#3285D2:#F92672:#383830:#F8F8F2"
+    palette = "#706449:#E2302E:#A6E22E:#FD971F:#3285D2:#F92672:#66D9EF:#F8F8F2:#706449:#F92672:#A6E22E:#E6DB74:#3285D2:#F92672:#66D9EF:#F8F8F2"
     background_darkness = 1.0
     use_system_font = False
     foreground_color = "#F8F8F2"
