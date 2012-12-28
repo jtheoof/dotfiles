@@ -1,6 +1,10 @@
 #!/bin/sh
 # vim:set et ts=2 sw=2:
 
+# TODO Install
+# .oh-my-zsh
+# Google Chrome
+
 # Print functions {{{
 
 print_debug() {

@@ -43,7 +43,7 @@ function put_spacing() {
 
 function precmd() {
 print -rP '
-$fg[green]%n $fg[yellow]%m $fg[blue]$(get_pwd)$(put_spacing)$(git_prompt_info) $(battery_charge)'
+$fg[green]%n $fg[yellow]%m $fg[cyan]$(get_pwd)$(put_spacing)$(git_prompt_info) $(battery_charge)'
 }
 
 # set VIMODE according to the current mode (default “[i]”)
