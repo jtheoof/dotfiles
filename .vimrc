@@ -95,7 +95,8 @@ set viminfo='10,\"100,:20,%        " 10 marks, 100 lines, 20 command lines
 "set whichwrap=<,>,h,l,[,]         " move freely between lines (wrap)
 set wildchar=<Tab> wildmenu wildmode=full
 set wildcharm=<C-Z>
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/cache/*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=*/cache/*,*/undodir/*
 set wildmenu
 set wildmode=longest,full
 
@@ -131,8 +132,11 @@ endif
 
 " X Clipboard
 if has("unix")
-    "set clipboard=unnamedplus  need to be fixed for debians
-    set clipboard=unnamed
+    if has('unnamedplus')
+        set clipboard=unnamedplus
+    else
+        set clipboard=unnamed
+    endif
 else
     set clipboard=unnamed
 endif
@@ -313,6 +317,9 @@ nnoremap <PageUp> <C-U>
 nnoremap <PageDown> <C-D>
 nnoremap <S-Down> 3<C-E>
 nnoremap <S-Up> 3<C-Y>
+
+" Quick highlight
+nnoremap <S-kMultiply> *N
 
 " Saving file
 nnoremap <silent> <C-S> :w<CR>
