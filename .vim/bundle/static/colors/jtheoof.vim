@@ -43,7 +43,7 @@ elseif &t_Co == 256
     let s:vmode       = "cterm"
     let s:red         = "197"
     let s:green       = "148"
-    let s:blue        = ""
+    let s:blue        = "32"
     let s:cyan        = "81"
     let s:magenta     = "197"
     let s:yellow      = "186"

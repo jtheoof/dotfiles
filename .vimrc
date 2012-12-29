@@ -214,7 +214,7 @@ else
     set t_Co=256
 endif
 set background=dark
-colorscheme monokai
+colorscheme jtheoof
 " }}}
 
 " Mappings {{{1
