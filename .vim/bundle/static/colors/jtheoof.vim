@@ -162,7 +162,7 @@ else
 endif
 
 " }}}
-" Basic colors {{{
+" Basic group colors {{{
 
 exe "hi! Red"       .s:fmt_none    .s:fg_red        .s:bg_none
 exe "hi! Green"     .s:fmt_none    .s:fg_green      .s:bg_none
@@ -213,7 +213,7 @@ exe "hi! Statement"      .s:fmt_none   .s:fg_magenta   .s:bg_none
 "        Keyword         any other keyword
 "        Exception       try, catch, throw
 
-exe "hi! Operator"       .s:fmt_none   .s:fg_green     .s:bg_none
+exe "hi! Operator"       .s:fmt_none   .s:fg_orange    .s:bg_none
 "        Operator        "sizeof", "+", "*", etc.
 
 exe "hi! PreProc"        .s:fmt_none   .s:fg_orange    .s:bg_none
