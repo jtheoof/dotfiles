@@ -32,7 +32,7 @@ hi VertSplit    guifg=#3B3A32 guibg=bg gui=none ctermfg=241 ctermbg=241 cterm=no
 hi Folded       guifg=#75715E guibg=bg gui=none ctermfg=242 ctermbg=235 cterm=none
 hi FoldColumn   guifg=#75715E guibg=#3E3D32 gui=none ctermfg=231 ctermbg=241 cterm=none
 hi SignColum    guifg=#75715E guibg=#3E3D32 gui=none ctermfg=231 ctermbg=241 cterm=none
-hi IncSearch    guifg=bg guibg=#FFE792 gui=none ctermfg=bg ctermbg=186 cterm=none
+hi IncSearch    guifg=bg guibg=#FD971F gui=none ctermfg=bg ctermbg=208 cterm=none
 hi LineNr       guifg=#75715E guibg=#3E3D32 gui=none ctermfg=102 ctermbg=237 cterm=none
 hi MatchParen   guifg=fg guibg=bg gui=bold ctermfg=fg ctermbg=none cterm=bold
 hi ModeMsg      gui=none cterm=none
