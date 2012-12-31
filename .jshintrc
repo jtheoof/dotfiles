@@ -1,0 +1,98 @@
+/**************************************************************************/
+/*                                                                        */
+/*  Copyright (C) 2004-2012 INTERSEC SAS                                  */
+/*                                                                        */
+/*  Should you receive a copy of this source code, you must check you     */
+/*  have a proper, written authorization of INTERSEC to hold it. If you   */
+/*  don't have such an authorization, you must DELETE all source code     */
+/*  files in your possession, and inform INTERSEC of the fact you obtain  */
+/*  these files. Should you not comply to these terms, you can be         */
+/*  prosecuted in the extent permitted by applicable law.                 */
+/*                                                                        */
+/**************************************************************************/
+
+{
+    /* Enforcing Options {{{ */
+
+    "bitwise": true,
+    "camelcase": true,
+    "curly": true,
+    "eqeqeq": true,
+    "forin": true,
+    "immed": true,
+    "indent": 4,
+    "latedef": true,
+    "newcap": true,
+    "noarg": true,
+    "nonew": true,
+    "regexp": false,
+    "undef": true,
+    "unused": true,
+    "strict": true,
+    "trailing": true,
+
+    /* }}} */
+    /* Relaxing Options {{{ */
+
+    "asi": false,
+    "boss": false,
+    "debug": false,
+    "eqnull": false,
+    "es5": false,
+    "esnext": false,
+    "evil": false,
+    "expr": false,
+    "funcscope": false,
+    "globalstrict": false,
+    "iterator": false,
+    "lastsemic": false,
+    "laxbreak": false,
+    "laxcomma": false,
+    "loopfunc": false,
+    "multistr": false,
+    "onecase": false,
+    "proto": false,
+    "regexdash": false,
+    "scripturl": false,
+    "smarttabs": false,
+    "shadow": false,
+    "sub": false,
+    "supernew": false,
+    "validthis": false,
+
+    /* }}} */
+    /* Environments {{{ */
+
+    "browser": true,
+    "couch": false,
+    "devel": true,
+    "dojo": false,
+    "jquery": true,
+    "mootools": false,
+    "node": false,
+    "nonstandard": true,
+    "prototypejs" : false,
+    "rhino": false,
+    "worker": false,
+    "wsh": false,
+    "yui": false,
+
+    /* }}} */
+    /* Legacy {{{ */
+
+    "nomen": false,
+    "onevar": false,
+    "passfail": false,
+    "white": false,
+
+    /* }}} */
+    /* Predefined Globals {{{ */
+
+    "predef": [
+        "_",
+        "sprintf",
+        "jQuery", "$"
+    ]
+
+    /* }}} */
+}
