@@ -264,7 +264,7 @@ exe "hi! Todo"           .s:fmt_none   .s:fg_back      .s:bg_orange
 
 exe "hi Cursor"          .s:fmt_none   .s:fg_none      .s:bg_front
 exe "hi CursorLine"      .s:fmt_none   .s:fg_front     .s:bg_black
-exe "hi ColorColumn"     .s:fmt_none   .s:fg_black     .s:bg_none
+exe "hi ColorColumn"     .s:fmt_none   .s:fg_none      .s:bg_black
 exe "hi Directory"       .s:fmt_none   .s:fg_cyan      .s:bg_none
 exe "hi DiffAdd"         .s:fmt_none   .s:fg_back      .s:bg_green 
 exe "hi DiffChange"      .s:fmt_none   .s:fg_back      .s:bg_yellow
@@ -277,6 +277,7 @@ exe "hi FoldColumn"      .s:fmt_none   .s:fg_grey      .s:bg_black
 exe "hi SignColum"       .s:fmt_none   .s:fg_grey      .s:bg_black
 exe "hi IncSearch"       .s:fmt_none   .s:fg_back      .s:bg_orange
 exe "hi LineNr"          .s:fmt_none   .s:fg_grey      .s:bg_black
+exe "hi CursorLineNr"    .s:fmt_none   .s:fg_white     .s:bg_black
 exe "hi MatchParen"      .s:fmt_bold   .s:fg_front     .s:bg_back
 exe "hi ModeMsg"         .s:fmt_bold   .s:fg_none      .s:bg_none
 exe "hi MoreMsg"         .s:fmt_none   .s:fg_cyan      .s:bg_none
@@ -303,7 +304,8 @@ exe "hi WarningMsg"      .s:fmt_none   .s:fg_magenta   .s:bg_none
 " }}}
 " Plugin specific highlight groups {{{
 
-exe "hi MyTagListFileName"      .s:fmt_none    .s:fg_orange     .s:bg_none
+exe "hi MyTagListFileName"        .s:fmt_none    .s:fg_orange     .s:bg_none
+exe "hi fugitiveBlameAnnotation"  .s:fmt_none    .s:fg_magenta    .s:bg_none
 
 " }}}
 " Language specific highlight groups {{{
@@ -322,6 +324,7 @@ hi! link cssRenderProp           White
 hi! link cssGeneratedContentProp White
 hi! link cssPagingProp           White
 hi! link cssTableProp            White
+hi! link cssTagName              Green
 hi! link cssUIProp               White
 hi! link cssFontDescriptorProp   White
 " Java
@@ -340,8 +343,7 @@ hi! link htmlTagName     Conditional
 hi! link htmlEndTag      Comment
 hi! link htmlLink        Normal
 hi! link htmlArg         Green
-" CSS/SASS
-hi! link cssTagName                  Yellow
+" SASS
 hi! link sassVariable                Green
 hi! link sassFunction                Red
 hi! link sassMixing                  Red
