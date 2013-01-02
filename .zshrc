@@ -40,6 +40,7 @@ source $ZSH/oh-my-zsh.sh
 # Exports {{{1
 
 export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.local/bin:$HOME/dev/android/android-sdk-linux/tools:$HOME/dev/android/android-sdk-linux/platform-tools:/opt/SenchaSDKTools-2.0.0-beta3:/opt/eclipse/eclipse-cpp-indigo-SR2-linux-gtk-x86_64-RTC-v4.0
+export LESS=-FRSX
 
 # 1}}}
 # Aliases {{{1
@@ -54,7 +55,6 @@ alias vi='vim'
 alias gv='gvim'
 alias sub='sublime'
 alias diff='colordiff -u'
-alias less='less -R'
 
 # Listing
 alias ls='ls --color=auto'
