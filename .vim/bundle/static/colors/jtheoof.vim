@@ -302,31 +302,26 @@ exe "hi Visual"          .s:fmt_none   .s:fg_none      .s:bg_black
 exe "hi WarningMsg"      .s:fmt_none   .s:fg_magenta   .s:bg_none
 
 " }}}
-" Plugin specific highlight groups {{{
-
-exe "hi MyTagListFileName"        .s:fmt_none    .s:fg_orange     .s:bg_none
-exe "hi fugitiveBlameAnnotation"  .s:fmt_none    .s:fg_magenta    .s:bg_none
-
-" }}}
 " Language specific highlight groups {{{
 
 hi! link cStatement              Green
 hi! link cppStatement            Green
 " CSS
-hi! link cssBraces               White
-hi! link cssFontProp             White
-hi! link cssColorProp            White
-hi! link cssTextProp             White
-hi! link cssBoxProp              White
-hi! link cssRenderProp           White
 hi! link cssAuralProp            White
-hi! link cssRenderProp           White
+hi! link cssBoxProp              White
+hi! link cssBraces               White
+hi! link cssColorProp            White
+hi! link cssFontDescriptorProp   White
+hi! link cssFontProp             White
 hi! link cssGeneratedContentProp White
+hi! link cssImportant            Magenta
 hi! link cssPagingProp           White
+hi! link cssRenderProp           White
+hi! link cssRenderProp           White
 hi! link cssTableProp            White
 hi! link cssTagName              Green
+hi! link cssTextProp             White
 hi! link cssUIProp               White
-hi! link cssFontDescriptorProp   White
 " Java
 hi! link javaStatement           Green
 " Ruby
@@ -356,6 +351,12 @@ hi! link sassId                      Identifier
 hi! link sassClass                   Type
 hi! link sassIdChar                  sassId
 hi! link sassClassChar               sassClass
+
+" }}}
+" Plugin specific highlight groups {{{
+
+exe "hi MyTagListFileName"        .s:fmt_none    .s:fg_orange     .s:bg_none
+exe "hi fugitiveBlameAnnotation"  .s:fmt_none    .s:fg_magenta    .s:bg_none
 
 " }}}
 " License {{{
