@@ -373,10 +373,6 @@ nnoremap <C-@><C-@> :cs find s <C-R>=expand("<cword>")<CR><CR>
 "2}}}
 
 " Insert mode {{{2
-" Normal wrapping navigation
-inoremap <Up> <Esc>gka
-inoremap <Down> <Esc>gja
-
 inoremap <Home> <Esc>^i
 
 " Easy navigation
