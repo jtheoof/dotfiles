@@ -60,7 +60,8 @@ syntax on                    " enable syntax
 "------------------------------------------------------------------------------
 "set autochdir                      " Automatically follow current directory
 set autoread                       " automatically reload file changes
-set autowrite                      " automatically save before :next or :make        
+set autowrite                      " automatically save before :next or :make
+set autowriteall                   " same as autowrite but for all actions
 set backspace=indent,eol,start     " more powerful backspacing
 set nobackup                       " do not keep a backup file
 set nocursorline                     " Highlight current line
