@@ -286,7 +286,7 @@ nmap <Leader>tj :call JsBeautify()<CR>
 nmap <Leader>tl :set list!<CR>
 nmap <Leader>tw :set wrap!<CR>
 
-nnoremap <Leader>y% :let @+ = expand("%:p")
+nnoremap <Leader>y% :let @+ = expand("%:p")<CR>
 "2}}}
 
 " Normal mode {{{2
