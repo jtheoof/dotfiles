@@ -7,25 +7,27 @@
 " Modified: 2011 Apr 14
 " Comment:  Big thanks to amix.dk: http://amix.dk/vim/vimrc.html
 
-set nocompatible             " use vim defaults, we don't care about vi anymore
+set nocompatible " use vim defaults, we don't care about vi anymore
 
 " Pathogen {{{1
-"------------------------------------------------------------------------------
+
 " Pathogen must be the first plugin to load before anything else
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Bundle: tpope/vim-pathogen
 call pathogen#infect()
 call pathogen#helptags()     " don't call it everytime cause it's slow?
-"------------------------------------------------------------------------------
-"1}}}
+
+" 1}}}
+" Init {{{1
 
 runtime macros/matchit.vim   " smarter use of '%'
 
 filetype plugin indent on    " put filetype plugin back on after pathogen
 syntax on                    " enable syntax
 
+" 1}}}
 " Bundles {{{1
-"------------------------------------------------------------------------------
+
 " See: https://github.com/bronson/vim-update-bundles
 
 " Ignore those
@@ -53,11 +55,10 @@ syntax on                    " enable syntax
 
 " Color
 " Bundle: altercation/vim-colors-solarized
-"------------------------------------------------------------------------------
-"1}}}
 
+" 1}}}
 " Main options {{{1
-"------------------------------------------------------------------------------
+
 "set autochdir                      " Automatically follow current directory
 set autoread                       " automatically reload file changes
 set autowrite                      " automatically save before :next or :make
@@ -181,9 +182,7 @@ set tags=./tags;/
 " List invisible chars
 set listchars=tab:▸\ ,eol:¬,trail:.
 
-"------------------------------------------------------------------------------
-"1}}}
-
+" 1}}}
 " Variables {{{1
 
 let mapleader=","
@@ -191,10 +190,9 @@ let g:is_posix = 1
 " In Debian bug 361177, sh.vim learned a g:is_posix configuration value
 " See: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=552108
 
-"1}}}
-
+" 1}}}
 " GUI {{{1
-"------------------------------------------------------------------------------
+
 "colorscheme mustang
 let g:solarized_visibility = "low"
 if has("gui_running")
@@ -216,12 +214,12 @@ else
 endif
 set background=dark
 colorscheme jtheoof
-" }}}
 
+" 1}}}
 " Mappings {{{1
-"------------------------------------------------------------------------------
 
 " Leader {{{2
+
 " With a map leader it's possible to do extra key combinations
 " like <Leader>w saves the current file
 let mapleader = ","
@@ -287,9 +285,10 @@ nmap <Leader>tl :set list!<CR>
 nmap <Leader>tw :set wrap!<CR>
 
 nnoremap <Leader>y% :let @+ = expand("%:p")<CR>
-"2}}}
 
+" 2}}}
 " Normal mode {{{2
+
 " Search should olways be 'very magic'
 " Fix ack.vim in order to work properly
 " Right now if you run AclFromSearch with a 'very magic' pattern
@@ -372,9 +371,10 @@ nnoremap <M-Down> <C-i>
 
 " Map Ctrl-Space to cscope find current word
 nnoremap <C-@><C-@> :cs find s <C-R>=expand("<cword>")<CR><CR>
-"2}}}
 
+" 2}}}
 " Insert mode {{{2
+
 inoremap <Home> <Esc>^i
 
 " Easy navigation
@@ -401,8 +401,8 @@ imap <C-BS> <C-W>
 imap <C-Del> <Esc><Right>"_dei
 " Insert unicode characters
 imap <C-u> <C-v>u
-"2}}}
 
+" 2}}}
 " Visual mode {{{2
 
 " Easy search through complex visual selections.
@@ -429,13 +429,11 @@ vnoremap <BS> <gv
 
 " Substitutiion
 vmap ! y<Esc>:%s/<C-R>"/
-"2}}}
 
-"------------------------------------------------------------------------------
-"1}}}
+" 2}}}
 
+" 1}}}
 " Functions {{{1
-"------------------------------------------------------------------------------
 
 " Switch between light and dark background.
 " Quite useful for themes like solarized and time during the day.
@@ -447,11 +445,8 @@ function! BackgroundToggle()
     endif
 endfunction
 
-"------------------------------------------------------------------------------
-"1}}}
-
+" 1}}}
 " Auto commands {{{1
-"------------------------------------------------------------------------------
 
 " Automatically fitting a quickfix window height
 au FileType qf call AdjustWindowHeight(3, 20)
@@ -469,11 +464,8 @@ autocmd FocusLost * execute ":silent! wa"
 " Auto change directory on Buffer Entering
 " autocmd BufEnter * execute ":silent! lcd %:p:h"
 
-"------------------------------------------------------------------------------
-"1}}}
-
+" 1}}}
 " Spell checking {{{1
-"------------------------------------------------------------------------------
 
 " Use :mkspell! ~/.vim/spell/en.utf-8.add to regenerate spelling binary files
 
@@ -485,9 +477,8 @@ map <Leader>sn ]s
 map <Leader>sp [s
 map <Leader>sa zg
 map <Leader>s? z=
-"------------------------------------------------------------------------------
-"1}}}
 
+" 1}}}
 " Search {{{1
 "------------------------------------------------------------------------------
 
@@ -547,20 +538,18 @@ function! s:ScopeSearch(navigator, mode)
     return "\b"
 endfunction
 
-"------------------------------------------------------------------------------
-"1}}}
-
+" 1}}}
 " Programming {{{1
-"------------------------------------------------------------------------------
-
 " Java {{{2
+
 augroup filetype_java
     autocmd!
     autocmd Filetype java set makeprg=ant-android
 augroup END
-"2}}}
 
+" 2}}}
 " Python {{{2
+
 let python_highlight_all = 1
 augroup filetype_python
     autocmd!
@@ -574,17 +563,19 @@ augroup filetype_python
     autocmd FileType python map <buffer> <Leader>C ?class
     autocmd FileType python map <buffer> <Leader>D ?def
 augroup END
-"2}}}
 
+" 2}}}
 " Javascript {{{2
+
 augroup filetype_javascript
     autocmd!
     autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
     autocmd FileType javascript set shiftwidth=4 tabstop=4 expandtab textwidth=0
 augroup END
-"2}}}
 
+" 2}}}
 " JSON {{{2
+
 augroup filetype_json
     autocmd!
     autocmd BufRead *.json setfiletype json
@@ -592,9 +583,10 @@ augroup filetype_json
     autocmd FileType json set tabstop=4 softtabstop=4 shiftwidth=4
     autocmd FileType json set expandtab
 augroup END
-"2}}}
 
+" 2}}}
 " HTML {{{2
+
 " Disable underlines in <a> tags as well as bold, italic
 " See: :help html
 let html_no_rendering = 1
@@ -606,53 +598,56 @@ augroup filetype_html
     autocmd FileType tpl set shiftwidth=2 tabstop=2 expandtab textwidth=0
     autocmd FileType smarty set shiftwidth=2 tabstop=2 expandtab textwidth=0
 augroup END
-"2}}}
 
+" 2}}}
 " CSS {{{2
+
 augroup filetype_css
     autocmd!
     autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 augroup END
-"2}}}
 
+" 2}}}
 " Vala {{{2
+
 augroup filetype_vala
     autocmd!
     autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
     au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
 augroup END
-"2}}}
 
+" 2}}}
 " Intersec {{{2
+
 augroup intersec
     autocmd!
     autocmd BufRead *.iop setfiletype d
     autocmd BufRead *.blk setfiletype c
 augroup END
-"2}}}
 
-"------------------------------------------------------------------------------
-"1}}}
-
+" 2}}}
+" 1}}}
 " Plugins {{{1
-"------------------------------------------------------------------------------
-
 " Ack {{{2
+
 if has("unix")
     lef g:ackhighlight = 1
     let g:ackprg = "ack-grep -H --nocolor --nogroup --column --sort-files"
 endif
-"2}}}
 
+" 2}}}
 " Buff Explorer {{{2
+
 let g:bufExplorerDefaultHelp=0          " Do not show default help
 let g:bufExplorerShowRelativePath=1     " Show relative path
 let g:bufExplorerFindActive=0           " Do not go to active window
 map <silent> <C-Tab> :BufExplorer<CR>
 map <silent> <Leader>o :BufExplorer<CR>
-"2}}}
 
+
+" 2}}}
 " Fuzzy Finder {{{2
+
 let g:fuf_coveragefile_exclude = '\v\~$|\.(o|obj|exe|&ll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 let g:fuf_keyNextPattern = '<C-d>'
 nnoremap <silent> sj     :FufBuffer<CR>
@@ -700,35 +695,37 @@ nnoremap <silent> se     :FufEditDataFile<CR>
 nnoremap <silent> sr     :FufRenewCache<CR>
 nnoremap <silent> s*     :FufCoverageFile<CR>
 nnoremap <silent> sc     :%s///n<CR>
-"2}}}
 
+" 2}}}
 " CTRL-P {{{2
+
 let g:ctrlp_by_filename = 0
 let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_regexp = 0
 let g:ctrlp_use_caching = 1
 let g:ctrlp_working_path_mode = ''
-"2}}}
 
+" 2}}}
 " NERDTree {{{2
+
 noremap <Leader>n :NERDTree<space><cr>
 noremap <Leader>nb :NERDTreeFromBookmark<space>
 noremap <Leader>nn :NERDTreeToggle<cr>
 noremap <Leader>no :NERDTreeToggle<space>
 noremap <Leader>nf :NERDTreeFind<cr>
 noremap <Leader>nc :NERDTreeClose<cr>
-"2}}}
 
+" 2}}}
 " Zencoding {{{2
+
 let g:user_zen_settings = { 'indentation' : '  ' }
-"2}}}
 
-"------------------------------------------------------------------------------
-"1}}}
+" 2}}}
 
+" 1}}}
 " License {{{1
-"------------------------------------------------------------------------------
+
 "
 " Copyright (c) 2011 Jeremy Attali
 "
@@ -749,5 +746,5 @@ let g:user_zen_settings = { 'indentation' : '  ' }
 " LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 " THE SOFTWARE.
-"------------------------------------------------------------------------------
-"1}}}
+
+" 1}}}
