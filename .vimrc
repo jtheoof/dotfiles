@@ -321,7 +321,7 @@ nnoremap <S-Down> 3<C-E>
 nnoremap <S-Up> 3<C-Y>
 
 " Quick highlight
-nnoremap <S-kMultiply> *N
+nmap <S-kMultiply> <Leader>hcw
 
 " Saving file
 nnoremap <silent> <C-S> :w<CR>
@@ -480,7 +480,6 @@ map <Leader>s? z=
 
 " 1}}}
 " Search {{{1
-"------------------------------------------------------------------------------
 
 " Count occurrences of highlighted search
 nnoremap <silent> sc     :%s///n<CR>
@@ -540,6 +539,7 @@ endfunction
 
 " 1}}}
 " Programming {{{1
+
 " Java {{{2
 
 augroup filetype_java
@@ -626,8 +626,10 @@ augroup intersec
 augroup END
 
 " 2}}}
+
 " 1}}}
 " Plugins {{{1
+
 " Ack {{{2
 
 if has("unix")
