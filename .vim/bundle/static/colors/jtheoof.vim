@@ -269,6 +269,8 @@ exe "hi Directory"       .s:fmt_none   .s:fg_cyan      .s:bg_none
 exe "hi DiffAdd"         .s:fmt_none   .s:fg_back      .s:bg_green 
 exe "hi DiffChange"      .s:fmt_none   .s:fg_back      .s:bg_yellow
 exe "hi DiffDelete"      .s:fmt_none   .s:fg_back      .s:bg_magenta
+exe "hi DiffAdded"       .s:fmt_none   .s:fg_green     .s:bg_none
+exe "hi DiffRemoved"     .s:fmt_none   .s:fg_magenta   .s:bg_none
 exe "hi DiffText"        .s:fmt_none   .s:fg_back      .s:bg_yellow
 exe "hi ErrorMsg"        .s:fmt_none   .s:fg_magenta   .s:bg_none
 exe "hi VertSplit"       .s:fmt_none   .s:fg_black     .s:bg_none
