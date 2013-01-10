@@ -280,6 +280,7 @@ map <Leader>fx :! tidy -qmi -xml -utf8 % <CR>
 
 " Quick toggles
 nmap <Leader>tb :call BackgroundToggle()<CR>
+nmap <Leader>ti :set ignorecase!<CR>
 nmap <Leader>tj :call JsBeautify()<CR>
 nmap <Leader>tl :set list!<CR>
 nmap <Leader>tw :set wrap!<CR>
