@@ -16,6 +16,7 @@
     k = !gitk
     lc = log --pretty=oneline --decorate=full --stat --no-merges ORIG_HEAD..
     lg = log -p
+    ls = ls-files
     logp = log --pretty=oneline --decorate=full -20
     ri = rebase -i
     p = commit -p
