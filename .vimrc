@@ -302,6 +302,9 @@ nnoremap <Leader>y% :let @+ = expand("%:p")<CR>
 " Deactivated it because it seems to conflit with <C-i> to jump forward
 " nnoremap <Tab> %
 
+" Quickly select pasted test remembering the selection type
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
 " Go to first character
 nnoremap <Home> ^
 
@@ -369,9 +372,6 @@ nnoremap <M-Right> <C-]>
 " Alt-up/down to navigate through history
 nnoremap <M-Up> <C-o>
 nnoremap <M-Down> <C-i>
-
-" Map Ctrl-Space to cscope find current word
-nnoremap <C-@><C-@> :cs find s <C-R>=expand("<cword>")<CR><CR>
 
 " 2}}}
 " Insert mode {{{2
