@@ -1,6 +1,7 @@
 [alias]
     edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
     add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+    jshint = "!git status -uno -s | cut -f3 -d' ' | ack-grep '.js$' | xargs jshint"
 
     review-web = !git-push-for --to adrien.frediani@intersec.com --to romain.legodais@intersec.com
 
