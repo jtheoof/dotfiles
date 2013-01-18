@@ -462,6 +462,9 @@ endfunction
 " Auto save when focus is lost
 autocmd FocusLost * execute ":silent! wa"
 
+" Save clipboard when vim exits
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
+
 " Auto change directory on Buffer Entering
 " autocmd BufEnter * execute ":silent! lcd %:p:h"
 
