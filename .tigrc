@@ -30,7 +30,7 @@ set show-rev-graph = yes
 # Generic {{{
 
 bind generic F !git fetch
-bind generic y !@sh -c "echo -n %(commit) | xclip -selection c"
+bind generic y !@sh -c "echo -n %(commit) | xsel -ib"
 
 # }}}
 # Main {{{
