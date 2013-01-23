@@ -57,6 +57,8 @@ alias sub='sublime'
 alias diff='colordiff -u'
 
 # Listing
+alias rpwd='readlink -f $PWD'
+
 alias ls='ls --color=auto'
 alias lsf='find . -nowarn -type f -maxdepth 1'
 alias ll='ls -lah --group-directories-first'
