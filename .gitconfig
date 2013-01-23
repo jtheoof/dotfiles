@@ -60,10 +60,10 @@
 [github]
     user = jtheoof
 [mergetool "sublime"]
-	cmd = sublime -w $MERGED
-	trustExitCode = false
+    cmd = sublime -w $MERGED
+    trustExitCode = false
 [merge]
-	tool = sublime
+    tool = sublime
 [push]
     default = tracking
 [user]
