@@ -12,6 +12,7 @@
     ch = cherry-pick
     co = checkout
     df = diff
+    dfc = diff --cached
     dfw = diff --color-words
     gr = grep -n --untracked --heading --break
     fe = fetch
