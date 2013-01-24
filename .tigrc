@@ -20,7 +20,7 @@ set line-graphics = yes
 set show-author = yes
 set show-date = default
 set show-refs = yes
-set show-rev-graph = yes
+set show-rev-graph = no
 #set split-view-height
 #tet tab-size
 
