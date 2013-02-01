@@ -58,6 +58,7 @@ bind branch n !@git branch %(prompt) # Create a new branch
 # }}}
 # Status {{{
 
+bind status A !git commit --amend
 bind status N !@git add -N %(file) # Intent to add
 bind status R !git rebase -i
 
