@@ -609,6 +609,8 @@ augroup END
 augroup filetype_css
     autocmd!
     autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+    autocmd FileType css set tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd FileType css set expandtab
 augroup END
 
 " 2}}}
