@@ -89,6 +89,9 @@ alias du1='du --max-depth 1 -h .'
 alias ducks='du -cks * | sort -rn | head -11'
 alias psa='ps -ef | ack'
 
+# Network
+alias ipwan='wget -q -O - checkip.dyndns.org | sed -e "s/.*Current IP Address: //" -e "s/<.*$//"'
+
 # Navigation
 alias n.='nautilus .'
 
