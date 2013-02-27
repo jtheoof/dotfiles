@@ -1,0 +1,110 @@
+#!/bin/sh
+
+OPTIONS_SPEC="\
+$(basename $0) [options] [<remote> [<branch>]]
+--
+k,gitk      visualize unmerged differences
+r,rebase    perform a rebase
+m,merge     perform a merge
+"
+SUBDIRECTORY_OK=t
+. "$(git --exec-path)/git-sh-setup"
+require_work_tree
+
+lbranch=$(git symbolic-ref HEAD | sed -e s~refs/heads/~~)
+remote=$(git config --get "branch.$lbranch.remote" || echo origin)
+branch=$(git config --get "branch.$lbranch.merge" || echo "refs/heads/$lbranch")
+
+case "$(git config --bool --get intersec.up-gitk)" in
+    true) gitk=gitk;;
+    *)    gitk=:;;
+esac
+case "$(git config --bool --get "branch.$lbranch.rebase")" in
+    true) action=rebase;;
+    *)    action=;;
+esac
+
+while test $# != 0; do
+    case "$1" in
+        -k|--gitk)
+            shift; gitk=gitk;;
+        --no-gitk)
+            shift; gitk=:;;
+        -r|--rebase)
+            shift; action=rebase;;
+        --no-rebase)
+            shift; action=${action#rebase};;
+        -m|--merge)
+            shift; action=merge;;
+        --no-merge)
+            shift; action=${action#merge};;
+        --)
+            shift; break;;
+        *)
+            usage;;
+    esac
+done
+
+case $# in
+    0) ;;
+    1) remote="$1";;
+    2) remote="$1"; branch="$2";;
+    *) usage;;
+esac
+
+git remote update
+if git config remote.mob.fetch >/dev/null 2>/dev/null; then
+    git remote prune mob
+fi
+if test `git rev-list .."${remote}/${branch#refs/heads/}" -- | wc -l` = 0; then
+    echo "Current branch $lbranch is up to date."
+    exit 0
+fi
+
+$gitk HEAD..."${remote}/${branch#refs/heads/}" --
+if test -z "$action"; then
+    echo -n "(r)ebase/(m)erge/(q)uit ? "
+    read ans
+    case "$ans" in
+        r*) action=rebase;;
+        m*) action=merge;;
+        *)  exit 0;;
+    esac
+fi
+
+no_changes () {
+	git diff-index --quiet --cached HEAD --ignore-submodules -- &&
+	git diff-files --quiet --ignore-submodules
+}
+
+unclean=
+no_changes || unclean=t
+can_unstash=
+
+case "$action" in
+    rebase)
+        test -z "$unclean" || git stash save "git-up stash"
+        git rebase "${remote}/${branch#refs/heads/}"
+        cd "$(dirname "$(git rev-parse --git-dir)")" && git submodule update
+        test -f "$(git rev-parse --git-dir)"/rebase-merge \
+            -o -f "$(git rev-parse --git-dir)"/rebase-apply || can_unstash=t
+        ;;
+    merge)
+        test -z "$unclean" || git stash save "git-up stash"
+        git merge "${remote}/${branch#refs/heads/}"
+        test -f "$(git rev-parse --git-dir)"/MERGE_HEAD || can_unstash=t
+        ;;
+    *)
+        echo 1>&2 "no action specified"
+        exit 1
+        ;;
+esac
+
+if test -n "$unclean"; then
+    if test -n "$can_unstash"; then
+        echo ""
+        echo "run 'git stash apply' when rebase/merge is finished"
+    else
+        git stash pop
+    fi
+fi
