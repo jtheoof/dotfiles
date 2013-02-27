@@ -67,7 +67,7 @@ handle_install_dotfiles() {
   done
 
   # .config directories
-  config_dirs="sublime-text-2 terminator"
+  config_dirs="htop sublime-text-2 terminator"
   for i in $config_dirs; do
     link ".config/$i"
   done
