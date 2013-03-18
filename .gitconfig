@@ -70,3 +70,5 @@
 [user]
     name = Jeremy Attali
     email = jeremy.attali@gmail.com
+[grep]
+    extendedRegexp = true
