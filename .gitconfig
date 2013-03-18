@@ -21,6 +21,7 @@
     lg = log -p
     ls = ls-files
     logp = log --pretty=oneline --decorate=full -20
+    rb = rebase
     ri = rebase -i
     p = commit -p
     post-review = push-for
