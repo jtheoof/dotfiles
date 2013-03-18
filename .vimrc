@@ -338,7 +338,7 @@ nnoremap <C-K> :let @/ = ""<CR>
 
 nnoremap <silent> <F1> :Explore<CR>
 nnoremap <C-F1> :tabe **/<cfile><CR>
-nnoremap <F2> :BufExplorer<CR>
+nnoremap <silent> <F2> :BufExplorer<CR>
 nnoremap <F3> :NERDTreeToggle<CR>
 nnoremap <F4> :QFix<CR>
 nnoremap <C-F4> :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
