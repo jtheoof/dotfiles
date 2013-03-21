@@ -1,16 +1,3 @@
-/**************************************************************************/
-/*                                                                        */
-/*  Copyright (C) 2004-2012 INTERSEC SAS                                  */
-/*                                                                        */
-/*  Should you receive a copy of this source code, you must check you     */
-/*  have a proper, written authorization of INTERSEC to hold it. If you   */
-/*  don't have such an authorization, you must DELETE all source code     */
-/*  files in your possession, and inform INTERSEC of the fact you obtain  */
-/*  these files. Should you not comply to these terms, you can be         */
-/*  prosecuted in the extent permitted by applicable law.                 */
-/*                                                                        */
-/**************************************************************************/
-
 {
     /* Enforcing Options {{{ */
 
@@ -20,16 +7,24 @@
     "eqeqeq": true,
     "forin": true,
     "immed": true,
-    "indent": 4,
+    /*"indent": 4,*/
     "latedef": true,
     "newcap": true,
     "noarg": true,
+    "noempty": true,
     "nonew": true,
-    "regexp": false,
+    "plusplus": false,
+    "quotmark": false,
     "undef": true,
     "unused": true,
     "strict": true,
     "trailing": true,
+    "maxparams": false,
+    "maxdepth": false,
+    "maxstatements": false,
+    "maxcomplexity": false,
+    "maxlen": false,
+    "maxerr": 50,
 
     /* }}} */
     /* Relaxing Options {{{ */
@@ -46,13 +41,11 @@
     "globalstrict": false,
     "iterator": false,
     "lastsemic": false,
-    "laxbreak": false,
+    "laxbreak": true,
     "laxcomma": false,
     "loopfunc": false,
     "multistr": false,
-    "onecase": false,
     "proto": false,
-    "regexdash": false,
     "scripturl": false,
     "smarttabs": false,
     "shadow": false,
@@ -71,7 +64,7 @@
     "mootools": false,
     "node": false,
     "nonstandard": true,
-    "prototypejs" : false,
+    "prototypejs": false,
     "rhino": false,
     "worker": false,
     "wsh": false,
