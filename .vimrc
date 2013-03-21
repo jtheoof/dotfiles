@@ -373,6 +373,9 @@ nnoremap <M-Right> <C-]>
 nnoremap <M-Up> <C-o>
 nnoremap <M-Down> <C-i>
 
+" Yank current file
+nnoremap <silent> ycf :let @* = expand("%:p")<CR>:let @+ = expand("%:p")<CR>
+
 " 2}}}
 " Insert mode {{{2
 
