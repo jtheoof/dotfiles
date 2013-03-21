@@ -626,6 +626,14 @@ augroup filetype_vala
 augroup END
 
 " 2}}}
+" zsh {{{2
+
+augroup filetype_zsh
+    autocmd!
+    autocmd BufRead *.zsh-theme setfiletype zsh
+augroup END
+
+" 2}}}
 " Intersec {{{2
 
 augroup intersec
