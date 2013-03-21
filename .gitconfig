@@ -4,6 +4,7 @@
     jshint = "!git status -uno -s | cut -f3 -d' ' | ack-grep '.js$' | xargs jshint"
 
     review-web = !git-push-for --to adrien.frediani@intersec.com --to romain.legodais@intersec.com
+    review-tools = !git-push-for --to jonathan.squirawski@intersec.com --to florent.bruneau@intersec.com
 
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
     amend = commit -s --amend
@@ -11,6 +12,7 @@
     ci = commit
     ch = cherry-pick
     co = checkout
+    cv = commit --verbose
     df = diff
     dfc = diff --cached
     dfw = diff --color-words
