@@ -47,6 +47,8 @@ bind main U !?git rebase              # Rebasing after fetch
 bind diff Up move-up
 bind diff Down move-down
 
+bind diff V !vi %(file)
+
 # }}}
 # Tree {{{
 
