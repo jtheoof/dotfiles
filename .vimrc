@@ -725,6 +725,11 @@ let g:ctrlp_regexp = 0
 let g:ctrlp_use_caching = 1
 let g:ctrlp_working_path_mode = ''
 
+ " 2}}}
+" LanguageTool {{{2
+
+let g:languagetool_jar = '/usr/share/languagetool/languagetool-commandline.jar'
+
 " 2}}}
 " NERDTree {{{2
 
