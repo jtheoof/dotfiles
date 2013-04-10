@@ -69,6 +69,7 @@ alias vdir='ls --color=auto --format=long'
 
 alias h='history'
 alias hs='history'
+alias ha='history | ack'
 alias hl='history | less'
 
 # Search
