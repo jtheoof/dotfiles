@@ -18,6 +18,7 @@
     dfw = diff --color-words
     gr = grep -n --untracked --heading --break
     fe = fetch
+    find = "!f() { git ls-files | ack-grep $1 ; }; f"
     k = !gitk
     lc = log --pretty=oneline --decorate=full --stat --no-merges ORIG_HEAD..
     lg = log -p
