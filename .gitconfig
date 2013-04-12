@@ -67,9 +67,9 @@
     changed = bold red
     untracked = bold yellow
 [diff]
-	tool = vimdiff
+    tool = vimdiff
 [difftool]
-	prompt = false
+    prompt = false
 [github]
     user = jtheoof
 [mergetool "sublime"]
