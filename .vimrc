@@ -651,7 +651,7 @@ augroup END
 " Ack {{{2
 
 if has("unix")
-    lef g:ackhighlight = 1
+    let g:ackhighlight = 1
     let g:ackprg = "ack-grep -H --nocolor --nogroup --column --sort-files"
 endif
 
