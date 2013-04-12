@@ -14,6 +14,8 @@
     co = checkout
     cv = commit --verbose
     df = diff
+    dt = difftool
+    dtg = difftool -t gvimdiff
     dfc = diff --cached
     dfw = diff --color-words
     gr = grep -n --untracked --heading --break -e
@@ -28,6 +30,8 @@
     ri = rebase -i
     p = commit -p
     post-review = push-for
+    mt = mergetool -t vimdiff
+    mtg = mergetool -t gvimdiff
     squash = commit -s --amend -C HEAD
     st = status
     sta = status --ignored
@@ -62,6 +66,10 @@
     added = bold green
     changed = bold red
     untracked = bold yellow
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
 [github]
     user = jtheoof
 [mergetool "sublime"]
