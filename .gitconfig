@@ -16,7 +16,7 @@
     df = diff
     dfc = diff --cached
     dfw = diff --color-words
-    gr = grep -n --untracked --heading --break
+    gr = grep -n --untracked --heading --break -e
     fe = fetch
     find = "!f() { git ls-files | ack-grep $1 ; }; f"
     k = !gitk
