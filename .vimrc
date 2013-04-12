@@ -640,6 +640,7 @@ augroup intersec
     autocmd!
     autocmd BufRead *.iop setfiletype d
     autocmd BufRead *.blk setfiletype c
+    autocmd BufRead *.blkk setfiletype cpp
 augroup END
 
 " 2}}}
