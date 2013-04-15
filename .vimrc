@@ -7,7 +7,7 @@
 " Modified: 2011 Apr 14
 " Comment:  Big thanks to amix.dk: http://amix.dk/vim/vimrc.html
 
-set nocompatible " use vim defaults, we don't care about vi anymore
+set nocompatible " be IMproved
 
 " Pathogen {{{1
 
@@ -18,6 +18,22 @@ call pathogen#infect()
 call pathogen#helptags()     " don't call it everytime cause it's slow?
 
 " 1}}}
+" Vundle {{{1
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" XXX required!
+Bundle 'gmarik/vundle'
+
+Bundle 'majutsushi/tagbar'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+
+"1}}}
 " Init {{{1
 
 runtime macros/matchit.vim   " smarter use of '%'
@@ -26,6 +42,7 @@ filetype plugin indent on    " put filetype plugin back on after pathogen
 syntax on                    " enable syntax
 
 " 1}}}
+"
 " Bundles {{{1
 
 " See: https://github.com/bronson/vim-update-bundles
@@ -346,6 +363,7 @@ nnoremap <F5> :cprevious<CR>
 nnoremap <F6> :cnext<CR>
 nnoremap <F7> :make<Return>
 nnoremap <S-F7> yy:<C-R>"<BS><CR>
+nnoremap <F8> :TagbarToggle<CR>
 nnoremap <F9> :cprevious<Return>
 nnoremap <F10> :cnext<Return>
 nnoremap <F11> :split %<CR>
