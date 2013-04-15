@@ -29,6 +29,13 @@ print_error() {
 }
 
 # }}}
+# Utils {{{
+
+get_github_repos() {
+  git clone -q https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
+}
+
+# }}}
 # Handlers {{{
 
 link() {
@@ -126,9 +133,12 @@ handle_install() {
   shift
   case "$1" in
     dotfiles)
-      handle_install_dotfiles ;;
+      handle_install_dotfiles
+      get_github_repos
+      ;;
     packages)
-      handle_install_packages ;;
+      handle_install_packages
+      ;;
   esac
 }
 
