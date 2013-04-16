@@ -27,11 +27,23 @@ call vundle#rc()
 " XXX required!
 Bundle 'gmarik/vundle'
 
+" Github
+Bundle 'ervandew/supertab'
+Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'mattn/zencoding-vim'
+Bundle 'maksimr/vim-jsbeautify'
+Bundle 'scrooloose/nerdtree'
+
+" Vim scripts
+Bundle 'bufexplorer.zip'
 
 "1}}}
 " Init {{{1
@@ -40,38 +52,6 @@ runtime macros/matchit.vim   " smarter use of '%'
 
 filetype plugin indent on    " put filetype plugin back on after pathogen
 syntax on                    " enable syntax
-
-" 1}}}
-"
-" Bundles {{{1
-
-" See: https://github.com/bronson/vim-update-bundles
-
-" Ignore those
-" Static: static
-
-" Programming
-" Bundle: vim-scripts/TagHighlight
-" Bundle: mattn/zencoding-vim
-" Bundle: cakebaker/scss-syntax.vim
-" Bundle: maksimr/vim-jsbeautify
-
-" Text
-" Bundle: tpope/vim-markdown
-" Bundle: ervandew/supertab
-" Bundle: scrooloose/nerdcommenter
-" Bundle: kien/ctrlp.vim
-
-" VCS
-" Bundle: tpope/vim-git
-" Bundle: tpope/vim-fugitive
-
-" IDE
-" Bundle: vim-scripts/bufexplorer.zip
-" Bundle: scrooloose/nerdtree
-
-" Color
-" Bundle: altercation/vim-colors-solarized
 
 " 1}}}
 " Main options {{{1

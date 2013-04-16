@@ -1,0 +1,18 @@
+FriendlyName:java
+CTagsName:java
+PythonExtensionMatcher:java
+VimExtensionMatcher:java
+Suffix:java
+SpecialSyntaxHandlers:TagHighlight#SpecialHandlers#JavaTopHandler
+VimSyntaxes:java
+VimFileTypes:java
+# From: http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html
+ReservedKeywords:
+	abstract continue for new switch assert default goto package
+	synchronized boolean do if private this break double
+	implements protected throw byte else import public throws
+	case enum instanceof return transient catch extends int short
+	try char final interface static void class finally long
+	strictfp volatile const float native super while
+
+# vim: ff=unix:noet

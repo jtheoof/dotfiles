@@ -1,0 +1,7 @@
+LibraryName:Android SDK
+TypesFiles:android_sdk.taghl
+TypesSuffixes:java
+CheckMode:MatchStart
+MatchREs:^\s*import\s\+android\.
+MatchLines:30
+CustomFunction:

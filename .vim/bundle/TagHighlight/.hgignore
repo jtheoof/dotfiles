@@ -1,0 +1,12 @@
+syntax: glob
+
+.*.swp
+*.pyc
+types_*.taghl
+doc/tags
+sh.exe.stackdump
+plugin/TagHighlight/logdict*
+plugin/TagHighlight/warnTagHighlight.txt
+plugin/TagHighlight/build/
+plugin/TagHighlight/Compiled/
+dist/*.zip

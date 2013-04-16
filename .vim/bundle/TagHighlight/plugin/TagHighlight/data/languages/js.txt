@@ -1,0 +1,9 @@
+FriendlyName:javascript
+CTagsName:javascript
+PythonExtensionMatcher:js
+VimExtensionMatcher:js
+Suffix:js
+VimSyntaxes:javascript
+VimFileTypes:javascript
+
+# vim: ff=unix:noet
