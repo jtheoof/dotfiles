@@ -1,3 +1,6 @@
 [submodule ".vim/bundle/vundle"]
 	path = .vim/bundle/vundle
 	url = https://github.com/gmarik/vundle.git
+[submodule ".vim/bundle/vim-pathogen"]
+	path = .vim/bundle/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen

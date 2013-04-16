@@ -10,7 +10,6 @@ vim-commentary/
 vim-fugitive/
 vim-jsbeautify/
 vim-markdown/
-vim-pathogen/
 vim-repeat/
 vim-surround/
 vim-unimpaired/
