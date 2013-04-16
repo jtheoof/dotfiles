@@ -39,8 +39,9 @@ source $ZSH/oh-my-zsh.sh
 # 1}}}
 # Exports {{{1
 
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.local/bin:$HOME/dev/android/android-sdk-linux/tools:$HOME/dev/android/android-sdk-linux/platform-tools:/opt/SenchaSDKTools-2.0.0-beta3:/opt/eclipse/eclipse-cpp-indigo-SR2-linux-gtk-x86_64-RTC-v4.0
 export LESS=-FRSX
+export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
+export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.local/bin:$HOME/dev/android/android-sdk-linux/tools:$HOME/dev/android/android-sdk-linux/platform-tools:/opt/SenchaSDKTools-2.0.0-beta3:/opt/eclipse/eclipse-cpp-indigo-SR2-linux-gtk-x86_64-RTC-v4.0
 
 # 1}}}
 # Aliases {{{1
@@ -250,7 +251,9 @@ function chpwd() {
 
 # 1}}}
 
-#bindkey -v setopt VI?
+bindkey -v
+bindkey -M vicmd '?' history-incremental-search-backward
+bindkey '^R' history-incremental-search-backward
 unsetopt correct_all # removing auto correction feature
 
 # Sourcing zshrc_work if exists
