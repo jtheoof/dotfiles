@@ -297,8 +297,8 @@ map <Leader>fx :! tidy -qmi -xml -utf8 % <CR>
 
 " Quick toggles
 nmap <Leader>tb :call BackgroundToggle()<CR>
+nmap <Leader>tc :set cursorline!<CR>
 nmap <Leader>ti :set ignorecase!<CR>
-nmap <Leader>tj :call JsBeautify()<CR>
 nmap <Leader>tl :set list!<CR>
 nmap <Leader>tw :set wrap!<CR>
 
@@ -453,6 +453,12 @@ vnoremap <BS> <gv
 vmap ! y<Esc>:%s/<C-R>"/
 
 " 2}}}
+" Command mode {{{2
+
+" Delete word from cursor to beginning of word
+cnoremap <C-Backspace> <C-W>
+
+"2}}}
 
 " 1}}}
 " Functions {{{1
