@@ -1,0 +1,6 @@
+LibraryName:wxWidgets
+TypesFiles:wxwidgets.taghl
+TypesSuffixes:c
+CheckMode:MatchStart
+MatchREs:^\s*#include\s\+<wx/
+MatchLines:30

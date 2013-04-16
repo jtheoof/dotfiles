@@ -1,0 +1,9 @@
+FriendlyName:scala
+CTagsName:scala
+PythonExtensionMatcher:scala
+VimExtensionMatcher:scala
+Suffix:scala
+VimSyntaxes:scala
+VimFileTypes:scala
+
+# vim: ff=unix:noet

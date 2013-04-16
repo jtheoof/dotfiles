@@ -1,0 +1,7 @@
+LibraryName:Qt4
+TypesFiles:qt4.taghl
+TypesSuffixes:c
+CheckMode:MatchStart
+MatchREs:
+	^\s*#include\s\+<[qQ]
+MatchLines:30

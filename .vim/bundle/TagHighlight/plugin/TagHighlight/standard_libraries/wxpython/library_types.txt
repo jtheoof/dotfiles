@@ -1,0 +1,8 @@
+LibraryName:wxpython
+TypesFiles:wxpython.taghl
+TypesSuffixes:py
+CheckMode:MatchStart
+MatchREs:
+	^\s*import\s\+wx\>
+	^\s*from\s\+wx\>
+MatchLines:30

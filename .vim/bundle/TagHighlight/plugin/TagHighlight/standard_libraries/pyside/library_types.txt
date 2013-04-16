@@ -1,0 +1,7 @@
+LibraryName:PySide
+TypesFiles:pyside.taghl
+TypesSuffixes:py
+CheckMode:MatchStart
+MatchREs:
+	^\s*import\s+PySide
+	^\s*from\s+PySide

@@ -1,0 +1,15 @@
+FriendlyName:python
+CTagsName:python
+PythonExtensionMatcher:pyw?
+VimExtensionMatcher:pyw\?
+Suffix:py
+VimSyntaxes:python
+VimFileTypes:python
+# Keywords taken from:
+# http://docs.python.org/reference/lexical_analysis.html#keywords
+ReservedKeywords:
+	and del from not while as elif global or with assert else
+	if pass yield break except import print class exec in raise
+	continue finally is return def for lambda try
+
+# vim: ff=unix:noet
