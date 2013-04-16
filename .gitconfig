@@ -38,6 +38,7 @@
     st = status
     sta = status --ignored
     su = submodule update
+    sui = submodule update --init
     undo = reset HEAD^
     unstash = stash apply
     who = shortlog -s --
