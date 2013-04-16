@@ -27,7 +27,9 @@
     ls = ls-files
     logp = log --pretty=oneline --decorate=full -20
     rb = rebase
-    ri = rebase -i
+    rba = rebase --abort
+    rbc = rebase --continue
+    rbi = rebase -i
     p = commit -p
     post-review = push-for
     mt = mergetool -t vimdiff
