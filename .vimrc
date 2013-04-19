@@ -13,7 +13,6 @@ set nocompatible " be IMproved
 
 " Pathogen must be the first plugin to load before anything else
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-" Bundle: tpope/vim-pathogen
 call pathogen#infect()
 call pathogen#helptags()     " don't call it everytime cause it's slow?
 
@@ -146,8 +145,8 @@ endif
 set wrap
 set linebreak
 set textwidth=79
-"set colorcolumn=80
-set formatoptions=qrn1
+set colorcolumn=80
+set formatoptions=tqrn1j
 command! -nargs=* Wrap set wrap linebreak nolist
 
 " Search
@@ -187,6 +186,24 @@ let mapleader=","
 let g:is_posix = 1
 " In Debian bug 361177, sh.vim learned a g:is_posix configuration value
 " See: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=552108
+
+" 1}}}
+" Functions {{{1
+
+" Switch between light and dark background.
+" Quite useful for themes like solarized and time during the day.
+function! BackgroundToggle()
+    if &background == "light"
+        set background=dark
+    else
+        set background=light
+    endif
+endfunction
+
+" Auto adjust window height
+function! AdjustWindowHeight(minheight, maxheight)
+    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
 
 " 1}}}
 " GUI {{{1
@@ -299,6 +316,9 @@ nnoremap <Leader>y% :let @+ = expand("%:p")<CR>
 " Easier navigation through code
 " Deactivated it because it seems to conflit with <C-i> to jump forward
 " nnoremap <Tab> %
+
+" Make Y more consistent with C and D
+nnoremap Y y$
 
 " Quickly select pasted test remembering the selection type
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
@@ -442,26 +462,13 @@ cnoremap <C-Backspace> <C-W>
 "2}}}
 
 " 1}}}
-" Functions {{{1
-
-" Switch between light and dark background.
-" Quite useful for themes like solarized and time during the day.
-function! BackgroundToggle()
-    if &background == "light"
-        set background=dark
-    else
-        set background=light
-    endif
-endfunction
-
-" 1}}}
 " Auto commands {{{1
 
-" Automatically fitting a quickfix window height
-au FileType qf call AdjustWindowHeight(3, 20)
-function! AdjustWindowHeight(minheight, maxheight)
-    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-endfunction
+augroup quickfix
+    au!
+    au FileType qf wincmd J                        " Place window at very bottom
+    au FileType qf call AdjustWindowHeight(3, 20)  " Adjust size automatically
+augroup END
 
 " This autocommand jumps to the last known position in a file
 " just after opening it, if the '"' mark is set:
@@ -472,9 +479,6 @@ autocmd FocusLost * execute ":silent! wa"
 
 " Save clipboard when vim exits
 autocmd VimLeave * call system("xsel -ib", getreg('+'))
-
-" Auto change directory on Buffer Entering
-" autocmd BufEnter * execute ":silent! lcd %:p:h"
 
 " 1}}}
 " Spell checking {{{1
@@ -631,7 +635,7 @@ augroup filetype_vala
 augroup END
 
 " 2}}}
-" zsh {{{2
+" ZSH {{{2
 
 augroup filetype_zsh
     autocmd!
