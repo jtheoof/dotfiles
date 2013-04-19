@@ -79,7 +79,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias sgrep='grep --color=auto -inIEr'
 
-alias ack='ack-grep'
+alias ack='ack-grep --color-match="bold magenta"'
 
 alias ff='find . -type f -name'
 alias fd='find . -type d -name'
