@@ -13,7 +13,10 @@ ZSH_THEME="jtheoof"
 CASE_SENSITIVE="true"
 
 # Comment this out to disable weekly auto-update checks
-DISABLE_AUTO_UPDATE="true"
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
+# export UPDATE_ZSH_DAYS=13
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
@@ -21,9 +24,14 @@ DISABLE_AUTO_UPDATE="true"
 # Uncomment following line if you want to disable autosetting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
-# Uncomment following line if you want red dots to be displayed while waiting 
+# Uncomment following line if you want red dots to be displayed while waiting
 # for completion.
 # COMPLETION_WAITING_DOTS="true"
+
+# Uncomment following line if you want to disable marking untracked files under
+# VCS as dirty. This makes repository status check for large repositories much,
+# much faster.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Which plugins would you like to load? (plugins can be found in
 # ~/.oh-my-zsh/plugins/*).
@@ -33,8 +41,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# Dircolors
-[[ -f /usr/bin/dircolors ]] && [[ -f $HOME/.dircolors ]] && eval $(dircolors -b $HOME/.dircolors)
+unsetopt correct_all # removing auto correction feature
 
 # 1}}}
 # Exports {{{1
@@ -105,12 +112,12 @@ alias  ACS='apt-cache search' # search for string
 alias  AGA='sudo apt-get autoremove' # remove packages no longer needed
 alias  AGB='sudo apt-get build-dep' # install dependencies for source built packages using deb-src
 alias  AGC='sudo apt-get clean' # clear out downloaded .debs from /var/cache/apt/archives
-alias  AGDU='sudo apt-get dist-upgrade' # apply available upgrades 
+alias  AGDU='sudo apt-get dist-upgrade' # apply available upgrades
 alias  AGG='sudo apt-get upgrade' # apply available upgrades
 alias  AGI='sudo apt-get install' # install package(s) from a Debian repository.
 alias  AGIR='sudo apt-get install --reinstall' # reinstall package
 alias  AGR='sudo apt-get remove' # remove package, leave config files
-alias  AGS='apt-get source' # download Debian source to $PWD - requires deb-src enabled in sources.list 
+alias  AGS='apt-get source' # download Debian source to $PWD - requires deb-src enabled in sources.list
 alias  AGU='sudo apt-get update' # update the list of available packages
 alias  AH='apt-history' # not native to sudo apt-get - apt-history function required
 alias  ASV='apt-show-versions' # not native to sudo apt-get - apt-show-versions required
@@ -201,12 +208,12 @@ function byte {
 
 # Hold a package
 function hold {
-    echo "$1 hold"|dpkg --set-selections 
+    echo "$1 hold" | dpkg --set-selections
 }
 
-# Unhold package 
+# Unhold package
 function unhold {
-    echo "$1 install" |dpkg --set-selections
+    echo "$1 install" | dpkg --set-selections
 }
 
 # What packages are held
@@ -216,12 +223,12 @@ function held {
 
 # Hex to Dec
 function h2d() {
-  echo "ibase=16; $(echo $@ | tr '[:lower:]' '[:upper:]')"|bc
+  echo "ibase=16; $(echo $@ | tr '[:lower:]' '[:upper:]')" | bc
 }
 
 # Dec to Hex
 function d2h() {
-  echo "obase=16; $@"|bc
+  echo "obase=16; $@" | bc
 }
 
 function apt-history() {
@@ -250,13 +257,22 @@ function chpwd() {
 }
 
 # 1}}}
+# Bindings {{{
 
 bindkey -v
 bindkey -M vicmd '?' history-incremental-search-backward
 bindkey '^R' history-incremental-search-backward
-unsetopt correct_all # removing auto correction feature
+
+# }}}
+# Misc {{{
+
+# Dircolors
+if [[ -f /usr/bin/dircolors && -f $HOME/.dircolors ]]; then
+   eval $(dircolors -b $HOME/.dircolors)
+fi
 
 # Sourcing zshrc_work if exists
 if [[ -f $HOME/.zshrc_work ]]; then
     source $HOME/.zshrc_work
 fi
+# }}}
