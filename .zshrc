@@ -44,13 +44,6 @@ source $ZSH/oh-my-zsh.sh
 unsetopt correct_all # removing auto correction feature
 
 # 1}}}
-# Exports {{{1
-
-export LESS=-FRSX
-export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.local/bin:$HOME/dev/android/android-sdk-linux/tools:$HOME/dev/android/android-sdk-linux/platform-tools:/opt/SenchaSDKTools-2.0.0-beta3:/opt/eclipse/eclipse-cpp-indigo-SR2-linux-gtk-x86_64-RTC-v4.0
-
-# 1}}}
 # Aliases {{{1
 
 # General {{{2
@@ -77,7 +70,7 @@ alias vdir='ls --color=auto --format=long'
 
 alias h='history'
 alias hs='history'
-alias ha='history | ack'
+alias hf='history | ack'
 alias hl='history | less'
 
 # Search
@@ -155,6 +148,13 @@ alias node-jslint="node $HOME/dev/me/node-jslint/bin/jslint.js --maxerr 500 --no
 alias svn-df='svn diff | colordiff'
 
 # 2}}}
+
+# 1}}}
+# Exports {{{1
+
+export LESS=-FRSX
+export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
+export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.local/bin:$HOME/dev/android/android-sdk-linux/tools:$HOME/dev/android/android-sdk-linux/platform-tools:/opt/SenchaSDKTools-2.0.0-beta3:/opt/eclipse/eclipse-cpp-indigo-SR2-linux-gtk-x86_64-RTC-v4.0
 
 # 1}}}
 # Functions {{{1
@@ -259,9 +259,9 @@ function chpwd() {
 # 1}}}
 # Bindings {{{
 
-bindkey -v
-bindkey -M vicmd '?' history-incremental-search-backward
-bindkey '^R' history-incremental-search-backward
+#bindkey -v
+#bindkey -M vicmd '?' history-incremental-search-backward
+#bindkey '^R' history-incremental-search-backward
 
 # }}}
 # Misc {{{
