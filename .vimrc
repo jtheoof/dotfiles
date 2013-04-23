@@ -27,9 +27,14 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Github
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'ervandew/supertab'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'maksimr/vim-jsbeautify'
+Bundle 'mattn/zencoding-vim'
+Bundle 'pangloss/vim-javascript'
+Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
@@ -37,10 +42,6 @@ Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'mattn/zencoding-vim'
-Bundle 'maksimr/vim-jsbeautify'
-Bundle 'scrooloose/nerdtree'
 
 " Vim scripts
 Bundle 'bufexplorer.zip'
