@@ -752,6 +752,13 @@ noremap <Leader>nf :NERDTreeFind<cr>
 noremap <Leader>nc :NERDTreeClose<cr>
 
 " 2}}}
+" Syntastic {{{
+
+let g:syntastic_mode_map = { 'mode': 'passive',
+                           \ 'active_filetypes': [],
+                           \ 'passive_filetypes': [] }
+
+" }}}
 " Zencoding {{{2
 
 let g:user_zen_settings = { 'indentation' : '  ' }
