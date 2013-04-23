@@ -11,10 +11,10 @@
 [profiles]
   [[default]]
     scrollbar_position = hidden
-    palette = "#706449:#E2302E:#A6E22E:#FD971F:#3285D2:#F92672:#66D9EF:#F8F8F2:#706449:#F92672:#A6E22E:#E6DB74:#3285D2:#F92672:#66D9EF:#F8F8F2"
+    palette = "#706449:#e2302e:#a6e22e:#fd971f:#3285d2:#f92672:#66d9ef:#f8f8f2:#706449:#f92672:#a6e22e:#e6db74:#3285d2:#f92672:#66d9ef:#f8f8f2"
     background_darkness = 1.0
     use_system_font = False
-    foreground_color = "#F8F8F2"
+    foreground_color = "#f8f8f2"
     icon_bell = False
     show_titlebar = False
     font = Ubuntu Mono 10
@@ -43,9 +43,9 @@
     background_color = "#0a333c"
     scrollback_infinite = True
   [[solarized-light]]
-    scrollbar_position = hidden
     palette = "#073642:#d30102:#859900:#b58900:#6c71c4:#d33682:#2aa198:#839496:#586e75:#cb4b16:#859900:#b58900:#268bd2:#d33682:#2aa198:#93a1a1"
     background_darkness = 1.0
+    scrollbar_position = hidden
     cursor_color = "#002b36"
     foreground_color = "#002b36"
     icon_bell = False
