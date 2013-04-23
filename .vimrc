@@ -236,6 +236,17 @@ colorscheme jtheoof
 
 " Leader {{{2
 
+" Deprecated {{{3
+" I should be using action first not file first.
+
+" Fast editing of .vimrc
+map <Leader>ve :e! $MYVIMRC<CR>
+
+" Fast reload of .vimrc
+map <Leader>vs :so $MYVIMRC<CR>
+map <Leader>vv :so $MYVIMRC<CR>
+
+" 3}}}
 " With a map leader it's possible to do extra key combinations
 " like <Leader>w saves the current file
 let mapleader = ","
@@ -261,6 +272,14 @@ nnoremap <Leader>hcw :call HighlightWord()<CR>
 " Load current file
 nmap <Leader>so :so %<CR>
 
+" Fast editing of common files
+map <Leader>eg :e! $HOME/.gitconfig<CR>
+map <Leader>ev :e! $MYVIMRC<CR>
+map <Leader>ez :e! $HOME/.zshrc<CR>
+
+" Fast reload of .vimrc
+map <Leader>sv :so $MYVIMRC<CR>
+
 " Splitting windows the right way
 " Thanks to: http://goo.gl/R73uk
 
@@ -275,13 +294,6 @@ nmap <Leader>s<Left>   :leftabove  vnew<CR>
 nmap <Leader>s<Right>  :rightbelow vnew<CR>
 nmap <Leader>s<Up>     :leftabove  new<CR>
 nmap <Leader>s<Down>   :rightbelow new<CR>
-
-" Fast editing of .vimrc
-map <Leader>ve :e! $MYVIMRC<CR>
-
-" Fast reload of .vimrc
-map <Leader>vs :so $MYVIMRC<CR>
-map <Leader>vv :so $MYVIMRC<CR>
 
 " Opening closing tabs
 map <Leader>tc :tabclose<CR>
