@@ -7,7 +7,7 @@
   title_transmit_bg_color = "#073642"
   title_inactive_bg_color = "#002b36"
 [keybindings]
-  toggle_scrollbar = <Control>s
+  toggle_scrollbar = <Primary><Shift>s
 [profiles]
   [[default]]
     scrollbar_position = hidden
