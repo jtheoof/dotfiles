@@ -324,6 +324,8 @@ hi! link cssTableProp            White
 hi! link cssTagName              Green
 hi! link cssTextProp             White
 hi! link cssUIProp               White
+" Git
+hi! link gitrebaseFixup          Grey
 " Java
 hi! link javaStatement           Green
 " Ruby
