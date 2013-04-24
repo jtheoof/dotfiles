@@ -35,11 +35,12 @@ bind generic y !@sh -c "echo -n %(commit) | xsel -ib"
 # }}}
 # Main {{{
 
-bind main ! !git revert %(commit)     # Revert commit
-bind main C !?git checkout %(commit)  # Checkout commit
-bind main P !?git push                # Push to tracking remote
-bind main R !git rebase -i %(commit)  # Interactive rebasing
-bind main U !?git rebase              # Rebasing after fetch
+bind main ! !git revert %(commit)        # Revert commit
+bind main C !?git checkout %(commit)     # Checkout commit
+bind main I !git rebase -i %(commit)     # Interactive rebasing
+bind main P !?git cherry-pick %(commit)  # Checkout commit
+bind main R !?git rebase                 # Rebasing after fetch
+bind main X !?git push                   # Push to tracking remote
 
 # }}}
 # Diff {{{
