@@ -214,9 +214,6 @@ let g:solarized_visibility = "low"
 if has("gui_running")
     if has("gui_gtk2")
         set guifont=Ubuntu\ Mono\ 10
-        "set guifont=Ubuntu\ Mono\ 12
-        "set guifont=Monaco\ 8
-        "set guifont=Consolas\ 10
     elseif has("gui_win32")
         set guifont=Consolas:h10
     endif
@@ -274,6 +271,7 @@ nmap <Leader>so :so %<CR>
 
 " Fast editing of common files
 map <Leader>eg :e! $HOME/.gitconfig<CR>
+map <Leader>ej :e! $HOME/.vim/bundle/static/colors/jtheoof.vim<CR>
 map <Leader>ev :e! $MYVIMRC<CR>
 map <Leader>ez :e! $HOME/.zshrc<CR>
 
