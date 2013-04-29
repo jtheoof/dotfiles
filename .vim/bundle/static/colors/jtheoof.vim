@@ -313,6 +313,7 @@ hi! link cssAuralProp            White
 hi! link cssBoxProp              White
 hi! link cssBraces               White
 hi! link cssColorProp            White
+hi! link cssClassName            Cyan
 hi! link cssFontDescriptorProp   White
 hi! link cssFontProp             White
 hi! link cssGeneratedContentProp White
@@ -328,6 +329,9 @@ hi! link cssUIProp               White
 hi! link gitrebaseFixup          Grey
 " Java
 hi! link javaStatement           Green
+" Javascript
+hi! link jsDocParam              Cyan
+hi! link jsDocTags               Magenta
 " Ruby
 hi! link rubyClassVariable       White
 hi! link rubyControl             Green
@@ -355,12 +359,18 @@ hi! link sassId                      Identifier
 hi! link sassClass                   Type
 hi! link sassIdChar                  sassId
 hi! link sassClassChar               sassClass
+" Less
+hi! link lessVariable                Green
+hi! link lessFunction                Red
+hi! link lessClassName               Type
 
 " }}}
 " Plugin specific highlight groups {{{
 
+" BufExplorer
 hi! link bufExplorerMapping          Identifier
 hi! link bufExplorerTitle            Macro
+
 exe "hi MyTagListFileName"        .s:fmt_none    .s:fg_orange     .s:bg_none
 exe "hi fugitiveBlameAnnotation"  .s:fmt_none    .s:fg_magenta    .s:bg_none
 

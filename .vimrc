@@ -29,6 +29,7 @@ Bundle 'gmarik/vundle'
 " Github
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'ervandew/supertab'
+Bundle 'groenewege/vim-less'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'maksimr/vim-jsbeautify'
@@ -266,14 +267,18 @@ nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 " Highlight current work
 nnoremap <Leader>hcw :call HighlightWord()<CR>
 
-" Load current file
-nmap <Leader>so :so %<CR>
-
 " Fast editing of common files
 map <Leader>eg :e! $HOME/.gitconfig<CR>
 map <Leader>ej :e! $HOME/.vim/bundle/static/colors/jtheoof.vim<CR>
 map <Leader>ev :e! $MYVIMRC<CR>
 map <Leader>ez :e! $HOME/.zshrc<CR>
+
+" Replace " with '
+nnoremap <Leader>s' :perldo s/"(.*?)"/'\1'/g<CR>
+nnoremap <Leader>s" :perldo s/'(.*?)'/"\1"/g<CR>
+
+" Load current file
+nmap <Leader>so :so %<CR>
 
 " Fast reload of .vimrc
 map <Leader>sv :so $MYVIMRC<CR>
