@@ -48,7 +48,8 @@ bind main X !?git push                   # Push to tracking remote
 bind diff Up move-up
 bind diff Down move-down
 
-bind diff V !vi %(file)
+bind diff E !vi %(file)                  # Edit file
+bind diff P !?git cherry-pick %(commit)  # Checkout commit
 
 # }}}
 # Tree {{{
