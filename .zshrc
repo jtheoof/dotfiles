@@ -24,6 +24,9 @@ CASE_SENSITIVE="true"
 # Uncomment following line if you want to disable autosetting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
+# Uncomment following line if you want to disable command autocorrection
+DISABLE_CORRECTION="true"
+
 # Uncomment following line if you want red dots to be displayed while waiting
 # for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -33,15 +36,12 @@ CASE_SENSITIVE="true"
 # much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Which plugins would you like to load? (plugins can be found in
-# ~/.oh-my-zsh/plugins/*).
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*).
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
-unsetopt correct_all # removing auto correction feature
 
 # 1}}}
 # Aliases {{{1
