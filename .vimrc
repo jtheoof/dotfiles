@@ -3,8 +3,7 @@
 " Author:   Jeremy Attali
 " URL:
 " License:  MIT license (see end of this file)
-" Created:  In Paris
-" Modified: 2011 Apr 14
+" Created:  Paris
 " Comment:  Big thanks to amix.dk: http://amix.dk/vim/vimrc.html
 
 set nocompatible " be IMproved
@@ -779,7 +778,7 @@ let g:user_zen_settings = { 'indentation' : '  ' }
 " License {{{1
 
 "
-" Copyright (c) 2011 Jeremy Attali
+" Copyright (c) 2013 Jeremy Attali
 "
 " Permission is hereby granted, free of charge, to any person obtaining a copy
 " of this software and associated documentation files (the "Software"), to deal
