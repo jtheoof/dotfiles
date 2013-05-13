@@ -84,7 +84,10 @@
     "predef": [
         "_",
         "sprintf",
-        "jQuery", "$"
+        "jQuery", "$",
+        "google",
+        "underscore",
+        "Backbone"
     ]
 
     /* }}} */
