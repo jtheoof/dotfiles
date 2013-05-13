@@ -146,8 +146,8 @@ endif
 " Word wrapping
 set wrap
 set linebreak
-set textwidth=79
-set colorcolumn=80
+set textwidth=78
+"set colorcolumn=80
 set formatoptions=tqrn1j
 command! -nargs=* Wrap set wrap linebreak nolist
 
@@ -168,7 +168,6 @@ set tabstop=4
 
 " OmniCompletion
 set omnifunc=syntaxcomplete#Complete
-
 
 " Don't flash errors and disable sound
 set novisualbell
@@ -276,6 +275,8 @@ map <Leader>ez :e! $HOME/.zshrc<CR>
 " Replace " with '
 nnoremap <Leader>s' :perldo s/"(.*?)"/'\1'/g<CR>
 nnoremap <Leader>s" :perldo s/'(.*?)'/"\1"/g<CR>
+vnoremap <Leader>s' :perldo s/"(.*?)"/'\1'/g<CR>
+vnoremap <Leader>s" :perldo s/'(.*?)'/"\1"/g<CR>
 
 " Load current file
 nmap <Leader>so :so %<CR>
@@ -311,7 +312,6 @@ map <Leader>fx :! tidy -qmi -xml -utf8 % <CR>
 
 " Quick toggles
 nmap <Leader>tb :call BackgroundToggle()<CR>
-nmap <Leader>tc :set cursorline!<CR>
 nmap <Leader>ti :set ignorecase!<CR>
 nmap <Leader>tl :set list!<CR>
 nmap <Leader>tw :set wrap!<CR>
