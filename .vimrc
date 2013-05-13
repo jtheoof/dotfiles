@@ -770,11 +770,12 @@ noremap <Leader>nc :NERDTreeClose<cr>
 " 2}}}
 " UltiSnips {{{
 
-"let g:UltiSnipsSnippetsDir = '$HOME/.vim/ultisnips'
-let g:UltiSnipsExpandTrigger       = "<tab>"
-let g:UltiSnipsListSnippets        = "<F2>"
-let g:UltiSnipsJumpForwardTrigger  = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'ultisnips']
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsListSnippets = '<F2>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 let g:UltiSnipsEditSplit = 'vertical'
 
 " }}}
