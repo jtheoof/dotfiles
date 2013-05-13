@@ -35,6 +35,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'maksimr/vim-jsbeautify'
 Bundle 'mattn/zencoding-vim'
 Bundle 'pangloss/vim-javascript'
+Bundle 'SirVer/ultisnips'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-commentary'
@@ -767,6 +768,16 @@ noremap <Leader>nf :NERDTreeFind<cr>
 noremap <Leader>nc :NERDTreeClose<cr>
 
 " 2}}}
+" UltiSnips {{{
+
+"let g:UltiSnipsSnippetsDir = '$HOME/.vim/ultisnips'
+let g:UltiSnipsExpandTrigger       = "<tab>"
+let g:UltiSnipsListSnippets        = "<F2>"
+let g:UltiSnipsJumpForwardTrigger  = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+let g:UltiSnipsEditSplit = 'vertical'
+
+" }}}
 " Syntastic {{{
 
 let g:syntastic_mode_map = { 'mode': 'passive',
