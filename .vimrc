@@ -14,7 +14,6 @@ set nocompatible " be IMproved
 " Pathogen must be the first plugin to load before anything else
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
-call pathogen#helptags()     " don't call it everytime cause it's slow?
 
 " 1}}}
 " Vundle {{{1
