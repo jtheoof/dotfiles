@@ -58,41 +58,45 @@ syntax on                    " enable syntax
 " 1}}}
 " Main options {{{1
 
-"set autochdir                      " Automatically follow current directory
-set autoread                       " automatically reload file changes
-set autowrite                      " automatically save before :next or :make
-set autowriteall                   " same as autowrite but for all actions
-set backspace=indent,eol,start     " more powerful backspacing
-set nobackup                       " do not keep a backup file
-set nocursorline                     " Highlight current line
-set diffopt+=vertical              " make vertical default split
-set esckeys                        " allow usage of cur keys within insert mode
-set encoding=utf8                  " utf-8 encoding
-set gdefault                       " default global in regex
-set foldlevel=0                    " fold to level 0 when opening file
-set foldmethod=marker              " basic marker as default folding method
-set history=1000                   " history back trace
-set laststatus=2                   " allways show status line
-set lazyredraw                     " don't redraw while executing macros
-set nolist                           " show specific characters, especially Tab and CR
-set ruler                          " show the cursor position all the time
-set number                         " show line numbers
-set modeline                       " last lines in document sets vim mode
-set modelines=5                    " number lines checked for modelines
-set nostartofline                  " don't jump to first character when paging
-set shortmess=atI                  " Abbreviate messages
-set showcmd                        " display incomplete commands
-set showmode                       " Show current mode
-set scrolloff=3                    " Make cursor offset
-set splitbelow                     " split at the bottom
-set splitright                     " vsplit on right
-if exists("+spelllang")
-    set spelllang=en_us              " english is good enough
-    set spellfile=~/.vim/spell/en.utf-8.add
-endif
-set title                          " show title in console title bar
-"set viminfo='10,\"100             " 10 marks, 100 lines
-set viminfo='10,\"100,:20,%        " 10 marks, 100 lines, 20 command lines
+" Text editing
+set encoding=utf8                       " utf-8 encoding
+set formatoptions=tqrn1j                " see help
+set number                              " show line numbers
+set textwidth=78                        " 78 characters limit
+
+set nowrap                              " no wrapping
+
+" Vim specific
+set autoread                            " automatically reload file changes
+set autowriteall                        " same as autowrite but for all actions
+set backspace=indent,eol,start          " more powerful backspacing
+set diffopt+=vertical                   " make vertical default split
+set foldlevel=0                         " fold to level 0 when opening file
+set foldmethod=marker                   " basic marker as default folding method
+set laststatus=2                        " always show status line
+set lazyredraw                          " don't redraw while executing macros
+set modeline                            " last lines in document sets vim mode
+set modelines=5                         " number lines checked for modelines
+set omnifunc=syntaxcomplete#Complete    " basic autocomplete from buffers
+set scrolloff=3                         " Make cursor offset
+set shortmess=atI                       " Abbreviate messages
+set showcmd                             " display incomplete commands
+set showmode                            " Show current mode
+set splitbelow                          " split at the bottom
+set splitright                          " vsplit on right
+set title                               " show title in console title bar
+
+set noerrorbells                        " no error sounds
+set nostartofline                       " don't jump to first char when paging
+set novisualbell                        " no visual sounds
+
+" History of: file marks, command lines, input line, searches.
+" Also disable highlights on start and save buffers.
+" history and viminfo are two separate settings.
+" Putting the same value only makes it more consistent.
+set history=5000
+set viminfo='5000,:5000,@5000,/5000,h,%
+
 "set whichwrap=<,>,h,l,[,]         " move freely between lines (wrap)
 set wildchar=<Tab> wildmenu wildmode=full
 set wildcharm=<C-Z>
@@ -105,6 +109,24 @@ set wildmode=longest,full
 set nobackup
 set nowb
 set noswapfile
+
+" Persistent undo
+if exists("+undofile")
+    set undofile
+    set undolevels=1000 " maximum number of changes that can be undone
+    set undoreload=10000 "maximum number lines to save for undo
+    if has("win32")
+        set undodir=~/vimfiles/undodir
+    else
+        set undodir=~/.vim/undodir
+    endif
+endif
+
+" Spelling
+if exists("+spelllang")
+    set spelllang=en_us              " english is good enough
+    set spellfile=~/.vim/spell/en.utf-8.add
+endif
 
 " Status line
 set statusline=%t       "tail of the filename
@@ -119,18 +141,6 @@ set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
 
-" Persistent undo
-if exists("+undofile")
-    set undofile
-    set undolevels=1000 " maximum number of changes that can be undone
-    set undoreload=10000 "maximum number lines to save for undo
-    if has("win32")
-        set undodir=~/vimfiles/undodir
-    else
-        set undodir=~/.vim/undodir
-    endif
-endif
-
 " X Clipboard
 if has("unix")
     if has('unnamedplus')
@@ -142,37 +152,23 @@ else
     set clipboard=unnamed
 endif
 
-
 " Word wrapping
-set wrap
-set linebreak
-set textwidth=78
-"set colorcolumn=80
-set formatoptions=tqrn1j
-command! -nargs=* Wrap set wrap linebreak nolist
 
 " Search
+set gdefault     " default global in regex
 set ignorecase   " ignore case when searching
 set smartcase    " ignore case only if all chars are lower
 set incsearch    " do incremental searching
 set hlsearch     " highlight searches
 
 " Indentation
-"set smarttab
 set expandtab
 set copyindent
 set preserveindent
-set softtabstop=0
+set softtabstop=4
 set shiftwidth=4
 set tabstop=4
 
-" OmniCompletion
-set omnifunc=syntaxcomplete#Complete
-
-" Don't flash errors and disable sound
-set novisualbell
-set noerrorbells
-"set noerrorbells visualbell t_vb=
 
 " Set default tags file and some extra
 set tags=./tags;/
@@ -190,16 +186,6 @@ let g:is_posix = 1
 
 " 1}}}
 " Functions {{{1
-
-" Switch between light and dark background.
-" Quite useful for themes like solarized and time during the day.
-function! BackgroundToggle()
-    if &background == "light"
-        set background=dark
-    else
-        set background=light
-    endif
-endfunction
 
 " Auto adjust window height
 function! AdjustWindowHeight(minheight, maxheight)
@@ -278,11 +264,10 @@ nnoremap <Leader>s" :perldo s/'(.*?)'/"\1"/g<CR>
 vnoremap <Leader>s' :perldo s/"(.*?)"/'\1'/g<CR>
 vnoremap <Leader>s" :perldo s/'(.*?)'/"\1"/g<CR>
 
-" Load current file
-nmap <Leader>so :so %<CR>
-
-" Fast reload of .vimrc
-map <Leader>sv :so $MYVIMRC<CR>
+" Fast reload of common files
+nnoremap <Leader>so :so %<CR>
+nnoremap <Leader>sj :so $HOME/.vim/bundle/static/colors/jtheoof.vim<CR>
+nnoremap <Leader>sv :so $MYVIMRC<CR>
 
 " Splitting windows the right way
 " Thanks to: http://goo.gl/R73uk
@@ -311,7 +296,6 @@ map <Leader>fh :! tidy -qmi -utf8 % <CR>
 map <Leader>fx :! tidy -qmi -xml -utf8 % <CR>
 
 " Quick toggles
-nmap <Leader>tb :call BackgroundToggle()<CR>
 nmap <Leader>ti :set ignorecase!<CR>
 nmap <Leader>tl :set list!<CR>
 nmap <Leader>tw :set wrap!<CR>
