@@ -100,24 +100,24 @@ alias n.='nautilus .'
 # 2}}}
 # APT {{{2
 
-alias  ACD='apt-cache depends' # show dependencies of <package>.deb
-alias  ACS='apt-cache search' # search for string
-alias  AGA='sudo apt-get autoremove' # remove packages no longer needed
-alias  AGB='sudo apt-get build-dep' # install dependencies for source built packages using deb-src
-alias  AGC='sudo apt-get clean' # clear out downloaded .debs from /var/cache/apt/archives
-alias  AGDU='sudo apt-get dist-upgrade' # apply available upgrades
-alias  AGG='sudo apt-get upgrade' # apply available upgrades
-alias  AGI='sudo apt-get install' # install package(s) from a Debian repository.
-alias  AGIR='sudo apt-get install --reinstall' # reinstall package
-alias  AGR='sudo apt-get remove' # remove package, leave config files
-alias  AGS='apt-get source' # download Debian source to $PWD - requires deb-src enabled in sources.list
-alias  AGU='sudo apt-get update' # update the list of available packages
-alias  AH='apt-history' # not native to sudo apt-get - apt-history function required
-alias  ASV='apt-show-versions' # not native to sudo apt-get - apt-show-versions required
-alias  ASVE='apt-show-versions | grep /experimental' # list all packages from /experimental
-alias  ASVS='apt-show-versions | grep /stable' # list all packages from /stable
-alias  ASVT='apt-show-versions | grep /testing' # list all packages from /testing
-alias  ASVU='apt-show-versions | grep /unstable' # list all packages from /unstable
+alias  acd='apt-cache depends' # show dependencies of <package>.deb
+alias  acs='apt-cache search' # search for string
+alias  aga='sudo apt-get autoremove' # remove packages no longer needed
+alias  agb='sudo apt-get build-dep' # install dependencies for source built packages using deb-src
+alias  agc='sudo apt-get clean' # clear out downloaded .debs from /var/cache/apt/archives
+alias  agdu='sudo apt-get dist-upgrade' # apply available upgrades
+alias  agg='sudo apt-get upgrade' # apply available upgrades
+alias  agi='sudo apt-get install' # install package(s) from a Debian repository.
+alias  agir='sudo apt-get install --reinstall' # reinstall package
+alias  agr='sudo apt-get remove' # remove package, leave config files
+alias  ags='apt-get source' # download Debian source to $PWD - requires deb-src enabled in sources.list
+alias  agu='sudo apt-get update' # update the list of available packages
+alias  ah='apt-history' # not native to sudo apt-get - apt-history function required
+alias  asv='apt-show-versions' # not native to sudo apt-get - apt-show-versions required
+alias  asve='apt-show-versions | grep /experimental' # list all packages from /experimental
+alias  asvs='apt-show-versions | grep /stable' # list all packages from /stable
+alias  asvt='apt-show-versions | grep /testing' # list all packages from /testing
+alias  asvu='apt-show-versions | grep /unstable' # list all packages from /unstable
 
 # 2}}}
 # DPKG {{{2
