@@ -257,6 +257,11 @@ map <Leader>ej :e! $HOME/.vim/bundle/static/colors/jtheoof.vim<CR>
 map <Leader>ev :e! $MYVIMRC<CR>
 map <Leader>ez :e! $HOME/.zshrc<CR>
 
+" Ctrl-P Buffer
+nnoremap <Leader>pp :CtrlP<CR>
+nnoremap <Leader>pb :CtrlPBuffer<CR>
+nnoremap <Leader>pm :CtrlPMRU<CR>
+
 " Replace " with '
 nnoremap <Leader>s' :perldo s/"(.*?)"/'\1'/g<CR>
 nnoremap <Leader>s" :perldo s/'(.*?)'/"\1"/g<CR>
