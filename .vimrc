@@ -450,8 +450,7 @@ vnoremap <M-6> g^
 vnoremap <M-0> g^
 
 " Tabs
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
+vnoremap <CR> >gv
 vnoremap <BS> <gv
 
 " Substitutiion
