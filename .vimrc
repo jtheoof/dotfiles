@@ -772,9 +772,11 @@ let g:UltiSnipsEditSplit = 'vertical'
 " }}}
 " Syntastic {{{
 
-let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': [],
-                           \ 'passive_filetypes': [] }
+let g:syntastic_mode_map = {
+    \ 'mode': 'passive',
+    \ 'active_filetypes': [],
+    \ 'passive_filetypes': [],
+    \ }
 
 " }}}
 " Zencoding {{{2
