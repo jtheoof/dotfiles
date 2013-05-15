@@ -731,12 +731,17 @@ nnoremap <silent> sc     :%s///n<CR>
 " 2}}}
 " CTRL-P {{{2
 
-let g:ctrlp_by_filename = 0
+let g:ctrlp_by_filename = 1
 let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_regexp = 0
 let g:ctrlp_use_caching = 1
 let g:ctrlp_working_path_mode = ''
+
+let g:ctrlp_prompt_mappings = {
+    \ 'ToggleType(1)':  ['<c-b>', '<c-down>', '<c-pagedown>'],
+    \ 'ToggleType(-1)': ['<c-f>', '<c-up>', '<c-pageup>'],
+    \ }
 
  " 2}}}
 " LanguageTool {{{2
