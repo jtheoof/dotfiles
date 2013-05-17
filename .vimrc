@@ -600,7 +600,7 @@ augroup filetype_json
     autocmd BufRead *.json setfiletype json
     autocmd FileType json set textwidth=80
     autocmd FileType json set tabstop=4 softtabstop=4 shiftwidth=4
-    autocmd FileType json set expandtab
+    autocmd FileType json set noexpandtab
 augroup END
 
 " 2}}}
