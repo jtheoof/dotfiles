@@ -50,8 +50,10 @@ bind main X !?git push                   # Push to tracking remote
 bind diff Up move-up
 bind diff Down move-down
 
-bind diff E !vi %(file)                  # Edit file
-bind diff P !?git cherry-pick %(commit)  # Checkout commit
+# Edit all files of commit
+bind diff A !sh -c "vim $(git show --pretty='format:' --name-only %(commit))"
+bind diff E !vim %(file)                  # Edit file
+bind diff P !?git cherry-pick %(commit)   # Checkout commit
 
 # }}}
 # Tree {{{
