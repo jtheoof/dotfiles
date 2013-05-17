@@ -84,6 +84,19 @@ handle_install_dotfiles() {
   exit 0
 }
 
+handle_install_npm_packages() {
+  packages="\
+    esprima \
+    jsonlint \
+    jsonlint \
+    less"
+
+  for p in $packages; do
+    print_info "installing node package: $p"
+    sudo npm install $p -g
+  done
+}
+
 handle_install_packages() {
   packages="\
     ack-grep \
@@ -124,7 +137,7 @@ handle_install_packages() {
     zsh"
 
   for p in $packages; do
-    print_info "installing $p"
+    print_info "installing package: $p"
     sudo apt-get install -qy $p
   done
 }
@@ -138,6 +151,9 @@ handle_install() {
       ;;
     packages)
       handle_install_packages
+      ;;
+    npm)
+      handle_install_npm_packages
       ;;
   esac
 }
