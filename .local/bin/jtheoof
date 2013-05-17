@@ -2,9 +2,9 @@
 # vim:set et ts=2 sw=2:
 
 # TODO Install
-# .oh-my-zsh
-# Google Chrome
-# Fonts (especially Windows into /usr/share/fonts/truetype/windows)
+#  * jtheoof.zsh-theme
+#  * Google Chrome
+#  * Fonts (especially Windows into /usr/share/fonts/truetype/windows)
 
 # Print functions {{{
 
@@ -72,6 +72,13 @@ handle_install_dotfiles() {
   for i in $home_dirs; do
     link "$i"
   done
+
+  if [ ! -d $HOME/.oh-my-zsh ]; then
+    print_info "Cloning oh-my-zsh"
+    git clone https://github.com/robyrussel/oh-my-zsh $HOME/.oh-my-zsh
+  else
+    print_info "oh-my-zsh found, skipping..."
+  fi
 
   # .config directories
   config_dirs="htop sublime-text-2 terminator"
