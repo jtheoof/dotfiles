@@ -597,7 +597,7 @@ augroup END
 
 augroup filetype_json
     autocmd!
-    autocmd BufRead *.json setfiletype json
+    autocmd BufRead *.json setf json
     autocmd FileType json set textwidth=80
     autocmd FileType json set tabstop=4 softtabstop=4 shiftwidth=4
     autocmd FileType json set noexpandtab
@@ -634,7 +634,7 @@ augroup END
 augroup filetype_vala
     autocmd!
     autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
-    au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
+    au BufRead,BufNewFile *.vala,*.vapi setf vala
 augroup END
 
 " 2}}}
@@ -642,7 +642,7 @@ augroup END
 
 augroup filetype_zsh
     autocmd!
-    autocmd BufRead *.zsh-theme setfiletype zsh
+    autocmd BufRead *.zsh-theme setf zsh
 augroup END
 
 " 2}}}
@@ -650,9 +650,10 @@ augroup END
 
 augroup intersec
     autocmd!
-    autocmd BufRead *.iop setfiletype d
-    autocmd BufRead *.blk setfiletype c
-    autocmd BufRead *.blkk setfiletype cpp
+    autocmd BufRead *.iop  setf d
+    autocmd BufRead *.blk  setf c
+    autocmd BufRead *.blkk setf cpp
+    autocmd BufRead *.tpl  setf tpl
 augroup END
 
 " 2}}}
