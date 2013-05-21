@@ -676,6 +676,9 @@ let g:bufExplorerFindActive=0           " Do not go to active window
 map <silent> <C-Tab> :BufExplorer<CR>
 map <silent> <Leader>o :BufExplorer<CR>
 
+" Taking care of small conflict between bufexplorer and surround
+autocmd BufEnter \[BufExplorer\] unmap ds
+autocmd BufLeave \[BufExplorer\] nmap ds <Plug>Dsurround
 
 " 2}}}
 " Fuzzy Finder {{{2
