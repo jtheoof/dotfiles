@@ -467,11 +467,11 @@ cnoremap <C-Backspace> <C-W>
 " 1}}}
 " Auto commands {{{1
 
-augroup quickfix
+aug quickfix
     au!
     au FileType qf wincmd J                        " Place window at very bottom
     au FileType qf call AdjustWindowHeight(3, 20)  " Adjust size automatically
-augroup END
+aug END
 
 " This autocommand jumps to the last known position in a file
 " just after opening it, if the '"' mark is set:
@@ -561,16 +561,16 @@ endfunction
 
 " Java {{{2
 
-augroup filetype_java
+aug filetype_java
     au!
     au Filetype java set makeprg=ant-android
-augroup END
+aug END
 
 " 2}}}
 " Python {{{2
 
 let python_highlight_all = 1
-augroup filetype_python
+aug filetype_python
     au!
     au FileType python syn keyword pythonDecorator True None False self
     au FileType python set omnifunc=pythoncomplete#Complete
@@ -581,27 +581,27 @@ augroup filetype_python
     au FileType python map <buffer> <Leader>2 /def
     au FileType python map <buffer> <Leader>C ?class
     au FileType python map <buffer> <Leader>D ?def
-augroup END
+aug END
 
 " 2}}}
 " Javascript {{{2
 
-augroup filetype_javascript
+aug filetype_javascript
     au!
     au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
     au FileType javascript set shiftwidth=4 tabstop=4 expandtab textwidth=0
-augroup END
+aug END
 
 " 2}}}
 " JSON {{{2
 
-augroup filetype_json
+aug filetype_json
     au!
     au BufRead *.json setf json
     au FileType json set textwidth=80
     au FileType json set tabstop=4 softtabstop=4 shiftwidth=4
     au FileType json set noexpandtab
-augroup END
+aug END
 
 " 2}}}
 " HTML {{{2
@@ -609,52 +609,52 @@ augroup END
 " Disable underlines in <a> tags as well as bold, italic
 " See: :help html
 let html_no_rendering = 1
-augroup filetype_html
+aug filetype_html
     au!
     au FileType html set omnifunc=htmlcomplete#CompleteTags
     au FileType html set shiftwidth=2 tabstop=2 expandtab textwidth=0
     au FileType xhtml set shiftwidth=2 tabstop=2 expandtab textwidth=0
     au FileType tpl set shiftwidth=2 tabstop=2 expandtab textwidth=0
     au FileType smarty set shiftwidth=2 tabstop=2 expandtab textwidth=0
-augroup END
+aug END
 
 " 2}}}
 " CSS {{{2
 
-augroup filetype_css
+aug filetype_css
     au!
     au FileType css set omnifunc=csscomplete#CompleteCSS
     au FileType css set tabstop=4 softtabstop=4 shiftwidth=4
     au FileType css set expandtab
-augroup END
+aug END
 
 " 2}}}
 " Vala {{{2
 
-augroup filetype_vala
+aug filetype_vala
     au!
     au BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
     au BufRead,BufNewFile *.vala,*.vapi setf vala
-augroup END
+aug END
 
 " 2}}}
 " ZSH {{{2
 
-augroup filetype_zsh
+aug filetype_zsh
     au!
     au BufRead *.zsh-theme setf zsh
-augroup END
+aug END
 
 " 2}}}
 " Intersec {{{2
 
-augroup intersec
+aug intersec
     au!
     au BufRead *.iop  setf d
     au BufRead *.blk  setf c
     au BufRead *.blkk setf cpp
     au BufRead *.tpl  setf tpl
-augroup END
+aug END
 
 " 2}}}
 
