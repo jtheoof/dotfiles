@@ -475,13 +475,13 @@ augroup END
 
 " This autocommand jumps to the last known position in a file
 " just after opening it, if the '"' mark is set:
-"autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+"au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " Auto save when focus is lost
-autocmd FocusLost * execute ":silent! wa"
+au FocusLost * execute ":silent! wa"
 
 " Save clipboard when vim exits
-autocmd VimLeave * call system("xsel -ib", getreg('+'))
+au VimLeave * call system("xsel -ib", getreg('+'))
 
 " 1}}}
 " Spell checking {{{1
@@ -562,8 +562,8 @@ endfunction
 " Java {{{2
 
 augroup filetype_java
-    autocmd!
-    autocmd Filetype java set makeprg=ant-android
+    au!
+    au Filetype java set makeprg=ant-android
 augroup END
 
 " 2}}}
@@ -571,36 +571,36 @@ augroup END
 
 let python_highlight_all = 1
 augroup filetype_python
-    autocmd!
-    autocmd FileType python syn keyword pythonDecorator True None False self
-    autocmd FileType python set omnifunc=pythoncomplete#Complete
-    autocmd FileType python inoremap <buffer> $r return
-    autocmd FileType python inoremap <buffer> $i import
-    autocmd FileType python inoremap <buffer> $p print
-    autocmd FileType python map <buffer> <Leader>1 /class
-    autocmd FileType python map <buffer> <Leader>2 /def
-    autocmd FileType python map <buffer> <Leader>C ?class
-    autocmd FileType python map <buffer> <Leader>D ?def
+    au!
+    au FileType python syn keyword pythonDecorator True None False self
+    au FileType python set omnifunc=pythoncomplete#Complete
+    au FileType python inoremap <buffer> $r return
+    au FileType python inoremap <buffer> $i import
+    au FileType python inoremap <buffer> $p print
+    au FileType python map <buffer> <Leader>1 /class
+    au FileType python map <buffer> <Leader>2 /def
+    au FileType python map <buffer> <Leader>C ?class
+    au FileType python map <buffer> <Leader>D ?def
 augroup END
 
 " 2}}}
 " Javascript {{{2
 
 augroup filetype_javascript
-    autocmd!
-    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType javascript set shiftwidth=4 tabstop=4 expandtab textwidth=0
+    au!
+    au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+    au FileType javascript set shiftwidth=4 tabstop=4 expandtab textwidth=0
 augroup END
 
 " 2}}}
 " JSON {{{2
 
 augroup filetype_json
-    autocmd!
-    autocmd BufRead *.json setf json
-    autocmd FileType json set textwidth=80
-    autocmd FileType json set tabstop=4 softtabstop=4 shiftwidth=4
-    autocmd FileType json set noexpandtab
+    au!
+    au BufRead *.json setf json
+    au FileType json set textwidth=80
+    au FileType json set tabstop=4 softtabstop=4 shiftwidth=4
+    au FileType json set noexpandtab
 augroup END
 
 " 2}}}
@@ -610,30 +610,30 @@ augroup END
 " See: :help html
 let html_no_rendering = 1
 augroup filetype_html
-    autocmd!
-    autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType html set shiftwidth=2 tabstop=2 expandtab textwidth=0
-    autocmd FileType xhtml set shiftwidth=2 tabstop=2 expandtab textwidth=0
-    autocmd FileType tpl set shiftwidth=2 tabstop=2 expandtab textwidth=0
-    autocmd FileType smarty set shiftwidth=2 tabstop=2 expandtab textwidth=0
+    au!
+    au FileType html set omnifunc=htmlcomplete#CompleteTags
+    au FileType html set shiftwidth=2 tabstop=2 expandtab textwidth=0
+    au FileType xhtml set shiftwidth=2 tabstop=2 expandtab textwidth=0
+    au FileType tpl set shiftwidth=2 tabstop=2 expandtab textwidth=0
+    au FileType smarty set shiftwidth=2 tabstop=2 expandtab textwidth=0
 augroup END
 
 " 2}}}
 " CSS {{{2
 
 augroup filetype_css
-    autocmd!
-    autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-    autocmd FileType css set tabstop=4 softtabstop=4 shiftwidth=4
-    autocmd FileType css set expandtab
+    au!
+    au FileType css set omnifunc=csscomplete#CompleteCSS
+    au FileType css set tabstop=4 softtabstop=4 shiftwidth=4
+    au FileType css set expandtab
 augroup END
 
 " 2}}}
 " Vala {{{2
 
 augroup filetype_vala
-    autocmd!
-    autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
+    au!
+    au BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
     au BufRead,BufNewFile *.vala,*.vapi setf vala
 augroup END
 
@@ -641,19 +641,19 @@ augroup END
 " ZSH {{{2
 
 augroup filetype_zsh
-    autocmd!
-    autocmd BufRead *.zsh-theme setf zsh
+    au!
+    au BufRead *.zsh-theme setf zsh
 augroup END
 
 " 2}}}
 " Intersec {{{2
 
 augroup intersec
-    autocmd!
-    autocmd BufRead *.iop  setf d
-    autocmd BufRead *.blk  setf c
-    autocmd BufRead *.blkk setf cpp
-    autocmd BufRead *.tpl  setf tpl
+    au!
+    au BufRead *.iop  setf d
+    au BufRead *.blk  setf c
+    au BufRead *.blkk setf cpp
+    au BufRead *.tpl  setf tpl
 augroup END
 
 " 2}}}
