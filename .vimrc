@@ -633,8 +633,8 @@ aug END
 
 aug filetype_vala
     au!
-    au BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
-    au BufRead,BufNewFile *.vala,*.vapi setf vala
+    au BufNewFile,BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
+    au BufNewFile,BufRead *.vala,*.vapi setf vala
 aug END
 
 " 2}}}
@@ -650,10 +650,9 @@ aug END
 
 aug intersec
     au!
-    au BufRead *.iop  setf d
-    au BufRead *.blk  setf c
-    au BufRead *.blkk setf cpp
-    au BufRead *.tpl  setf tpl
+    au BufNewFile,BufRead *.iop  setf d
+    au BufNewFile,BufRead *.blk  setf c
+    au BufNewFile,BufRead *.blkk setf cpp
 aug END
 
 " 2}}}
