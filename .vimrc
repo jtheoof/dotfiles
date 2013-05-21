@@ -731,6 +731,7 @@ nnoremap <silent> sc     :%s///n<CR>
 " 2}}}
 " CTRL-P {{{2
 
+let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_by_filename = 1
 let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_match_window_bottom = 1
