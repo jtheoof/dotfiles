@@ -67,6 +67,9 @@ handle_install_dotfiles() {
   for i in $FILESPATH/.*rc; do
     link $(basename $i)
   done
+  for i in $FILESPATH/.*conf; do
+    link $(basename $i)
+  done
 
   home_dirs=".dircolors .gitconfig .tilda .vim"
   for i in $home_dirs; do
@@ -136,6 +139,7 @@ handle_install_packages() {
     tidy \
     tig \
     tilda \
+    tmux \
     tree \
     vim-gnome \
     vlc \
@@ -176,12 +180,13 @@ handle_terminal_background() {
   esac
 }
 
-handle_terminal_jtheoof() {
+handle_terminal_colors() {
   shift
   gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/use_theme_colors" --type bool false
   gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/background_color" --type string "#272728282222"
   gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/foreground_color" --type string "#F8F8F8F8F2F2"
   gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/palette" --type string "#707064644949:#E2E230302E2E:#A6A6E2E22E2E:#FDFD97971F1F:#32328585D2D2:#F9F926267272:#6666D9D9EFEF:#F8F8F8F8F2F2:#707064644949:#F9F926267272:#A6A6E2E22E2E:#E6E6DBDB7474:#32328585D2D2:#F9F926267272:#6666D9D9EFEF:#F8F8F8F8F2F2"
+  gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/scrollback_lines" --type int 5000
 }
 
 handle_terminal() {
@@ -189,8 +194,10 @@ handle_terminal() {
   case "$1" in
     background)
       handle_terminal_background "$@" ;;
-    jtheoof)
-      handle_terminal_jtheoof "$@" ;;
+    colors)
+      handle_terminal_colors "$@" ;;
+    *)
+      print_error "unknown option $1" ;;
   esac
 }
 
