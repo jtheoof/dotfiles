@@ -207,8 +207,6 @@ if has("gui_running")
     "set guioptions-=T               " remove toolbar
     "set guioptions-=r               " remove right-hand scroll bar
     set guioptions=                  " turns off every option
-else
-    set t_Co=256
 endif
 set background=dark
 colorscheme jtheoof
@@ -737,6 +735,7 @@ nnoremap <silent> sc     :%s///n<CR>
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_by_filename = 1
 let g:ctrlp_clear_cache_on_exit = 1
+let g:ctrlp_show_hidden = 1
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_regexp = 0
 let g:ctrlp_use_caching = 1
