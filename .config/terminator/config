@@ -24,13 +24,13 @@
     scrollbar_position = hidden
     palette = "#706449:#E2302E:#A6E22E:#FD971F:#3285D2:#F92672:#66D9EF:#F8F8F2:#706449:#F92672:#A6E22E:#E6DB74:#3285D2:#F92672:#66D9EF:#F8F8F2"
     background_darkness = 1.0
+    scrollback_lines = 2000
     use_system_font = False
     foreground_color = "#F8F8F2"
     icon_bell = False
     show_titlebar = False
     font = Ubuntu Mono 10
     background_color = "#272822"
-    scrollback_infinite = True
   [[solarized-dark]]
     scrollbar_position = hidden
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#859900:#b58900:#268bd2:#d33682:#2aa198:#fdf6e3"
