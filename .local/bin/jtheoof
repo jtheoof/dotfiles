@@ -180,14 +180,14 @@ handle_terminal_background() {
   esac
 }
 
+# Monokai palette colors
 handle_terminal_colors() {
   shift
   gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/use_theme_colors" --type bool false
   gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/background_color" --type string "#272728282222"
   gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/foreground_color" --type string "#F8F8F8F8F2F2"
-# gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/palette" --type string "#707064644949:#E2E230302E2E:#A6A6E2E22E2E:#FDFD97971F1F:#32328585D2D2:#F9F926267272:#6666D9D9EFEF:#F8F8F8F8F2F2:#707064644949:#F9F926267272:#A6A6E2E22E2E:#E6E6DBDB7474:#32328585D2D2:#F9F926267272:#6666D9D9EFEF:#F8F8F8F8F2F2"
-#                                                                                  0: Black      : 1: DarkRed  : 2: DarkGreen
-  gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/palette" --type string "#272728282222:#E2E230302E2E:#A6A6E2E22E2E:#FDFD97971F1F:#32328585D2D2:#F9F926267272:#6666D9D9EFEF:#F8F8F8F8F2F2:#707064644949:#F9F926267272:#A6A6E2E22E2E:#E6E6DBDB7474:#32328585D2D2:#F9F926267272:#6666D9D9EFEF:#F8F8F8F8F2F2"
+#                                                                                   0:Black      :1:Red        :2:Green      :3:Yellow     :4:Blue       :5:Magenta    :6:Cyan       :7:White       :8:DarkGrey   :9:LightRed   :10:LightGreen:11:LightYello:12:LightBlue :13:LightMagen:14:LightCyan :15:LightWhite
+  gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/palette" --type string "#272728282222:#E2E230302E2E:#A6A6E2E22E2E:#FDFD97971F1F:#32328585D2D2:#F9F926267272:#6666D9D9EFEF:#F8F8F8F8F2F2:#3E3E3D3D3232:#FFFF36363434:#BCBCFFFF3434:#E6E6DBDB7474:#3D3DA1A1FFFF:#FFFF41418585:#6D6DE8E8FFFF:#F8F8F8F8F2F2"
   gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/scrollback_lines" --type int 5000
 }
 

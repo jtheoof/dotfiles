@@ -6,7 +6,7 @@
 # Created:  In Paris
 
 # Colors {{{
-color cursor white black
+color cursor white color8
 color main-head magenta default
 color main-tag magenta default
 # }}}
