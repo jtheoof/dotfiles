@@ -62,15 +62,15 @@
     tag = yellow
     HEAD = magenta
 [color "diff"]
-    meta = yellow bold
+    meta = blue bold
     frag = magenta bold
     old = red bold
     new = green bold
 [color "status"]
-    header = bold blue
-    added = bold green
-    changed = bold red
-    untracked = bold yellow
+    header = blue
+    added = green
+    changed = yellow
+    untracked = yellow bold
 [diff]
     tool = vimdiff
 [difftool]

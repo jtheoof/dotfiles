@@ -38,7 +38,6 @@ if (has("gui_running"))
     let s:black       = "#3E3D32"
     let s:back        = "#272822"
     let s:front       = "#F8F8F2"
-    "let s:search     = "#FFE792"
 elseif &t_Co == 256
     let s:vmode       = "cterm"
     let s:red         = "197"
@@ -52,11 +51,23 @@ elseif &t_Co == 256
     let s:grey        = "242"
     let s:white       = "231"
     let s:black       = "237"
-    let s:back        = "235"
-    let s:front       = "231"
-    "let s:search     = "186"
+    let s:back        = "0"
+    let s:front       = "15"
 else
     let s:vmode       = "cterm"
+    let s:red         = "1"
+    let s:green       = "2"
+    let s:blue        = "4"
+    let s:cyan        = "6"
+    let s:magenta     = "5"
+    let s:yellow      = "3"
+    let s:orange      = "3"
+    let s:purple      = "5"
+    let s:grey        = "7"
+    let s:white       = "7"
+    let s:black       = "0"
+    let s:back        = "0"
+    let s:front       = "7"
 endif
 "}}}
 " Formatting options and null values for passthrough effect {{{
@@ -73,10 +84,19 @@ endif
 " }}}
 " Overrides dependent on user specified values and environment {{{
 
-let s:b           = ",bold"
-let s:bb          = ""
-let s:u           = ",underline"
-let s:i           = ",italic"
+if (&t_Co == 8)
+    let s:b           = ""
+    let s:bb          = ",bold"
+else
+    let s:b           = ",bold"
+    let s:bb          = ""
+endif
+
+" Underline
+let s:u = ""
+
+" Italic
+let s:i = ""
 
 " }}}
 " Highlighting primitives {{{
