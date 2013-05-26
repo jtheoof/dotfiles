@@ -282,7 +282,7 @@ if [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]]; then
 fi
 
 # Sourcing zshrc_work if exists
-if [[ -f $HOME/.zshrc_work ]]; then
+if [[ -s $HOME/.zshrc_work ]]; then
     source $HOME/.zshrc_work
 fi
 # }}}
