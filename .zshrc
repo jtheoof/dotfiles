@@ -152,6 +152,7 @@ alias svn-df='svn diff | colordiff'
 # 1}}}
 # Exports {{{1
 
+export EDITOR=vim
 export LESS=-FRSX
 export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
 export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.local/bin:$HOME/dev/android/android-sdk-linux/tools:$HOME/dev/android/android-sdk-linux/platform-tools:/opt/SenchaSDKTools-2.0.0-beta3:/opt/eclipse/eclipse-cpp-indigo-SR2-linux-gtk-x86_64-RTC-v4.0
@@ -266,6 +267,7 @@ function chpwd() {
 # }}}
 # Misc {{{
 
+# Force 256 color terminal
 if [[ "$TERM" == "xterm" ]]; then
     export TERM=xterm-256color
 fi
@@ -273,6 +275,10 @@ fi
 # Dircolors
 if [[ -f /usr/bin/dircolors && -f $HOME/.dircolors ]]; then
    eval $(dircolors -b $HOME/.dircolors)
+fi
+
+if [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]]; then
+   source $HOME/.tmuxinator/scripts/tmuxinator
 fi
 
 # Sourcing zshrc_work if exists
