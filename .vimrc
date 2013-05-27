@@ -397,8 +397,9 @@ nnoremap <S-F7> yy:<C-R>"<BS><CR>
 nnoremap <F8> :TagbarToggle<CR>
 nnoremap <F9> :cprevious<Return>
 nnoremap <F10> :cnext<Return>
-nnoremap <F11> :split %<CR>
-nnoremap <F12> :vsplit %<CR>
+
+nnoremap <C-F11> :split %<CR>
+nnoremap <C-F12> :vsplit %<CR>
 
 " Navigate through folded line
 nnoremap <M-j> gj
@@ -762,8 +763,9 @@ nnoremap <silent> sc     :%s///n<CR>
 
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_by_filename = 1
-let g:ctrlp_clear_cache_on_exit = 1
+let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_max_files = 0
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_regexp = 0
 let g:ctrlp_use_caching = 1
@@ -771,8 +773,12 @@ let g:ctrlp_working_path_mode = ''
 let g:ctrlp_switch_buffer = 'H' " Jump to opened window with <c-x>
 
 let g:ctrlp_prompt_mappings = {
-    \ 'ToggleType(1)':  ['<c-b>', '<c-down>', '<c-pagedown>'],
-    \ 'ToggleType(-1)': ['<c-f>', '<c-up>', '<c-pageup>'],
+    \ 'PrtDeleteWord()':      ['<c-w>', '<c-bs>'],
+    \ 'AcceptSelection("h")': ['<c-f11>', '<c-h>'],
+    \ 'AcceptSelection("v")': ['<c-f12>', '<c-v>'],
+    \ 'ToggleType(1)':        ['<c-b>', '<c-down>', '<c-pagedown>'],
+    \ 'ToggleType(-1)':       ['<c-f>', '<c-up>', '<c-pageup>'],
+    \ 'MarkToOpen()':         ['<c-x>', '<c-a>'],
     \ }
 
  " 2}}}
