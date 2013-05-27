@@ -191,6 +191,22 @@ handle_terminal_colors() {
   gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/scrollback_lines" --type int 5000
 }
 
+handle_conf() {
+  shift
+  case "$1" in
+    get)
+      print_info "Loading $FILESPATH/conf/$2.xml"
+      gconftool-2 --load $FILESPATH/conf/$2.xml
+      ;;
+    set)
+      print_info "Saving $FILESPATH/conf/$2.xml"
+      gconftool-2 --dump /apps/$2 > $FILESPATH/conf/$2.xml
+      ;;
+    *)
+      print_error "usage: [get] [set] conf"
+  esac
+}
+
 handle_terminal() {
   shift
   case "$1" in
@@ -273,6 +289,9 @@ case "$1" in
 
   install)
     handle_install "$@" ;;
+
+  conf)
+    handle_conf "$@" ;;
 
   terminal|term)
     handle_terminal "$@" ;;
