@@ -40,7 +40,7 @@ if (has("gui_running"))
     let s:front       = "#F8F8F2"
 elseif &t_Co == 256
     let s:vmode       = "cterm"
-    let s:red         = "197"
+    let s:red         = "196"
     let s:green       = "148"
     let s:blue        = "32"
     let s:cyan        = "81"
@@ -308,7 +308,7 @@ exe "hi Pmenu"           .s:fmt_none   .s:fg_front     .s:bg_black
 exe "hi PmenuSel"        .s:fmt_none   .s:fg_back      .s:bg_yellow
 exe "hi PmenuSbar"       .s:fmt_none   .s:fg_none      .s:bg_back
 exe "hi PmenuThumb"      .s:fmt_none   .s:fg_front     .s:bg_none
-exe "hi Question"        .s:fmt_none   .s:fg_green     .s:bg_none
+exe "hi Question"        .s:fmt_none   .s:fg_magenta   .s:bg_none
 exe "hi Search"          .s:fmt_none   .s:fg_back      .s:bg_yellow
 exe "hi SpecialKey"      .s:fmt_none   .s:fg_black     .s:bg_none
 exe "hi SpellBad"        .s:fmt_curl   .s:fg_none      .s:bg_none   .s:sp_magenta
@@ -386,6 +386,8 @@ hi! link lessClassName               Type
 
 " }}}
 " Plugin specific highlight groups {{{
+
+hi! link netrwExe                    Red
 
 " BufExplorer
 hi! link bufExplorerMapping          Identifier
