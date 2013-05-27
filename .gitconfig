@@ -80,6 +80,8 @@
     frag = magenta bold
     old = red bold
     new = green bold
+[color "grep"]
+    match = yellow
 [color "status"]
     header = blue
     added = green
