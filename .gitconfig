@@ -1,49 +1,63 @@
 [alias]
-    edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
-    add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
-
-    review-web = !git-push-for --to adrien.frediani@intersec.com --to romain.legodais@intersec.com
+    review-web   = !git-push-for --to adrien.frediani@intersec.com --to romain.legodais@intersec.com
     review-tools = !git-push-for --to jonathan.squirawski@intersec.com --to florent.bruneau@intersec.com
 
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
-    amend = commit -s --amend
-    br = branch
-    ci = commit
-    ch = cherry-pick
-    co = checkout
-    cv = commit --verbose
-    df = diff
-    dt = difftool
+
+    br  = branch
+
+    cm  = commit
+    cmm = commit -m
+    cmp = commit -p
+    cma = commit --amend
+    cv  = commit --verbose
+
+    ch  = cherry-pick
+
+    co  = checkout
+
+    df  = diff
+    dt  = difftool
     dtg = difftool -t gvimdiff
     dfc = diff --cached
     dfw = diff --color-words
-    gr = grep -n --untracked --heading --break -e
-    fe = fetch
-    find = "!f() { git ls-files | ack-grep $1 ; }; f"
-    k = !gitk
-    lc = log --pretty=oneline --decorate=full --stat --no-merges ORIG_HEAD..
-    lg = log -p
-    ls = ls-files
+
+    gr  = grep -n --untracked --heading --break -e
+
+    fe  = fetch
+
+    lc   = log --pretty=oneline --decorate=full --stat --no-merges ORIG_HEAD..
+    lg   = log -p
     logp = log --pretty=oneline --decorate=full -20
-    rb = rebase
+
+    ls  = ls-files
+
+    rb  = rebase
     rba = rebase --abort
     rbc = rebase --continue
     rbi = rebase -i
-    p = commit -p
-    post-review = push-for
-    mt = mergetool -t vimdiff
+
+    mt  = mergetool -t vimdiff
     mtg = mergetool -t gvimdiff
-    squash = commit -s --amend -C HEAD
-    st = status
+
+    st  = status
     sta = status --ignored
-    su = submodule update
+
+    su  = submodule update
     sui = submodule update --init
-    undo = reset HEAD^
+
+    undo    = reset HEAD^
     unstash = stash apply
+
     who = shortlog -s --
 
+    edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
+    add-unmerged  = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+
+    find   = "!f() { git ls-files | ack-grep $1 ; }; f"
+
     jshint = "!git status -uno -s | cut -f3 -d' ' | ack-grep '.js$' | xargs jshint"
-    jsfix = "!f() { git ls-files | xargs jshint | cut -d':' -f1 | sort -u | xargs ; }; vim `f`"
+    jsfix  = "!f() { git ls-files | xargs jshint | cut -d':' -f1 | sort -u | xargs ; }; vim `f`"
 [branch]
     autosetuprebase = always
 [color]
