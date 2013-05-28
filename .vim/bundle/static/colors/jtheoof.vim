@@ -209,8 +209,6 @@ exe "hi! Comment"        .s:fmt_none   .s:fg_grey      .s:bg_none
 
 exe "hi! Constant"       .s:fmt_none   .s:fg_purple    .s:bg_none
 "       *Constant        any constant
-"        String          a string constant: "this is a string"
-"        Character       a character constant: 'c', '\n'
 "        Number          a number constant: 234, 0xff
 "        Boolean         a boolean constant: TRUE, false
 "        Float           a floating point constant: 2.3e10
@@ -240,10 +238,15 @@ exe "hi! Operator"       .s:fmt_none   .s:fg_orange    .s:bg_none
 
 exe "hi! PreProc"        .s:fmt_none   .s:fg_orange    .s:bg_none
 "       *PreProc         generic Preprocessor
-"        Include         preprocessor #include
-"        Define          preprocessor #define
-"        Macro           same as Define
 "        PreCondit       preprocessor #if, #else, #endif, etc.
+
+exe "hi! Macro"          .s:fmt_none   .s:fg_purple    .s:bg_none
+"        Macro           same as Define
+
+exe "hi! Include"        .s:fmt_none   .s:fg_magenta   .s:bg_none
+"        Include         preprocessor #include
+exe "hi! Define"         .s:fmt_none   .s:fg_magenta   .s:bg_none
+"        Define          preprocessor #define
 
 exe "hi! Type"           .s:fmt_none   .s:fg_cyan      .s:bg_none
 "       *Type            int, long, char, etc.
@@ -299,7 +302,7 @@ exe "hi Folded"          .s:fmt_none   .s:fg_grey      .s:bg_none
 exe "hi FoldColumn"      .s:fmt_none   .s:fg_grey      .s:bg_black
 exe "hi SignColum"       .s:fmt_none   .s:fg_grey      .s:bg_black
 exe "hi IncSearch"       .s:fmt_none   .s:fg_back      .s:bg_orange
-exe "hi LineNr"          .s:fmt_none   .s:fg_grey      .s:bg_black
+exe "hi LineNr"          .s:fmt_none   .s:fg_grey      .s:bg_none
 exe "hi CursorLineNr"    .s:fmt_none   .s:fg_white     .s:bg_black
 exe "hi MatchParen"      .s:fmt_bold   .s:fg_front     .s:bg_back
 exe "hi ModeMsg"         .s:fmt_bold   .s:fg_none      .s:bg_none

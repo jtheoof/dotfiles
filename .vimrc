@@ -280,6 +280,7 @@ nnoremap <Leader>hcw :call HighlightWord()<CR>
 
 " Fast editing of common files
 map <Leader>eg :e! $HOME/.gitconfig<CR>
+map <Leader>ec :e! $HOME/.vim/bundle/static/colors/jtheoof.vim<CR>
 map <Leader>ej :e! $HOME/.vim/bundle/static/colors/jtheoof.vim<CR>
 map <Leader>ev :e! $MYVIMRC<CR>
 map <Leader>ez :e! $HOME/.zshrc<CR>
