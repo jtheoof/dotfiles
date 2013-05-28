@@ -44,7 +44,7 @@ elseif &t_Co == 256
     let s:green       = "148"
     let s:blue        = "32"
     let s:cyan        = "81"
-    let s:magenta     = "197"
+    let s:magenta     = "5"
     let s:yellow      = "186"
     let s:orange      = "208"
     let s:purple      = "141"
@@ -222,8 +222,10 @@ exe "hi! Character"      .s:fmt_none   .s:fg_yellow    .s:bg_none
 
 exe "hi! Identifier"     .s:fmt_none   .s:fg_green     .s:bg_none
 "       *Identifier      any variable name
+
+exe "hi! Function"       .s:fmt_none   .s:fg_cyan      .s:bg_none
 "        Function        function name (also: methods for classes)
-"
+
 exe "hi! Statement"      .s:fmt_none   .s:fg_magenta   .s:bg_none
 "       *Statement       any statement
 "        Conditional     if, then, else, endif, switch, etc.
@@ -245,11 +247,10 @@ exe "hi! PreProc"        .s:fmt_none   .s:fg_orange    .s:bg_none
 
 exe "hi! Type"           .s:fmt_none   .s:fg_cyan      .s:bg_none
 "       *Type            int, long, char, etc.
-"        StorageClass    static, register, volatile, etc.
 "        Structure       struct, union, enum, etc.
 "        Typedef         A typedef
 
-exe "hi! StorageClass"   .s:fmt_none   .s:fg_red       .s:bg_none
+exe "hi! StorageClass"   .s:fmt_none   .s:fg_magenta   .s:bg_none
 "        StorageClass    static, register, volatile, etc.
 
 exe "hi! Special"        .s:fmt_none   .s:fg_white     .s:bg_none
@@ -275,7 +276,7 @@ exe "hi! Ignore"         .s:fmt_none   .s:fg_none      .s:bg_none
 exe "hi! Error"          .s:fmt_none   .s:fg_front     .s:bg_magenta
 "       *Error           any erroneous construct
 
-exe "hi! Todo"           .s:fmt_none   .s:fg_back      .s:bg_orange
+exe "hi! Todo"           .s:fmt_none   .s:fg_white     .s:bg_orange
 "       *Todo            anything that needs extra attention; mostly the
 "                        keywords TODO FIXME and XXX
 
