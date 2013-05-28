@@ -4,6 +4,9 @@
 
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
 
+    au  = add -u .
+    ap  = add -p
+
     br  = branch
 
     cm  = commit
@@ -15,6 +18,7 @@
     ch  = cherry-pick
 
     co  = checkout
+    cop = checkout -p
 
     df  = diff
     dt  = difftool
