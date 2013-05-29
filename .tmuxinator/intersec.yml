@@ -1,5 +1,3 @@
-# ~/.tmuxinator/intersec.yml
-
 project_name: intersec
 project_root: ~/dev/mmsx
 rvm: 

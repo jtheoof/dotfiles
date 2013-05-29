@@ -1,0 +1,11 @@
+project_name: dotfiles
+project_root: ~/.dotfiles
+rvm: 
+pre:
+tabs:
+  - shell:
+      layout: even-horizontal
+      panes:
+        - git-unset
+        - git-unset
+  - editor: vim -O .vimrc .zshrc .gitconfig
