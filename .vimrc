@@ -509,6 +509,10 @@ aug END
 " Auto save when focus is lost
 au FocusLost * execute ":silent! wa"
 
+" Show cursor line in insert mode
+au InsertEnter * set cursorline
+au InsertLeave * set nocursorline
+
 " Save clipboard when vim exits
 au VimLeave * call system("xsel -ib", getreg('+'))
 
