@@ -5,32 +5,29 @@
 # License:  MIT license (see .vimrc end of file)
 # Created:  In Paris
 
+# Variables {{{
+
+set horizontal-scroll = 33%
+set line-graphics = yes
+set show-author = yes
+set show-date = default
+set show-refs = yes
+set show-rev-graph = no
+
+# }}}
 # Colors {{{
 color cursor white color8
 color main-head magenta default
 color main-tag magenta default
 # }}}
-# Variables {{{
-
-#set author-width
-#set commit-encoding
-set horizontal-scroll = 33%
-set line-graphics = yes
-#set line-number-interval
-set show-author = yes
-set show-date = default
-set show-refs = yes
-set show-rev-graph = no
-#set split-view-height
-#tet tab-size
-
-# }}}
 # Bindings {{{
 
 # Generic {{{
 
+bind generic s view-status
 bind generic F !git fetch
 bind generic y !@sh -c "echo -n %(commit) | xsel -ib"
+bind generic Y !@sh -c "echo -n %(commit) | xsel -ib"
 
 # }}}
 # Main {{{
@@ -38,7 +35,8 @@ bind generic y !@sh -c "echo -n %(commit) | xsel -ib"
 bind main ! !git revert %(commit)        # Revert commit
 bind main C !?git checkout %(commit)     # Checkout commit
 bind main F !git fetch                   # Fetch repository
-bind main I !git rebase -i %(commit)     # Interactive rebasing
+bind main I !git rebase -i               # Interactive rebasing
+bind main T !git rebase -i %(commit)     # Interactive rebasing (unTil)
 bind main P !?git cherry-pick %(commit)  # Checkout commit
 bind main R !?git rebase                 # Rebasing after fetch
 bind main U !?git up                     # Update repository
@@ -51,9 +49,11 @@ bind diff Up move-up
 bind diff Down move-down
 
 # Edit all files of commit
-bind diff A !sh -c "vim $(git show --pretty='format:' --name-only %(commit))"
-bind diff E !vim %(file)                  # Edit file
-bind diff P !?git cherry-pick %(commit)   # Checkout commit
+bind diff A !git add %(file)              # Add current file
+bind diff C !git commit -av               # Add and commit
+bind diff E !sh -c "vim $(git show --pretty='format:' --name-only %(commit))"
+bind diff V !vim %(file)                  # Edit file
+bind diff P !git add -p %(file)           # Partially add current file
 
 # }}}
 # Tree {{{
