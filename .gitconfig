@@ -4,6 +4,7 @@
 
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
 
+    a   = add
     au  = add -u .
     ap  = add -p
 
