@@ -10,10 +10,9 @@
 
     br  = branch
 
-    cm  = commit
-    cmm = commit -m
-    cmp = commit -p
-    cma = commit --amend
+    c   = commit
+    cm  = commit -m
+    ca  = commit --amend
     cv  = commit --verbose
 
     ch  = cherry-pick
