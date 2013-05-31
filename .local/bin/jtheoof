@@ -169,17 +169,6 @@ handle_install() {
   esac
 }
 
-handle_terminal_background() {
-  shift
-  case "$1" in
-    light)
-      print_success 'setting light background' ;;
-    dark)
-      print_success 'setting dark background' ;;
-   *) print_error "Invalid background: $1" exit 1 ;;
-  esac
-}
-
 # Monokai palette colors
 handle_terminal_colors() {
   shift
@@ -210,24 +199,22 @@ handle_dconf() {
 handle_conf() {
   shift
   case "$1" in
-    get)
-      print_info "Loading $FILESPATH/conf/$2.xml"
+    load)
+      print_info "loading: $FILESPATH/conf/$2.xml"
       gconftool-2 --load $FILESPATH/conf/$2.xml
       ;;
-    set)
-      print_info "Saving $FILESPATH/conf/$2.xml"
+    dump)
+      print_info "dumping: $FILESPATH/conf/$2.xml"
       gconftool-2 --dump /apps/$2 > $FILESPATH/conf/$2.xml
       ;;
     *)
-      print_error "usage: [get] [set] conf"
+      print_error "usage: conf [dump] [load] appname"
   esac
 }
 
 handle_terminal() {
   shift
   case "$1" in
-    background)
-      handle_terminal_background "$@" ;;
     colors)
       handle_terminal_colors "$@" ;;
     *)
