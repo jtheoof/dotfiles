@@ -191,6 +191,22 @@ handle_terminal_colors() {
   gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/scrollback_lines" --type int 5000
 }
 
+handle_dconf() {
+  shift
+  case "$1" in
+    load)
+      print_info "loading: $FILESPATH/conf/dconf"
+      dconf load / < $FILESPATH/conf/dconf
+      ;;
+    dump)
+      print_info "dumping: $FILESPATH/conf/dconf"
+      dconf dump / > $FILESPATH/conf/dconf
+      ;;
+    *)
+      print_error "usage: dconf [dump] [load]"
+  esac
+}
+
 handle_conf() {
   shift
   case "$1" in
@@ -289,6 +305,9 @@ case "$1" in
 
   install)
     handle_install "$@" ;;
+
+  dconf)
+    handle_dconf "$@" ;;
 
   conf)
     handle_conf "$@" ;;
