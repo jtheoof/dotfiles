@@ -36,6 +36,8 @@
 
     ls  = ls-files
 
+    p   = pull
+
     rb  = rebase
     rba = rebase --abort
     rbc = rebase --continue
