@@ -8,4 +8,4 @@ tabs:
       panes:
         - git-unset
         - git-unset
-  - editor: vim -O .vimrc .zshrc .gitconfig
+  - editor: vim -O .vimrc .tmux.conf .zshrc
