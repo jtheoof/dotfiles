@@ -8,13 +8,6 @@
 
 set nocompatible " be IMproved
 
-" Pathogen {{{1
-
-" Pathogen must be the first plugin to load before anything else
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-
-" 1}}}
 " Vundle {{{1
 
 set rtp+=~/.vim/bundle/vundle/
