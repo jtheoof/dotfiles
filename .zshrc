@@ -52,6 +52,7 @@ source $ZSH/oh-my-zsh.sh
 alias lgroups='cat /etc/passwd | cut -d: -f1'
 
 # Editing
+alias v='vim'
 alias vi='vim'
 alias gv='gvim'
 alias sub='sublime'
