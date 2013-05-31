@@ -238,7 +238,7 @@ if &term =~ "^screen" && exists("$TMUX")
 endif
 
 set background=dark
-colorscheme jtheoof
+colorscheme monokai
 
 " 1}}}
 " Mappings {{{1
@@ -280,8 +280,7 @@ nnoremap <Leader>hcw :call HighlightWord()<CR>
 
 " Fast editing of common files
 map <Leader>eg :e! $HOME/.gitconfig<CR>
-map <Leader>ec :e! $HOME/.vim/bundle/static/colors/jtheoof.vim<CR>
-map <Leader>ej :e! $HOME/.vim/bundle/static/colors/jtheoof.vim<CR>
+map <Leader>ec :e! $HOME/.vim/colors/monokai.vim<CR>
 map <Leader>ev :e! $MYVIMRC<CR>
 map <Leader>ez :e! $HOME/.zshrc<CR>
 
@@ -298,7 +297,7 @@ vnoremap <Leader>s" :perldo s/'(.*?)'/"\1"/g<CR>
 
 " Fast reload of common files
 nnoremap <Leader>so :so %<CR>
-nnoremap <Leader>sj :so $HOME/.vim/bundle/static/colors/jtheoof.vim<CR>
+nnoremap <Leader>sc :so $HOME/.vim/colors/monokai.vim<CR>
 nnoremap <Leader>sv :so $MYVIMRC<CR>
 
 " Splitting windows the right way
