@@ -377,14 +377,9 @@ nnoremap <S-Up> 3<C-Y>
 " Quick highlight
 nmap <S-kMultiply> <Leader>hcw
 
-" Saving file
-nnoremap <silent> <C-S> :w<CR>
-
-" Close buffer/window
-nnoremap <C-Q> :q<CR>
-
-" Cleanup search
-nnoremap <C-K> :let @/ = ""<CR>
+nnoremap <silent> <C-S> :w<CR>  " Saving file
+nnoremap <silent> <C-c> :q!<CR> " Close buffer/window
+nnoremap <C-k> :let @/ = ""<CR> " Cleanup search
 
 nnoremap <silent> <F1> :Explore<CR>
 nnoremap <C-F1> :tabe **/<cfile><CR>
@@ -400,8 +395,8 @@ nnoremap <F8> :TagbarToggle<CR>
 nnoremap <F9> :cprevious<Return>
 nnoremap <F10> :cnext<Return>
 
-nnoremap <C-F11> :split %<CR>
-nnoremap <C-F12> :vsplit %<CR>
+nnoremap <C-F11> :split<CR>
+nnoremap <C-F12> :vsplit<CR>
 
 " Navigate through folded line
 nnoremap <M-j> gj
