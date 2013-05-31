@@ -67,7 +67,12 @@ handle_install_dotfiles() {
   for i in $FILESPATH/.*rc; do
     link $(basename $i)
   done
+
   for i in $FILESPATH/.*conf; do
+    link $(basename $i)
+  done
+
+  for i in $FILESPATH/.X*map; do
     link $(basename $i)
   done
 
