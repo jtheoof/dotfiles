@@ -33,6 +33,7 @@ spell-checker-enabled=true
 
 [org/gnome/empathy/ui]
 events-notify-area=true
+main-window-hidden=false
 separate-chat-windows=true
 show-groups=true
 chat-window-paned-pos=395
@@ -102,7 +103,7 @@ side-panel-active-page=228660812
 
 [org/gnome/nautilus/window-state]
 start-with-sidebar=true
-geometry='1278x559+0+24'
+geometry='1278x559+86+87'
 maximized=false
 
 [org/gnome/file-roller/file-selector]
@@ -158,8 +159,11 @@ autorun-x-content-ignore=@as []
 autorun-x-content-open-folder=@as []
 
 [org/gnome/desktop/background]
-picture-uri='file:///home/jeremy/Dropbox/Photos/Wallpapers/Single/Ubuntu/Open_Source_Open_Mind.jpg'
+picture-uri='file:///usr/share/backgrounds/H_by_Manuel_Sagredo.jpg'
+color-shading-type='solid'
+primary-color='#000000'
 picture-options='zoom'
+secondary-color='#000000'
 
 [org/gnome/desktop/interface]
 clock-show-date=true
@@ -435,7 +439,7 @@ show-details=true
 first-run=false
 check-new-release-ignore='raring'
 window-height=727
-launch-time=1369979712
+launch-time=1370034939
 window-width=867
 
 [apps/telepathy-logger]
