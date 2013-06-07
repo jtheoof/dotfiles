@@ -13,6 +13,7 @@
     c   = commit
     cm  = commit -m
     ca  = commit --amend
+    caa = commit -a --amend
     cv  = commit --verbose
 
     ch  = cherry-pick
