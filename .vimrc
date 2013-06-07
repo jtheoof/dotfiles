@@ -503,7 +503,7 @@ au InsertEnter * set cursorline
 au InsertLeave * set nocursorline
 
 " Save clipboard when vim exits
-au VimLeave * call system("xsel -ib", getreg('+'))
+"au VimLeave * call system("xsel -ib", getreg('+'))
 
 " 1}}}
 " Spell checking {{{1
