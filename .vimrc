@@ -265,6 +265,8 @@ vnoremap <Leader>a y<Esc>:Ack '<C-R>"'<CR>:let @/='<C-R>"'<CR>
 " change to directory containing current file
 nmap <Leader>cd :cd %:p:h<CR>
 
+" Quick save
+nnoremap <Leader>w :w<CR>
 " Use <Leader>W to “strip all trailing whitespace in the current file”
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
