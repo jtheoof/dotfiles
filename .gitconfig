@@ -77,18 +77,18 @@
     grep = auto
 [color "branch"]
     current = magenta
-    local = magenta
+    local = cyan
     remote = green
 [color "decorate"]
-    branch = magenta
+    branch = cyan
     remoteBranch = green
-    tag = yellow
+    tag = magenta
     HEAD = magenta
 [color "diff"]
-    meta = blue bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
+    meta = blue
+    frag = green
+    old = red
+    new = green
 [color "grep"]
     match = yellow
 [color "status"]
