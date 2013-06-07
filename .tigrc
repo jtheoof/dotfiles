@@ -24,6 +24,7 @@ color main-tag magenta default
 
 # Generic {{{
 
+bind generic b view-branch
 bind generic s view-status
 bind generic F !git fetch
 bind generic y !@sh -c "echo -n %(commit) | xsel -ib"
