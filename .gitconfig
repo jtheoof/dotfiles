@@ -31,6 +31,8 @@
 
     fe  = fetch
 
+    files = show --pretty="format:" --name-only
+
     lc   = log --pretty=oneline --decorate=full --stat --no-merges ORIG_HEAD..
     lg   = log -p
     logp = log --pretty=oneline --decorate=full -20
