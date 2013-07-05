@@ -8,17 +8,17 @@ tabs:
       panes:
         - mcms/mcms-master
         - lms/lms-master -i1
-  - shell:
-      layout: even-horizontal
-      panes:
-        - #empty
-        - #empty
   - data:
       layout: even-horizontal
       panes:
         - cd $MCMS_HOME
         - cd $LMS_HOME
-  - editor: vim
+  - vim: vim
+  - mmsx:
+      layout: even-horizontal
+      panes:
+        - #empty
+        - #empty
   - logs:
      layout: even-horizontal
      panes:
