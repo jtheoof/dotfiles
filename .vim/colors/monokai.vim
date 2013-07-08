@@ -349,6 +349,8 @@ hi! link cssTableProp            White
 hi! link cssTagName              Green
 hi! link cssTextProp             White
 hi! link cssUIProp               White
+" Diff
+hi! link DiffRemoved             Red
 " Git
 hi! link gitrebaseFixup          Grey
 " Java
