@@ -88,7 +88,7 @@
     HEAD = magenta
 [color "diff"]
     meta = blue
-    frag = green
+    frag = yellow
     old = red
     new = green
 [color "grep"]
