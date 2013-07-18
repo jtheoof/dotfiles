@@ -93,6 +93,7 @@
     new = green
 [color "grep"]
     match = yellow
+    filename = cyan
 [color "status"]
     header = blue
     added = green
