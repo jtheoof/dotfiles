@@ -8,6 +8,7 @@ MOTION_MODE_LINE = 2
 
 # Registers are used for clipboards and macro storage
 g_registers = {}
+REGISTER_NULL = '_'
 
 # Represents the current input state. The primary commands that interact with
 # this are:
@@ -831,6 +832,11 @@ class ViPasteLeft(ViPrefixableCommand):
                                                       'register': register})
 
 def set_register(view, register, forward):
+    if register == REGISTER_NULL:
+        # This is the null register; do nothing.
+        # More info in Vim: :help "_
+        return
+
     delta = 1
     if not forward:
         delta = -1
@@ -865,6 +871,11 @@ def set_register(view, register, forward):
             g_registers[reg] = text
 
 def get_register(view, register):
+    if register == REGISTER_NULL:
+        # This is the null register; do nothing.
+        # More info in Vim: :help "_
+        return
+
     use_sys_clipboard = view.settings().get('vintage_use_clipboard', False) == True
     register = register.lower()
     if register == '%':
@@ -1025,11 +1036,7 @@ class ViSelectBookmark(sublime_plugin.TextCommand):
     def run(self, edit, character, select_bol=False):
         self.view.run_command('select_all_bookmarks', {'name': "bookmark_" + character})
         if select_bol:
-            sels = list(self.view.sel())
-            self.view.sel().clear()
-            for r in sels:
-                start = self.view.line(r.a).begin()
-                self.view.sel().add(sublime.Region(start, start))
+            self.view.run_command('vi_move_to_first_non_white_space_character')
 
 g_macro_target = None
 
