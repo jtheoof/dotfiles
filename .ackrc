@@ -29,5 +29,6 @@
 # Ignore directories
 ####################################################################
 
---ignore-dir=build
---ignore-dir=libs
+--ignore-dir='.build*'
+--ignore-dir='build'
+--ignore-dir='libs'
