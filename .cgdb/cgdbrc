@@ -1,0 +1,19 @@
+set arrowstyle=highlight
+set autosourcereload
+set ignorecase
+set tabstop=4
+set winminheight=2
+set wrapscan
+
+map <F5> :run<CR>
+
+hi Statement ctermfg=5
+hi Type      ctermfg=14
+hi Constant  ctermfg=3
+hi PreProc   ctermfg=3
+
+hi StatusLine    ctermfg=8
+hi Arrow         ctermfg=8
+hi LineHighlight ctermfg=15 ctermbg=8
+hi Breakpoint    ctermfg=13
+hi Logo          ctermfg=3
