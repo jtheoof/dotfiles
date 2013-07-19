@@ -13,6 +13,7 @@
     c   = commit
     cm  = commit -m
     ca  = commit --amend
+    cam = commit -am
     caa = commit -a --amend
     cv  = commit --verbose
 
