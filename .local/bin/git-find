@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+git ls-files | ack-grep $1

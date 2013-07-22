@@ -66,8 +66,6 @@
     edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
     add-unmerged  = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
-    find   = "!f() { git ls-files | ack-grep $1 ; }; f"
-
     jshint = "!git status -uno -s | cut -f3 -d' ' | ack-grep '.js$' | xargs jshint"
     jsfix  = "!f() { git ls-files | xargs jshint | cut -d':' -f1 | sort -u | xargs ; }; vim `f`"
 [branch]
