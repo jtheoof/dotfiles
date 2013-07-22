@@ -97,6 +97,7 @@ alias ipwan='wget -q -O - checkip.dyndns.org | sed -e "s/.*Current IP Address: /
 
 # Navigation
 alias n.='nautilus .'
+alias view='eog'
 alias cdg='cd $(git rev-parse --show-toplevel)'
 
 # 2}}}
