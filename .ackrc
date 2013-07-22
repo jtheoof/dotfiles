@@ -26,6 +26,14 @@
 --noplaintext
 --nogettext
 
+# Colors
+####################################################################
+
+--color
+--color-match=yellow
+--color-filename=cyan
+--color-lineno=white
+
 # Ignore directories
 ####################################################################
 
