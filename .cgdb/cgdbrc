@@ -10,10 +10,14 @@ map <F5> :run<CR>
 hi Statement ctermfg=5
 hi Type      ctermfg=14
 hi Constant  ctermfg=3
+hi Comment   ctermfg=8
 hi PreProc   ctermfg=3
+hi Normal    ctermfg=7
 
-hi StatusLine    ctermfg=8
-hi Arrow         ctermfg=8
-hi LineHighlight ctermfg=15 ctermbg=8
-hi Breakpoint    ctermfg=13
-hi Logo          ctermfg=3
+hi StatusLine         ctermfg=8
+hi IncSearch          ctermfg=3
+hi Arrow              ctermfg=8
+hi LineHighlight      ctermfg=15 ctermbg=8
+hi Breakpoint         ctermfg=7 ctermbg=5
+hi DisabledBreakpoint ctermfg=7 ctermbg=8
+hi Logo               ctermfg=3
