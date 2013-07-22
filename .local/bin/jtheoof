@@ -76,7 +76,7 @@ handle_install_dotfiles() {
     link $(basename $i)
   done
 
-  home_dirs=".dircolors .gitconfig .tilda .tmuxinator .vim"
+  home_dirs=".cgdb .dircolors .gitconfig .tilda .tmuxinator .vim"
   for i in $home_dirs; do
     link "$i"
   done
