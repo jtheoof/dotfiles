@@ -10,6 +10,7 @@ set nocompatible " be IMproved
 
 " Vundle {{{1
 
+filetype off " required for ftdetect to kick in
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -42,10 +43,9 @@ Bundle 'bufexplorer.zip'
 "1}}}
 " Init {{{1
 
-runtime macros/matchit.vim   " smarter use of '%'
-
 filetype plugin indent on    " put filetype plugin back on after pathogen
 syntax on                    " enable syntax
+runtime macros/matchit.vim   " smarter use of '%'
 
 " 1}}}
 " Main options {{{1
