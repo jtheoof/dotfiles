@@ -164,7 +164,7 @@ set tabstop=4
 
 
 " Set default tags file and some extra
-set tags=./tags;/
+set tags=tags;/,.tags;/,TAG;/
 
 " List invisible chars
 set listchars=tab:▸\ ,eol:¬,trail:.
