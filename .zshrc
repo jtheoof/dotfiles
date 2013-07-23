@@ -82,9 +82,9 @@ alias sgrep='grep --color=auto -inIEr'
 
 alias ack='ack-grep'
 
-alias ff='find . -type f -name'
-alias fd='find . -type d -name'
-alias f.='find . -name'
+alias fa='find . | ack-grep '
+alias ff='find . -type f | ack-grep'
+alias fd='find . -type d | ack-grep'
 
 # Usage
 alias du0='du --max-depth 0 -h .'
