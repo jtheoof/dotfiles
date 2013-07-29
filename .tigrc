@@ -33,15 +33,16 @@ bind generic Y !@sh -c "echo -n %(commit) | xsel -ib"
 # }}}
 # Main {{{
 
-bind main ! !git revert %(commit)        # Revert commit
-bind main C !?git checkout %(commit)     # Checkout commit
-bind main F !git fetch                   # Fetch repository
-bind main I !git rebase -i               # Interactive rebasing
-bind main T !git rebase -i %(commit)     # Interactive rebasing (unTil)
-bind main P !?git cherry-pick %(commit)  # Checkout commit
-bind main R !?git rebase                 # Rebasing after fetch
-bind main U !?git up                     # Update repository
-bind main X !?git push                   # Push to tracking remote
+bind main F6 !git fetch                        # Fetch repository
+bind main F7 !git rebase                       # Rebasing after fetch
+
+bind main ! !git revert %(commit)              # Revert commit
+bind main C !?git checkout %(commit)           # Checkout commit
+bind main H !?git reset --hard %(commit)       # Hard reset
+bind main R !git rebase -i %(commit)           # Interactive rebasing
+bind main P !git cherry-pick %(commit)         # Checkout commit
+bind main X !?git push                         # Push to tracking remote
+bind main F !?git push-for %(prompt) %(commit) # Push-for
 
 # }}}
 # Diff {{{
@@ -64,14 +65,15 @@ bind tree V !vim %(file)
 # }}}
 # Branch {{{
 
-bind branch n !@git branch %(prompt) # Create a new branch
+bind branch N !@git branch %(prompt) # Create a new branch
 
 # }}}
 # Status {{{
 
-bind status A !git commit --amend
-bind status N !@git add -N %(file) # Intent to add
-bind status R !git rebase -i
+bind status A !@git add %(file)        # Add
+bind status R !@git reset HEAD %(file) # Reset
+bind status M !?@git commit --amend    # Amend
+bind status N !@git add -N %(file)     # Intent to add
 
 # }}}
 # Stage {{{
