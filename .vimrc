@@ -582,6 +582,14 @@ endfunction
 " 1}}}
 " Programming {{{1
 
+" C {{{2
+
+aug filetype_c
+    au!
+    au BufNewFile,BufRead *.c,*.h set cc=80
+aug END
+
+" 2}}}
 " Java {{{2
 
 aug filetype_java
