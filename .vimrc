@@ -379,7 +379,7 @@ nnoremap <C-k> :let @/ = ""<CR> " Cleanup search
 nnoremap <silent> <F1> :Explore<CR>
 nnoremap <C-F1> :tabe **/<cfile><CR>
 nnoremap <silent> <F2> :BufExplorer<CR>
-nnoremap <F3> :NERDTreeToggle<CR>
+nnoremap <F3> :NERDTreeToggle %<CR>
 nnoremap <F4> :QFix<CR>
 nnoremap <C-F4> :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
 nnoremap <F5> :cprevious<CR>
