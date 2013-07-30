@@ -33,8 +33,10 @@ bind generic Y !@sh -c "echo -n %(commit) | xsel -ib"
 # }}}
 # Main {{{
 
-bind main F6 !git fetch                        # Fetch repository
-bind main F7 !git rebase                       # Rebasing after fetch
+bind main F6 !@git fetch
+bind main F7 !@git rebase
+bind main F8 !@git pull
+bind main F9 !@git push
 
 bind main ! !git revert %(commit)              # Revert commit
 bind main C !?git checkout %(commit)           # Checkout commit
