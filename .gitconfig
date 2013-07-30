@@ -22,6 +22,8 @@
     co  = checkout
     cop = checkout -p
 
+    count = !git log --pretty=format:'' | wc -l
+
     df  = diff
     dt  = difftool
     dtg = difftool -t gvimdiff
