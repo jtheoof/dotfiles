@@ -68,6 +68,10 @@ handle_install_dotfiles() {
     link $(basename $i)
   done
 
+  for i in $FILESPATH/.z*; do
+    link $(basename $i)
+  done
+
   for i in $FILESPATH/.*conf; do
     link $(basename $i)
   done

@@ -1,3 +1,12 @@
+# .zshrc
+#
+# From /etc/zsh/zshrc:
+#
+# This file is sourced only for interactive shells. It should contain commands
+# to set up aliases, functions, options, key bindings, etc.
+#
+# Local Order: .zshenv, .zprofile, .zshrc, .zlogin
+
 # Options {{{1
 
 # Path to your oh-my-zsh configuration.
@@ -138,27 +147,6 @@ alias  DR='dpkg-reconfigure' # reconfigure a package that's already installed
 alias  DB='dpkg-buildpackage' # build from Debianized source
 
 # 2}}}
-# Work {{{2
-
-alias diff-i2s="diff -x .svn -ruN iad IHM-GW/IHM-GW-8.0.0/IHM"
-alias diff-s2i="diff -x .svn -ruN IHM-GW/IHM-GW-8.0.0/IHM iad"
-alias rsync-root='cd /home/jeremy; rsync -avz .ackrc .dircolors .gitconfig .oh-my-zsh .toprc .vim .vimrc .zshrc /root'
-alias rsync-jenkins='sudo su -c "rsync -avz --delete --exclude .svn --exclude build --exclude applications --exclude poc --exclude pocs --exclude documents /home/jeremy/dev/bt/galak/* ~/jobs/alwa/workspace/" - jenkins'
-alias rsync-i2s="rsync -avz -C --exclude ssi --exclude cgi-bin --exclude index.cgi iad/ IHM-GW/IHM-GW-8.0.0/IHM"
-alias rsync-s2i="rsync -avz -C --exclude ssi --exclude cgi-bin --exclude index.cgi IHM-GW/IHM-GW-8.0.0/IHM/ iad"
-alias mount-nfs='mount -t nfs -o nolock 192.168.2.2:/root/dev/bt/bewan/iad /etc/bewan/iad'
-alias node-jslint="node $HOME/dev/me/node-jslint/bin/jslint.js --maxerr 500 --nomen --plusplus --regexp --sloppy --undef --white"
-alias svn-df='svn diff | colordiff'
-
-# 2}}}
-
-# 1}}}
-# Exports {{{1
-
-export EDITOR=vim
-export LESS=-FRSX
-export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.local/bin:$HOME/dev/android/android-sdk-linux/tools:$HOME/dev/android/android-sdk-linux/platform-tools:$HOME/dev/android/android-ndk-r8e:$HOME/dev/android/sdk/tools/:$HOME/dev/android/sdk/platform-tools:$HOME/dev/android/ndk
 
 # 1}}}
 # Functions {{{1
