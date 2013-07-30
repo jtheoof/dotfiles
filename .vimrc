@@ -383,6 +383,7 @@ nnoremap <F3> :NERDTreeToggle %<CR>
 nnoremap <F4> :QFix<CR>
 nnoremap <C-F4> :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
 nnoremap <F5> :cprevious<CR>
+nnoremap <C-F5> :tabdo windo edit<CR>
 nnoremap <F6> :cnext<CR>
 nnoremap <F7> :make<Return>
 nnoremap <S-F7> yy:<C-R>"<BS><CR>
