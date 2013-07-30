@@ -15,6 +15,8 @@
 
 export EDITOR=vim
 
+# This won't work because it's already set by lib/misc.zsh
+# See: oh-my-zsh
 export LESS=-FRSX
 
 if [[ ! -z "$PATH" ]] then

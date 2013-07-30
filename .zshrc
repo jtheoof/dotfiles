@@ -258,6 +258,9 @@ function chpwd() {
 # }}}
 # Misc {{{
 
+# Force LESS variable
+export LESS=-FRSX
+
 # Force 256 color terminal
 if [[ "$TERM" == "xterm" ]]; then
     export TERM=xterm-256color
