@@ -112,8 +112,10 @@ alias cdg='cd $(git rev-parse --show-toplevel)'
 # 2}}}
 # APT {{{2
 
+alias  ac='apt-cache'
 alias  acd='apt-cache depends' # show dependencies of <package>.deb
 alias  acs='apt-cache search' # search for string
+alias  ag='sudo apt-get'
 alias  aga='sudo apt-get autoremove' # remove packages no longer needed
 alias  agb='sudo apt-get build-dep' # install dependencies for source built packages using deb-src
 alias  agc='sudo apt-get clean' # clear out downloaded .debs from /var/cache/apt/archives
@@ -134,17 +136,10 @@ alias  asvu='apt-show-versions | grep /unstable' # list all packages from /unsta
 # 2}}}
 # DPKG {{{2
 
-alias  DL='dpkg -l' # list all installed packages
-alias  DF='dpkg -L' # list files installed by <package>
-alias  DT='dpkg -L' # list files installed by <package>
-alias  DI='dpkg -i' # install <package>.deb
-alias  DS='dpkg -l | ack' # list installed packages, search for string
-alias  DP='dpkg -p' # show details of package, same as apt-cache show
-alias  DC='dpkg -c' # list contents of a .deb package
-alias  DCS='dpkg --configure -a' # use then when you fuck up dpkg mid-install or something
-alias  DIF='dpkg -i --force-overwrite' # use when you get "trying to overwrite <something> which is also in package <something>"
-alias  DR='dpkg-reconfigure' # reconfigure a package that's already installed
-alias  DB='dpkg-buildpackage' # build from Debianized source
+alias d='dpkg'
+alias dq='dpkg-query'
+alias dql='dpkg-query -L'
+alias dqs='dpkg-query -S'
 
 # 2}}}
 
