@@ -643,11 +643,11 @@ aug END
 let html_no_rendering = 1
 aug filetype_html
     au!
-    au FileType html set omnifunc=htmlcomplete#CompleteTags
-    au FileType html set shiftwidth=2 tabstop=2 expandtab textwidth=0
-    au FileType xhtml set shiftwidth=2 tabstop=2 expandtab textwidth=0
-    au FileType tpl set shiftwidth=2 tabstop=2 expandtab textwidth=0
-    au FileType smarty set shiftwidth=2 tabstop=2 expandtab textwidth=0
+    au FileType html   set omnifunc=htmlcomplete#CompleteTags
+    au FileType html   set sw=2 ts=2 sts=2 et tw=0
+    au FileType xhtml  set sw=2 ts=2 sts=2 et tw=0
+    au FileType tpl    set sw=2 ts=2 sts=2 et tw=0
+    au FileType smarty set sw=2 ts=2 sts=2 et tw=0
 aug END
 
 " 2}}}
