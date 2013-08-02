@@ -258,8 +258,8 @@ let g:mapleader = ","
 nnoremap <Leader>aa :Ack ''<Left>
 " Find current word
 nnoremap <Leader># "ayiw:Ack '<C-R>a'<CR>
-nnoremap <Leader>acw :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:exec("Ack '\\b".expand("<cword>")."\\b'")<CR>
-nnoremap <Leader>acW :let @/='\<<C-R>=expand("<cWORD>")<CR>\>'<CR>:exec("Ack '\\b".expand("<cWORD>")."\\b'")<CR>
+nnoremap <Leader>aiw :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:exec("Ack '\\b".expand("<cword>")."\\b'")<CR>
+nnoremap <Leader>aiW :let @/='\<<C-R>=expand("<cWORD>")<CR>\>'<CR>:exec("Ack '\\b".expand("<cWORD>")."\\b'")<CR>
 vnoremap <Leader>a y<Esc>:Ack '<C-R>"'<CR>:let @/='<C-R>"'<CR>
 
 " change to directory containing current file
@@ -279,6 +279,8 @@ map <Leader>eg :e! $HOME/.gitconfig<CR>
 map <Leader>ec :e! $HOME/.vim/colors/monokai.vim<CR>
 map <Leader>ev :e! $MYVIMRC<CR>
 map <Leader>ez :e! $HOME/.zshrc<CR>
+
+noremap <Leader>giw :Ggrep <C-R><C-W><CR>
 
 " Ctrl-P Buffer
 nnoremap <Leader>pp :CtrlP<CR>
