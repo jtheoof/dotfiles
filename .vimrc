@@ -657,9 +657,8 @@ aug END
 
 aug filetype_css
     au!
-    au FileType css set omnifunc=csscomplete#CompleteCSS
-    au FileType css set tabstop=4 softtabstop=4 shiftwidth=4
-    au FileType css set expandtab
+    au FileType css,less set omnifunc=csscomplete#CompleteCSS
+    au FileType css,less set ts=4 sts=4 sw=4 et isk+=-
 aug END
 
 " 2}}}
