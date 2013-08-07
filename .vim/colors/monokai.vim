@@ -143,8 +143,8 @@ exe "let s:fmt_ital     = ' ".s:vmode."=none".s:i.      " term=none".s:i."'"
 exe "let s:fmt_stnd     = ' ".s:vmode."=none".s:s.      " term=none".s:s."'"
 exe "let s:fmt_revr     = ' ".s:vmode."=none".s:r.      " term=none".s:r."'"
 exe "let s:fmt_revb     = ' ".s:vmode."=none".s:r.s:b.  " term=none".s:r.s:b."'"
-" revbb (reverse bold for bright colors) is only set to actual bold in low 
-" color terminals (t_co=8, such as OS X Terminal.app) and should only be used 
+" revbb (reverse bold for bright colors) is only set to actual bold in low
+" color terminals (t_co=8, such as OS X Terminal.app) and should only be used
 " with colors 8-15.
 exe "let s:fmt_revbb    = ' ".s:vmode."=none".s:r.s:bb.   " term=none".s:r.s:bb."'"
 exe "let s:fmt_revbbu   = ' ".s:vmode."=none".s:r.s:bb.s:u." term=none".s:r.s:bb.s:u."'"
@@ -286,46 +286,46 @@ exe "hi! Todo"           .s:fmt_none   .s:fg_white     .s:bg_orange
 " }}}
 " Extended highlighting {{{
 
-exe "hi Cursor"          .s:fmt_none   .s:fg_none      .s:bg_front
-exe "hi CursorLine"      .s:fmt_none   .s:fg_front     .s:bg_black
-exe "hi ColorColumn"     .s:fmt_none   .s:fg_none      .s:bg_black
-exe "hi Directory"       .s:fmt_none   .s:fg_cyan      .s:bg_none
-exe "hi DiffAdd"         .s:fmt_none   .s:fg_back      .s:bg_green 
-exe "hi DiffChange"      .s:fmt_none   .s:fg_back      .s:bg_yellow
-exe "hi DiffDelete"      .s:fmt_none   .s:fg_back      .s:bg_magenta
-exe "hi DiffAdded"       .s:fmt_none   .s:fg_green     .s:bg_none
-exe "hi DiffRemoved"     .s:fmt_none   .s:fg_magenta   .s:bg_none
-exe "hi DiffText"        .s:fmt_none   .s:fg_back      .s:bg_yellow
-exe "hi ErrorMsg"        .s:fmt_none   .s:fg_magenta   .s:bg_none
-exe "hi VertSplit"       .s:fmt_none   .s:fg_black     .s:bg_none
-exe "hi Folded"          .s:fmt_none   .s:fg_grey      .s:bg_none
-exe "hi FoldColumn"      .s:fmt_none   .s:fg_grey      .s:bg_black
-exe "hi SignColum"       .s:fmt_none   .s:fg_grey      .s:bg_black
-exe "hi IncSearch"       .s:fmt_none   .s:fg_back      .s:bg_orange
-exe "hi LineNr"          .s:fmt_none   .s:fg_grey      .s:bg_none
-exe "hi CursorLineNr"    .s:fmt_none   .s:fg_white     .s:bg_black
-exe "hi MatchParen"      .s:fmt_bold   .s:fg_front     .s:bg_back
-exe "hi ModeMsg"         .s:fmt_bold   .s:fg_none      .s:bg_none
-exe "hi MoreMsg"         .s:fmt_none   .s:fg_cyan      .s:bg_none
-exe "hi NonText"         .s:fmt_none   .s:fg_black     .s:bg_none
-exe "hi Pmenu"           .s:fmt_none   .s:fg_front     .s:bg_black
-exe "hi PmenuSel"        .s:fmt_none   .s:fg_back      .s:bg_yellow
-exe "hi PmenuSbar"       .s:fmt_none   .s:fg_none      .s:bg_back
-exe "hi PmenuThumb"      .s:fmt_none   .s:fg_front     .s:bg_none
-exe "hi Question"        .s:fmt_none   .s:fg_magenta   .s:bg_none
-exe "hi Search"          .s:fmt_none   .s:fg_back      .s:bg_yellow
-exe "hi SpecialKey"      .s:fmt_none   .s:fg_black     .s:bg_none
-exe "hi SpellBad"        .s:fmt_curl   .s:fg_none      .s:bg_none   .s:sp_magenta
-exe "hi SpellCap"        .s:fmt_curl   .s:fg_none      .s:bg_none   .s:sp_cyan
-exe "hi SpellRare"       .s:fmt_curl   .s:fg_none      .s:bg_none   .s:sp_purple
-exe "hi StatusLine"      .s:fmt_none   .s:fg_white     .s:bg_black
-exe "hi StatusLineNC"    .s:fmt_none   .s:fg_grey      .s:bg_black
-exe "hi TabLine"         .s:fmt_none   .s:fg_grey      .s:bg_black
-exe "hi TabLineFill"     .s:fmt_none   .s:fg_none      .s:bg_black
-exe "hi TabLineSel"      .s:fmt_none   .s:fg_none      .s:bg_black
-exe "hi Title"           .s:fmt_none   .s:fg_magenta   .s:bg_none
-exe "hi Visual"          .s:fmt_none   .s:fg_none      .s:bg_black
-exe "hi WarningMsg"      .s:fmt_none   .s:fg_magenta   .s:bg_none
+exe "hi Cursor"          .s:fmt_none  .s:fg_none    .s:bg_front
+exe "hi CursorLine"      .s:fmt_none  .s:fg_front   .s:bg_black
+exe "hi ColorColumn"     .s:fmt_none  .s:fg_none    .s:bg_black
+exe "hi Directory"       .s:fmt_none  .s:fg_cyan    .s:bg_none
+exe "hi DiffAdd"         .s:fmt_none  .s:fg_back    .s:bg_green
+exe "hi DiffChange"      .s:fmt_none  .s:fg_back    .s:bg_yellow
+exe "hi DiffDelete"      .s:fmt_none  .s:fg_back    .s:bg_magenta
+exe "hi DiffAdded"       .s:fmt_none  .s:fg_green   .s:bg_none
+exe "hi DiffRemoved"     .s:fmt_none  .s:fg_red     .s:bg_none
+exe "hi DiffText"        .s:fmt_none  .s:fg_back    .s:bg_yellow
+exe "hi ErrorMsg"        .s:fmt_none  .s:fg_magenta .s:bg_none
+exe "hi VertSplit"       .s:fmt_none  .s:fg_black   .s:bg_none
+exe "hi Folded"          .s:fmt_none  .s:fg_grey    .s:bg_none
+exe "hi FoldColumn"      .s:fmt_none  .s:fg_grey    .s:bg_black
+exe "hi SignColum"       .s:fmt_none  .s:fg_grey    .s:bg_black
+exe "hi IncSearch"       .s:fmt_none  .s:fg_back    .s:bg_orange
+exe "hi LineNr"          .s:fmt_none  .s:fg_grey    .s:bg_none
+exe "hi CursorLineNr"    .s:fmt_none  .s:fg_white   .s:bg_black
+exe "hi MatchParen"      .s:fmt_bold  .s:fg_front   .s:bg_back
+exe "hi ModeMsg"         .s:fmt_bold  .s:fg_none    .s:bg_none
+exe "hi MoreMsg"         .s:fmt_none  .s:fg_cyan    .s:bg_none
+exe "hi NonText"         .s:fmt_none  .s:fg_black   .s:bg_none
+exe "hi Pmenu"           .s:fmt_none  .s:fg_front   .s:bg_black
+exe "hi PmenuSel"        .s:fmt_none  .s:fg_back    .s:bg_yellow
+exe "hi PmenuSbar"       .s:fmt_none  .s:fg_none    .s:bg_back
+exe "hi PmenuThumb"      .s:fmt_none  .s:fg_front   .s:bg_none
+exe "hi Question"        .s:fmt_none  .s:fg_magenta .s:bg_none
+exe "hi Search"          .s:fmt_none  .s:fg_back    .s:bg_yellow
+exe "hi SpecialKey"      .s:fmt_none  .s:fg_black   .s:bg_none
+exe "hi SpellBad"        .s:fmt_curl  .s:fg_none    .s:bg_none   .s:sp_magenta
+exe "hi SpellCap"        .s:fmt_curl  .s:fg_none    .s:bg_none   .s:sp_cyan
+exe "hi SpellRare"       .s:fmt_curl  .s:fg_none    .s:bg_none   .s:sp_purple
+exe "hi StatusLine"      .s:fmt_none  .s:fg_white   .s:bg_black
+exe "hi StatusLineNC"    .s:fmt_none  .s:fg_grey    .s:bg_black
+exe "hi TabLine"         .s:fmt_none  .s:fg_grey    .s:bg_black
+exe "hi TabLineFill"     .s:fmt_none  .s:fg_none    .s:bg_black
+exe "hi TabLineSel"      .s:fmt_none  .s:fg_none    .s:bg_black
+exe "hi Title"           .s:fmt_none  .s:fg_magenta .s:bg_none
+exe "hi Visual"          .s:fmt_none  .s:fg_none    .s:bg_black
+exe "hi WarningMsg"      .s:fmt_none  .s:fg_magenta .s:bg_none
 
 " }}}
 " Language specific highlight groups {{{
@@ -349,8 +349,6 @@ hi! link cssTableProp            White
 hi! link cssTagName              Green
 hi! link cssTextProp             White
 hi! link cssUIProp               White
-" Diff
-hi! link DiffRemoved             Red
 " Git
 hi! link gitrebaseFixup          Grey
 " Java
