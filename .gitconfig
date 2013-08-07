@@ -1,6 +1,6 @@
 [alias]
-    review-web   = !git-push-for --to adrien.frediani@intersec.com --to romain.legodais@intersec.com
-    review-tools = !git-push-for --to jonathan.squirawski@intersec.com --to florent.bruneau@intersec.com
+    review-web   = !git-push-for --to frediani --to lopez --to woltz
+    review-tools = !git-push-for --to squirawski --to bruneau
 
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
 
