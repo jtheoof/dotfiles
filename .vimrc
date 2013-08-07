@@ -1,4 +1,3 @@
-" vim:set sw=4 ts=4 et:
 " Name:     Jeremy Attali's .vimrc
 " Author:   Jeremy Attali
 " URL:
@@ -145,8 +144,6 @@ else
     set clipboard=unnamed
 endif
 
-" Word wrapping
-
 " Search
 set gdefault     " default global in regex
 set ignorecase   " ignore case when searching
@@ -155,15 +152,21 @@ set incsearch    " do incremental searching
 set hlsearch     " highlight searches
 
 " Indentation
-set expandtab
-set copyindent
-set preserveindent
+set autoindent    " copy indentation from previous line
+set expandtab     " transform tabs into spaces
 set softtabstop=4
 set shiftwidth=4
-set tabstop=4
 
+set cinoptions=
+set cinoptions+=L0.5s          " align labels at 0.5 shiftwidth
+set cinoptions+=:0.5s,=0.5s    " same for case labels and code following labels
+set cinoptions+=g0.5s,h0.5s    " same for C++ stuff
+set cinoptions+=t0             " type on the line before the function is not indented
+set cinoptions+=(0,Ws          " indent in functions ( ... ) when it breaks
+set cinoptions+=m1             " align the closing ) properly
+set cinoptions+=j1,J1          " java/javascript -> fixes blocks
 
-" Set default tags file and some extra
+" Tags
 set tags=tags;/,.tags;/,TAG;/
 
 " List invisible chars
@@ -627,7 +630,7 @@ aug END
 aug filetype_javascript
     au!
     au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-    au FileType javascript set shiftwidth=4 tabstop=4 expandtab textwidth=0
+    au FileType javascript set shiftwidth=4 expandtab textwidth=80
 aug END
 
 " 2}}}
@@ -637,7 +640,7 @@ aug filetype_json
     au!
     au BufRead *.json setf json
     au FileType json set textwidth=80
-    au FileType json set tabstop=4 softtabstop=4 shiftwidth=4
+    au FileType json set softtabstop=4 shiftwidth=4
     au FileType json set noexpandtab
 aug END
 
@@ -650,10 +653,10 @@ let html_no_rendering = 1
 aug filetype_html
     au!
     au FileType html   set omnifunc=htmlcomplete#CompleteTags
-    au FileType html   set sw=2 ts=2 sts=2 et tw=0
-    au FileType xhtml  set sw=2 ts=2 sts=2 et tw=0
-    au FileType tpl    set sw=2 ts=2 sts=2 et tw=0
-    au FileType smarty set sw=2 ts=2 sts=2 et tw=0
+    au FileType html   set sw=2 sts=2 et tw=0
+    au FileType xhtml  set sw=2 sts=2 et tw=0
+    au FileType tpl    set sw=2 sts=2 et tw=0
+    au FileType smarty set sw=2 sts=2 et tw=0
 aug END
 
 " 2}}}
@@ -662,7 +665,7 @@ aug END
 aug filetype_css
     au!
     au FileType css,less set omnifunc=csscomplete#CompleteCSS
-    au FileType css,less set ts=4 sts=4 sw=4 et isk+=-
+    au FileType css,less set sts=4 sw=4 et isk+=-
 aug END
 
 " 2}}}
@@ -856,5 +859,7 @@ let g:user_zen_settings = { 'indentation' : '  ' }
 " LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 " THE SOFTWARE.
+
+" vim:set sts=4 sw=4 et:
 
 " 1}}}
