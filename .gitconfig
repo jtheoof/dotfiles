@@ -9,6 +9,7 @@
     ap  = add -p
 
     br  = branch
+    bra = branch -a
 
     c   = commit
     cm  = commit -m
