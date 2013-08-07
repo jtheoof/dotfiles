@@ -167,7 +167,7 @@ set tabstop=4
 set tags=tags;/,.tags;/,TAG;/
 
 " List invisible chars
-set listchars=tab:▸\ ,trail:.
+set listchars=eol:\ ,tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:¤
 set list
 
 " 1}}}
