@@ -318,7 +318,7 @@ exe "hi SpecialKey"      .s:fmt_none   .s:fg_black     .s:bg_none
 exe "hi SpellBad"        .s:fmt_curl   .s:fg_none      .s:bg_none   .s:sp_magenta
 exe "hi SpellCap"        .s:fmt_curl   .s:fg_none      .s:bg_none   .s:sp_cyan
 exe "hi SpellRare"       .s:fmt_curl   .s:fg_none      .s:bg_none   .s:sp_purple
-exe "hi StatusLine"      .s:fmt_none   .s:fg_none      .s:bg_black
+exe "hi StatusLine"      .s:fmt_none   .s:fg_white     .s:bg_black
 exe "hi StatusLineNC"    .s:fmt_none   .s:fg_grey      .s:bg_black
 exe "hi TabLine"         .s:fmt_none   .s:fg_grey      .s:bg_black
 exe "hi TabLineFill"     .s:fmt_none   .s:fg_none      .s:bg_black
