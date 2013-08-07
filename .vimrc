@@ -507,6 +507,9 @@ au FocusLost * execute ":silent! wa"
 au InsertEnter * set cursorline
 au InsertLeave * set nocursorline
 
+au WinEnter * set colorcolumn=80
+au WinLeave * set colorcolumn=
+
 " Save clipboard when vim exits
 "au VimLeave * call system("xsel -ib", getreg('+'))
 
