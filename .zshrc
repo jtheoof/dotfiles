@@ -254,6 +254,11 @@ function chpwd() {
 # }}}
 # Misc {{{
 
+# Force 256 color terminal on gnome-terminal
+if [[ $TERM = "xterm" && $COLORTERM =~ "^gnome" ]]; then
+    export TERM="xterm-256color"
+fi
+
 # Force LESS variable
 export LESS=-FRSX
 
