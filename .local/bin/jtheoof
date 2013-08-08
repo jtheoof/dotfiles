@@ -76,7 +76,11 @@ handle_install_dotfiles() {
     link $(basename $i)
   done
 
-  for i in $FILESPATH/.X*map; do
+  for i in $FILESPATH/.X*; do
+    link $(basename $i)
+  done
+
+  for i in $FILESPATH/.x*; do
     link $(basename $i)
   done
 
@@ -135,6 +139,7 @@ handle_install_packages() {
     gnome-tweak-tool \
     google-chrome-stable \
     mercurial \
+    ncurses-term \
     nodejs \
     npm \
     pidgin \
