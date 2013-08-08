@@ -25,6 +25,7 @@ Bundle 'kien/ctrlp.vim'
 " Bundle 'majutsushi/tagbar'
 Bundle 'maksimr/vim-jsbeautify'
 Bundle 'mattn/zencoding-vim'
+Bundle 'nacitar/terminalkeys.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'SirVer/ultisnips'
 Bundle 'scrooloose/nerdtree'
@@ -56,6 +57,7 @@ set number                              " show line numbers
 set textwidth=78                        " 78 characters limit
 
 set nowrap                              " no wrapping
+set hidden                              " allow hidden buffers
 
 " Vim specific
 set autoread                            " automatically reload file changes
@@ -205,35 +207,6 @@ if has("gui_running")
     set guioptions=                  " turns off every option
 endif
 
-if &term =~ "^screen" && exists("$TMUX")
-    set mouse+=a
-    " tmux knows the extended mouse mode
-    set ttymouse=xterm2
-    " tmux will send xterm-style keys when xterm-keys is on
-    execute "set <xUp>=\e[1;*A"
-    execute "set <xDown>=\e[1;*B"
-    execute "set <xRight>=\e[1;*C"
-    execute "set <xLeft>=\e[1;*D"
-    execute "set <xHome>=\e[1;*H"
-    execute "set <xEnd>=\e[1;*F"
-    execute "set <Insert>=\e[2;*~"
-    execute "set <Delete>=\e[3;*~"
-    execute "set <PageUp>=\e[5;*~"
-    execute "set <PageDown>=\e[6;*~"
-    execute "set <xF1>=\e[1;*P"
-    execute "set <xF2>=\e[1;*Q"
-    execute "set <xF3>=\e[1;*R"
-    execute "set <xF4>=\e[1;*S"
-    execute "set <F5>=\e[15;*~"
-    execute "set <F6>=\e[17;*~"
-    execute "set <F7>=\e[18;*~"
-    execute "set <F8>=\e[19;*~"
-    execute "set <F9>=\e[20;*~"
-    execute "set <F10>=\e[21;*~"
-    execute "set <F11>=\e[23;*~"
-    execute "set <F12>=\e[24;*~"
-endif
-
 set background=dark
 colorscheme monokai
 
@@ -281,6 +254,7 @@ nnoremap <Leader>hcw :call HighlightWord()<CR>
 " Fast editing of common files
 map <Leader>eg :e! $HOME/.gitconfig<CR>
 map <Leader>ec :e! $HOME/.vim/colors/monokai.vim<CR>
+map <Leader>et :e! $HOME/.tmux.conf<CR>
 map <Leader>ev :e! $MYVIMRC<CR>
 map <Leader>ez :e! $HOME/.zshrc<CR>
 
