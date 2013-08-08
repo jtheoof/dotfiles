@@ -137,9 +137,10 @@ alias  asvu='apt-show-versions | grep /unstable' # list all packages from /unsta
 # DPKG {{{2
 
 alias d='dpkg'
-alias dq='dpkg-query'
-alias dql='dpkg-query -L'
-alias dqs='dpkg-query -S'
+alias dl='dpkg -l'
+alias dst='dpkg -s'
+alias dls='dpkg -L'
+alias ds='dpkg -S'
 
 # 2}}}
 
