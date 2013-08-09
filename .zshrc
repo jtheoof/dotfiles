@@ -80,6 +80,7 @@ alias vdir='ls --color=auto --format=long'
 
 alias h='history'
 alias hs='history'
+alias hsa='history | ack'
 alias hf='history | ack'
 alias hl='history | less'
 
