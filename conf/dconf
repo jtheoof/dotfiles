@@ -2,7 +2,7 @@
 applications=['thunderbird.desktop', 'empathy.desktop', 'pidgin.desktop']
 
 [com/canonical/indicator/sound]
-interested-media-players=['rhythmbox', 'spotify']
+interested-media-players=['rhythmbox', 'spotify', 'nuvolaplayer']
 
 [com/canonical/unity]
 minimize-count=100
@@ -17,7 +17,7 @@ remote-content-search='none'
 favorites=['application://nautilus-home.desktop', 'application://google-chrome.desktop', 'application://firefox.desktop', 'application://thunderbird.desktop', 'application://terminator.desktop', 'application://sublime.desktop', 'application://gnome-control-center.desktop', 'unity://running-apps', 'unity://expo-icon', 'unity://devices']
 
 [com/ubuntu/update-notifier]
-release-check-time=uint32 1373960554
+release-check-time=uint32 1375170464
 
 [org/gnome/empathy/notifications]
 notifications-focus=false
@@ -36,7 +36,7 @@ events-notify-area=true
 main-window-hidden=false
 separate-chat-windows=true
 show-groups=true
-chat-window-paned-pos=397
+chat-window-paned-pos=395
 
 [org/gnome/settings-daemon/plugins/power]
 idle-dim-battery=true
@@ -87,7 +87,7 @@ statusbar-visible=true
 notebook-show-tabs-mode='always'
 
 [org/gnome/gedit/plugins/filebrowser]
-virtual-root='file:///tmp/.fr-tCgyWU'
+virtual-root='file:///tmp/.fr-RlxZqp'
 tree-view=false
 root='file:///'
 
@@ -103,7 +103,7 @@ side-panel-active-page=228660812
 
 [org/gnome/nautilus/window-state]
 start-with-sidebar=true
-geometry='1278x559+0+112'
+geometry='1196x559+28+350'
 maximized=false
 
 [org/gnome/file-roller/file-selector]
@@ -133,11 +133,11 @@ recreate-folders=true
 
 [org/gnome/file-roller/ui]
 sidebar-width=200
-window-height=480
-window-width=600
+window-height=973
+window-width=1280
 
 [org/gnome/evince/default]
-window-ratio=(3.2232070910555999, 1.396011396011396)
+window-ratio=(2.6638888888888888, 2.1259259259259258)
 
 [org/gnome/deja-dup]
 welcomed=true
@@ -288,6 +288,10 @@ position=(299, 206)
 [org/gnome/rhythmbox/rhythmdb]
 locations=['file:///home/jeremy/Music', 'file:///home/jeremy/.ubuntuone/Purchased%20from%20Ubuntu%20One']
 
+[org/gnome/Totem]
+show-visualizations=true
+subtitle-encoding='UTF-8'
+
 [org/gnome/gnome-system-monitor]
 width=688
 current-tab=2
@@ -312,8 +316,8 @@ col-15-width=80
 
 [org/gtk/settings/file-chooser]
 sort-column='name'
-last-folder-uri='file:///home/jeremy/Pictures/Screenshots'
-window-position=(1280, 289)
+last-folder-uri=''
+window-position=(220, 262)
 show-size-column=true
 show-hidden=true
 window-size=(840, 677)
@@ -439,7 +443,7 @@ show-details=true
 first-run=false
 check-new-release-ignore='raring'
 window-height=727
-launch-time=1374212584
+launch-time=1376027155
 window-width=867
 
 [apps/telepathy-logger]
