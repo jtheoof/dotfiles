@@ -475,7 +475,10 @@ aug END
 
 " This autocommand jumps to the last known position in a file
 " just after opening it, if the '"' mark is set:
-"au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+if has("autocmd")
+    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+        \| exe "normal! g'\"" | endif
+endif
 
 " Auto save when focus is lost
 au FocusLost * execute ":silent! wa"
