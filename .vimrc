@@ -374,27 +374,12 @@ nnoremap <F10> :cnext<Return>
 nnoremap <C-F11> :split<CR>
 nnoremap <C-F12> :vsplit<CR>
 
-" Navigate through folded line
-nnoremap <M-j> gj
-nnoremap <M-k> gk
-nnoremap <M-4> g$
-nnoremap <M-6> g^
-nnoremap <M-0> g^
-
-" Navigate through tags
-nnoremap <M-b> :tselect<CR>
-nnoremap <M-n> :tnext<CR>
-nnoremap <M-m> :tprevious<CR>
-nnoremap <M-Home> :tselect<CR>
-nnoremap <M-PageDown> :tnext<CR>
-nnoremap <M-PageUp> :tprevious<CR>
-
 " Alt-right/left to navigate forward/backward in the tags stack
-nnoremap <M-Left> <C-T>
-nnoremap <M-Right> <C-]>
-" Alt-up/down to navigate through history
-nnoremap <M-Up> <C-o>
-nnoremap <M-Down> <C-i>
+nnoremap <S-Left> <C-T>
+nnoremap <S-Right> <C-]>
+nnoremap <S-F9> :tselect<CR>
+nnoremap <S-F11> :tprevious<CR>
+nnoremap <S-F12> :tnext<CR>
 
 " Yank current file
 nnoremap <silent> ycf :let @* = expand("%:p")<CR>:let @+ = expand("%:p")<CR>
