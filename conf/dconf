@@ -14,7 +14,7 @@ systray-whitelist=['all']
 remote-content-search='none'
 
 [com/canonical/unity/launcher]
-favorites=['application://nautilus-home.desktop', 'application://google-chrome.desktop', 'application://firefox.desktop', 'application://thunderbird.desktop', 'application://terminator.desktop', 'application://sublime.desktop', 'application://gnome-control-center.desktop', 'unity://running-apps', 'unity://expo-icon', 'unity://devices']
+favorites=['application://gnome-terminal.desktop', 'application://google-chrome.desktop', 'application://nautilus-home.desktop', 'application://gnome-control-center.desktop', 'unity://running-apps', 'unity://expo-icon', 'unity://devices']
 
 [com/ubuntu/update-notifier]
 release-check-time=uint32 1375170464
@@ -72,11 +72,11 @@ numlock-state='on'
 motion-threshold=3
 motion-acceleration=1.7897350993377483
 
+[org/gnome/charmap/window-state]
+size=(768, 418)
+
 [org/gnome/baobab/ui]
 active-chart='rings'
-
-[org/gnome/gcalctool]
-button-mode='basic'
 
 [org/gnome/gedit/preferences/editor]
 auto-save-interval=uint32 10
@@ -101,10 +101,16 @@ bottom-panel-size=140
 side-panel-size=200
 side-panel-active-page=228660812
 
+[org/gnome/gcalctool]
+button-mode='basic'
+
 [org/gnome/nautilus/window-state]
 start-with-sidebar=true
 geometry='1196x559+28+350'
 maximized=false
+
+[org/gnome/evince/default]
+window-ratio=(2.6638888888888888, 2.1259259259259258)
 
 [org/gnome/file-roller/file-selector]
 show-hidden=false
@@ -135,9 +141,6 @@ recreate-folders=true
 sidebar-width=200
 window-height=973
 window-width=1280
-
-[org/gnome/evince/default]
-window-ratio=(2.6638888888888888, 2.1259259259259258)
 
 [org/gnome/deja-dup]
 welcomed=true
@@ -348,7 +351,7 @@ avoid-offscreen=true
 put-next-output-key='<Super>KP_Multiply'
 
 [org/compiz/profiles/unity/plugins/unityshell]
-show-launcher='<Super>grave'
+show-launcher='<Super>space'
 icon-size=32
 num-launchers=1
 launcher-capture-mouse=false
@@ -436,7 +439,7 @@ run-command-6=['disabled']
 run-command-7=['disabled']
 run-command-8=['disabled']
 run-command-9=['disabled']
-show-hud=['<Super>space']
+show-hud=['<Super>h']
 
 [apps/update-manager]
 show-details=true
