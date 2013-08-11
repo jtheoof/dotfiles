@@ -31,7 +31,7 @@
     dfc = diff --cached
     dfw = diff --color-words
 
-    gr  = grep -n --untracked --heading --break -e
+    gr  = grep -n --break -e
 
     fe  = fetch
 
