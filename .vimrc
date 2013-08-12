@@ -95,7 +95,8 @@ set wildchar=<Tab> wildmenu wildmode=full
 set wildcharm=<C-Z>
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 set wildignore+=*/cache/*,*/undodir/*
-set wildignore+=*/.build*/*,*/build/*,*/doc/*
+set wildignore+=*/.build*/*,*/build/*,*/.deps/*,*/doc/*
+set wildignore+=*.pch,*.d,*.o
 set wildmenu
 set wildmode=longest,full
 
