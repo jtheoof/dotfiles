@@ -31,7 +31,7 @@
     dfc = diff --cached
     dfw = diff --color-words
 
-    gr  = grep -n --break -e
+    gr  = grep -n -I -i --break -e
 
     fe  = fetch
 
@@ -40,6 +40,7 @@
     lc   = log --pretty=oneline --decorate=full --stat --no-merges ORIG_HEAD..
     lg   = log -p
     logp = log --pretty=oneline --decorate=full -20
+    ll   = log --pretty="format:%h %cn %s" --decorate=full -20
 
     ls  = ls-files
 
