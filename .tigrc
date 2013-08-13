@@ -38,13 +38,13 @@ bind main F7 !@git rebase
 bind main F8 !@git pull
 bind main F9 !@git push
 
-bind main ! !git revert %(commit)              # Revert commit
-bind main C !?git checkout %(commit)           # Checkout commit
-bind main H !?git reset --hard %(commit)       # Hard reset
-bind main R !git rebase -i %(commit)           # Interactive rebasing
-bind main P !git cherry-pick %(commit)         # Checkout commit
-bind main X !?git push                         # Push to tracking remote
-bind main F !?git push-for %(prompt) %(commit) # Push-for
+bind main ! !git revert %(commit)
+bind main C !?git checkout %(commit)
+bind main H !?git reset --hard %(commit)
+bind main R !git rebase -i %(commit)^
+bind main P !git cherry-pick %(commit)
+bind main X !?git push
+bind main F !?git push-for %(prompt) %(commit)
 
 # }}}
 # Diff {{{
