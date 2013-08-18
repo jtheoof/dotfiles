@@ -5,19 +5,27 @@ set tabstop=4
 set winminheight=2
 set wrapscan
 
-map <F5> :run<CR>
+map <c>   :clear<CR>
+map <b>   :break<CR>
+map <F5>  :run<CR>
+map <F7>  imake<CR><Esc>
+map <F8>  :continue<CR>
+map <F10> :next<CR>
+map <F11> :step<CR>
+map <F12> :finish<CR>
 
 hi Statement ctermfg=5
 hi Type      ctermfg=14
 hi Constant  ctermfg=3
 hi Comment   ctermfg=8
-hi PreProc   ctermfg=3
+hi PreProc   ctermfg=5
 hi Normal    ctermfg=7
 
-hi StatusLine         ctermfg=8
+hi StatusLine         ctermfg=7  ctermbg=8
 hi IncSearch          ctermfg=3
-hi Arrow              ctermfg=8
-hi LineHighlight      ctermfg=15 ctermbg=8
-hi Breakpoint         ctermfg=7 ctermbg=5
-hi DisabledBreakpoint ctermfg=7 ctermbg=8
+hi Arrow              ctermfg=2
+hi LineHighlight      ctermfg=10 ctermbg=0
+hi Breakpoint         ctermfg=7  ctermbg=6
+hi DisabledBreakpoint ctermfg=6  ctermbg=8
+hi SelectedLineNr     ctermfg=3
 hi Logo               ctermfg=3
