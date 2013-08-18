@@ -96,7 +96,7 @@ set wildcharm=<C-Z>
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 set wildignore+=*/cache/*,*/undodir/*
 set wildignore+=*/.build*/*,*/build/*,*/.deps/*,*/doc/*
-set wildignore+=*.pch,*.d,*.o
+set wildignore+=*.pch,*.d,*.o,*.Po
 set wildmenu
 set wildmode=longest,full
 
@@ -216,17 +216,6 @@ colorscheme monokai
 
 " Leader {{{2
 
-" Deprecated {{{3
-" I should be using action first not file first.
-
-" Fast editing of .vimrc
-map <Leader>ve :e! $MYVIMRC<CR>
-
-" Fast reload of .vimrc
-map <Leader>vs :so $MYVIMRC<CR>
-map <Leader>vv :so $MYVIMRC<CR>
-
-" 3}}}
 " With a map leader it's possible to do extra key combinations
 " like <Leader>w saves the current file
 let mapleader = ","
