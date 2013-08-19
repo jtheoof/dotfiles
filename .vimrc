@@ -425,8 +425,10 @@ vnoremap <M-6> g^
 vnoremap <M-0> g^
 
 " Tabs
-vnoremap <CR> >gv
-vnoremap <BS> <gv
+vnoremap <Space> <Esc>:'<,'>:s/^/ /<Enter>:let @/=""<Enter>gv
+vnoremap <Backspace> <Esc>:'<,'>:s/^ //<Enter>:let @/=""<Enter>gv
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 " Substitutiion
 vmap ! y<Esc>:%s/<C-R>"/
@@ -766,10 +768,10 @@ noremap <Leader>nc :NERDTreeClose<cr>
 
 let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
 let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'ultisnips']
-let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsExpandTrigger = '<F1>'
 let g:UltiSnipsListSnippets = '<F2>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+let g:UltiSnipsJumpForwardTrigger = '<F3>'
+let g:UltiSnipsJumpBackwardTrigger = '<F4>'
 let g:UltiSnipsEditSplit = 'vertical'
 
 " }}}
