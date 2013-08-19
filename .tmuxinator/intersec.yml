@@ -23,4 +23,9 @@ tabs:
      layout: even-horizontal
      panes:
         - tail -F /var/log/apache2/*.log
+  - dotfiles:
+     layout: even-horizontal
+     panes:
+        - git-unset
+        - git-unset
   - ssh: ssh jeremy@basaidai
