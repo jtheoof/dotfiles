@@ -588,17 +588,6 @@ aug filetype_javascript
 aug END
 
 " 2}}}
-" JSON {{{2
-
-aug filetype_json
-    au!
-    au BufRead *.json setf json
-    au FileType json set textwidth=80
-    au FileType json set softtabstop=4 shiftwidth=4
-    au FileType json set noexpandtab
-aug END
-
-" 2}}}
 " HTML {{{2
 
 " Disable underlines in <a> tags as well as bold, italic
@@ -629,6 +618,14 @@ aug filetype_vala
     au!
     au BufNewFile,BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
     au BufNewFile,BufRead *.vala,*.vapi setf vala
+aug END
+
+" 2}}}
+" Yaml {{{2
+
+aug filetype_yaml
+    au!
+    au FileType yaml set sts=2 sw=2
 aug END
 
 " 2}}}
