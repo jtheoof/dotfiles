@@ -439,6 +439,9 @@ vmap ! y<Esc>:%s/<C-R>"/
 " Delete word from cursor to beginning of word
 cnoremap <C-Backspace> <C-W>
 
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cnoremap w!! w !sudo tee > /dev/null %
+
 "2}}}
 
 " 1}}}
