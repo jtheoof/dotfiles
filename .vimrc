@@ -763,6 +763,8 @@ noremap <Leader>no :NERDTreeToggle<space>
 noremap <Leader>nf :NERDTreeFind<cr>
 noremap <Leader>nc :NERDTreeClose<cr>
 
+let NERDTreeAutoDeleteBuffer=1 " always remove deleted buffer
+
 " 2}}}
 " UltiSnips {{{
 
