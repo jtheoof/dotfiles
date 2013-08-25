@@ -12,7 +12,6 @@
 #
 # Local Order: .zshenv, .zprofile, .zshrc, .zlogin
 
-
 export EDITOR=vim
 
 # This won't work because it's already set by lib/misc.zsh
@@ -29,4 +28,12 @@ if [[ ! -z "$PATH" ]] then
         PATH=$HOME/dev/android/sdk/platform-tools:$PATH
         PATH=$HOME/dev/android/ndk:$PATH
     fi
+fi
+
+if [[ -d /usr/lib/jvm/java-6-openjdk ]] then
+    export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
+fi
+
+if [[ -d /opt/teamcity/data ]] then
+    export TEAMCITY_DATA_PATH=/opt/teamcity/data
 fi
