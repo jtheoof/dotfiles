@@ -97,6 +97,7 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 set wildignore+=*/cache/*,*/undodir/*
 set wildignore+=*/.build*/*,*/build/*,*/.deps/*,*/doc/*
 set wildignore+=*.pch,*.d,*.o,*.Po
+set wildignore+=*/poc/*
 set wildmenu
 set wildmode=longest,full
 
@@ -246,6 +247,7 @@ map <Leader>eg :e! $HOME/.gitconfig<CR>
 map <Leader>ec :e! $HOME/.vim/colors/monokai.vim<CR>
 map <Leader>et :e! $HOME/.tmux.conf<CR>
 map <Leader>ev :e! $MYVIMRC<CR>
+map <Leader>ex :set ft=xxd<CR>:%!xxd<CR>
 map <Leader>ez :e! $HOME/.zshrc<CR>
 
 noremap <Leader>giw :Ggrep <C-R><C-W><CR>
