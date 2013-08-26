@@ -110,6 +110,9 @@ alias n.='nautilus .'
 alias view='eog'
 alias cdg='cd $(git rev-parse --show-toplevel)'
 
+# Programming
+alias t='tig'
+
 # 2}}}
 # APT {{{2
 
