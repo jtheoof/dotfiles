@@ -74,14 +74,12 @@ alias ls='ls --color=auto'
 alias lsf='find . -nowarn -type f -maxdepth 1'
 alias ll='ls -lah --group-directories-first'
 alias l='ll'
-alias lm='ll|more'
 alias dir='ls --color=auto --format=vertical'
 alias vdir='ls --color=auto --format=long'
 
 alias h='history'
 alias hs='history'
-alias hsa='history | ack'
-alias hf='history | ack'
+alias ha='history | ack'
 alias hl='history | less'
 
 # Search
@@ -113,6 +111,7 @@ alias cdg='cd $(git rev-parse --show-toplevel)'
 
 # Programming
 alias t='tig'
+alias tm='tmux'
 
 # 2}}}
 # APT {{{2
