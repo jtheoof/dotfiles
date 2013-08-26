@@ -106,6 +106,7 @@ alias psa='ps -ef | ack'
 alias ipwan='wget -q -O - checkip.dyndns.org | sed -e "s/.*Current IP Address: //" -e "s/<.*$//"'
 
 # Navigation
+alias n='nautilus'
 alias n.='nautilus .'
 alias view='eog'
 alias cdg='cd $(git rev-parse --show-toplevel)'
