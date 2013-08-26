@@ -26,6 +26,6 @@ tabs:
   - dotfiles:
      layout: even-horizontal
      panes:
-        - git-unset
-        - git-unset
+        - git-unset; cd ~/.dotfiles
+        - git-unset; cd ~/.dotfiles
   - ssh: ssh jeremy@basaidai
