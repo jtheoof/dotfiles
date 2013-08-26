@@ -14,7 +14,9 @@ vim-javascript/
 vim-jsbeautify/
 vim-less/
 vim-markdown/
+vim-misc/
 vim-repeat/
+vim-session/
 vim-surround/
 vim-unimpaired/
 zencoding-vim/

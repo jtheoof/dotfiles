@@ -22,7 +22,6 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'ervandew/supertab'
 Bundle 'groenewege/vim-less'
 Bundle 'kien/ctrlp.vim'
-" Bundle 'majutsushi/tagbar'
 Bundle 'maksimr/vim-jsbeautify'
 Bundle 'mattn/zencoding-vim'
 Bundle 'nacitar/terminalkeys.vim'
@@ -36,6 +35,8 @@ Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-session'
 
 " Vim scripts
 Bundle 'bufexplorer.zip'
@@ -778,6 +779,11 @@ let g:UltiSnipsJumpBackwardTrigger = '<F4>'
 let g:UltiSnipsEditSplit = 'vertical'
 
 " }}}
+" session {{{
+
+let g:session_autosave = "no"
+
+" }}}
 " Syntastic {{{
 
 let g:syntastic_mode_map = {
@@ -817,6 +823,6 @@ let g:user_zen_settings = { 'indentation' : '  ' }
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 " THE SOFTWARE.
 
-" vim:set sts=4 sw=4 et:
-
 " 1}}}
+
+" vim:set sts=4 sw=4 et:
