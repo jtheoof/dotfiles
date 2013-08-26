@@ -269,11 +269,11 @@ export LESS=-FRSX
 
 # Dircolors
 if [[ -f /usr/bin/dircolors && -f $HOME/.dircolors ]]; then
-   eval $(dircolors -b $HOME/.dircolors)
+    eval $(dircolors -b $HOME/.dircolors)
 fi
 
 if [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]]; then
-   source $HOME/.tmuxinator/scripts/tmuxinator
+    source $HOME/.tmuxinator/scripts/tmuxinator
 fi
 
 # Sourcing zshrc_work if exists
