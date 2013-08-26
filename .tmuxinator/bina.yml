@@ -1,0 +1,21 @@
+project_name: bina
+project_root: ~/dev/bina
+rvm: 
+pre:
+tabs:
+  - editor: vim -c OpenSession bina
+  - debugger:
+      layout: even-horizontal
+      panes:
+        - make
+        - cgdb src/bina
+  - shell:
+      layout: even-horizontal
+      panes:
+        - ls
+        - ls
+  - android:
+      layout: even-horizontal
+      panes:
+        - cd projects/android
+        - cd ~/dev/android/ndk
