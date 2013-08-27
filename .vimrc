@@ -68,24 +68,25 @@ set backspace=indent,eol,start          " more powerful backspacing
 set diffopt+=vertical                   " make vertical default split
 set foldlevel=0                         " fold to level 0 when opening file
 set foldmethod=marker                   " basic marker as default folding method
-set laststatus=2                        " always show status line
-set lazyredraw                          " don't redraw while executing macros
 set modeline                            " last lines in document sets vim mode
 set modelines=5                         " number lines checked for modelines
 set omnifunc=syntaxcomplete#Complete    " basic autocomplete from buffers
-set scrolloff=3                         " Make cursor offset
-set shortmess=at                        " Abbreviate messages
-set showmode                            " Show current mode
-set splitbelow                          " split at the bottom
-set splitright                          " vsplit on right
-set title                               " show title in console title bar
 
 set noerrorbells                        " no error sounds
 set nostartofline                       " don't jump to first char when paging
 set novisualbell                        " no visual sounds
 
-set noshowcmd                           " do not display incomplete commands
-set noruler                             " do not show rule
+" Display
+set title            " show title in console title bar
+set lazyredraw       " don't redraw while executing macros
+set laststatus=2     " always show status line
+set scrolloff=3      " make cursor offset
+set shortmess=atToO  " abbreviate messages oO is useful see help
+set showmode         " show current mode
+set splitbelow       " split at the bottom
+set splitright       " vsplit on right
+set noshowcmd        " do not display incomplete commands
+set noruler          " do not show ruler
 
 " History of: file marks, command lines, input line, searches.
 " Also disable highlights on start and save buffers.
