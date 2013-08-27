@@ -12,7 +12,7 @@ hi clear
 if exists("syntax_on")
   syntax reset
 endif
-let colors_name = "jtheoof"
+let colors_name = "monokai"
 set background=dark
 
 " }}}
