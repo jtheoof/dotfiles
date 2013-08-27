@@ -75,7 +75,6 @@ set modelines=5                         " number lines checked for modelines
 set omnifunc=syntaxcomplete#Complete    " basic autocomplete from buffers
 set scrolloff=3                         " Make cursor offset
 set shortmess=atI                       " Abbreviate messages
-set showcmd                             " display incomplete commands
 set showmode                            " Show current mode
 set splitbelow                          " split at the bottom
 set splitright                          " vsplit on right
@@ -84,6 +83,9 @@ set title                               " show title in console title bar
 set noerrorbells                        " no error sounds
 set nostartofline                       " don't jump to first char when paging
 set novisualbell                        " no visual sounds
+
+set noshowcmd                           " do not display incomplete commands
+set noruler                             " do not show rule
 
 " History of: file marks, command lines, input line, searches.
 " Also disable highlights on start and save buffers.
