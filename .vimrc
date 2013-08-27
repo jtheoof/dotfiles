@@ -74,7 +74,7 @@ set modeline                            " last lines in document sets vim mode
 set modelines=5                         " number lines checked for modelines
 set omnifunc=syntaxcomplete#Complete    " basic autocomplete from buffers
 set scrolloff=3                         " Make cursor offset
-set shortmess=atI                       " Abbreviate messages
+set shortmess=at                        " Abbreviate messages
 set showmode                            " Show current mode
 set splitbelow                          " split at the bottom
 set splitright                          " vsplit on right
