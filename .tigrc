@@ -45,7 +45,7 @@ bind main H !?git reset --hard %(commit)
 bind main R !git rebase -i %(commit)^
 bind main P !git cherry-pick %(commit)
 bind main X !?git push
-bind main F !?git push-for %(prompt) %(commit)
+bind main F !@sh -c "git show %(commit) --pretty=format: --name-only | xargs | xsel -ib"
 
 # }}}
 # Diff {{{
@@ -59,6 +59,7 @@ bind diff C !git commit -av               # Add and commit
 bind diff E !sh -c "vim $(git show --pretty='format:' --name-only %(commit))"
 bind diff V !vim %(file)                  # Edit file
 bind diff P !git add -p %(file)           # Partially add current file
+bind diff F !@sh -c "git show %(commit) --pretty=format: --name-only | xargs | xsel -ib"
 
 # }}}
 # Tree {{{
