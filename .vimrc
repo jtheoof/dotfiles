@@ -197,6 +197,13 @@ function! AdjustWindowHeight(minheight, maxheight)
     exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
 endfunction
 
+function! StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfunction
+
 function! GitGrep(...)
     let save = &grepprg
     set grepprg=git\ grep\ -n\ $*
@@ -487,6 +494,9 @@ au InsertLeave * set nocursorline
 
 au WinEnter * set colorcolumn=80
 au WinLeave * set colorcolumn=
+
+" Trim whitespaces
+autocmd BufWritePre * :call StripTrailingWhitespaces()
 
 " Save clipboard when vim exits
 "au VimLeave * call system("xsel -ib", getreg('+'))
