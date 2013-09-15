@@ -76,7 +76,7 @@ bind branch N !@git branch %(prompt) # Create a new branch
 
 bind status A !@git add %(file)        # Add
 bind status R !@git reset HEAD %(file) # Reset
-bind status M !?@git commit --amend    # Amend
+bind status M !@git commit --amend    # Amend
 bind status N !@git add -N %(file)     # Intent to add
 
 # }}}
