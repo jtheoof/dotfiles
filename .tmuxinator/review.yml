@@ -1,0 +1,10 @@
+project_name: review
+project_root: ~/dev/mmsx
+rvm:
+pre:
+tabs:
+  - code:
+      layout: even-horizontal
+      panes:
+        - #emty
+        - #emty
