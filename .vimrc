@@ -814,7 +814,7 @@ let g:session_autosave = "no"
 
 let g:syntastic_mode_map = {
     \ 'mode': 'passive',
-    \ 'active_filetypes': [],
+    \ 'active_filetypes': ['javascript'],
     \ 'passive_filetypes': [],
     \ }
 
