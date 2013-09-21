@@ -1,4 +1,0 @@
-LibraryName:JDK
-TypesFiles:jdk.taghl
-TypesSuffixes:java
-CheckMode:Always

@@ -4,10 +4,8 @@ ctrlp.vim/
 nerdtree/
 supertab/
 syntastic/
-tagbar/
 terminalkeys.vim/
 ultisnips/
-vim-colors-solarized/
 vim-commentary/
 vim-fugitive/
 vim-javascript/
@@ -19,4 +17,3 @@ vim-repeat/
 vim-session/
 vim-surround/
 vim-unimpaired/
-zencoding-vim/

@@ -1,5 +1,0 @@
-repo: 543e0f526bf085148d74a9a68584b05dcb18aa12
-node: 44f76f6e482c38e5a70a56c10a6cd445926b0d66
-branch: default
-latesttag: taghighlight-release-2.1.5
-latesttagdistance: 38

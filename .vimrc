@@ -18,7 +18,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Github
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'ervandew/supertab'
 Bundle 'groenewege/vim-less'
 Bundle 'kien/ctrlp.vim'
@@ -383,7 +382,6 @@ nnoremap <C-F5> :tabdo windo edit<CR>
 nnoremap <F6> :cnext<CR>
 nnoremap <F7> :make<Return>
 nnoremap <S-F7> yy:<C-R>"<BS><CR>
-nnoremap <F8> :TagbarToggle<CR>
 nnoremap <F9> :cprevious<Return>
 nnoremap <F10> :cnext<Return>
 
