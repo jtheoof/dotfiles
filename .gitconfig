@@ -1,5 +1,5 @@
 [alias]
-    review-web   = !git-push-for --to frediani --to lopez
+    review-web   = !git-push-for --to frediani --to lopez --to mougnot --to boulle
     review-tools = !git-push-for --to squirawski --to bruneau
 
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
