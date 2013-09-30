@@ -1,18 +1,13 @@
 project_name: intersec
 project_root: ~/dev/mmsx
-rvm: 
-pre: 
+rvm:
+pre:
 tabs:
-  - bin:
+  - bon:
       layout: even-horizontal
       panes:
-        - mcms/mcms-master
-        - lms/lms-master -i1
-  - data:
-      layout: even-horizontal
-      panes:
-        - cd $MCMS_HOME
-        - cd $LMS_HOME
+        - b-on/bon-master -i1
+        - cd $BON_HOME
   - vim: vim
   - mmsx:
       layout: even-horizontal
