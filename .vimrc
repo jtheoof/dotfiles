@@ -367,9 +367,9 @@ nnoremap <S-Up> 3<C-Y>
 " Quick highlight
 nmap <S-kMultiply> <Leader>hcw
 
-nnoremap <silent> <C-S> :w<CR>  " Saving file
-nnoremap <silent> <C-c> :q!<CR> " Close buffer/window
-nnoremap <C-k> :let @/ = ""<CR> " Cleanup search
+nnoremap <silent> <C-S> :w<CR>
+nnoremap <silent> <C-c> :q!<CR>
+nnoremap <C-k> :let @/ = ""<CR>
 
 nnoremap <silent> <F1> :Explore<CR>
 nnoremap <C-F1> :tabe **/<cfile><CR>
@@ -413,7 +413,7 @@ imap <S-Down> <Esc><S-Down>a
 imap <S-Up> <Esc><S-Up>a
 
 " Saving file
-imap <silent> <C-S> <Esc><C-S>a
+inoremap <silent> <C-S> <Esc>:w<CR>i
 
 " Delete current line
 inoremap <C-D> <Esc>dda
