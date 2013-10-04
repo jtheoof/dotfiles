@@ -18,10 +18,10 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Github
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'ervandew/supertab'
 Bundle 'groenewege/vim-less'
 Bundle 'kien/ctrlp.vim'
-Bundle 'maksimr/vim-jsbeautify'
 Bundle 'mattn/zencoding-vim'
 Bundle 'nacitar/terminalkeys.vim'
 Bundle 'pangloss/vim-javascript'
