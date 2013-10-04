@@ -1,9 +1,9 @@
 " Name:     Jeremy Attali's .vimrc
 " Author:   Jeremy Attali
 " URL:
-" License:  MIT license (see end of this file)
 " Created:  Paris
 " Comment:  Big thanks to amix.dk: http://amix.dk/vim/vimrc.html
+"
 
 set nocompatible " be IMproved
 
@@ -272,7 +272,7 @@ nnoremap <Leader>hcw :call HighlightWord()<CR>
 
 " Fast editing of common files
 map <Leader>eg :e! $HOME/.gitconfig<CR>
-map <Leader>ec :e! $HOME/.vim/colors/monokai.vim<CR>
+map <Leader>ec :e! $HOME/.vim/misc/colors/monokai.vim<CR>
 map <Leader>et :e! $HOME/.tmux.conf<CR>
 map <Leader>ev :e! $MYVIMRC<CR>
 map <Leader>ex :set ft=xxd<CR>:%!xxd<CR>
@@ -483,6 +483,15 @@ aug quickfix
     au FileType qf call AdjustWindowHeight(3, 20)  " Adjust size automatically
 aug END
 
+aug misc
+    au!
+    au BufNewFile,BufRead *.h    setf c
+    au BufNewFile,BufRead *.blk  setf c
+    au BufNewFile,BufRead *.blkk setf cpp
+    au BufNewFile,BufRead *.iop  setf d
+    au BufRead *.zsh-theme setf zsh
+aug END
+
 " This autocommand jumps to the last known position in a file
 " just after opening it, if the '"' mark is set:
 if has("autocmd")
@@ -578,111 +587,6 @@ function! s:ScopeSearch(navigator, mode)
     endif
     return "\b"
 endfunction
-
-" 1}}}
-" Programming {{{1
-
-" C {{{2
-
-aug filetype_c
-    au!
-    au BufNewFile,BufRead *.c,*.h set cc=80
-aug END
-
-" 2}}}
-" Java {{{2
-
-aug filetype_java
-    au!
-    au Filetype java set makeprg=ant-android
-aug END
-
-" 2}}}
-" Python {{{2
-
-let python_highlight_all = 1
-aug filetype_python
-    au!
-    au FileType python syn keyword pythonDecorator True None False self
-    au FileType python set omnifunc=pythoncomplete#Complete
-    au FileType python inoremap <buffer> $r return
-    au FileType python inoremap <buffer> $i import
-    au FileType python inoremap <buffer> $p print
-    au FileType python map <buffer> <Leader>1 /class
-    au FileType python map <buffer> <Leader>2 /def
-    au FileType python map <buffer> <Leader>C ?class
-    au FileType python map <buffer> <Leader>D ?def
-aug END
-
-" 2}}}
-" Javascript {{{2
-
-aug filetype_javascript
-    au!
-    au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-    au FileType javascript set shiftwidth=4 expandtab
-aug END
-
-" 2}}}
-" HTML {{{2
-
-" Disable underlines in <a> tags as well as bold, italic
-" See: :help html
-let html_no_rendering = 1
-aug filetype_html
-    au!
-    au FileType html   set omnifunc=htmlcomplete#CompleteTags
-    au FileType html   set sw=2 sts=2 et tw=0 isk+=-
-    au FileType xhtml  set sw=2 sts=2 et tw=0 isk+=-
-    au FileType tpl    set sw=2 sts=2 et tw=0 isk+=-
-    au FileType smarty set sw=2 sts=2 et tw=0 isk+=-
-aug END
-
-" 2}}}
-" CSS {{{2
-
-aug filetype_css
-    au!
-    au FileType css,less set omnifunc=csscomplete#CompleteCSS
-    au FileType css,less set sts=4 sw=4 et isk+=-
-aug END
-
-" 2}}}
-" Vala {{{2
-
-aug filetype_vala
-    au!
-    au BufNewFile,BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
-    au BufNewFile,BufRead *.vala,*.vapi setf vala
-aug END
-
-" 2}}}
-" Yaml {{{2
-
-aug filetype_yaml
-    au!
-    au FileType yaml set sts=2 sw=2
-aug END
-
-" 2}}}
-" ZSH {{{2
-
-aug filetype_zsh
-    au!
-    au BufRead *.zsh-theme setf zsh
-aug END
-
-" 2}}}
-" Intersec {{{2
-
-aug intersec
-    au!
-    au BufNewFile,BufRead *.iop  setf d
-    au BufNewFile,BufRead *.blk  setf c
-    au BufNewFile,BufRead *.blkk setf cpp
-aug END
-
-" 2}}}
 
 " 1}}}
 " Plugins {{{1
@@ -829,30 +733,6 @@ let g:syntastic_mode_map = {
 let g:user_zen_settings = { 'indentation' : '  ' }
 
 " 2}}}
-
-" 1}}}
-" License {{{1
-
-"
-" Copyright (c) 2013 Jeremy Attali
-"
-" Permission is hereby granted, free of charge, to any person obtaining a copy
-" of this software and associated documentation files (the "Software"), to deal
-" in the Software without restriction, including without limitation the rights
-" to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-" copies of the Software, and to permit persons to whom the Software is
-" furnished to do so, subject to the following conditions:
-"
-" The above copyright notice and this permission notice shall be included in
-" all copies or substantial portions of the Software.
-"
-" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-" IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-" FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-" AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-" LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-" OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-" THE SOFTWARE.
 
 " 1}}}
 
