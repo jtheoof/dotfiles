@@ -40,6 +40,11 @@ Bundle 'xolox/vim-session'
 " Vim scripts
 Bundle 'bufexplorer.zip'
 
+" Bypass Vundle for custom plugins.
+" See: https://github.com/gmarik/vundle/issues/67
+
+set rtp+=~/.vim/misc
+
 "1}}}
 " Init {{{1
 
