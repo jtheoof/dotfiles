@@ -2,8 +2,8 @@
 " Maintainer:  Jeremy Attali
 " Last Change: 2012 Dec 25
 " Version:     0.2.0
-" Credits:     Damien Gombault <desintegr@gmail.com>
-" Credits:     Ethan Schoonover <es@ethanschoonover.com>
+" Author:      Damien Gombault <desintegr@gmail.com>
+" Maintainer:  Jeremy Attali <jeremy.attali@gmail.com>
 " Info:        This colorscheme was greatly based on monokai.
 
 " Colorscheme initialization {{{

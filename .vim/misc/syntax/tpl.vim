@@ -1,19 +1,13 @@
 " Vim syntax file
 " Language:	    Intersec tpl file
 " Maintainer:	Jeremy Attali <jeremy.attali@gmail.com>
-" URL:		    
+" URL:
 " Last Change:  2013-05-22
 " License:      MIT
 " Changes:      First introduction
 
 runtime! syntax/html.vim
 
-" JST {{{
-
-syn region jstBlock containedin=ALL start="<%=" keepend end="%>" contains=@htmlJavaScript,htmlCssStyleComment,htmlScriptTag,@htmlPreproc
-syn region jstBlock containedin=ALL start="<%" keepend end="%>" contains=@htmlJavaScript,htmlCssStyleComment,htmlScriptTag,@htmlPreproc
-
-" }}}
 " Init {{{
 
 " For version 5.7 and earlier: only when not done already

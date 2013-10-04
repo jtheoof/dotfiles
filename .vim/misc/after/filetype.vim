@@ -4,5 +4,5 @@
 " Last Change: 2013-05-22
 
 augroup filetypedetect
-  au! BufNewFile,BufRead *.tpl setf tpl
+    au! BufNewFile,BufRead *.tpl setf tpl
 augroup END
