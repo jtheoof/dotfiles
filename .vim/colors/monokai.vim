@@ -333,22 +333,27 @@ exe "hi WarningMsg"      .s:fmt_none  .s:fg_magenta .s:bg_none
 hi! link cStatement              Green
 hi! link cppStatement            Green
 " CSS
-hi! link cssAuralProp            White
-hi! link cssBoxProp              White
+hi! link cssAttributeSelector    Green
+hi! link cssAuralProp            Cyan
+hi! link cssBoxProp              Cyan
 hi! link cssBraces               White
-hi! link cssColorProp            White
 hi! link cssClassName            Cyan
-hi! link cssFontDescriptorProp   White
-hi! link cssFontProp             White
-hi! link cssGeneratedContentProp White
+hi! link cssColorProp            Cyan
+hi! link cssDefinition           Cyan
+hi! link cssFontDescriptorProp   Cyan
+hi! link cssFontProp             Cyan
+hi! link cssGeneratedContentProp Cyan
 hi! link cssImportant            Magenta
-hi! link cssPagingProp           White
-hi! link cssRenderProp           White
-hi! link cssRenderProp           White
-hi! link cssTableProp            White
-hi! link cssTagName              Green
-hi! link cssTextProp             White
-hi! link cssUIProp               White
+hi! link cssMediaBlock           Green
+hi! link cssPagingProp           Cyan
+hi! link cssPseudoClass          Green
+hi! link cssRenderProp           Cyan
+hi! link cssRenderProp           Cyan
+hi! link cssRenderProp           Cyan
+hi! link cssTableProp            Cyan
+hi! link cssTagName              Magenta
+hi! link cssTextProp             Cyan
+hi! link cssUIProp               Cyan
 " Git
 hi! link gitrebaseFixup          Grey
 " Java
@@ -357,8 +362,8 @@ hi! link javaStatement           Green
 hi! link jsDocParam              Cyan
 hi! link jsDocTags               Magenta
 hi! link jsFuncArgs              Orange
-hi! link jsStorageClass          Cyan
 hi! link jsFunctionKey           Green
+hi! link jsStorageClass          Cyan
 " Ruby
 hi! link rubyClassVariable       White
 hi! link rubyControl             Green
