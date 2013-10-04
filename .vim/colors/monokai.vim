@@ -221,7 +221,7 @@ exe "hi! Character"      .s:fmt_none   .s:fg_yellow    .s:bg_none
 exe "hi! Identifier"     .s:fmt_none   .s:fg_green     .s:bg_none
 "       *Identifier      any variable name
 
-exe "hi! Function"       .s:fmt_none   .s:fg_cyan      .s:bg_none
+exe "hi! Function"       .s:fmt_none   .s:fg_green     .s:bg_none
 "        Function        function name (also: methods for classes)
 
 exe "hi! Statement"      .s:fmt_none   .s:fg_magenta   .s:bg_none
@@ -256,7 +256,7 @@ exe "hi! Type"           .s:fmt_none   .s:fg_cyan      .s:bg_none
 exe "hi! StorageClass"   .s:fmt_none   .s:fg_magenta   .s:bg_none
 "        StorageClass    static, register, volatile, etc.
 
-exe "hi! Special"        .s:fmt_none   .s:fg_white     .s:bg_none
+exe "hi! Special"        .s:fmt_none   .s:fg_cyan      .s:bg_none
 "       *Special         any special symbol
 "        SpecialChar     special character in a constant
 "        Tag             you can use CTRL-] on this
@@ -356,6 +356,9 @@ hi! link javaStatement           Green
 " Javascript
 hi! link jsDocParam              Cyan
 hi! link jsDocTags               Magenta
+hi! link jsFuncArgs              Orange
+hi! link jsStorageClass          Cyan
+hi! link jsFunctionKey           Green
 " Ruby
 hi! link rubyClassVariable       White
 hi! link rubyControl             Green
