@@ -3,5 +3,5 @@
 " Maintainer: Jeremy Attali <jeremy.attali@gmail.com>
 "
 
-set omnifunc=csscomplete#CompleteCSS
-set iskeyword+=-
+setlocal omnifunc=csscomplete#CompleteCSS
+setlocal iskeyword+=-

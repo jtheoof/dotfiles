@@ -3,4 +3,4 @@
 " Maintainer: Jeremy Attali <jeremy.attali@gmail.com>
 "
 
-set iskeyword+=-
+setlocal iskeyword+=-

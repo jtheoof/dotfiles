@@ -344,16 +344,22 @@ hi! link cssFontDescriptorProp   Cyan
 hi! link cssFontProp             Cyan
 hi! link cssGeneratedContentProp Cyan
 hi! link cssImportant            Magenta
+hi! link cssListProp             Cyan
 hi! link cssMediaBlock           Green
 hi! link cssPagingProp           Cyan
 hi! link cssPseudoClass          Green
 hi! link cssRenderProp           Cyan
-hi! link cssRenderProp           Cyan
-hi! link cssRenderProp           Cyan
+hi! link cssMarginProp           Cyan
 hi! link cssTableProp            Cyan
 hi! link cssTagName              Magenta
 hi! link cssTextProp             Cyan
 hi! link cssUIProp               Cyan
+hi! link cssPositioningProp      Cyan
+hi! link cssPaddingProp          Cyan
+hi! link cssDimensionProp        Cyan
+hi! link cssBackgroundProp       Cyan
+hi! link cssFlexibleBoxProp      Cyan
+hi! link cssBorderOutlineProp    Cyan
 " Git
 hi! link gitrebaseFixup          Grey
 " Java
