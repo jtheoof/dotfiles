@@ -293,7 +293,7 @@ vnoremap <Leader>s" :perldo s/'(.*?)'/"\1"/g<CR>
 
 " Fast reload of common files
 nnoremap <Leader>so :so %<CR>
-nnoremap <Leader>sc :so $HOME/.vim/colors/monokai.vim<CR>
+nnoremap <Leader>sc :so $HOME/.vim/misc/colors/monokai.vim<CR>
 nnoremap <Leader>sv :so $MYVIMRC<CR>
 
 " Splitting windows the right way
