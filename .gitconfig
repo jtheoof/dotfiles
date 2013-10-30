@@ -1,122 +1,123 @@
+# vim: noet:ts=4:
 [alias]
-    review-web   = !git-push-for --to frediani --to lopez --to mougnot --to boulle
-    review-tools = !git-push-for --to squirawski --to bruneau
+	review-web   = !git-push-for --to frediani --to lopez --to mougnot --to dezitter --to boulle
+	review-tools = !git-push-for --to squirawski --to bruneau
 
-    aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
+	aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
 
-    a   = add
-    au  = add -u .
-    ap  = add -p
+	a   = add
+	au  = add -u .
+	ap  = add -p
 
-    br  = branch
-    bra = branch -a
+	br  = branch
+	bra = branch -a
 
-    c   = commit
-    cm  = commit -m
-    ca  = commit --amend
-    cam = commit -am
-    caa = commit -a --amend
-    cv  = commit --verbose
+	c   = commit
+	cm  = commit -m
+	ca  = commit --amend
+	cam = commit -am
+	caa = commit -a --amend
+	cv  = commit --verbose
 
-    ch  = cherry-pick
+	ch  = cherry-pick
 
-    co  = checkout
-    cop = checkout -p
+	co  = checkout
+	cop = checkout -p
 
-    count = !git log --pretty=format:'' | wc -l
+	count = !git log --pretty=format:'' | wc -l
 
-    df  = diff
-    dt  = difftool
-    dtg = difftool -t gvimdiff
-    dfc = diff --cached
-    dfw = diff --color-words
+	df  = diff
+	dt  = difftool
+	dtg = difftool -t gvimdiff
+	dfc = diff --cached
+	dfw = diff --color-words
 
-    gr  = grep -n -I -i --break -e
+	gr  = grep -n -I -i --break -e
 
-    fe  = fetch
+	fe  = fetch
 
-    files = show --pretty="format:" --name-only
+	files = show --pretty="format:" --name-only
 
-    lc   = log --pretty=oneline --decorate=full --stat --no-merges ORIG_HEAD..
-    lg   = log -p
-    logp = log --pretty=oneline --decorate=full -20
-    ll   = log --pretty="format:%h %cn %s" --decorate=full -20
+	lc   = log --pretty=oneline --decorate=full --stat --no-merges ORIG_HEAD..
+	lg   = log -p
+	logp = log --pretty=oneline --decorate=full -20
+	ll   = log --pretty="format:%h %cn %s" --decorate=full -20
 
-    ls  = ls-files
+	ls  = ls-files
 
-    p   = pull
+	p   = pull
 
-    rb  = rebase
-    rba = rebase --abort
-    rbc = rebase --continue
-    rbi = rebase -i
+	rb  = rebase
+	rba = rebase --abort
+	rbc = rebase --continue
+	rbi = rebase -i
 
-    mt  = mergetool -t vimdiff
-    mtg = mergetool -t gvimdiff
+	mt  = mergetool -t vimdiff
+	mtg = mergetool -t gvimdiff
 
-    st  = status
-    sta = status --ignored
+	st  = status
+	sta = status --ignored
 
-    su  = submodule update
-    sui = submodule update --init
+	su  = submodule update
+	sui = submodule update --init
 
-    undo    = reset HEAD^
-    unstash = stash apply
+	undo    = reset HEAD^
+	unstash = stash apply
 
-    who = shortlog -s --
+	who = shortlog -s --
 
-    x = push
+	x = push
 
-    edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
-    add-unmerged  = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+	edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
+	add-unmerged  = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
-    jshint = "!git status -uno -s | cut -f3 -d' ' | ack-grep '.js$' | xargs jshint"
-    jsfix  = "!f() { git ls-files | xargs jshint | cut -d':' -f1 | sort -u | xargs ; }; vim `f`"
+	jshint = "!git status -uno -s | cut -f3 -d' ' | ack-grep '.js$' | xargs jshint"
+	jsfix  = "!f() { git ls-files | xargs jshint | cut -d':' -f1 | sort -u | xargs ; }; vim `f`"
 [branch]
-    autosetuprebase = always
+	autosetuprebase = always
 [color]
-    status = auto
-    diff = auto
-    branch = auto
-    interactive = auto
-    grep = auto
+	status = auto
+	diff = auto
+	branch = auto
+	interactive = auto
+	grep = auto
 [color "branch"]
-    current = magenta
-    local = cyan
-    remote = green
+	current = magenta
+	local = cyan
+	remote = cyan
 [color "decorate"]
-    branch = cyan
-    remoteBranch = green
-    tag = magenta
-    HEAD = magenta
+	branch = cyan
+	remoteBranch = green
+	tag = magenta
+	HEAD = magenta
 [color "diff"]
-    meta = blue
-    frag = yellow
-    old = red
-    new = green
+	meta = blue
+	frag = yellow
+	old = red
+	new = green
 [color "grep"]
-    match = yellow
-    filename = cyan
+	match = yellow
+	filename = cyan
 [color "status"]
-    header = blue
-    added = green
-    changed = yellow
-    untracked = yellow bold
+	header = blue
+	added = green
+	changed = yellow
+	untracked = yellow bold
 [diff]
-    tool = vimdiff
+	tool = vimdiff
 [difftool]
-    prompt = false
+	prompt = false
 [github]
-    user = jtheoof
+	user = jtheoof
 [mergetool "sublime"]
-    cmd = sublime -w $MERGED
-    trustExitCode = false
+	cmd = sublime -w $MERGED
+	trustExitCode = false
 [merge]
-    tool = sublime
+	tool = gvimdiff
 [push]
-    default = tracking
+	default = tracking
 [user]
-    name = Jeremy Attali
-    email = jeremy.attali@gmail.com
+	name = Jeremy Attali
+	email = jeremy.attali@gmail.com
 [grep]
-    extendedRegexp = true
+	extendedRegexp = true
