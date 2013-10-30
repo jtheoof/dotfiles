@@ -3,5 +3,5 @@
 " Maintainer: Jeremy Attali <jeremy.attali@gmail.com>
 "
 
-set colorcolumn=80
-set textwidth=79
+setlocal colorcolumn=80
+setlocal textwidth=78

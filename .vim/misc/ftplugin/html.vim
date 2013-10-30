@@ -4,8 +4,8 @@
 "
 
 let html_no_rendering = 1
-set omnifunc=htmlcomplete#CompleteTags
-set softtabstop=2
-set shiftwidth=2
-set textwidth=0
-set iskeyword+=-
+setlocal omnifunc=htmlcomplete#CompleteTags
+setlocal softtabstop=2
+setlocal shiftwidth=2
+setlocal textwidth=0
+setlocal iskeyword+=-
