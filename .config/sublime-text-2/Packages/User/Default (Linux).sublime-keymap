@@ -1,4 +1,0 @@
-[
-    { "keys": ["ctrl+shift+x"], "command": "tidy_xml" },
-    { "keys": ["ctrl+shift+j"], "command": "prettify_json" }
-]
