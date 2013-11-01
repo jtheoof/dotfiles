@@ -34,7 +34,7 @@ if (has("gui_running"))
     let s:orange      = "#FD971F"
     let s:purple      = "#AE81FF"
     let s:grey        = "#75715E"
-    let s:white       = "#F8F8F2"
+    let s:white       = "#FFFFFF"
     let s:black       = "#3E3D32"
     let s:back        = "#272822"
     let s:front       = "#F8F8F2"

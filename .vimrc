@@ -225,7 +225,7 @@ command! -nargs=? GG call GitGrep(<f-args>)
 
 if has("gui_running")
     if has("gui_gtk2")
-        set guifont=Ubuntu\ Mono\ 10
+        set guifont=Consolas\ 10
     elseif has("gui_win32")
         set guifont=Consolas:h10
     endif
@@ -236,7 +236,7 @@ if has("gui_running")
     set guioptions=                  " turns off every option
 endif
 
-set background=dark
+set background=light
 colorscheme monokai
 
 " 1}}}
