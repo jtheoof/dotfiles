@@ -20,7 +20,7 @@ export LESS=-FRSX
 
 if [[ ! -z "$PATH" ]] then
     PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/sbin:/sbin:$PATH
-    PATH=$HOME/.local/bin:$PATH
+    PATH=$HOME/bin:$PATH
 
     # Set android SDK and NDK PATH
     if [[ -d $HOME/dev/android ]] then
