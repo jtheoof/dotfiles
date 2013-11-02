@@ -1,8 +1,0 @@
-# Append previous history commands to new PS1
-# See: http://www.thegeekstuff.com/2008/09/bash-shell-take-control-of-ps1-ps2-ps3-ps4-and-prompt_command/
-export PROMPT_COMMAND='history -a'
-
-# Check 256 terminal and use it
-if [ -e /lib/terminfo/x/xterm-256color ]; then
-  export TERM='xterm-256color'
-fi
