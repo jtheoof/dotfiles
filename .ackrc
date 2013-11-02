@@ -23,7 +23,6 @@
 --type-set=tpl=.tpl
 
 # types to ignore by default
---noplaintext
 --nogettext
 
 # Colors
@@ -36,6 +35,3 @@
 # Ignore directories
 ####################################################################
 
---ignore-dir='.build*'
---ignore-dir='build'
---ignore-dir='libs'
