@@ -149,6 +149,11 @@ alias ds='dpkg -S'
 # 1}}}
 # Functions {{{1
 
+function man() {
+    /usr/bin/man $* | col -bp | iconv -c | \
+        vim -c 'set ft=man nomod nolist nonu' -
+}
+
 # Compression
 function ctar() {
     tar czf $1.tar.gz $1
