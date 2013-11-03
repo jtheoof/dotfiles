@@ -55,8 +55,6 @@ source $ZSH/oh-my-zsh.sh
 # 1}}}
 # Aliases {{{1
 
-# General {{{2
-
 # Admin
 alias lgroups='cat /etc/passwd | cut -d: -f1'
 
@@ -110,41 +108,6 @@ alias cdg='cd $(git rev-parse --show-toplevel)'
 # Programming
 alias t='tig'
 alias tm='tmux'
-
-# 2}}}
-# APT {{{2
-
-alias  ac='apt-cache'
-alias  acd='apt-cache depends' # show dependencies of <package>.deb
-alias  acs='apt-cache search' # search for string
-alias  ag='sudo apt-get'
-alias  aga='sudo apt-get autoremove' # remove packages no longer needed
-alias  agb='sudo apt-get build-dep' # install dependencies for source built packages using deb-src
-alias  agc='sudo apt-get clean' # clear out downloaded .debs from /var/cache/apt/archives
-alias  agdu='sudo apt-get dist-upgrade' # apply available upgrades
-alias  agg='sudo apt-get upgrade' # apply available upgrades
-alias  agi='sudo apt-get install' # install package(s) from a Debian repository.
-alias  agir='sudo apt-get install --reinstall' # reinstall package
-alias  agr='sudo apt-get remove' # remove package, leave config files
-alias  ags='apt-get source' # download Debian source to $PWD - requires deb-src enabled in sources.list
-alias  agu='sudo apt-get update' # update the list of available packages
-alias  ah='apt-history' # not native to sudo apt-get - apt-history function required
-alias  asv='apt-show-versions' # not native to sudo apt-get - apt-show-versions required
-alias  asve='apt-show-versions | grep /experimental' # list all packages from /experimental
-alias  asvs='apt-show-versions | grep /stable' # list all packages from /stable
-alias  asvt='apt-show-versions | grep /testing' # list all packages from /testing
-alias  asvu='apt-show-versions | grep /unstable' # list all packages from /unstable
-
-# 2}}}
-# DPKG {{{2
-
-alias d='dpkg'
-alias dl='dpkg -l'
-alias dst='dpkg -s'
-alias dls='dpkg -L'
-alias ds='dpkg -S'
-
-# 2}}}
 
 # 1}}}
 # Functions {{{1
@@ -252,13 +215,6 @@ function chpwd() {
 }
 
 # 1}}}
-# Bindings {{{
-
-#bindkey -v
-#bindkey -M vicmd '?' history-incremental-search-backward
-#bindkey '^R' history-incremental-search-backward
-
-# }}}
 # Misc {{{
 
 # Force 256 color terminal on gnome-terminal
