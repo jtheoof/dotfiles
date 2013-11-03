@@ -28,9 +28,10 @@
 # Colors
 ####################################################################
 
---color-match=yellow
---color-filename=cyan
---color-lineno=white
+--color
+--color-match=black on_yellow
+--color-filename=bold red
+--color-lineno=bold black
 
 # Ignore directories
 ####################################################################
