@@ -101,8 +101,8 @@
 [color "status"]
 	header = blue
 	added = green
-	changed = yellow
-	untracked = yellow bold
+	changed = red bold
+	untracked = yellow
 [diff]
 	tool = vimdiff
 [difftool]
