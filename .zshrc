@@ -222,6 +222,11 @@ if [[ $TERM = "xterm" && $COLORTERM =~ "^gnome" ]]; then
     export TERM="xterm-256color"
 fi
 
+# Dircolors
+if [[ -f /usr/bin/dircolors && -f $HOME/.dir_colors ]]; then
+    eval $(dircolors -b $HOME/.dir_colors)
+fi
+
 # Force LESS variable
 export LESS=-FRSX
 
