@@ -271,8 +271,8 @@ nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 nnoremap <Leader>hcw :call HighlightWord()<CR>
 
 " Fast editing of common files
-map <Leader>eg :e! $HOME/.gitconfig<CR>
 map <Leader>ec :e! $HOME/.vim/misc/colors/monokai.vim<CR>
+map <Leader>eg :e! $HOME/.gitconfig<CR>
 map <Leader>et :e! $HOME/.tmux.conf<CR>
 map <Leader>ev :e! $MYVIMRC<CR>
 map <Leader>ex :set ft=xxd<CR>:%!xxd<CR>
