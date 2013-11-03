@@ -29,6 +29,9 @@ disable-while-typing=true
 tap-to-click=true
 touchpad-enabled=true
 
+[org/gnome/settings-daemon/peripherals/keyboard]
+repeat=true
+
 [org/gnome/shell]
 command-history=['r']
 enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-dock@micxgx.gmail.com', 'appindicatorsupport@rgcjonas.gmail.com']
@@ -37,8 +40,12 @@ favorite-apps=['gnome-terminal.desktop', 'nautilus.desktop', 'chromium.desktop',
 [org/gnome/shell/window-switcher]
 app-icon-mode='both'
 
+[org/gnome/shell/extensions/dash-to-dock]
+hide-delay=0.050000000000000003
+show-delay=0.0
+
 [org/gnome/shell/extensions/appindicator-support]
-default='panel'
+default='message-tray'
 
 [org/gnome/shell/overrides]
 dynamic-workspaces=false
@@ -49,9 +56,20 @@ active-chart='rings'
 window-state=128
 window-size=(960, 600)
 
+[org/gnome/gedit/preferences/editor]
+display-right-margin=true
+bracket-matching=true
+create-backup-copy=false
+scheme='oblivion'
+display-line-numbers=true
+insert-spaces=true
+auto-indent=true
+auto-save-interval=uint32 10
+
 [org/gnome/gedit/preferences/ui]
 statusbar-visible=true
 notebook-show-tabs-mode='always'
+side-panel-visible=false
 
 [org/gnome/gedit/plugins/filebrowser]
 virtual-root='file:///home/jeremy/.dotfiles/.local/bin'
@@ -60,6 +78,13 @@ root='file:///'
 
 [org/gnome/gedit/plugins]
 active-plugins=['zeitgeistplugin', 'docinfo', 'modelines', 'filebrowser', 'spell', 'time']
+
+[org/gnome/gedit/state/window]
+size=(650, 500)
+state=388
+bottom-panel-size=140
+side-panel-size=200
+side-panel-active-page=228660812
 
 [org/gnome/calculator]
 target-currency=''
@@ -79,9 +104,12 @@ accuracy=9
 toolbar-visible=true
 remembered-plugins=''
 
+[org/gnome/gnome-screenshot]
+auto-save-directory='file:///home/jeremy/Pictures/Screenshots'
+
 [org/gnome/nautilus/window-state]
-geometry='855x550+220+187'
-maximized=false
+geometry='1366x768+0+0'
+maximized=true
 
 [org/gnome/Music]
 window-position=[0, 25]
@@ -89,7 +117,7 @@ window-maximized=true
 window-size=[1366, 743]
 
 [org/gnome/desktop/notifications]
-application-children=['chromium', 'empathy', 'geary', 'synapse', 'gnome-do', 'gnome-music']
+application-children=['chromium', 'empathy', 'geary', 'synapse', 'gnome-do', 'gnome-music', 'dropbox']
 
 [org/gnome/desktop/notifications/application/gnome-do]
 application-id='gnome-do.desktop'
@@ -100,14 +128,17 @@ application-id='empathy.desktop'
 [org/gnome/desktop/notifications/application/chromium]
 application-id='chromium.desktop'
 
+[org/gnome/desktop/notifications/application/dropbox]
+application-id='dropbox.desktop'
+
 [org/gnome/desktop/notifications/application/geary]
 application-id='geary.desktop'
 
-[org/gnome/desktop/notifications/application/gnome-music]
-application-id='gnome-music.desktop'
-
 [org/gnome/desktop/notifications/application/synapse]
 application-id='synapse.desktop'
+
+[org/gnome/desktop/notifications/application/gnome-music]
+application-id='gnome-music.desktop'
 
 [org/gnome/desktop/interface]
 font-name='Arial 10'
@@ -121,21 +152,22 @@ sources=@a(ss) []
 xkb-options=['terminate:ctrl_alt_bksp']
 
 [org/gnome/desktop/wm/preferences]
-titlebar-font='Times New Roman, 10'
+titlebar-font='Arial Bold 10'
 
 [org/gnome/desktop/wm/keybindings]
 toggle-maximized=['<Super>Return']
-close=['<Super>w']
+close=['<Super>q']
 move-to-workspace-1=['<Shift><Super>exclam']
 move-to-workspace-2=['<Shift><Super>at']
 move-to-workspace-3=['<Shift><Super>numbersign']
 move-to-workspace-4=['<Shift><Super>dollar']
-switch-input-source=['']
-switch-to-workspace-3=['<Super>3']
 begin-resize=['<Super>F8']
-switch-to-workspace-2=['<Super>2']
+switch-to-workspace-3=['<Super>3']
+switch-input-source=['']
+activate-window-menu=['<Super>space']
 switch-to-workspace-4=['<Super>4']
 switch-to-workspace-1=['<Super>1']
+switch-to-workspace-2=['<Super>2']
 begin-move=['<Super>F7']
 toggle-fullscreen=['<Super>f']
 
@@ -177,16 +209,18 @@ foreground-color='#838394949696'
 visible-name='solarized-dark'
 
 [org/gnome/terminal/legacy/profiles:/:7ef5ef44-a82b-4f56-9dc9-2cc0b7cd0de4]
-background-color='rgb(39,40,34)'
-use-theme-colors=false
-palette=['rgb(53,54,51)', 'rgb(226,48,46)', 'rgb(166,226,46)', 'rgb(230,219,116)', 'rgb(50,133,210)', 'rgb(249,38,114)', 'rgb(102,217,239)', 'rgb(248,248,240)', 'rgb(73,72,62)', 'rgb(253,151,31)', 'rgb(177,242,46)', 'rgb(230,219,116)', 'rgb(52,148,237)', 'rgb(174,129,255)', 'rgb(97,222,247)', 'rgb(255,255,255)']
-bold-color-same-as-fg=false
-bold-color='rgb(255,255,255)'
 foreground-color='rgb(248,248,240)'
 visible-name='monokai'
+palette=['rgb(53,54,51)', 'rgb(226,48,46)', 'rgb(166,226,46)', 'rgb(230,219,116)', 'rgb(50,133,210)', 'rgb(249,38,114)', 'rgb(102,217,239)', 'rgb(248,248,240)', 'rgb(73,72,62)', 'rgb(253,151,31)', 'rgb(177,242,46)', 'rgb(230,219,116)', 'rgb(52,148,237)', 'rgb(174,129,255)', 'rgb(97,222,247)', 'rgb(255,255,255)']
+use-theme-colors=false
+bold-color-same-as-fg=false
+bold-color='rgb(255,255,255)'
+background-color='rgb(39,40,34)'
+scrollbar-policy='never'
 
 [org/gnome/terminal/legacy]
 schema-version=uint32 3
+default-show-menubar=false
 
 [org/gnome/evolution/bogofilter]
 utf8-for-spam-filter=true
@@ -239,3 +273,9 @@ window-height=707
 compose-as-html=true
 window-width=1024
 window-maximize=true
+
+[ca/desrt/dconf-editor]
+window-is-fullscreen=false
+window-height=0
+window-width=0
+window-is-maximized=true
