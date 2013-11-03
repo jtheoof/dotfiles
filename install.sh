@@ -1,10 +1,13 @@
-#!/bin/sh
-# vim:set et ts=2 sw=2:
+#!/usr/bin/bash
+# vim:sts=2:sw=2:et:
 
 # TODO Install
 #  * jtheoof.zsh-theme
 #  * Google Chrome
 #  * Fonts (especially Windows into /usr/share/fonts/truetype/windows)
+
+declare -a commands
+commands=(packages dotfiles)
 
 # Print functions {{{
 
@@ -13,19 +16,19 @@ print_debug() {
 }
 
 print_info() {
-  echo "\033[33m$1\033[0m"
+  echo -e "\033[33m$1\033[0m"
 }
 
 print_noop() {
-  echo "\033[35m$1\033[0m"
+  echo -e "\033[35m$1\033[0m"
 }
 
 print_success() {
-  echo "\033[32m$1\033[0m"
+  echo -e "\033[32m$1\033[0m"
 }
 
 print_error() {
-  echo "\033[31m$1\033[0m"
+  echo -e "\033[31m$1\033[0m"
 }
 
 # }}}
@@ -35,58 +38,69 @@ get_github_repos() {
   git clone -q https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
 }
 
+die() {
+  echo $1
+  exit ${2:-1}
+}
+
+usage() {
+  echo "Usage"
+  echo
+  echo " jtheoof COMMAND"
+  echo
+  echo "Commands"
+  echo
+  echo "  packages              Install common packages"
+  echo "  dotfiles              Symlink dotfiles to $HOME"
+  echo
+}
+
+in_array() {
+  local e
+  for e in "${@:2}"; do [[ $e == $1 ]] && return 0; done
+  return 1
+}
+
+link() {
+  local l
+  if [ -n "$2" ]; then
+    l=$2
+  else
+    l=$HOME/$1
+  fi
+  print_info "linking: $l"
+  if [ -d $l ]; then
+    if [ ! -h $l ]; then # not a symlink, we should remove the directory
+      print_info "$l is a directory"
+      rm -rI $l
+    fi
+  fi
+  if $FORCE_MODE ; then
+    print_info "forcing symlink $l"
+    ln -sf $FILESPATH/$1 $l
+    return
+  fi
+  if [ ! -h $l ]; then # not a symlink, we should make it one
+    ln -is $FILESPATH/$1 $l
+    if [ -h $l ]; then # checking user response after previous question
+      print_success "$l has been symlinked"
+    fi
+  else
+    print_noop "$l already a symlink"
+  fi
+}
+
 # }}}
 # Handlers {{{
 
-link() {
-    l=$HOME/$1
-    print_debug "linking: $l"
-    if [ -d $l ]; then
-      if [ ! -h $l ]; then # not a symlink, we should remove the directory
-        print_info "$l is a directory"
-        rm -rI $l
-      fi
-    fi
-    if $FORCE_MODE ; then
-      print_info "forcing symlink $l"
-      ln -sf $FILESPATH/$1 $l
-      return
-    fi
-    if [ ! -h $l ]; then # not a symlink, we should make it one
-      ln -is $FILESPATH/$1 $l
-      if [ -h $l ]; then # checking user response after previous question
-        print_success "$l has been symlinked"
-      fi
-    else
-      print_noop "$l already a symlink"
-    fi
-}
-
 handle_install_dotfiles() {
   print_info "installing symlinks"
-  for i in $FILESPATH/.*rc; do
-    link $(basename $i)
-  done
 
-  for i in $FILESPATH/.z*; do
-    link $(basename $i)
-  done
+  local exclude
+  exclude=(.git .config .oh-my-zsh)
 
-  for i in $FILESPATH/.*conf; do
-    link $(basename $i)
-  done
-
-  for i in $FILESPATH/.X*; do
-    link $(basename $i)
-  done
-
-  for i in $FILESPATH/.x*; do
-    link $(basename $i)
-  done
-
-  home_dirs=".cgdb .dircolors .gitconfig .tilda .tmuxinator .vim"
-  for i in $home_dirs; do
-    link "$i"
+  for i in $FILESPATH/.[a-zA-Z]*; do
+    in_array $(basename $i) "${exclude[@]}" || link $(basename $i)
   done
 
   if [ ! -d $HOME/.oh-my-zsh ]; then
@@ -96,8 +110,12 @@ handle_install_dotfiles() {
     print_info "oh-my-zsh found, skipping..."
   fi
 
+  mkdir -p $HOME/.oh-my-zsh/custom/themes
+  ln -sf $FILESPATH/jtheoof.zsh-theme $HOME/.oh-my-zsh/custom/themes/
+  link $FILESPATH/jtheoof.zsh-theme $HOME/.oh-my-zsh/custom/themes/jtheoof.zsh-theme
+
   # .config directories
-  config_dirs="htop sublime-text-2 terminator"
+  config_dirs="fontconfig htop"
   for i in $config_dirs; do
     link ".config/$i"
   done
@@ -107,11 +125,10 @@ handle_install_dotfiles() {
   exit 0
 }
 
-handle_install_npm_packages() {
+handle_packages_npm() {
   packages="\
-    esprima \
-    jsonlint \
-    jsonlint \
+    jshint \
+    grunt \
     less"
 
   for p in $packages; do
@@ -120,51 +137,40 @@ handle_install_npm_packages() {
   done
 }
 
-handle_install_packages() {
+handle_packages() {
   packages="\
-    ack-grep \
-    activity-log-manager \
-    ant \
+    ack \
     autoconf \
-    build-essential \
-    colordiff
-    compiz-plugins-extra
-    compizconfig-settings-manager \
+    base-devel \
+    chromium \
+    cmake \
+    colordiff \
+    ctags
     curl \
-    exuberant-ctags
     gcolor2 \
-    gconf-editor \
     gimp \
     git \
     gnome-tweak-tool \
-    google-chrome-stable \
+    gvim \
+    inkscape \
     mercurial \
-    ncurses-term \
     nodejs \
-    npm \
-    pidgin \
+    openssh \
+    perl-rename \
     python \
     ruby \
     rubygems \
-    spotify-client \
     subversion \
-    synapse \
-    terminator \
-    tidy \
     tig \
-    tilda \
     tmux \
     tree \
-    vim-gnome \
     vlc \
+    wget \
     xsel \
-    zeitgeist \
     zsh"
 
-  for p in $packages; do
-    print_info "installing package: $p"
-    sudo apt-get install -qy $p
-  done
+  echo "Installing packages..."
+  sudo pacman -S --needed $packages
 }
 
 handle_install() {
@@ -175,23 +181,12 @@ handle_install() {
       get_github_repos
       ;;
     packages)
-      handle_install_packages
+      handle_packages
       ;;
     npm)
-      handle_install_npm_packages
+      handle_packages_npm
       ;;
   esac
-}
-
-# Monokai palette colors
-handle_terminal_colors() {
-  shift
-  gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/use_theme_colors" --type bool false
-  gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/background_color" --type string "#272728282222"
-  gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/foreground_color" --type string "#F8F8F8F8F2F2"
-#                                                                                   0:Black      :1:Red        :2:Green      :3:Yellow     :4:Blue       :5:Magenta    :6:Cyan       :7:White       :8:DarkGrey   :9:LightRed   :10:LightGreen:11:LightYello:12:LightBlue :13:LightMagen:14:LightCyan :15:LightWhite
-  gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/palette" --type string "#272728282222:#E2E230302E2E:#A6A6E2E22E2E:#FDFD97971F1F:#32328585D2D2:#F9F926267272:#6666D9D9EFEF:#F8F8F8F8F2F2:#3E3E3D3D3232:#FFFF36363434:#BCBCFFFF3434:#E6E6DBDB7474:#3D3DA1A1FFFF:#FFFF41418585:#6D6DE8E8FFFF:#F8F8F8F8F2F2"
-  gconftool-2 --set "/apps/gnome-terminal/profiles/Profile0/scrollback_lines" --type int 5000
 }
 
 handle_dconf() {
@@ -207,32 +202,6 @@ handle_dconf() {
       ;;
     *)
       print_error "usage: dconf [dump] [load]"
-  esac
-}
-
-handle_conf() {
-  shift
-  case "$1" in
-    load)
-      print_info "loading: $FILESPATH/conf/$2.xml"
-      gconftool-2 --load $FILESPATH/conf/$2.xml
-      ;;
-    dump)
-      print_info "dumping: $FILESPATH/conf/$2.xml"
-      gconftool-2 --dump /apps/$2 > $FILESPATH/conf/$2.xml
-      ;;
-    *)
-      print_error "usage: conf [dump] [load] appname"
-  esac
-}
-
-handle_terminal() {
-  shift
-  case "$1" in
-    colors)
-      handle_terminal_colors "$@" ;;
-    *)
-      print_error "unknown option $1" ;;
   esac
 }
 
@@ -277,7 +246,7 @@ if [ ! -d $GITPATH ]; then
     print_error "could not find .git directory, something is fishy"
     exit 1
 fi
-print_info "git root folder found at: $GITPATH"
+
 FILESPATH=$GITPATH
 
 # }}}
@@ -286,40 +255,64 @@ FILESPATH=$GITPATH
 # Preserving initial argument
 MODE=$1
 FORCE_MODE=false
-set -- `getopt f $@`
+set -- `getopt -l help fh $@`
 while [ $1 != -- ]
 do
   case $1 in
+  -h|--help)
+    shift
+    usage
+    exit 0
+    ;;
   -f)
-    FORCE_MODE=true ;;
+    shift
+    FORCE_MODE=true
+    ;;
   esac
-  shift # next flag
 done
 shift # removing '--'
 
 # }}}
+# Interactive helpers {{{
 
-case "$1" in
+interactive_help() {
+  echo "This script will guide you after a fresh install of the system."
+  echo "I switched from Ubuntu to Arch Linux so a couple of packages and"
+  echo "some behaviour might have changed."
+  echo "By default, it runs in the interactive mode, but it also can be run"
+  echo "non-interactively, just feed it with the necessary options, see"
+  echo "'jtheoof --help' for details."
+  echo
+}
 
-  # Unable to shift before calling function
-  # because of shell limitations.
+interactive_select_command() {
+  echo "Select the command you want to use:"
+  select command
+  do
+    if [[ -z $command ]]
+    then
+      die "Unkown selection, exiting" 2
+    fi
+    break
+  done
+  echo
+}
 
-  install)
-    handle_install "$@" ;;
+# }}}
 
-  dconf)
-    handle_dconf "$@" ;;
+interactive_help
+interactive_select_command "${commands[@]}"
 
-  conf)
-    handle_conf "$@" ;;
-
-  terminal|term)
-    handle_terminal "$@" ;;
-
-  vim)
-    handle_vim "$@" ;;
-
-  '') echo "Usage: `basename "$0"` <command> [options]" ;;
-
-  *) echo "`basename "$0"` $basename: unknown command." >&2; exit 1 ;;
-esac
+if [[ -n $command ]]; then
+  case "$command" in
+    packages)
+      handle_packages
+      handle_packages_npm
+      ;;
+    dotfiles)
+      handle_install_dotfiles
+      ;;
+  esac
+else
+  usage
+fi
