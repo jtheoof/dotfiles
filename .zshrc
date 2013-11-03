@@ -114,7 +114,8 @@ alias tm='tmux'
 
 function man() {
     /usr/bin/man $* | col -bp | iconv -c | \
-        vim -c 'set ft=man nomod nolist nonu' -
+        vim -c 'map <silent> q :qa!<CR>' \
+            -c 'set ft=man nomod nolist nonu noma' -
 }
 
 # Compression
