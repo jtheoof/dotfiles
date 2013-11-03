@@ -4,6 +4,15 @@ window-maximized=true
 [org/gnome/empathy]
 sanity-cleaning-number=uint32 4
 
+[org/gnome/empathy/conversation]
+theme='PlanetGNOME'
+theme-variant='Blue'
+spell-checker-enabled=false
+
+[org/gnome/empathy/ui]
+separate-chat-windows=true
+show-groups=true
+
 [org/gnome/settings-daemon/plugins/power]
 sleep-inactive-battery-type='suspend'
 sleep-inactive-ac-timeout=3600
@@ -211,8 +220,9 @@ visible-name='solarized-dark'
 [org/gnome/terminal/legacy/profiles:/:7ef5ef44-a82b-4f56-9dc9-2cc0b7cd0de4]
 foreground-color='rgb(248,248,240)'
 visible-name='monokai'
-palette=['rgb(53,54,51)', 'rgb(226,48,46)', 'rgb(166,226,46)', 'rgb(230,219,116)', 'rgb(50,133,210)', 'rgb(249,38,114)', 'rgb(102,217,239)', 'rgb(248,248,240)', 'rgb(73,72,62)', 'rgb(253,151,31)', 'rgb(177,242,46)', 'rgb(230,219,116)', 'rgb(52,148,237)', 'rgb(174,129,255)', 'rgb(97,222,247)', 'rgb(255,255,255)']
+palette=['rgb(62,61,50)', 'rgb(226,48,46)', 'rgb(166,226,46)', 'rgb(230,219,116)', 'rgb(50,133,210)', 'rgb(249,38,114)', 'rgb(102,217,239)', 'rgb(248,248,240)', 'rgb(117,113,94)', 'rgb(253,151,31)', 'rgb(192,255,64)', 'rgb(230,219,116)', 'rgb(69,165,255)', 'rgb(174,129,255)', 'rgb(148,237,255)', 'rgb(255,255,255)']
 use-theme-colors=false
+allow-bold=false
 bold-color-same-as-fg=false
 bold-color='rgb(255,255,255)'
 background-color='rgb(39,40,34)'
@@ -255,7 +265,7 @@ window-maximized=true
 [org/gtk/settings/file-chooser]
 sort-column='name'
 sidebar-width=148
-window-position=(267, 55)
+window-position=(264, 25)
 show-size-column=true
 show-hidden=false
 window-size=(830, 622)
@@ -263,8 +273,8 @@ sort-order='ascending'
 location-mode='filename-entry'
 
 [org/gtk/settings/color-chooser]
-selected-color=(true, 1.0, 1.0, 1.0, 1.0)
-custom-colors=[(0.97254901960784312, 0.97254901960784312, 0.94901960784313721, 1.0), (0.38022222222222218, 0.87249310624493104, 0.96666666666666667, 1.0), (0.41960784313725491, 0.55686274509803924, 0.5490196078431373, 1.0), (0.20459999999999998, 0.58090124999999992, 0.93000000000000005, 1.0), (0.90196078431372551, 0.85882352941176465, 0.45490196078431372, 1.0), (0.69350000000000023, 0.95000000000000007, 0.18049999999999997, 1.0), (0.65098039215686276, 0.88627450980392153, 0.18039215686274507, 1.0)]
+selected-color=(true, 0.45882352941176469, 0.44313725490196076, 0.36862745098039218, 1.0)
+custom-colors=[(0.24313725490196078, 0.23921568627450981, 0.19607843137254902, 1.0), (0.20784313725490197, 0.21176470588235294, 0.20000000000000001, 1.0), (0.22745098039215686, 0.22745098039215686, 0.22745098039215686, 1.0), (0.45882352941176469, 0.44313725490196076, 0.36862745098039218, 1.0), (0.28627450980392155, 0.28235294117647058, 0.24313725490196078, 1.0), (0.75127551020408156, 1.0, 0.25, 1.0), (0.69411764705882351, 0.94901960784313721, 0.1803921568627451, 1.0)]
 
 [org/yorba/geary]
 folder-list-pane-position=294
