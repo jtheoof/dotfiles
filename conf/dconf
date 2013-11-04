@@ -44,10 +44,8 @@ repeat=true
 [org/gnome/shell]
 command-history=['r']
 enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-dock@micxgx.gmail.com', 'appindicatorsupport@rgcjonas.gmail.com']
+remember-mount-password=false
 favorite-apps=['gnome-terminal.desktop', 'nautilus.desktop', 'chromium.desktop', 'geary.desktop', 'empathy.desktop']
-
-[org/gnome/shell/window-switcher]
-app-icon-mode='both'
 
 [org/gnome/shell/extensions/dash-to-dock]
 hide-delay=0.050000000000000003
@@ -59,6 +57,9 @@ default='message-tray'
 [org/gnome/shell/overrides]
 dynamic-workspaces=false
 workspaces-only-on-primary=false
+
+[org/gnome/shell/window-switcher]
+app-icon-mode='both'
 
 [org/gnome/baobab/ui]
 active-chart='rings'
@@ -126,28 +127,31 @@ window-maximized=true
 window-size=[1366, 743]
 
 [org/gnome/desktop/notifications]
-application-children=['chromium', 'empathy', 'geary', 'synapse', 'gnome-do', 'gnome-music', 'dropbox']
-
-[org/gnome/desktop/notifications/application/gnome-do]
-application-id='gnome-do.desktop'
+application-children=['chromium', 'empathy', 'geary', 'synapse', 'gnome-do', 'gnome-music', 'dropbox', 'vlc']
 
 [org/gnome/desktop/notifications/application/empathy]
 application-id='empathy.desktop'
 
-[org/gnome/desktop/notifications/application/chromium]
-application-id='chromium.desktop'
+[org/gnome/desktop/notifications/application/gnome-do]
+application-id='gnome-do.desktop'
 
 [org/gnome/desktop/notifications/application/dropbox]
 application-id='dropbox.desktop'
 
-[org/gnome/desktop/notifications/application/geary]
-application-id='geary.desktop'
-
 [org/gnome/desktop/notifications/application/synapse]
 application-id='synapse.desktop'
 
+[org/gnome/desktop/notifications/application/vlc]
+application-id='vlc.desktop'
+
+[org/gnome/desktop/notifications/application/chromium]
+application-id='chromium.desktop'
+
 [org/gnome/desktop/notifications/application/gnome-music]
 application-id='gnome-music.desktop'
+
+[org/gnome/desktop/notifications/application/geary]
+application-id='geary.desktop'
 
 [org/gnome/desktop/interface]
 font-name='Arial 10'
@@ -195,6 +199,39 @@ toolbar=false
 sidebar=false
 image-gallery=false
 
+[org/gnome/terminal/legacy/keybindings]
+new-tab='disabled'
+switch-to-tab-1='disabled'
+switch-to-tab-2='disabled'
+switch-to-tab-3='disabled'
+copy='<Primary><Shift>c'
+switch-to-tab-5='disabled'
+switch-to-tab-4='disabled'
+prev-tab='disabled'
+new-window='disabled'
+close-tab='disabled'
+move-tab-left='disabled'
+full-screen='disabled'
+close-window='disabled'
+switch-to-tab-10='disabled'
+switch-to-tab-11='disabled'
+switch-to-tab-12='disabled'
+move-tab-right='disabled'
+switch-to-tab-8='disabled'
+help='disabled'
+zoom-normal='disabled'
+switch-to-tab-6='disabled'
+switch-to-tab-7='disabled'
+switch-to-tab-9='disabled'
+zoom-out='disabled'
+next-tab='disabled'
+zoom-in='disabled'
+
+[org/gnome/terminal/legacy]
+menu-accelerator-enabled=false
+schema-version=uint32 3
+default-show-menubar=false
+
 [org/gnome/terminal/legacy/profiles:/:66537490-5c59-4dad-9ac8-12e5f4608c7d]
 background-color='#fdfdf6f6e3e3'
 use-theme-colors=false
@@ -228,10 +265,6 @@ bold-color='rgb(255,255,255)'
 background-color='rgb(39,40,34)'
 scrollbar-policy='never'
 
-[org/gnome/terminal/legacy]
-schema-version=uint32 3
-default-show-menubar=false
-
 [org/gnome/evolution/bogofilter]
 utf8-for-spam-filter=true
 
@@ -256,6 +289,22 @@ work-day-wednesday=true
 work-day-monday=true
 work-day-friday=true
 
+[org/gnome/gnome-system-monitor]
+show-dependencies=false
+current-tab='processes'
+maximized=false
+window-state=(700, 500, 50, 50)
+show-whose-processes='all'
+
+[org/gnome/gnome-system-monitor/disktreenew]
+col-6-visible=true
+col-6-width=0
+
+[org/gnome/gnome-system-monitor/proctree]
+columns-order=@ai []
+sort-order=1
+sort-col=8
+
 [org/gnome/maps]
 last-location-description='Puteaux, Ile-de-France, France'
 last-location-user-set=false
@@ -273,8 +322,8 @@ sort-order='ascending'
 location-mode='filename-entry'
 
 [org/gtk/settings/color-chooser]
-selected-color=(true, 0.45882352941176469, 0.44313725490196076, 0.36862745098039218, 1.0)
-custom-colors=[(0.24313725490196078, 0.23921568627450981, 0.19607843137254902, 1.0), (0.20784313725490197, 0.21176470588235294, 0.20000000000000001, 1.0), (0.22745098039215686, 0.22745098039215686, 0.22745098039215686, 1.0), (0.45882352941176469, 0.44313725490196076, 0.36862745098039218, 1.0), (0.28627450980392155, 0.28235294117647058, 0.24313725490196078, 1.0), (0.75127551020408156, 1.0, 0.25, 1.0), (0.69411764705882351, 0.94901960784313721, 0.1803921568627451, 1.0)]
+selected-color=(true, 0.6705882352941176, 0.094117647058823528, 0.32156862745098042, 1.0)
+custom-colors=[(0.6705882352941176, 0.094117647058823528, 0.32156862745098042, 1.0), (0.24313725490196078, 0.23921568627450981, 0.19607843137254902, 1.0), (0.20784313725490197, 0.21176470588235294, 0.20000000000000001, 1.0), (0.22745098039215686, 0.22745098039215686, 0.22745098039215686, 1.0), (0.45882352941176469, 0.44313725490196076, 0.36862745098039218, 1.0), (0.28627450980392155, 0.28235294117647058, 0.24313725490196078, 1.0), (0.75127551020408156, 1.0, 0.25, 1.0)]
 
 [org/yorba/geary]
 folder-list-pane-position=294
