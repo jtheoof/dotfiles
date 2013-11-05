@@ -26,15 +26,15 @@ function put_spacing() {
 }
 
 function precmd() {
-print -rP '
-$fg[green]%n $fg[yellow]%m $fg[cyan]$(get_pwd)$(put_spacing)$(git_prompt_info)'
+  print -rP '
+$fg[green]%n $fg_bold[red]%m $fg[cyan]$(get_pwd)$(put_spacing)$(git_prompt_info)'
 }
 
 # set VIMODE according to the current mode (default “[i]”)
 VIMODE='[i]'
 function zle-keymap-select {
- VIMODE="${${KEYMAP/vicmd/[n]}/(main|viins)/[i]}"
- zle reset-prompt
+  VIMODE="${${KEYMAP/vicmd/[n]}/(main|viins)/[i]}"
+  zle reset-prompt
 }
 
 #zle -N zle-keymap-select
@@ -42,5 +42,7 @@ PROMPT='%{$reset_color%}# '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="["
 ZSH_THEME_GIT_PROMPT_SUFFIX="]$reset_color"
-ZSH_THEME_GIT_PROMPT_DIRTY="$fg[magenta]+"
+ZSH_THEME_GIT_PROMPT_DIRTY="$fg_bold[red]"
 ZSH_THEME_GIT_PROMPT_CLEAN="$fg[green]"
+
+# vim:sts=2:sw=2:et
