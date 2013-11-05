@@ -1,5 +1,4 @@
-#!/usr/bin/bash
-# vim:sts=2:sw=2:et:
+#!/usr/bin/env bash
 
 # TODO Install
 #  * jtheoof.zsh-theme
@@ -316,3 +315,4 @@ if [[ -n $command ]]; then
 else
   usage
 fi
+# vim:sts=2:sw=2:et:
