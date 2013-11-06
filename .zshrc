@@ -240,3 +240,8 @@ if [[ -s $HOME/.zshrc_work ]]; then
     source $HOME/.zshrc_work
 fi
 # }}}
+# Bindings {{{
+
+bindkey '5~' delete-word
+
+# }}}
