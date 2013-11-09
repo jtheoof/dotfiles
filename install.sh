@@ -114,7 +114,7 @@ handle_install_dotfiles() {
   link $FILESPATH/jtheoof.zsh-theme $HOME/.oh-my-zsh/custom/themes/jtheoof.zsh-theme
 
   # .config directories
-  config_dirs="fontconfig htop transmission"
+  config_dirs="fontconfig htop transmission tranmission-remote-cli"
   for i in $config_dirs; do
     link ".config/$i"
   done
