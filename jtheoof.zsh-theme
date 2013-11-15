@@ -42,7 +42,7 @@ PROMPT='%{$reset_color%}# '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="["
 ZSH_THEME_GIT_PROMPT_SUFFIX="]$reset_color"
-ZSH_THEME_GIT_PROMPT_DIRTY="$fg_bold[red]"
+ZSH_THEME_GIT_PROMPT_DIRTY="$fg[red]"
 ZSH_THEME_GIT_PROMPT_CLEAN="$fg[green]"
 
 # vim:sts=2:sw=2:et
