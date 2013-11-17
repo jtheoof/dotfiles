@@ -15,7 +15,7 @@
     "nonew": false,
     "plusplus": false,
     "quotmark": false,
-    "undef": true,
+    "undef": false,
     "unused": true,
     "strict": false,
     "trailing": true,
