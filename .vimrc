@@ -735,5 +735,13 @@ let g:user_zen_settings = { 'indentation' : '  ' }
 " 2}}}
 
 " 1}}}
+" Finish {{{
+
+let vimrc_work = expand("$HOME/.vimrc_work")
+if filereadable(vimrc_work)
+    source $HOME/.vimrc_work
+endif
+
+" }}}
 
 " vim:set sts=4 sw=4 et:
