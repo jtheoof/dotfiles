@@ -53,6 +53,11 @@ plugins=(git tmux)
 source $ZSH/oh-my-zsh.sh
 
 # 1}}}
+# Bindings {{{
+
+bindkey '5~' delete-word
+
+# }}}
 # Aliases {{{1
 
 # Admin
@@ -239,9 +244,4 @@ fi
 if [[ -s $HOME/.zshrc_work ]]; then
     source $HOME/.zshrc_work
 fi
-# }}}
-# Bindings {{{
-
-bindkey '5~' delete-word
-
 # }}}
