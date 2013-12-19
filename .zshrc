@@ -82,8 +82,8 @@ alias vdir='ls --color=auto --format=long'
 
 alias h='history'
 alias hs='history'
-alias ha='history | ack'
-alias hl='history | less'
+alias hsa='history | ack'
+alias hsl='history | less'
 
 # Search
 alias grep='grep --color=auto'
