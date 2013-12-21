@@ -41,9 +41,18 @@ function put_spacing() {
   echo $spacing
 }
 
+function print_user() {
+}
+
 function precmd() {
-print -rP '
-$fg[green]%n $fg[yellow]%m $fg[cyan]$(get_pwd)$(put_spacing)$(git_prompt_info) $(battery_charge)'
+  if [ $(whoami) = "root" ]; then
+    print -nrP '
+$fg[red]%n '
+  else
+    print -nrP '
+$fg[green]%n '
+  fi
+  print -rP '$fg[yellow]%m $fg[cyan]$(get_pwd)$(put_spacing)$(git_prompt_info) $(battery_charge)'
 }
 
 local ret_status="%(?:%{$fg[green]%}▸ :%{$fg[red]%}▸ %s)"
