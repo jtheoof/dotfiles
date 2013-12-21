@@ -94,6 +94,7 @@ alias sgrep='grep --color=auto -inIEr'
 alias fa='find . | ack '
 alias ff='find . -type f | ack'
 alias fd='find . -type d | ack'
+alias fl='find . -type l | ack'
 
 # Usage
 alias du0='du --max-depth 0 -h .'
@@ -113,6 +114,7 @@ alias cdg='cd $(git rev-parse --show-toplevel)'
 # Programming
 alias t='tig'
 alias tm='tmux'
+alias tmn='tmux new'
 
 # 1}}}
 # Functions {{{1
@@ -233,9 +235,6 @@ if [[ -f /usr/bin/dircolors && -f $HOME/.dir_colors ]]; then
     eval $(dircolors -b $HOME/.dir_colors)
 fi
 
-# Force LESS variable
-export LESS=-FRSX
-
 if [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]]; then
     source $HOME/.tmuxinator/scripts/tmuxinator
 fi
@@ -244,4 +243,5 @@ fi
 if [[ -s $HOME/.zshrc_work ]]; then
     source $HOME/.zshrc_work
 fi
+
 # }}}
