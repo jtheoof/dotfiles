@@ -269,7 +269,7 @@
       <key>/apps/guake/general/start_fullscreen</key>
       <schema_key>/schemas/apps/guake/general/start_fullscreen</schema_key>
       <value>
-        <bool>false</bool>
+        <bool>true</bool>
       </value>
     </entry>
     <entry>
@@ -374,7 +374,7 @@
       <key>/apps/guake/keybindings/global/show_hide</key>
       <schema_key>/schemas/apps/guake/keybindings/global/show_hide</schema_key>
       <value>
-        <string>&lt;Super&gt;j</string>
+        <string>&lt;Super&gt;F1</string>
       </value>
     </entry>
     <entry>
@@ -437,7 +437,7 @@
       <key>/apps/guake/keybindings/local/toggle_fullscreen</key>
       <schema_key>/schemas/apps/guake/keybindings/local/toggle_fullscreen</schema_key>
       <value>
-        <string>F11</string>
+        <string>&lt;Super&gt;F11</string>
       </value>
     </entry>
     <entry>
