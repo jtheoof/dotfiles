@@ -17,14 +17,18 @@ show-groups=true
 sleep-inactive-battery-type='suspend'
 sleep-inactive-ac-timeout=3600
 sleep-inactive-ac-type='nothing'
-sleep-inactive-battery-timeout=1800
+sleep-inactive-battery-timeout=900
 
 [org/gnome/settings-daemon/plugins/media-keys]
-magnifier-zoom-in=''
-magnifier-zoom-out=''
 screenreader=''
-search=''
+magnifier-zoom-out=''
+logout='<Super>BackSpace'
+calculator='<Super>k'
+email='<Super>g'
+www='<Super>c'
+magnifier-zoom-in=''
 home='<Super>e'
+search='<Super>slash'
 magnifier=''
 
 [org/gnome/settings-daemon/plugins/xsettings]
@@ -33,26 +37,25 @@ hinting='full'
 
 [org/gnome/settings-daemon/peripherals/touchpad]
 motion-threshold=9
+natural-scroll=true
 motion-acceleration=1.0800000000000001
 disable-while-typing=true
 tap-to-click=true
 touchpad-enabled=true
 
 [org/gnome/settings-daemon/peripherals/keyboard]
+numlock-state='on'
 repeat=true
 
+[org/gnome/shell/keybindings]
+toggle-overview=['<Super>w']
+
 [org/gnome/shell]
+enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'systemMonitor@gnome-shell-extensions.gcampax.github.com']
 command-history=['r']
-enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-dock@micxgx.gmail.com', 'appindicatorsupport@rgcjonas.gmail.com']
 remember-mount-password=false
-favorite-apps=['gnome-terminal.desktop', 'nautilus.desktop', 'chromium.desktop', 'geary.desktop', 'empathy.desktop']
-
-[org/gnome/shell/extensions/dash-to-dock]
-hide-delay=0.050000000000000003
-show-delay=0.0
-
-[org/gnome/shell/extensions/appindicator-support]
-default='message-tray'
+app-picker-view=uint32 1
+favorite-apps=['gnome-terminal.desktop', 'chromium.desktop', 'gvim.desktop', 'empathy.desktop', 'nautilus.desktop', 'spotify.desktop', 'corebird.desktop']
 
 [org/gnome/shell/overrides]
 dynamic-workspaces=false
@@ -61,10 +64,49 @@ workspaces-only-on-primary=false
 [org/gnome/shell/window-switcher]
 app-icon-mode='both'
 
+[org/gnome/shell/extensions/dash-to-dock]
+show-apps-at-top=true
+dock-fixed=false
+hide-delay=0.050000000000000003
+show-delay=0.0
+
+[org/gnome/shell/extensions/appindicator-support]
+default='message-tray'
+
+[org/gnome/shell/extensions/hidetopbar]
+animation-time-autohide=0.10000000000000003
+animation-time-overview=0.30000000000000004
+mouse-sensitive=true
+
+[org/gnome/charmap/window-state]
+size=(1080, 592)
+
+[org/gnome/charmap]
+last-char=uint32 8580
+font=@ms 'Consolas 20'
+
 [org/gnome/baobab/ui]
 active-chart='rings'
 window-state=128
 window-size=(960, 600)
+
+[org/gnome/calculator]
+target-currency=''
+show-zeroes=false
+source-currency=''
+show-thousands=false
+button-mode='basic'
+target-units='radian'
+word-size=64
+number-format='automatic'
+angle-units='degrees'
+base=10
+source-units='degree'
+accuracy=9
+
+[org/gnome/anjuta]
+toolbar-visible=true
+remembered-plugins=''
 
 [org/gnome/gedit/preferences/editor]
 display-right-margin=true
@@ -96,38 +138,59 @@ bottom-panel-size=140
 side-panel-size=200
 side-panel-active-page=228660812
 
-[org/gnome/calculator]
-target-currency=''
-show-zeroes=false
-source-currency=''
-show-thousands=false
-button-mode='basic'
-target-units='radian'
-word-size=64
-number-format='automatic'
-angle-units='degrees'
-base=10
-source-units='degree'
-accuracy=9
-
-[org/gnome/anjuta]
-toolbar-visible=true
-remembered-plugins=''
-
-[org/gnome/gnome-screenshot]
-auto-save-directory='file:///home/jeremy/Pictures/Screenshots'
-
 [org/gnome/nautilus/window-state]
 geometry='1366x768+0+0'
 maximized=true
+
+[org/gnome/nautilus/desktop]
+home-icon-visible=false
+volumes-visible=true
+trash-icon-visible=false
+
+[org/gnome/nautilus/list-view]
+default-visible-columns=['name', 'size', 'type', 'date_modified']
+default-column-order=['name', 'size', 'type', 'date_modified', 'date_accessed', 'owner', 'group', 'permissions', 'mime_type', 'where']
+
+[org/gnome/file-roller/listing]
+sort-method='name'
+name-column-width=250
+sort-type='ascending'
+list-mode='as-folder'
+show-path=false
+
+[org/gnome/file-roller/dialogs/extract]
+skip-newer=false
+recreate-folders=true
+
+[org/gnome/file-roller/ui]
+sidebar-width=200
+window-height=480
+window-width=600
 
 [org/gnome/Music]
 window-position=[0, 25]
 window-maximized=true
 window-size=[1366, 743]
 
+[org/gnome/power-manager]
+info-history-type='charge'
+info-stats-type='discharge-accuracy'
+info-last-device='/org/freedesktop/UPower/devices/battery_BAT0'
+info-page-number=1
+info-history-time=7200
+
+[org/gnome/gnome-screenshot]
+auto-save-directory='file:///home/jeremy/Pictures/Screenshots'
+
+[org/gnome/desktop/screensaver]
+picture-uri='file:////usr/share/gnome-control-center/pixmaps/noise-texture-light.png'
+color-shading-type='solid'
+primary-color='#425265'
+picture-options='wallpaper'
+secondary-color='#425265'
+
 [org/gnome/desktop/notifications]
-application-children=['chromium', 'empathy', 'geary', 'synapse', 'gnome-do', 'gnome-music', 'dropbox', 'vlc']
+application-children=['chromium', 'empathy', 'geary', 'synapse', 'gnome-do', 'gnome-music', 'dropbox', 'vlc', 'spotify', 'guake']
 
 [org/gnome/desktop/notifications/application/empathy]
 application-id='empathy.desktop'
@@ -141,11 +204,25 @@ application-id='dropbox.desktop'
 [org/gnome/desktop/notifications/application/synapse]
 application-id='synapse.desktop'
 
+[org/gnome/desktop/notifications/application/file-roller]
+details-in-lock-screen=false
+
 [org/gnome/desktop/notifications/application/vlc]
 application-id='vlc.desktop'
 
+[org/gnome/desktop/notifications/application/gnome-network-panel]
+application-id='gnome-network-panel.desktop'
+
+[org/gnome/desktop/notifications/application/spotify]
+details-in-lock-screen=true
+application-id='spotify.desktop'
+force-expanded=true
+
 [org/gnome/desktop/notifications/application/chromium]
 application-id='chromium.desktop'
+
+[org/gnome/desktop/notifications/application/guake]
+application-id='guake.desktop'
 
 [org/gnome/desktop/notifications/application/gnome-music]
 application-id='gnome-music.desktop'
@@ -153,19 +230,23 @@ application-id='gnome-music.desktop'
 [org/gnome/desktop/notifications/application/geary]
 application-id='geary.desktop'
 
-[org/gnome/desktop/interface]
-font-name='Arial 10'
-document-font-name='Arial 10'
-enable-animations=true
-icon-theme='Faience-Azur'
-monospace-font-name='Consolas 10'
+[org/gnome/desktop/datetime]
+automatic-timezone=true
+
+[org/gnome/desktop/background]
+picture-uri='file:///home/jeremy/Pictures/grand-theft-auto-v-33213-wp.jpg'
+show-desktop-icons=true
+color-shading-type='solid'
+primary-color='#000000000000'
+picture-options='zoom'
+secondary-color='#000000000000'
 
 [org/gnome/desktop/input-sources]
 sources=@a(ss) []
 xkb-options=['terminate:ctrl_alt_bksp']
 
 [org/gnome/desktop/wm/preferences]
-titlebar-font='Arial Bold 10'
+titlebar-font='Arial Bold 12'
 
 [org/gnome/desktop/wm/keybindings]
 toggle-maximized=['<Super>Return']
@@ -173,21 +254,35 @@ close=['<Super>q']
 move-to-workspace-1=['<Shift><Super>exclam']
 move-to-workspace-2=['<Shift><Super>at']
 move-to-workspace-3=['<Shift><Super>numbersign']
-move-to-workspace-4=['<Shift><Super>dollar']
 begin-resize=['<Super>F8']
-switch-to-workspace-3=['<Super>3']
+move-to-workspace-4=['<Shift><Super>dollar']
+panel-run-dialog=['<Super>F2']
 switch-input-source=['']
 activate-window-menu=['<Super>space']
-switch-to-workspace-4=['<Super>4']
+maximize-vertically=['<Super>v']
+show-desktop=['<Super>d']
 switch-to-workspace-1=['<Super>1']
 switch-to-workspace-2=['<Super>2']
+switch-to-workspace-3=['<Super>3']
+switch-to-workspace-4=['<Super>4']
 begin-move=['<Super>F7']
 toggle-fullscreen=['<Super>f']
+
+[org/gnome/desktop/interface]
+font-name='Arial 10'
+document-font-name='Arial 10'
+enable-animations=true
+icon-theme='Moka'
+monospace-font-name='Consolas 10'
+toolkit-accessibility=false
 
 [org/gnome/bijiben]
 default-location='local'
 color='rgb(239,242,209)'
 font='Cantarell 14'
+
+[org/gnome/telepathy-account-widgets/ui]
+avatar-directory='/home/jeremy/Dropbox/Photos/Me'
 
 [org/gnome/eog/view]
 background-color='#000000'
@@ -200,32 +295,35 @@ sidebar=false
 image-gallery=false
 
 [org/gnome/terminal/legacy/keybindings]
-new-tab='disabled'
+reset-and-clear='<Primary><Shift>k'
+new-tab='<Primary><Shift>t'
 switch-to-tab-1='disabled'
 switch-to-tab-2='disabled'
 switch-to-tab-3='disabled'
 copy='<Primary><Shift>c'
 switch-to-tab-5='disabled'
 switch-to-tab-4='disabled'
-prev-tab='disabled'
-new-window='disabled'
-close-tab='disabled'
-move-tab-left='disabled'
-full-screen='disabled'
-close-window='disabled'
-switch-to-tab-10='disabled'
+prev-tab='<Primary>Page_Up'
+new-window='<Primary><Shift>n'
+close-tab='<Primary><Shift><Alt>t'
+move-tab-left='<Primary><Shift>Page_Up'
+full-screen='<Primary><Shift>F11'
+close-window='<Primary><Shift><Alt>n'
+reset='<Primary><Shift>r'
 switch-to-tab-11='disabled'
 switch-to-tab-12='disabled'
-move-tab-right='disabled'
-switch-to-tab-8='disabled'
+move-tab-right='<Primary><Shift>Page_Down'
+switch-to-tab-10='disabled'
 help='disabled'
 zoom-normal='disabled'
 switch-to-tab-6='disabled'
 switch-to-tab-7='disabled'
+switch-to-tab-8='disabled'
 switch-to-tab-9='disabled'
 zoom-out='disabled'
-next-tab='disabled'
+next-tab='<Primary>Page_Down'
 zoom-in='disabled'
+new-profile='<Primary><Shift>p'
 
 [org/gnome/terminal/legacy]
 menu-accelerator-enabled=false
@@ -292,8 +390,8 @@ work-day-friday=true
 [org/gnome/gnome-system-monitor]
 show-dependencies=false
 current-tab='processes'
-maximized=false
-window-state=(700, 500, 50, 50)
+maximized=true
+window-state=(1920, 1080, 0, 0)
 show-whose-processes='all'
 
 [org/gnome/gnome-system-monitor/disktreenew]
@@ -301,9 +399,13 @@ col-6-visible=true
 col-6-width=0
 
 [org/gnome/gnome-system-monitor/proctree]
+col-0-width=542
 columns-order=@ai []
-sort-order=1
-sort-col=8
+sort-order=0
+col-15-visible=true
+col-0-visible=true
+col-15-width=92
+sort-col=15
 
 [org/gnome/maps]
 last-location-description='Puteaux, Ile-de-France, France'
@@ -311,10 +413,14 @@ last-location-user-set=false
 last-location=[48.883399963378906, 2.2388999462127686, 15000.0]
 window-maximized=true
 
+[org/baedert/corebird]
+search-show-retweets=true
+upload-provider='Twitter'
+
 [org/gtk/settings/file-chooser]
 sort-column='name'
 sidebar-width=148
-window-position=(264, 25)
+window-position=(0, 0)
 show-size-column=true
 show-hidden=false
 window-size=(830, 622)
