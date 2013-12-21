@@ -47,7 +47,7 @@ $fg[green]%n $fg[yellow]%m $fg[cyan]$(get_pwd)$(put_spacing)$(git_prompt_info) $
 }
 
 local ret_status="%(?:%{$fg[green]%}▸ :%{$fg[red]%}▸ %s)"
-PROMPT='${ret_status} %{$reset_color%}'
+PROMPT='${ret_status}%{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="["
 ZSH_THEME_GIT_PROMPT_SUFFIX="]$reset_color"
