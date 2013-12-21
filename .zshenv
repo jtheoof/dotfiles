@@ -17,31 +17,3 @@ export EDITOR=vim
 # This won't work because it's already set by lib/misc.zsh
 # See: oh-my-zsh
 export LESS=-FRSX
-
-if [[ ! -z "$PATH" ]] then
-    PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/sbin:/sbin:$PATH
-    PATH=$HOME/bin:$PATH
-
-    # Set android SDK and NDK PATH
-    if [[ -d $HOME/dev/android ]] then
-        PATH=$HOME/dev/android/sdk/tools:$PATH
-        PATH=$HOME/dev/android/sdk/platform-tools:$PATH
-        PATH=$HOME/dev/android/ndk:$PATH
-    fi
-fi
-
-if [[ -d /usr/lib/jvm/java-6-openjdk ]] then
-    export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
-fi
-
-if [[ -d $HOME/dev/android/sdk ]] then
-    export ANDROID_SDK_HOME=$HOME/dev/android/sdk
-fi
-
-if [[ -d $HOME/dev/android/ndk ]] then
-    export ANDROID_NDK_HOME=$HOME/dev/android/ndk
-fi
-
-if [[ -d /opt/teamcity/data ]] then
-    export TEAMCITY_DATA_PATH=/opt/teamcity/data
-fi
