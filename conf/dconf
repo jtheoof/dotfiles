@@ -51,15 +51,19 @@ repeat=true
 toggle-overview=['<Super>w']
 
 [org/gnome/shell]
-enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'systemMonitor@gnome-shell-extensions.gcampax.github.com']
-command-history=['r']
+enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'systemMonitor@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'example@gnome-shell-extensions.gcampax.github.com']
+command-history=['r', 'gnome-session-properties']
 remember-mount-password=false
 app-picker-view=uint32 1
-favorite-apps=['gnome-terminal.desktop', 'chromium.desktop', 'gvim.desktop', 'empathy.desktop', 'nautilus.desktop', 'spotify.desktop', 'corebird.desktop']
+favorite-apps=['nautilus.desktop', 'gnome-terminal.desktop', 'chromium.desktop', 'gvim.desktop', 'empathy.desktop', 'spotify.desktop', 'vlc.desktop', 'corebird.desktop', 'gnome-control-center.desktop']
 
 [org/gnome/shell/overrides]
 dynamic-workspaces=false
+button-layout=':minimize,maximize,close'
 workspaces-only-on-primary=false
+
+[org/gnome/shell/calendar]
+show-weekdate=true
 
 [org/gnome/shell/window-switcher]
 app-icon-mode='both'
@@ -73,10 +77,16 @@ show-delay=0.0
 [org/gnome/shell/extensions/appindicator-support]
 default='message-tray'
 
+[org/gnome/shell/extensions/example]
+hello-text='asdasd'
+
 [org/gnome/shell/extensions/hidetopbar]
 animation-time-autohide=0.10000000000000003
 animation-time-overview=0.30000000000000004
 mouse-sensitive=true
+
+[org/gnome/shell/extensions/mediaplayer]
+indicator-position='volume-menu'
 
 [org/gnome/charmap/window-state]
 size=(1080, 592)
@@ -175,8 +185,8 @@ window-size=[1366, 743]
 [org/gnome/power-manager]
 info-history-type='charge'
 info-stats-type='discharge-accuracy'
-info-last-device='/org/freedesktop/UPower/devices/battery_BAT0'
-info-page-number=1
+info-last-device='wakeups'
+info-page-number=3
 info-history-time=7200
 
 [org/gnome/gnome-screenshot]
@@ -271,10 +281,12 @@ toggle-fullscreen=['<Super>f']
 [org/gnome/desktop/interface]
 font-name='Arial 10'
 document-font-name='Arial 10'
-enable-animations=true
+toolkit-accessibility=false
+clock-show-seconds=false
 icon-theme='Moka'
 monospace-font-name='Consolas 10'
-toolkit-accessibility=false
+enable-animations=true
+clock-show-date=true
 
 [org/gnome/bijiben]
 default-location='local'
@@ -414,13 +426,14 @@ last-location=[48.883399963378906, 2.2388999462127686, 15000.0]
 window-maximized=true
 
 [org/baedert/corebird]
+startup-accounts=['jtheoof']
 search-show-retweets=true
 upload-provider='Twitter'
 
 [org/gtk/settings/file-chooser]
 sort-column='name'
 sidebar-width=148
-window-position=(0, 0)
+window-position=(541, 201)
 show-size-column=true
 show-hidden=false
 window-size=(830, 622)
