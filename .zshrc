@@ -58,6 +58,11 @@ source $ZSH/oh-my-zsh.sh
 bindkey '5~' delete-word
 
 # }}}
+# Exports {{{
+
+export LESS=-FRSX
+
+# }}}
 # Aliases {{{1
 
 # Admin
