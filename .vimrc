@@ -595,7 +595,7 @@ endfunction
 
 if has("unix")
     let g:ackhighlight = 1
-    let g:ackprg = "ack-grep -H --nocolor --nogroup --column --sort-files"
+    let g:ackprg = "ack -H --nocolor --nogroup --column --sort-files"
 endif
 
 " 2}}}
