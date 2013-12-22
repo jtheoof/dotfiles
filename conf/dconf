@@ -13,6 +13,12 @@ spell-checker-enabled=false
 separate-chat-windows=true
 show-groups=true
 
+[org/gnome/GWeather]
+distance-unit='km'
+temperature-unit='centigrade'
+speed-unit='kph'
+pressure-unit='hpa'
+
 [org/gnome/settings-daemon/plugins/power]
 sleep-inactive-battery-type='suspend'
 sleep-inactive-ac-timeout=3600
@@ -47,53 +53,68 @@ touchpad-enabled=true
 numlock-state='on'
 repeat=true
 
-[org/gnome/shell/keybindings]
-toggle-overview=['<Super>w']
+[org/gnome/brasero/plugins/dvd-rw-format]
+priority=0
 
-[org/gnome/shell]
-enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'systemMonitor@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'example@gnome-shell-extensions.gcampax.github.com']
-command-history=['r', 'gnome-session-properties']
-remember-mount-password=false
-app-picker-view=uint32 1
-favorite-apps=['nautilus.desktop', 'gnome-terminal.desktop', 'chromium.desktop', 'gvim.desktop', 'empathy.desktop', 'spotify.desktop', 'vlc.desktop', 'corebird.desktop', 'gnome-control-center.desktop']
+[org/gnome/brasero/plugins/dvdauthor]
+priority=0
 
-[org/gnome/shell/overrides]
-dynamic-workspaces=false
-button-layout=':minimize,maximize,close'
-workspaces-only-on-primary=false
+[org/gnome/brasero/plugins/image-checksum]
+priority=0
 
-[org/gnome/shell/calendar]
-show-weekdate=true
+[org/gnome/brasero/plugins/audio2cue]
+priority=0
 
-[org/gnome/shell/window-switcher]
-app-icon-mode='both'
+[org/gnome/brasero/plugins/file-checksum]
+priority=0
 
-[org/gnome/shell/extensions/dash-to-dock]
-show-apps-at-top=true
-dock-fixed=false
-hide-delay=0.050000000000000003
-show-delay=0.0
+[org/gnome/brasero/plugins/normalize]
+priority=0
 
-[org/gnome/shell/extensions/appindicator-support]
-default='message-tray'
+[org/gnome/brasero/plugins/cdrdao]
+priority=0
 
-[org/gnome/shell/extensions/example]
-hello-text='asdasd'
+[org/gnome/brasero/plugins/burn-uri]
+priority=0
 
-[org/gnome/shell/extensions/hidetopbar]
-animation-time-autohide=0.10000000000000003
-animation-time-overview=0.30000000000000004
-mouse-sensitive=true
+[org/gnome/brasero/plugins/wodim]
+priority=0
 
-[org/gnome/shell/extensions/mediaplayer]
-indicator-position='volume-menu'
+[org/gnome/brasero/plugins/file-downloader]
+priority=0
 
-[org/gnome/charmap/window-state]
-size=(1080, 592)
+[org/gnome/brasero/plugins/genisoimage]
+priority=0
 
-[org/gnome/charmap]
-last-char=uint32 8580
-font=@ms 'Consolas 20'
+[org/gnome/brasero/plugins/growisofs]
+priority=0
+
+[org/gnome/brasero/plugins/readcd]
+priority=0
+
+[org/gnome/brasero/plugins/readom]
+priority=0
+
+[org/gnome/brasero/plugins/cdrecord]
+priority=0
+
+[org/gnome/brasero/plugins/transcode]
+priority=0
+
+[org/gnome/brasero/plugins/transcode2vob]
+priority=0
+
+[org/gnome/brasero/plugins/cdda2wav]
+priority=0
+
+[org/gnome/brasero/plugins/dvdcss]
+priority=0
+
+[org/gnome/brasero/plugins/mkisofs]
+priority=0
+
+[org/gnome/brasero/plugins/vcdimager]
+priority=0
 
 [org/gnome/baobab/ui]
 active-chart='rings'
@@ -114,9 +135,12 @@ base=10
 source-units='degree'
 accuracy=9
 
-[org/gnome/anjuta]
-toolbar-visible=true
-remembered-plugins=''
+[org/gnome/charmap/window-state]
+size=(1080, 592)
+
+[org/gnome/charmap]
+last-char=uint32 8580
+font=@ms 'Consolas 20'
 
 [org/gnome/gedit/preferences/editor]
 display-right-margin=true
@@ -148,18 +172,9 @@ bottom-panel-size=140
 side-panel-size=200
 side-panel-active-page=228660812
 
-[org/gnome/nautilus/window-state]
-geometry='1366x768+0+0'
-maximized=true
-
-[org/gnome/nautilus/desktop]
-home-icon-visible=false
-volumes-visible=true
-trash-icon-visible=false
-
-[org/gnome/nautilus/list-view]
-default-visible-columns=['name', 'size', 'type', 'date_modified']
-default-column-order=['name', 'size', 'type', 'date_modified', 'date_accessed', 'owner', 'group', 'permissions', 'mime_type', 'where']
+[org/gnome/anjuta]
+toolbar-visible=true
+remembered-plugins=''
 
 [org/gnome/file-roller/listing]
 sort-method='name'
@@ -191,6 +206,19 @@ info-history-time=7200
 
 [org/gnome/gnome-screenshot]
 auto-save-directory='file:///home/jeremy/Pictures/Screenshots'
+
+[org/gnome/nautilus/window-state]
+geometry='855x550+0+27'
+maximized=false
+
+[org/gnome/nautilus/desktop]
+home-icon-visible=false
+volumes-visible=true
+trash-icon-visible=false
+
+[org/gnome/nautilus/list-view]
+default-visible-columns=['name', 'size', 'type', 'date_modified']
+default-column-order=['name', 'size', 'type', 'date_modified', 'date_accessed', 'owner', 'group', 'permissions', 'mime_type', 'where']
 
 [org/gnome/desktop/screensaver]
 picture-uri='file:////usr/share/gnome-control-center/pixmaps/noise-texture-light.png'
@@ -256,6 +284,7 @@ sources=@a(ss) []
 xkb-options=['terminate:ctrl_alt_bksp']
 
 [org/gnome/desktop/wm/preferences]
+theme='Adwaita'
 titlebar-font='Arial Bold 12'
 
 [org/gnome/desktop/wm/keybindings]
@@ -286,12 +315,58 @@ clock-show-seconds=false
 icon-theme='Moka'
 monospace-font-name='Consolas 10'
 enable-animations=true
+gtk-theme='Adwaita'
 clock-show-date=true
 
 [org/gnome/bijiben]
 default-location='local'
 color='rgb(239,242,209)'
 font='Cantarell 14'
+
+[org/gnome/shell/keybindings]
+toggle-overview=['<Super>w']
+
+[org/gnome/shell]
+enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'systemMonitor@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'weather-extension@xeked.com']
+command-history=['r', 'gnome-session-properties', 'r']
+remember-mount-password=false
+app-picker-view=uint32 1
+favorite-apps=['nautilus.desktop', 'gnome-terminal.desktop', 'chromium.desktop', 'gvim.desktop', 'empathy.desktop', 'spotify.desktop', 'vlc.desktop', 'gnome-control-center.desktop', 'gnome-tweak-tool.desktop']
+
+[org/gnome/shell/overrides]
+dynamic-workspaces=false
+button-layout=':minimize,maximize,close'
+workspaces-only-on-primary=false
+
+[org/gnome/shell/calendar]
+show-weekdate=true
+
+[org/gnome/shell/window-switcher]
+app-icon-mode='both'
+
+[org/gnome/shell/extensions/dash-to-dock]
+show-apps-at-top=true
+dock-fixed=false
+hide-delay=0.050000000000000003
+show-delay=0.0
+
+[org/gnome/shell/extensions/weather]
+actual-city=1
+city=[<(uint32 1, <('Charles de Gaulle International Airport', 'LFPG', false, @m(dd) (0.85550222750365124, 0.044215001899425503), @m(dd) (0.8528842336256599, 0.040724343395436846))>)>, <(uint32 1, <('Pierre Elliot Trudeau International Airport', 'CYUL', false, @m(dd) (0.79354303905785273, -1.2871803233458181), @m(dd) (0.79354303905785273, -1.2871803233458181))>)>]
+
+[org/gnome/shell/extensions/appindicator-support]
+default='message-tray'
+
+[org/gnome/shell/extensions/example]
+hello-text='asdasd'
+
+[org/gnome/shell/extensions/hidetopbar]
+animation-time-autohide=0.10000000000000003
+animation-time-overview=0.30000000000000004
+mouse-sensitive=true
+
+[org/gnome/shell/extensions/mediaplayer]
+indicator-position='volume-menu'
 
 [org/gnome/telepathy-account-widgets/ui]
 avatar-directory='/home/jeremy/Dropbox/Photos/Me'
