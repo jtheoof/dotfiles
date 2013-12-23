@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# /home
+rsync -alvz $HOME/ /run/media/jeremy/heiannidan/ --exclude=chromium --exclude=undodir --exclude=.cache --delete
+
+# /
+sudo rsync -alvz / /run/media/jeremy/heianshodan --exclude=/dev --exclude=/home --exclude=/run --exclude=/var --exclude=/proc --exclude=/sys --exclude=/tmp --delete
+
+# vim: tw=0 sts=4 sw=4 et
