@@ -1,9 +1,22 @@
 #!/bin/sh
 
 # /home
-rsync -alvz $HOME/ /run/media/jeremy/heiannidan/ --exclude=chromium --exclude=undodir --exclude=.cache --delete
+rsync -avzl $HOME/ /run/media/jeremy/heiannidan/ \
+    --delete                                     \
+    --delete-during                              \
+    --delete-excluded                            \
+    --exclude=.cache
 
 # /
-sudo rsync -alvz / /run/media/jeremy/heianshodan --exclude=/dev --exclude=/home --exclude=/run --exclude=/var --exclude=/proc --exclude=/sys --exclude=/tmp --delete
+sudo rsync -avzl / /run/media/jeremy/heianshodan \
+    --delete                                     \
+    --delete-during                              \
+    --delete-excluded                            \
+    --exclude=/home                              \
+    --exclude=/proc                              \
+    --exclude=/run                               \
+    --exclude=/sys                               \
+    --exclude=/tmp                               \
+    --exclude=cache
 
 # vim: tw=0 sts=4 sw=4 et
