@@ -18,3 +18,8 @@ export EDITOR=vim
 # So I have to do it directly in ~/.zshrc which is not very clean.
 # See: oh-my-zsh
 #export LESS=-FRSX
+
+# Add ~/bin if present
+if [[ -a $HOME/bin ]]; then
+    export PATH=$PATH:$HOME/bin
+fi
