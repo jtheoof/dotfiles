@@ -96,7 +96,7 @@ handle_install_dotfiles() {
   print_info "installing symlinks"
 
   local exclude
-  exclude=(.git .config .oh-my-zsh)
+  exclude=(.git .gitattributes .gitignore .config .oh-my-zsh)
 
   for i in $FILESPATH/.[a-zA-Z]*; do
     in_array $(basename $i) "${exclude[@]}" || link $(basename $i)
@@ -109,9 +109,7 @@ handle_install_dotfiles() {
     print_info "oh-my-zsh found, skipping..."
   fi
 
-  mkdir -p $HOME/.oh-my-zsh/custom/themes
-  ln -sf $FILESPATH/jtheoof.zsh-theme $HOME/.oh-my-zsh/custom/themes/
-  link $FILESPATH/jtheoof.zsh-theme $HOME/.oh-my-zsh/custom/themes/jtheoof.zsh-theme
+  link $FILESPATH/.oh-my-zsh/custom/themes $HOME/.oh-my-zsh/custom/themes
 
   # .config directories
   config_dirs="fontconfig htop transmission tranmission-remote-cli"
