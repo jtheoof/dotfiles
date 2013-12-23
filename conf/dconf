@@ -308,7 +308,7 @@ theme-name='freedesktop'
 event-sounds=true
 
 [org/gnome/desktop/datetime]
-automatic-timezone=true
+automatic-timezone=false
 
 [org/gnome/desktop/background]
 picture-uri='file:///home/jeremy/Pictures/grand-theft-auto-v-33213-wp.jpg'
@@ -332,10 +332,10 @@ toggle-overview=['<Super>w']
 
 [org/gnome/shell]
 enabled-extensions=['places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'mediaplayer@patapon.info', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'weather-extension@xeked.com']
-command-history=['r', 'gnome-session-properties', 'r', 'gnome-session-']
+command-history=['r', 'gnome-session-properties', 'r', 'gnome-session-', 'r']
 remember-mount-password=false
 app-picker-view=uint32 1
-favorite-apps=['nautilus.desktop', 'gnome-terminal.desktop', 'chromium.desktop', 'gvim.desktop', 'empathy.desktop', 'spotify.desktop', 'vlc.desktop', 'gnome-control-center.desktop', 'gnome-tweak-tool.desktop']
+favorite-apps=['nautilus.desktop', 'gnome-terminal.desktop', 'chromium.desktop', 'gvim.desktop', 'geary.desktop', 'empathy.desktop', 'spotify.desktop', 'gnome-control-center.desktop', 'gnome-tweak-tool.desktop']
 
 [org/gnome/shell/overrides]
 dynamic-workspaces=false
@@ -527,9 +527,10 @@ custom-colors=[(0.6705882352941176, 0.094117647058823528, 0.32156862745098042, 1
 [org/yorba/geary]
 folder-list-pane-position=294
 messages-pane-position=252
-window-height=707
-compose-as-html=true
 window-width=1024
+window-height=707
+autoselect=false
+compose-as-html=true
 window-maximize=true
 
 [ca/desrt/dconf-editor]
