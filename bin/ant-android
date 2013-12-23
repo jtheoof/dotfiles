@@ -1,4 +1,0 @@
-#!/bin/sh 
-ant debug -Dbuild.compiler.emacs=true -quiet -find build.xml 2>&1 | grep '\[javac\]' 
-#echo "Installing..." 
-#adb install -r ${1} | grep 'null' 
