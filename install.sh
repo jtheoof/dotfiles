@@ -305,7 +305,7 @@ if [[ -n $command ]]; then
   case "$command" in
     packages)
       handle_packages
-      handle_packages_npm
+      #handle_packages_npm
       ;;
     dotfiles)
       handle_install_dotfiles
