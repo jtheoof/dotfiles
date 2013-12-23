@@ -209,7 +209,7 @@ auto-save-directory='file:///home/jeremy/Pictures/Screenshots'
 
 [org/gnome/nautilus/window-state]
 geometry='855x550+0+27'
-maximized=false
+maximized=true
 
 [org/gnome/nautilus/desktop]
 home-icon-visible=false
@@ -220,12 +220,16 @@ trash-icon-visible=false
 default-visible-columns=['name', 'size', 'type', 'date_modified']
 default-column-order=['name', 'size', 'type', 'date_modified', 'date_accessed', 'owner', 'group', 'permissions', 'mime_type', 'where']
 
-[org/gnome/desktop/screensaver]
-picture-uri='file:////usr/share/gnome-control-center/pixmaps/noise-texture-light.png'
-color-shading-type='solid'
-primary-color='#425265'
-picture-options='wallpaper'
-secondary-color='#425265'
+[org/gnome/desktop/interface]
+font-name='Arial 10'
+document-font-name='Arial 10'
+toolkit-accessibility=false
+clock-show-seconds=false
+icon-theme='Moka'
+monospace-font-name='Consolas 10'
+enable-animations=true
+gtk-theme='Adwaita'
+clock-show-date=true
 
 [org/gnome/desktop/notifications]
 application-children=['chromium', 'empathy', 'geary', 'synapse', 'gnome-do', 'gnome-music', 'dropbox', 'vlc', 'spotify', 'guake']
@@ -268,20 +272,12 @@ application-id='gnome-music.desktop'
 [org/gnome/desktop/notifications/application/geary]
 application-id='geary.desktop'
 
-[org/gnome/desktop/datetime]
-automatic-timezone=true
-
-[org/gnome/desktop/background]
-picture-uri='file:///home/jeremy/Pictures/grand-theft-auto-v-33213-wp.jpg'
-show-desktop-icons=true
+[org/gnome/desktop/screensaver]
+picture-uri='file:////usr/share/gnome-control-center/pixmaps/noise-texture-light.png'
 color-shading-type='solid'
-primary-color='#000000000000'
-picture-options='zoom'
-secondary-color='#000000000000'
-
-[org/gnome/desktop/input-sources]
-sources=@a(ss) []
-xkb-options=['terminate:ctrl_alt_bksp']
+primary-color='#425265'
+picture-options='wallpaper'
+secondary-color='#425265'
 
 [org/gnome/desktop/wm/preferences]
 theme='Adwaita'
@@ -307,16 +303,24 @@ switch-to-workspace-4=['<Super>4']
 begin-move=['<Super>F7']
 toggle-fullscreen=['<Super>f']
 
-[org/gnome/desktop/interface]
-font-name='Arial 10'
-document-font-name='Arial 10'
-toolkit-accessibility=false
-clock-show-seconds=false
-icon-theme='Moka'
-monospace-font-name='Consolas 10'
-enable-animations=true
-gtk-theme='Adwaita'
-clock-show-date=true
+[org/gnome/desktop/sound]
+theme-name='freedesktop'
+event-sounds=true
+
+[org/gnome/desktop/datetime]
+automatic-timezone=true
+
+[org/gnome/desktop/background]
+picture-uri='file:///home/jeremy/Pictures/grand-theft-auto-v-33213-wp.jpg'
+show-desktop-icons=true
+color-shading-type='solid'
+primary-color='#000000000000'
+picture-options='zoom'
+secondary-color='#000000000000'
+
+[org/gnome/desktop/input-sources]
+sources=@a(ss) []
+xkb-options=['terminate:ctrl_alt_bksp']
 
 [org/gnome/bijiben]
 default-location='local'
@@ -327,8 +331,8 @@ font='Cantarell 14'
 toggle-overview=['<Super>w']
 
 [org/gnome/shell]
-enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'systemMonitor@gnome-shell-extensions.gcampax.github.com', 'mediaplayer@patapon.info', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'weather-extension@xeked.com']
-command-history=['r', 'gnome-session-properties', 'r']
+enabled-extensions=['places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'mediaplayer@patapon.info', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'weather-extension@xeked.com']
+command-history=['r', 'gnome-session-properties', 'r', 'gnome-session-']
 remember-mount-password=false
 app-picker-view=uint32 1
 favorite-apps=['nautilus.desktop', 'gnome-terminal.desktop', 'chromium.desktop', 'gvim.desktop', 'empathy.desktop', 'spotify.desktop', 'vlc.desktop', 'gnome-control-center.desktop', 'gnome-tweak-tool.desktop']
@@ -351,7 +355,7 @@ hide-delay=0.050000000000000003
 show-delay=0.0
 
 [org/gnome/shell/extensions/weather]
-actual-city=1
+actual-city=0
 city=[<(uint32 1, <('Charles de Gaulle International Airport', 'LFPG', false, @m(dd) (0.85550222750365124, 0.044215001899425503), @m(dd) (0.8528842336256599, 0.040724343395436846))>)>, <(uint32 1, <('Pierre Elliot Trudeau International Airport', 'CYUL', false, @m(dd) (0.79354303905785273, -1.2871803233458181), @m(dd) (0.79354303905785273, -1.2871803233458181))>)>]
 
 [org/gnome/shell/extensions/appindicator-support]
@@ -492,7 +496,7 @@ sort-order=0
 col-15-visible=true
 col-0-visible=true
 col-15-width=92
-sort-col=15
+sort-col=8
 
 [org/gnome/maps]
 last-location-description='Puteaux, Ile-de-France, France'
@@ -503,12 +507,13 @@ window-maximized=true
 [org/baedert/corebird]
 startup-accounts=['jtheoof']
 search-show-retweets=true
+use-dark-theme=false
 upload-provider='Twitter'
 
 [org/gtk/settings/file-chooser]
 sort-column='name'
 sidebar-width=148
-window-position=(541, 201)
+window-position=(540, 124)
 show-size-column=true
 show-hidden=false
 window-size=(830, 622)
