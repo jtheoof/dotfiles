@@ -145,6 +145,7 @@ handle_packages() {
     ctags
     curl \
     gcolor2 \
+    geary \
     gimp \
     git \
     gnome-tweak-tool \
