@@ -19,7 +19,6 @@ export EDITOR=vim
 # See: oh-my-zsh
 #export LESS=-FRSX
 
-# Add ~/bin if present
-if [[ -a $HOME/bin ]]; then
-    export PATH=$PATH:$HOME/bin
-fi
+# Add custom directories to $PATH
+typeset -U path
+path=(~/bin $path)
