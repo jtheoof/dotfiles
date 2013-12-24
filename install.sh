@@ -314,4 +314,5 @@ if [[ -n $command ]]; then
 else
   usage
 fi
-# vim:sts=2:sw=2:et:
+
+# vim: sts=2 sw=2 et
