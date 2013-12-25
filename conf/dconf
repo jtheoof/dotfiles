@@ -20,6 +20,7 @@ speed-unit='kph'
 pressure-unit='hpa'
 
 [org/gnome/settings-daemon/plugins/power]
+idle-dim=true
 sleep-inactive-battery-type='suspend'
 sleep-inactive-ac-timeout=3600
 sleep-inactive-ac-type='nothing'
@@ -50,8 +51,13 @@ tap-to-click=true
 touchpad-enabled=true
 
 [org/gnome/settings-daemon/peripherals/keyboard]
+repeat-interval=uint32 23
+delay=uint32 279
 numlock-state='on'
 repeat=true
+
+[org/gnome/settings-daemon/peripherals/mouse]
+double-click=545
 
 [org/gnome/brasero/plugins/dvd-rw-format]
 priority=0
@@ -208,7 +214,7 @@ info-history-time=7200
 auto-save-directory='file:///home/jeremy/Pictures/Screenshots'
 
 [org/gnome/nautilus/window-state]
-geometry='855x550+0+27'
+geometry='855x550+345+365'
 maximized=true
 
 [org/gnome/nautilus/desktop]
@@ -225,6 +231,7 @@ font-name='Arial 10'
 document-font-name='Arial 10'
 toolkit-accessibility=false
 clock-show-seconds=false
+cursor-blink-time=793
 icon-theme='Moka'
 monospace-font-name='Consolas 10'
 enable-animations=true
@@ -279,29 +286,42 @@ primary-color='#425265'
 picture-options='wallpaper'
 secondary-color='#425265'
 
+[org/gnome/desktop/session]
+idle-delay=uint32 180
+
 [org/gnome/desktop/wm/preferences]
 theme='Adwaita'
 titlebar-font='Arial Bold 12'
 
 [org/gnome/desktop/wm/keybindings]
+maximize=['']
+toggle-fullscreen=['<Super>f']
 toggle-maximized=['<Super>Return']
+unmaximize=['', '<Alt>F5']
 close=['<Super>q']
+move-to-workspace-up=['<Shift><Super>Up', '<Control><Shift><Alt>Up']
 move-to-workspace-1=['<Shift><Super>exclam']
 move-to-workspace-2=['<Shift><Super>at']
 move-to-workspace-3=['<Shift><Super>numbersign']
 begin-resize=['<Super>F8']
 move-to-workspace-4=['<Shift><Super>dollar']
-panel-run-dialog=['<Super>F2']
+move-to-workspace-right=['']
 switch-input-source=['']
 activate-window-menu=['<Super>space']
 maximize-vertically=['<Super>v']
 show-desktop=['<Super>d']
 switch-to-workspace-1=['<Super>1']
 switch-to-workspace-2=['<Super>2']
-switch-to-workspace-3=['<Super>3']
+move-to-workspace-left=['']
 switch-to-workspace-4=['<Super>4']
 begin-move=['<Super>F7']
-toggle-fullscreen=['<Super>f']
+switch-to-workspace-3=['<Super>3']
+move-to-workspace-down=['<Shift><Super>Down', '<Control><Shift><Alt>Down']
+panel-run-dialog=['<Super>F2']
+switch-to-workspace-down=['<Super>Down', '<Control><Alt>Down']
+switch-to-workspace-right=['']
+switch-to-workspace-left=['']
+switch-to-workspace-up=['<Super>Up', '<Control><Alt>Up']
 
 [org/gnome/desktop/sound]
 theme-name='freedesktop'
@@ -331,7 +351,7 @@ font='Cantarell 14'
 toggle-overview=['<Super>w']
 
 [org/gnome/shell]
-enabled-extensions=['places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'mediaplayer@patapon.info', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'weather-extension@xeked.com']
+enabled-extensions=['places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'mediaplayer@patapon.info', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'weather-extension@xeked.com', 'maximus@mathematical.coffee.gmail.com']
 command-history=['r', 'gnome-session-properties', 'r', 'gnome-session-', 'r']
 remember-mount-password=false
 app-picker-view=uint32 1
