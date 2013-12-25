@@ -1,0 +1,1345 @@
+<gconfentryfile>
+  <entrylist base="/">
+    <entry>
+      <key>/apps/aisleriot/animations</key>
+      <schema_key>/schemas/apps/aisleriot/animations</schema_key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/aisleriot/card_style</key>
+      <schema_key>/schemas/apps/aisleriot/card_style</schema_key>
+      <value>
+        <string></string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/aisleriot/click_to_move</key>
+      <schema_key>/schemas/apps/aisleriot/click_to_move</schema_key>
+      <value>
+        <bool>false</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/aisleriot/game_file</key>
+      <schema_key>/schemas/apps/aisleriot/game_file</schema_key>
+      <value>
+        <string>klondike.scm</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/aisleriot/recent_games_list</key>
+      <schema_key>/schemas/apps/aisleriot/recent_games_list</schema_key>
+      <value>
+        <list type="string">
+        </list>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/aisleriot/show_statusbar</key>
+      <schema_key>/schemas/apps/aisleriot/show_statusbar</schema_key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/aisleriot/show_toolbar</key>
+      <schema_key>/schemas/apps/aisleriot/show_toolbar</schema_key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/aisleriot/sound</key>
+      <schema_key>/schemas/apps/aisleriot/sound</schema_key>
+      <value>
+        <bool>false</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/aisleriot/statistics</key>
+      <schema_key>/schemas/apps/aisleriot/statistics</schema_key>
+      <value>
+        <list type="string">
+        </list>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Interface/AnimationBase/BezelDrawingArea/Animated</key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Interface/AnimationBase/BezelDrawingArea/BackgroundColor</key>
+      <value>
+        <string>default</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Interface/AnimationBase/BezelDrawingArea/Shadow</key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Interface/AnimationBase/BezelDrawingArea/WindowRadius</key>
+      <value>
+        <int>-1</int>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Clear</key>
+      <value>
+        <string>Escape</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Copy_to_Clipboard</key>
+      <value>
+        <string>&lt;Control&gt;c</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Enter_Text_Mode</key>
+      <value>
+        <string>period</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/First_Item</key>
+      <value>
+        <string>Home</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Last_Item</key>
+      <value>
+        <string>End</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Next_5_Results</key>
+      <value>
+        <string>Page_Down</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Next_Item</key>
+      <value>
+        <string>Down</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Next_Pane</key>
+      <value>
+        <string>Tab</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Paste_from_Clipboard</key>
+      <value>
+        <string>&lt;Control&gt;v</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Previous_5_Results</key>
+      <value>
+        <string>Page_Up</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Previous_Item</key>
+      <value>
+        <string>Up</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Previous_Pane</key>
+      <value>
+        <string>&lt;Shift&gt;Tab</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Select_Multiple_Items</key>
+      <value>
+        <string>comma</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Step_Into_Item</key>
+      <value>
+        <string>Right</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Step_Out_of_Item</key>
+      <value>
+        <string>Left</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Summon_Do</key>
+      <value>
+        <string>&lt;Super&gt;space</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Summon_in_Text_Mode</key>
+      <value>
+        <string></string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/gnome-do/preferences/Do/Platform/Linux/TrayIconPreferences/StatusIconVisible</key>
+      <value>
+        <bool>false</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/compat_backspace</key>
+      <schema_key>/schemas/apps/guake/general/compat_backspace</schema_key>
+      <value>
+        <string>ascii-delete</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/compat_delete</key>
+      <schema_key>/schemas/apps/guake/general/compat_delete</schema_key>
+      <value>
+        <string>delete-sequence</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/default_shell</key>
+      <schema_key>/schemas/apps/guake/general/default_shell</schema_key>
+      <value>
+        <string></string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/history_size</key>
+      <schema_key>/schemas/apps/guake/general/history_size</schema_key>
+      <value>
+        <int>1024</int>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/prompt_on_quit</key>
+      <schema_key>/schemas/apps/guake/general/prompt_on_quit</schema_key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/scroll_keystroke</key>
+      <schema_key>/schemas/apps/guake/general/scroll_keystroke</schema_key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/scroll_output</key>
+      <schema_key>/schemas/apps/guake/general/scroll_output</schema_key>
+      <value>
+        <bool>false</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/show_resizer</key>
+      <schema_key>/schemas/apps/guake/general/show_resizer</schema_key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/start_fullscreen</key>
+      <schema_key>/schemas/apps/guake/general/start_fullscreen</schema_key>
+      <value>
+        <bool>false</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/toolbar_visible_in_fullscreen</key>
+      <schema_key>/schemas/apps/guake/general/toolbar_visible_in_fullscreen</schema_key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/use_default_font</key>
+      <schema_key>/schemas/apps/guake/general/use_default_font</schema_key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/use_login_shell</key>
+      <schema_key>/schemas/apps/guake/general/use_login_shell</schema_key>
+      <value>
+        <bool>false</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/use_popup</key>
+      <schema_key>/schemas/apps/guake/general/use_popup</schema_key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/use_scrollbar</key>
+      <schema_key>/schemas/apps/guake/general/use_scrollbar</schema_key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/use_trayicon</key>
+      <schema_key>/schemas/apps/guake/general/use_trayicon</schema_key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/use_vte_titles</key>
+      <schema_key>/schemas/apps/guake/general/use_vte_titles</schema_key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/window_halignment</key>
+      <schema_key>/schemas/apps/guake/general/window_halignment</schema_key>
+      <value>
+        <int>0</int>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/window_height</key>
+      <schema_key>/schemas/apps/guake/general/window_height</schema_key>
+      <value>
+        <int>50</int>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/window_losefocus</key>
+      <schema_key>/schemas/apps/guake/general/window_losefocus</schema_key>
+      <value>
+        <bool>false</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/window_ontop</key>
+      <schema_key>/schemas/apps/guake/general/window_ontop</schema_key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/window_tabbar</key>
+      <schema_key>/schemas/apps/guake/general/window_tabbar</schema_key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/window_width</key>
+      <schema_key>/schemas/apps/guake/general/window_width</schema_key>
+      <value>
+        <int>100</int>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/general/word_chars</key>
+      <schema_key>/schemas/apps/guake/general/word_chars</schema_key>
+      <value>
+        <string>-A-Za-z0-9,./?%&amp;#:_</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/keybindings/global/show_hide</key>
+      <schema_key>/schemas/apps/guake/keybindings/global/show_hide</schema_key>
+      <value>
+        <string>F12</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/keybindings/local/clipboard_copy</key>
+      <schema_key>/schemas/apps/guake/keybindings/local/clipboard_copy</schema_key>
+      <value>
+        <string>&lt;Control&gt;&lt;Shift&gt;c</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/keybindings/local/clipboard_paste</key>
+      <schema_key>/schemas/apps/guake/keybindings/local/clipboard_paste</schema_key>
+      <value>
+        <string>&lt;Control&gt;&lt;Shift&gt;v</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/keybindings/local/close_tab</key>
+      <schema_key>/schemas/apps/guake/keybindings/local/close_tab</schema_key>
+      <value>
+        <string>&lt;Control&gt;&lt;Shift&gt;w</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/keybindings/local/new_tab</key>
+      <schema_key>/schemas/apps/guake/keybindings/local/new_tab</schema_key>
+      <value>
+        <string>&lt;Control&gt;&lt;Shift&gt;t</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/keybindings/local/next_tab</key>
+      <schema_key>/schemas/apps/guake/keybindings/local/next_tab</schema_key>
+      <value>
+        <string>&lt;Control&gt;Page_Down</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/keybindings/local/previous_tab</key>
+      <schema_key>/schemas/apps/guake/keybindings/local/previous_tab</schema_key>
+      <value>
+        <string>&lt;Control&gt;Page_Up</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/keybindings/local/quit</key>
+      <schema_key>/schemas/apps/guake/keybindings/local/quit</schema_key>
+      <value>
+        <string>&lt;Control&gt;&lt;Shift&gt;q</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/keybindings/local/rename_tab</key>
+      <schema_key>/schemas/apps/guake/keybindings/local/rename_tab</schema_key>
+      <value>
+        <string>F2</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/keybindings/local/toggle_fullscreen</key>
+      <schema_key>/schemas/apps/guake/keybindings/local/toggle_fullscreen</schema_key>
+      <value>
+        <string>F11</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/style/background/color</key>
+      <schema_key>/schemas/apps/guake/style/background/color</schema_key>
+      <value>
+        <string>#000000000000</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/style/background/image</key>
+      <schema_key>/schemas/apps/guake/style/background/image</schema_key>
+      <value>
+        <string></string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/style/background/transparency</key>
+      <schema_key>/schemas/apps/guake/style/background/transparency</schema_key>
+      <value>
+        <int>80</int>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/style/font/color</key>
+      <schema_key>/schemas/apps/guake/style/font/color</schema_key>
+      <value>
+        <string>#ffffffffffff</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/style/font/palette</key>
+      <schema_key>/schemas/apps/guake/style/font/palette</schema_key>
+      <value>
+        <string>#000000000000:#cccc00000000:#4e4e9a9a0606:#c4c4a0a00000:#34346565a4a4:#757550507b7b:#060698209a9a:#d3d3d7d7cfcf:#555557575353:#efef29292929:#8a8ae2e23434:#fcfce9e94f4f:#72729f9fcfcf:#adad7f7fa8a8:#3434e2e2e2e2:#eeeeeeeeecec</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/apps/guake/style/font/style</key>
+      <schema_key>/schemas/apps/guake/style/font/style</schema_key>
+      <value>
+        <string>Monospace 10</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/desktop/gnome/peripherals/SynPS@47@2@32@Synaptics@32@TouchPad/device_type</key>
+      <value>
+        <string>touchpad</string>
+      </value>
+    </entry>
+    <entry>
+      <key>/desktop/gnome/peripherals/SynPS@47@2@32@Synaptics@32@TouchPad/guest_mouse</key>
+      <value>
+        <bool>false</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/desktop/gnome/peripherals/SynPS@47@2@32@Synaptics@32@TouchPad/locked_drags</key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/desktop/gnome/peripherals/SynPS@47@2@32@Synaptics@32@TouchPad/locked_drags_timeout</key>
+      <value>
+        <int>50</int>
+      </value>
+    </entry>
+    <entry>
+      <key>/desktop/gnome/peripherals/SynPS@47@2@32@Synaptics@32@TouchPad/palm_detection</key>
+      <value>
+        <bool>false</bool>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/aisleriot/animations</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>true</bool>
+              </value>
+            </default_value>
+            <short>Animations</short>
+            <long>Whether or not to animate card moves.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/aisleriot/card_style</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string></string>
+              </value>
+            </default_value>
+            <short>Theme file name</short>
+            <long>The name of the file with the graphics for the cards.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/aisleriot/click_to_move</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>false</bool>
+              </value>
+            </default_value>
+            <short>Select the style of control</short>
+            <long>Select whether to drag the cards or to click on the source then the destination.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/aisleriot/game_file</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>klondike.scm</string>
+              </value>
+            </default_value>
+            <short>The game file to use</short>
+            <long>The name of the scheme file containing the solitaire game to play.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/aisleriot/recent_games_list</key>
+      <value>
+        <schema>
+          <type>list</type>
+          <list_type>string</list_type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <list type="string">
+                </list>
+              </value>
+            </default_value>
+            <short>Recently played games</short>
+            <long>A list of recently played games.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/aisleriot/show_statusbar</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>true</bool>
+              </value>
+            </default_value>
+            <short>Whether or not to show the status bar</short>
+            <long></long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/aisleriot/show_toolbar</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>true</bool>
+              </value>
+            </default_value>
+            <short>Whether or not to show the toolbar</short>
+            <long></long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/aisleriot/sound</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>false</bool>
+              </value>
+            </default_value>
+            <short>Sound</short>
+            <long>Whether or not to play event sounds.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/aisleriot/statistics</key>
+      <value>
+        <schema>
+          <type>list</type>
+          <list_type>string</list_type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <list type="string">
+                </list>
+              </value>
+            </default_value>
+            <short>Statistics of games played</short>
+            <long>A list of strings that come in the form of a quintuple: name, wins, total games played, best time (in seconds) and worst time (also in seconds). Unplayed games do not need to be represented.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/compat_backspace</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>ascii-delete</string>
+              </value>
+            </default_value>
+            <short>Backspace Compatibility</short>
+            <long>Defines the behavior of backscape key.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/compat_delete</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>delete-sequence</string>
+              </value>
+            </default_value>
+            <short>Delete Compatibility</short>
+            <long>Defines the behavior of delete key.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/default_shell</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string></string>
+              </value>
+            </default_value>
+            <short>Path to the default shell.</short>
+            <long>Path to the default shell. Set to empty to
+                use default user shell. If invalid path is set
+                here, guake will fallback to user shell.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/history_size</key>
+      <value>
+        <schema>
+          <type>int</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <int>1024</int>
+              </value>
+            </default_value>
+            <short>History Size.</short>
+            <long>The number of scrollback lines to save in
+                history.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/prompt_on_quit</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>true</bool>
+              </value>
+            </default_value>
+            <short>Prompt when quiting.</short>
+            <long>Ask for confirmation when guiting Guake and there
+                processes running.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/scroll_keystroke</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>true</bool>
+              </value>
+            </default_value>
+            <short>Scroll on keystroke</short>
+            <long>If true and a key is pressed, the terminal is
+                scrolled to the bottom.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/scroll_output</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>false</bool>
+              </value>
+            </default_value>
+            <short>Scroll on output</short>
+            <long>If true, whenever there is new output in the
+                terminal, it will scroll to the bottom.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/show_resizer</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>true</bool>
+              </value>
+            </default_value>
+            <short>If guake must show a control to make resizing more handful</short>
+            <long>When true, guake shows a resizer on its bottom to allow user 
+                resize guake.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/start_fullscreen</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>false</bool>
+              </value>
+            </default_value>
+            <short>Start fullscreen.</short>
+            <long>When true, the program will start in fullscreen mode.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/toolbar_visible_in_fullscreen</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>true</bool>
+              </value>
+            </default_value>
+            <short>If the tabs bar must be visible in fullscreen</short>
+            <long>Set it as false to enjoy guake&apos;s fullscreen.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/use_default_font</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>true</bool>
+              </value>
+            </default_value>
+            <short>Use default font</short>
+            <long>If true, Guake will use the GNOME monospace
+                default font.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/use_login_shell</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>false</bool>
+              </value>
+            </default_value>
+            <short>Login shell</short>
+            <long>If true, the commands in terminal will be
+                executed in a login shell.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/use_popup</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>true</bool>
+              </value>
+            </default_value>
+            <short>Sets the popup notifications visibility.</short>
+            <long>When true, popup notifications will be shown
+                when Guake starts.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/use_scrollbar</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>true</bool>
+              </value>
+            </default_value>
+            <short>Sets the scrollbar visibility.</short>
+            <long>When true, scrollbar is visible.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/use_trayicon</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>true</bool>
+              </value>
+            </default_value>
+            <short>Sets the tray visibility.</short>
+            <long>When true tray is visible.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/use_vte_titles</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>true</bool>
+              </value>
+            </default_value>
+            <short>Use terminal titles for tab naming</short>
+            <long>Any terminal program can set the terminal&apos;s title via special escape sequences. Some shells (e.g. bash) display user&apos;s prompt there (though you can adjust that to any arbitrary text in bashrc or similar) and update it automatically as the prompt changes. So you can have easy automatically updating meaningful tab titles with this option turned on.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/window_halignment</key>
+      <value>
+        <schema>
+          <type>int</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <int>0</int>
+              </value>
+            </default_value>
+            <short>Window horizontal alignment.</short>
+            <long>Place Guake at:
+	          0: center, 1: left, 2: right</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/window_height</key>
+      <value>
+        <schema>
+          <type>int</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <int>50</int>
+              </value>
+            </default_value>
+            <short>Window size.</short>
+            <long>Percent of the screen that will be used by guake
+                  terminal vertically.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/window_losefocus</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>false</bool>
+              </value>
+            </default_value>
+            <short>Determine if guake hides on lose focus.</short>
+            <long>If this property is set as true, guake will be
+                hidden when the main window lose the focus (when
+                Alt+Tab be pressed for example).</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/window_ontop</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>true</bool>
+              </value>
+            </default_value>
+            <short>Stay on top.</short>
+            <long>Makes guake window be on top of all other windows in the
+                    desktop.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/window_tabbar</key>
+      <value>
+        <schema>
+          <type>bool</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <bool>true</bool>
+              </value>
+            </default_value>
+            <short>The tab bar visibility.</short>
+            <long>When true, the tab bar is visible.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/window_width</key>
+      <value>
+        <schema>
+          <type>int</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <int>100</int>
+              </value>
+            </default_value>
+            <short>Window height.</short>
+            <long>Percent of the screen that will be used by guake
+                  terminal horizontally.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/general/word_chars</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>-A-Za-z0-9,./?%&amp;#:_</string>
+              </value>
+            </default_value>
+            <short>Characters that are considered &quot;part of a word&quot;</short>
+            <long>When selecting text by word, sequences of these
+                characters are considered single words. Ranges can be
+                given as &quot;A-Z&quot;. Literal hyphen (not expressing a
+                range) should be the first character given. </long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/keybindings/global/show_hide</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>F12</string>
+              </value>
+            </default_value>
+            <short>Keybinding to show/hide guake.</short>
+            <long>Global keybinding to allow user call guake from each
+                place after it&apos;s opened without clicks.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/keybindings/local/clipboard_copy</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>&lt;Control&gt;&lt;Shift&gt;c</string>
+              </value>
+            </default_value>
+            <short>Copy clipboard.</short>
+            <long>Copy the clipboard content.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/keybindings/local/clipboard_paste</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>&lt;Control&gt;&lt;Shift&gt;v</string>
+              </value>
+            </default_value>
+            <short>Paste clipboard.</short>
+            <long>Paste the clipboard content.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/keybindings/local/close_tab</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>&lt;Control&gt;&lt;Shift&gt;w</string>
+              </value>
+            </default_value>
+            <short>Closes the current tab.</short>
+            <long>Accelerator to active function that closes the current selected tab.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/keybindings/local/new_tab</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>&lt;Control&gt;&lt;Shift&gt;t</string>
+              </value>
+            </default_value>
+            <short>Add a new tab.</short>
+            <long>Calls the function to add a new tab in guake window.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/keybindings/local/next_tab</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>&lt;Control&gt;Page_Down</string>
+              </value>
+            </default_value>
+            <short>Next tab.</short>
+            <long>Shows the next tab.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/keybindings/local/previous_tab</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>&lt;Control&gt;Page_Up</string>
+              </value>
+            </default_value>
+            <short>Previous tab.</short>
+            <long>Shows the previous tab.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/keybindings/local/quit</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>&lt;Control&gt;&lt;Shift&gt;q</string>
+              </value>
+            </default_value>
+            <short>Quit</short>
+            <long>Quit Guake.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/keybindings/local/rename_tab</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>F2</string>
+              </value>
+            </default_value>
+            <short>Rename tab.</short>
+            <long>Shows a dialog to rename the current tab.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/keybindings/local/toggle_fullscreen</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>F11</string>
+              </value>
+            </default_value>
+            <short>Toggle Fullscreen.</short>
+            <long>Toggle main guake window fullscreen.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/style/background/color</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>#000000000000</string>
+              </value>
+            </default_value>
+            <short>Background color.</short>
+            <long>Background color that will be used in terminal.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/style/background/image</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string></string>
+              </value>
+            </default_value>
+            <short>Background image.</short>
+            <long>Background image that will be used in terminal.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/style/background/transparency</key>
+      <value>
+        <schema>
+          <type>int</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <int>80</int>
+              </value>
+            </default_value>
+            <short>Background transparency.</short>
+            <long>Alpha that will be applied to the terminal
+                background.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/style/font/color</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>#ffffffffffff</string>
+              </value>
+            </default_value>
+            <short>Font color.</short>
+            <long>Font color that will be used in terminal.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/style/font/palette</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>#000000000000:#cccc00000000:#4e4e9a9a0606:#c4c4a0a00000:#34346565a4a4:#757550507b7b:#060698209a9a:#d3d3d7d7cfcf:#555557575353:#efef29292929:#8a8ae2e23434:#fcfce9e94f4f:#72729f9fcfcf:#adad7f7fa8a8:#3434e2e2e2e2:#eeeeeeeeecec</string>
+              </value>
+            </default_value>
+            <short>Color scheme.</short>
+            <long>Color scheme that will be used in terminal.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+    <entry>
+      <key>/schemas/apps/guake/style/font/style</key>
+      <value>
+        <schema>
+          <type>string</type>
+          <locale name="C">
+            <default_value>
+              <value>
+                <string>Monospace 10</string>
+              </value>
+            </default_value>
+            <short>Font style.</short>
+            <long>Font face and size that will be used in terminal.</long>
+          </locale>
+        </schema>
+      </value>
+    </entry>
+  </entrylist>
+</gconfentryfile>

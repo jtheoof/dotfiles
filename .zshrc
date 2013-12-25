@@ -74,6 +74,7 @@ alias vi='vim'
 alias gv='gvim'
 alias sub='sublime'
 alias diff='colordiff -u'
+alias info='pinfo'
 
 # Listing
 alias rpwd='readlink -f $PWD'
