@@ -430,7 +430,7 @@ imap <F7> <Esc>:make<CR>a
 " map control-backspace to delete the previous word
 imap <C-BS> <C-W>
 " map control-del to remove word after cursor
-imap <C-Del> <Esc><Right>"_dei
+imap <C-Del> <C-O>"_de
 " Insert unicode characters
 imap <C-u> <C-v>u
 
