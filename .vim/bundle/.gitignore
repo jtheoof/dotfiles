@@ -1,5 +1,5 @@
 # Ignore every bundle except static
-bufexplorer.zip/
+bufexplorer/
 ctrlp.vim/
 nerdtree/
 supertab/
@@ -17,3 +17,5 @@ vim-repeat/
 vim-session/
 vim-surround/
 vim-unimpaired/
+vim-vinegar/
+zencoding-vim/
