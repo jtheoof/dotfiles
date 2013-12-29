@@ -21,13 +21,13 @@ Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'ervandew/supertab'
 Bundle 'groenewege/vim-less'
+Bundle 'jlanzarotta/bufexplorer'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mattn/zencoding-vim'
 Bundle 'nacitar/terminalkeys.vim'
 Bundle 'pangloss/vim-javascript'
-Bundle 'SirVer/ultisnips'
-Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
+Bundle 'SirVer/ultisnips'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
@@ -37,9 +37,6 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-vinegar'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
-
-" Vim scripts
-Bundle 'bufexplorer.zip'
 
 " Bypass Vundle for custom plugins.
 " See: https://github.com/gmarik/vundle/issues/67
@@ -87,6 +84,7 @@ set lazyredraw       " don't redraw while executing macros
 set laststatus=2     " always show status line
 set scrolloff=3      " make cursor offset
 set shortmess=atToO  " abbreviate messages oO is useful see help
+set showcmd          " show commands as they are type
 set showmode         " show current mode
 set splitbelow       " split at the bottom
 set splitright       " vsplit on right
@@ -532,9 +530,6 @@ map <Leader>s? z=
 " 1}}}
 " Search {{{1
 
-" Count occurrences of highlighted search
-nnoremap <silent> sc     :%s///n<CR>
-
 " Search within a scope (a {...} program block).
 " Version 2010-02-28 from http://vim.wikia.com/wiki/VimTip1530
 
@@ -601,66 +596,18 @@ endif
 " 2}}}
 " Buff Explorer {{{2
 
-let g:bufExplorerDefaultHelp=0          " Do not show default help
-let g:bufExplorerShowRelativePath=1     " Show relative path
-let g:bufExplorerFindActive=0           " Do not go to active window
-map <silent> <C-Tab> :BufExplorer<CR>
-map <silent> <Leader>o :BufExplorer<CR>
+let g:bufExplorerDefaultHelp=0      " do not show default help
+let g:bufExplorerShowRelativePath=1 " show relative path
+let g:bufExplorerFindActive=0       " do not go to active window
+noremap <silent> <Leader>bh :BufExplorerHorizontalSplit<CR>
+noremap <silent> <C-Tab> :BufExplorer<CR>
 
-" Taking care of small conflict between bufexplorer and surround
-autocmd BufEnter \[BufExplorer\] unmap ds
-autocmd BufLeave \[BufExplorer\] nmap ds <Plug>Dsurround
-
-" 2}}}
-" Fuzzy Finder {{{2
-
-let g:fuf_coveragefile_exclude = '\v\~$|\.(o|obj|exe|&ll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-let g:fuf_keyNextPattern = '<C-d>'
-nnoremap <silent> sj     :FufBuffer<CR>
-nnoremap <silent> sk     :FufFileWithCurrentBufferDir<CR>
-nnoremap <silent> sK     :FufFileWithFullCwd<CR>
-nnoremap <silent> s<C-k> :FufFile<CR>
-nnoremap <silent> ss     :FufCoverageFile!<CR>
-nnoremap <silent> sS     :FufCoverageFile<CR>
-nnoremap <silent> s*     :FufCoverageFile<CR>
-nnoremap <silent> sl     :FufCoverageFileChange<CR>
-nnoremap <silent> sL     :FufCoverageFileChange<CR>
-nnoremap <silent> s<C-l> :FufCoverageFileRegister<CR>
-nnoremap <silent> sd     :FufDirWithCurrentBufferDir<CR>
-nnoremap <silent> sD     :FufDirWithFullCwd<CR>
-nnoremap <silent> s<C-d> :FufDir<CR>
-nnoremap <silent> sn     :FufMruFile<CR>
-nnoremap <silent> sN     :FufMruFileInCwd<CR>
-nnoremap <silent> sm     :FufMruCmd<CR>
-nnoremap <silent> su     :FufBookmarkFile<CR>
-nnoremap <silent> s<C-u> :FufBookmarkFileAdd<CR>
-vnoremap <silent> s<C-u> :FufBookmarkFileAddAsSelectedText<CR>
-nnoremap <silent> si     :FufBookmarkDir<CR>
-nnoremap <silent> s<C-i> :FufBookmarkDirAdd<CR>
-nnoremap <silent> st     :FufTag<CR>
-nnoremap <silent> sT     :FufTag!<CR>
-nnoremap <silent> s<C-]> :FufTagWithCursorWord!<CR>
-nnoremap <silent> s,     :FufBufferTag<CR>
-nnoremap <silent> s<     :FufBufferTag!<CR>
-vnoremap <silent> s,     :FufBufferTagWithSelectedText!<CR>
-vnoremap <silent> s<     :FufBufferTagWithSelectedText<CR>
-nnoremap <silent> s}     :FufBufferTagWithCursorWord!<CR>
-nnoremap <silent> s.     :FufBufferTagAll<CR>
-nnoremap <silent> s>     :FufBufferTagAll!<CR>
-vnoremap <silent> s.     :FufBufferTagAllWithSelectedText!<CR>
-vnoremap <silent> s>     :FufBufferTagAllWithSelectedText<CR>
-nnoremap <silent> s]     :FufBufferTagAllWithCursorWord!<CR>
-nnoremap <silent> sg     :FufTaggedFile<CR>
-nnoremap <silent> sG     :FufTaggedFile!<CR>
-nnoremap <silent> so     :FufJumpList<CR>
-nnoremap <silent> sp     :FufChangeList<CR>
-nnoremap <silent> sq     :FufQuickfix<CR>
-nnoremap <silent> sy     :FufLine<CR>
-nnoremap <silent> sh     :FufHelp<CR>
-nnoremap <silent> se     :FufEditDataFile<CR>
-nnoremap <silent> sr     :FufRenewCache<CR>
-nnoremap <silent> s*     :FufCoverageFile<CR>
-nnoremap <silent> sc     :%s///n<CR>
+" Taking care of small conflict between bufexplorer and surround.
+augroup bufexplorer
+    autocmd!
+    autocmd BufEnter \[BufExplorer\] unmap ds
+    autocmd BufLeave \[BufExplorer\] nmap ds <Plug>Dsurround
+augroup END
 
 " 2}}}
 " CTRL-P {{{2
@@ -714,7 +661,7 @@ let g:UltiSnipsJumpBackwardTrigger = '<F4>'
 let g:UltiSnipsEditSplit = 'vertical'
 
 " }}}
-" session {{{
+" Session {{{
 
 let g:session_autosave = "no"
 
