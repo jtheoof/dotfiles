@@ -90,7 +90,6 @@ set shortmess=atToO  " abbreviate messages oO is useful see help
 set showmode         " show current mode
 set splitbelow       " split at the bottom
 set splitright       " vsplit on right
-set noshowcmd        " do not display incomplete commands
 set noruler          " do not show ruler
 
 " History of: file marks, command lines, input line, searches.
