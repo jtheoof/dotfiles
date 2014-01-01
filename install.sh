@@ -164,6 +164,7 @@ handle_packages() {
     tree \
     vlc \
     wget \
+    xclip \
     xsel \
     zsh"
 
