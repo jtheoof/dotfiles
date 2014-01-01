@@ -40,6 +40,12 @@ magnifier-zoom-in=''
 home='<Super>e'
 search='<Super>slash'
 magnifier=''
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/vim-anywhere/']
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/vim-anywhere]
+binding='<Primary><Alt>v'
+command='/home/jeremy/.vim-anywhere/bin/run'
+name='vim-anywhere'
 
 [org/gnome/settings-daemon/plugins/xsettings]
 antialiasing='rgba'
