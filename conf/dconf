@@ -13,6 +13,9 @@ spell-checker-enabled=false
 separate-chat-windows=true
 show-groups=true
 
+[org/gnome/Contacts]
+did-initial-setup=true
+
 [org/gnome/GWeather]
 distance-unit='km'
 temperature-unit='centigrade'
@@ -131,8 +134,8 @@ window-size=(960, 600)
 target-currency=''
 show-zeroes=false
 source-currency=''
-show-thousands=false
-button-mode='basic'
+show-thousands=true
+button-mode='advanced'
 target-units='radian'
 word-size=64
 number-format='automatic'
@@ -141,12 +144,9 @@ base=10
 source-units='degree'
 accuracy=9
 
-[org/gnome/charmap/window-state]
-size=(1080, 592)
-
-[org/gnome/charmap]
-last-char=uint32 8580
-font=@ms 'Consolas 20'
+[org/gnome/anjuta]
+toolbar-visible=true
+remembered-plugins=''
 
 [org/gnome/gedit/preferences/editor]
 display-right-margin=true
@@ -178,25 +178,25 @@ bottom-panel-size=140
 side-panel-size=200
 side-panel-active-page=228660812
 
-[org/gnome/anjuta]
-toolbar-visible=true
-remembered-plugins=''
+[org/gnome/nautilus/window-state]
+geometry='855x550+0+0'
+maximized=false
 
-[org/gnome/file-roller/listing]
-sort-method='name'
-name-column-width=250
-sort-type='ascending'
-list-mode='as-folder'
-show-path=false
+[org/gnome/nautilus/desktop]
+home-icon-visible=false
+volumes-visible=true
+trash-icon-visible=false
 
-[org/gnome/file-roller/dialogs/extract]
-skip-newer=false
-recreate-folders=true
+[org/gnome/nautilus/list-view]
+default-visible-columns=['name', 'size', 'type', 'date_modified']
+default-column-order=['name', 'size', 'type', 'date_modified', 'date_accessed', 'owner', 'group', 'permissions', 'mime_type', 'where']
 
-[org/gnome/file-roller/ui]
-sidebar-width=200
-window-height=480
-window-width=600
+[org/gnome/charmap/window-state]
+size=(1080, 592)
+
+[org/gnome/charmap]
+last-char=uint32 8580
+font=@ms 'Consolas 20'
 
 [org/gnome/Music]
 window-position=[0, 25]
@@ -210,21 +210,11 @@ info-last-device='wakeups'
 info-page-number=3
 info-history-time=7200
 
-[org/gnome/gnome-screenshot]
-auto-save-directory='file:///home/jeremy/Pictures/Screenshots'
+[org/gnome/evince]
+document-directory=@ms nothing
 
-[org/gnome/nautilus/window-state]
-geometry='855x550+345+365'
-maximized=true
-
-[org/gnome/nautilus/desktop]
-home-icon-visible=false
-volumes-visible=true
-trash-icon-visible=false
-
-[org/gnome/nautilus/list-view]
-default-visible-columns=['name', 'size', 'type', 'date_modified']
-default-column-order=['name', 'size', 'type', 'date_modified', 'date_accessed', 'owner', 'group', 'permissions', 'mime_type', 'where']
+[org/gnome/evince/default]
+window-ratio=(3.1339869281045751, 1.2398989898989898)
 
 [org/gnome/desktop/interface]
 font-name='Arial 10'
@@ -239,7 +229,7 @@ gtk-theme='Adwaita'
 clock-show-date=true
 
 [org/gnome/desktop/notifications]
-application-children=['chromium', 'empathy', 'geary', 'synapse', 'gnome-do', 'gnome-music', 'dropbox', 'vlc', 'spotify', 'guake']
+application-children=['chromium', 'empathy', 'geary', 'synapse', 'gnome-do', 'gnome-music', 'dropbox', 'vlc', 'spotify', 'guake', 'steam', 'evolution']
 
 [org/gnome/desktop/notifications/application/empathy]
 application-id='empathy.desktop'
@@ -273,11 +263,17 @@ application-id='chromium.desktop'
 [org/gnome/desktop/notifications/application/guake]
 application-id='guake.desktop'
 
+[org/gnome/desktop/notifications/application/evolution]
+application-id='evolution.desktop'
+
 [org/gnome/desktop/notifications/application/gnome-music]
 application-id='gnome-music.desktop'
 
 [org/gnome/desktop/notifications/application/geary]
 application-id='geary.desktop'
+
+[org/gnome/desktop/notifications/application/steam]
+application-id='steam.desktop'
 
 [org/gnome/desktop/screensaver]
 picture-uri='file:////usr/share/gnome-control-center/pixmaps/noise-texture-light.png'
@@ -342,6 +338,22 @@ secondary-color='#000000000000'
 sources=@a(ss) []
 xkb-options=['terminate:ctrl_alt_bksp']
 
+[org/gnome/file-roller/listing]
+sort-method='name'
+name-column-width=250
+sort-type='ascending'
+list-mode='as-folder'
+show-path=false
+
+[org/gnome/file-roller/dialogs/extract]
+skip-newer=false
+recreate-folders=true
+
+[org/gnome/file-roller/ui]
+sidebar-width=200
+window-height=480
+window-width=600
+
 [org/gnome/bijiben]
 default-location='local'
 color='rgb(239,242,209)'
@@ -404,6 +416,9 @@ statusbar=false
 toolbar=false
 sidebar=false
 image-gallery=false
+
+[org/gnome/gnome-screenshot]
+auto-save-directory='file:///home/jeremy/Pictures/Screenshots'
 
 [org/gnome/terminal/legacy/keybindings]
 reset-and-clear='<Primary><Shift>k'
@@ -474,29 +489,66 @@ bold-color='rgb(255,255,255)'
 background-color='rgb(39,40,34)'
 scrollbar-policy='never'
 
-[org/gnome/evolution/bogofilter]
-utf8-for-spam-filter=true
+[org/gnome/evolution/shell/window]
+width=815
+maximized=true
+height=480
+x=0
+y=0
+
+[org/gnome/evolution/shell]
+folder-bar-width=219
+sidebar-visible=true
+default-component-id='calendar'
+buttons-visible=true
+attachment-view=0
+toolbar-visible=true
+statusbar-visible=true
+
+[org/gnome/evolution]
+default-address-book='1388342615.30118.5@jitte'
+version='3.10.3'
+
+[org/gnome/evolution/calendar]
+confirm-purge=true
+hpane-position=400
+work-day-sunday=false
+work-day-thursday=true
+last-notification-time=1388515800
+prefer-new-item=''
+work-day-saturday=false
+time-divisions=30
+work-day-tuesday=true
+week-start-day-name='monday'
+date-navigator-pane-position=150
+work-day-wednesday=true
+work-day-monday=true
+tag-vpane-position=0.0053248136315228968
+work-day-friday=true
 
 [org/gnome/evolution/spamassassin]
 local-only=true
 
 [org/gnome/evolution/mail]
+junk-default-plugin='Bogofilter'
+browser-close-on-reply-policy='ask'
+headers=['<?xml version="1.0"?>\n<header name="From" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="Reply-To" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="To" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="Cc" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="Bcc" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="Subject" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="Date" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="Newsgroups" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="Face" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="x-evolution-mailer"/>\n']
+reply-style-name='quoted'
 forward-style-name='attached'
 image-loading-policy='never'
-reply-style-name='quoted'
-browser-close-on-reply-policy='ask'
-junk-default-plugin='Bogofilter'
+show-headers=[('From', true), ('Reply-To', true), ('To', true), ('Cc', true), ('Bcc', true), ('Subject', true), ('Date', true), ('Newsgroups', true), ('Face', true), ('x-evolution-mailer', false)]
 
-[org/gnome/evolution/calendar]
-work-day-thursday=true
-work-day-sunday=false
-prefer-new-item=''
-work-day-saturday=false
-work-day-tuesday=true
-week-start-day-name='monday'
-work-day-wednesday=true
-work-day-monday=true
-work-day-friday=true
+[org/gnome/evolution/mail/composer-window]
+width=600
+maximized=false
+height=500
+
+[org/gnome/evolution/bogofilter]
+utf8-for-spam-filter=true
+
+[org/gnome/evolution/addressbook]
+completion-show-address=false
+completion-minimum-query-length=3
 
 [org/gnome/gnome-system-monitor]
 show-dependencies=false
@@ -533,7 +585,7 @@ upload-provider='Twitter'
 [org/gtk/settings/file-chooser]
 sort-column='name'
 sidebar-width=148
-window-position=(540, 124)
+window-position=(0, 0)
 show-size-column=true
 show-hidden=false
 window-size=(830, 622)
@@ -545,13 +597,14 @@ selected-color=(true, 0.6705882352941176, 0.094117647058823528, 0.32156862745098
 custom-colors=[(0.6705882352941176, 0.094117647058823528, 0.32156862745098042, 1.0), (0.24313725490196078, 0.23921568627450981, 0.19607843137254902, 1.0), (0.20784313725490197, 0.21176470588235294, 0.20000000000000001, 1.0), (0.22745098039215686, 0.22745098039215686, 0.22745098039215686, 1.0), (0.45882352941176469, 0.44313725490196076, 0.36862745098039218, 1.0), (0.28627450980392155, 0.28235294117647058, 0.24313725490196078, 1.0), (0.75127551020408156, 1.0, 0.25, 1.0)]
 
 [org/yorba/geary]
+window-height=707
+window-maximize=true
+window-width=1024
+compose-as-html=true
 folder-list-pane-position=294
 messages-pane-position=252
-window-width=1024
-window-height=707
 autoselect=false
-compose-as-html=true
-window-maximize=true
+ask-open-attachment=false
 
 [ca/desrt/dconf-editor]
 window-is-fullscreen=false
