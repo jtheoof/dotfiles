@@ -1,22 +1,18 @@
 #!/bin/sh
 
-# /home
-rsync -avzl $HOME/ /run/media/jeremy/heiannidan/ \
-    --delete                                     \
-    --delete-during                              \
-    --delete-excluded                            \
-    --exclude=.cache
-
-# /
-sudo rsync -avzl / /run/media/jeremy/heianshodan \
-    --delete                                     \
-    --delete-during                              \
-    --delete-excluded                            \
-    --exclude=/home                              \
-    --exclude=/proc                              \
-    --exclude=/run                               \
-    --exclude=/sys                               \
-    --exclude=/tmp                               \
+rsync -avl / /run/media/jeremy/backup/ \
+    --progress            \
+    --stats               \
+    --delete              \
+    --delete-during       \
+    --delete-excluded     \
+    --exclude=/proc       \
+    --exclude=/sys        \
+    --exclude=/dev        \
+    --exclude=/run        \
+    --exclude=/tmp        \
+    --exclude=/mnt        \
+    --exclude=.cache      \
     --exclude=cache
 
 # vim: tw=0 sts=4 sw=4 et
