@@ -25,8 +25,9 @@ pressure-unit='hpa'
 [org/gnome/settings-daemon/plugins/power]
 idle-dim=true
 sleep-inactive-battery-type='suspend'
-sleep-inactive-ac-timeout=3600
-sleep-inactive-ac-type='nothing'
+critical-battery-action='hibernate'
+sleep-inactive-ac-timeout=900
+sleep-inactive-ac-type='suspend'
 sleep-inactive-battery-timeout=900
 
 [org/gnome/settings-daemon/plugins/media-keys]
@@ -40,10 +41,10 @@ magnifier-zoom-in=''
 home='<Super>e'
 search='<Super>slash'
 magnifier=''
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/vim-anywhere/']
+custom-keybindings=['others', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
 
-[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/vim-anywhere]
-binding='<Primary><Alt>v'
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<CTRL><ALT>v'
 command='/home/jeremy/.vim-anywhere/bin/run'
 name='vim-anywhere'
 
@@ -54,8 +55,8 @@ hinting='full'
 [org/gnome/settings-daemon/peripherals/touchpad]
 motion-threshold=9
 natural-scroll=true
-motion-acceleration=1.0800000000000001
-disable-while-typing=true
+motion-acceleration=1.4165497896213184
+disable-while-typing=false
 tap-to-click=true
 touchpad-enabled=true
 
@@ -170,12 +171,12 @@ notebook-show-tabs-mode='always'
 side-panel-visible=false
 
 [org/gnome/gedit/plugins/filebrowser]
-virtual-root='file:///home/jeremy/.dotfiles/.local/bin'
+virtual-root='file:///home/jeremy/Dropbox/Temp/Interviews'
 tree-view=true
 root='file:///'
 
 [org/gnome/gedit/plugins]
-active-plugins=['zeitgeistplugin', 'docinfo', 'modelines', 'filebrowser', 'spell', 'time']
+active-plugins=['zeitgeistplugin', 'filebrowser', 'docinfo', 'modelines', 'spell', 'time']
 
 [org/gnome/gedit/state/window]
 size=(650, 500)
@@ -185,8 +186,8 @@ side-panel-size=200
 side-panel-active-page=228660812
 
 [org/gnome/nautilus/window-state]
-geometry='855x550+0+0'
-maximized=false
+geometry='855x550+501+137'
+maximized=true
 
 [org/gnome/nautilus/desktop]
 home-icon-visible=false
@@ -198,10 +199,10 @@ default-visible-columns=['name', 'size', 'type', 'date_modified']
 default-column-order=['name', 'size', 'type', 'date_modified', 'date_accessed', 'owner', 'group', 'permissions', 'mime_type', 'where']
 
 [org/gnome/charmap/window-state]
-size=(1080, 592)
+size=(1080, 607)
 
 [org/gnome/charmap]
-last-char=uint32 8580
+last-char=uint32 42838
 font=@ms 'Consolas 20'
 
 [org/gnome/Music]
@@ -220,12 +221,13 @@ info-history-time=7200
 document-directory=@ms nothing
 
 [org/gnome/evince/default]
-window-ratio=(3.1339869281045751, 1.2398989898989898)
+window-ratio=(1.9747899159663866, 1.2399049881235154)
 
 [org/gnome/desktop/interface]
 font-name='Arial 10'
 document-font-name='Arial 10'
 toolkit-accessibility=false
+gtk-im-module='gtk-im-context-simple'
 clock-show-seconds=false
 cursor-blink-time=793
 icon-theme='Moka'
@@ -235,7 +237,7 @@ gtk-theme='Adwaita'
 clock-show-date=true
 
 [org/gnome/desktop/notifications]
-application-children=['chromium', 'empathy', 'geary', 'synapse', 'gnome-do', 'gnome-music', 'dropbox', 'vlc', 'spotify', 'guake', 'steam', 'evolution']
+application-children=['chromium', 'empathy', 'geary', 'synapse', 'gnome-do', 'gnome-music', 'dropbox', 'vlc', 'spotify', 'guake', 'steam', 'evolution', 'gnome-network-panel']
 
 [org/gnome/desktop/notifications/application/empathy]
 application-id='empathy.desktop'
@@ -289,7 +291,7 @@ picture-options='wallpaper'
 secondary-color='#425265'
 
 [org/gnome/desktop/session]
-idle-delay=uint32 180
+idle-delay=uint32 120
 
 [org/gnome/desktop/wm/preferences]
 theme='Adwaita'
@@ -341,7 +343,7 @@ picture-options='zoom'
 secondary-color='#000000000000'
 
 [org/gnome/desktop/input-sources]
-sources=@a(ss) []
+sources=[('xkb', 'us+altgr-intl')]
 xkb-options=['terminate:ctrl_alt_bksp']
 
 [org/gnome/file-roller/listing]
@@ -369,11 +371,14 @@ font='Cantarell 14'
 toggle-overview=['<Super>w']
 
 [org/gnome/shell]
-enabled-extensions=['places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'mediaplayer@patapon.info', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'weather-extension@xeked.com', 'maximus@mathematical.coffee.gmail.com']
-command-history=['r', 'gnome-session-properties', 'r', 'gnome-session-', 'r']
+enabled-extensions=['places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'mediaplayer@patapon.info', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'weather-extension@xeked.com', 'maximus@mathematical.coffee.gmail.com', 'alt-tab-workspace@kwalo.net', 'putWindow@clemens.lab21.org']
+command-history=['r', 'gnome-session-properties', 'r', 'gnome-session-', 'r', 'gnome-system-printer', 'system-config-printer', 'r', 'firefox']
 remember-mount-password=false
 app-picker-view=uint32 1
 favorite-apps=['nautilus.desktop', 'gnome-terminal.desktop', 'chromium.desktop', 'gvim.desktop', 'geary.desktop', 'empathy.desktop', 'spotify.desktop', 'gnome-control-center.desktop', 'gnome-tweak-tool.desktop']
+
+[org/gnome/shell/app-switcher]
+current-workspace-only=true
 
 [org/gnome/shell/overrides]
 dynamic-workspaces=false
@@ -394,7 +399,7 @@ show-delay=0.0
 
 [org/gnome/shell/extensions/weather]
 actual-city=0
-city=[<(uint32 1, <('Charles de Gaulle International Airport', 'LFPG', false, @m(dd) (0.85550222750365124, 0.044215001899425503), @m(dd) (0.8528842336256599, 0.040724343395436846))>)>, <(uint32 1, <('Pierre Elliot Trudeau International Airport', 'CYUL', false, @m(dd) (0.79354303905785273, -1.2871803233458181), @m(dd) (0.79354303905785273, -1.2871803233458181))>)>]
+city=[<(uint32 1, <('Charles de Gaulle International Airport', 'LFPG', false, @m(dd) (0.85550222750365124, 0.044215001899425503), @m(dd) (0.8528842336256599, 0.040724343395436846))>)>, <(uint32 1, <('Pierre Elliot Trudeau International Airport', 'CYUL', false, @m(dd) (0.79354303905785273, -1.2871803233458181), @m(dd) (0.79354303905785273, -1.2871803233458181))>)>, <(uint32 1, <('Vancouver', 'CYVR', true, @m(dd) (0.85841109795478021, -2.1496638678574467), @m(dd) (0.85957465660720722, -2.1490820798045869))>)>, <(uint32 1, <('Toronto Pearson International', 'CYYZ', false, @m(dd) (0.76212711252195475, -1.3898638551870535), @m(dd) (0.76212711252195475, -1.3860823201099277))>)>]
 
 [org/gnome/shell/extensions/appindicator-support]
 default='message-tray'
@@ -520,7 +525,7 @@ confirm-purge=true
 hpane-position=400
 work-day-sunday=false
 work-day-thursday=true
-last-notification-time=1388515800
+last-notification-time=1389379800
 prefer-new-item=''
 work-day-saturday=false
 time-divisions=30
@@ -568,13 +573,15 @@ col-6-visible=true
 col-6-width=0
 
 [org/gnome/gnome-system-monitor/proctree]
-col-0-width=542
-columns-order=@ai []
-sort-order=0
-col-15-visible=true
-col-0-visible=true
-col-15-width=92
 sort-col=8
+columns-order=@ai []
+col-0-visible=true
+col-0-width=542
+col-15-visible=true
+col-18-visible=true
+sort-order=0
+col-15-width=92
+col-18-width=196
 
 [org/gnome/maps]
 last-location-description='Puteaux, Ile-de-France, France'
@@ -591,7 +598,7 @@ upload-provider='Twitter'
 [org/gtk/settings/file-chooser]
 sort-column='name'
 sidebar-width=148
-window-position=(0, 0)
+window-position=(173, 246)
 show-size-column=true
 show-hidden=false
 window-size=(830, 622)
@@ -603,9 +610,9 @@ selected-color=(true, 0.6705882352941176, 0.094117647058823528, 0.32156862745098
 custom-colors=[(0.6705882352941176, 0.094117647058823528, 0.32156862745098042, 1.0), (0.24313725490196078, 0.23921568627450981, 0.19607843137254902, 1.0), (0.20784313725490197, 0.21176470588235294, 0.20000000000000001, 1.0), (0.22745098039215686, 0.22745098039215686, 0.22745098039215686, 1.0), (0.45882352941176469, 0.44313725490196076, 0.36862745098039218, 1.0), (0.28627450980392155, 0.28235294117647058, 0.24313725490196078, 1.0), (0.75127551020408156, 1.0, 0.25, 1.0)]
 
 [org/yorba/geary]
-window-height=707
+window-height=1045
 window-maximize=true
-window-width=1024
+window-width=959
 compose-as-html=true
 folder-list-pane-position=294
 messages-pane-position=252
