@@ -21,4 +21,8 @@ export EDITOR=vim
 
 # Add custom directories to $PATH
 typeset -U path
-path=(~/bin $path)
+path=(
+    ~/bin
+    $(ruby -e 'puts Gem.user_dir')/bin
+    $path
+)
