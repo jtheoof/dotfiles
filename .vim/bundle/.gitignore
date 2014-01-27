@@ -6,6 +6,7 @@ supertab/
 syntastic/
 terminalkeys.vim/
 ultisnips/
+vim-coffee-script/
 vim-colors-solarized/
 vim-commentary/
 vim-fugitive/
