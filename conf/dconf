@@ -221,7 +221,7 @@ info-history-time=7200
 document-directory=@ms nothing
 
 [org/gnome/evince/default]
-window-ratio=(1.9747899159663866, 1.2399049881235154)
+window-ratio=(4.5, 1.695736434108527)
 
 [org/gnome/desktop/interface]
 font-name='Arial 10'
@@ -237,7 +237,7 @@ gtk-theme='Adwaita'
 clock-show-date=true
 
 [org/gnome/desktop/notifications]
-application-children=['chromium', 'empathy', 'geary', 'synapse', 'gnome-do', 'gnome-music', 'dropbox', 'vlc', 'spotify', 'guake', 'steam', 'evolution', 'gnome-network-panel']
+application-children=['chromium', 'empathy', 'geary', 'synapse', 'gnome-do', 'gnome-music', 'dropbox', 'vlc', 'spotify', 'guake', 'steam', 'evolution', 'gnome-network-panel', 'transmission-gtk']
 
 [org/gnome/desktop/notifications/application/empathy]
 application-id='empathy.desktop'
@@ -256,6 +256,9 @@ details-in-lock-screen=false
 
 [org/gnome/desktop/notifications/application/vlc]
 application-id='vlc.desktop'
+
+[org/gnome/desktop/notifications/application/transmission-gtk]
+application-id='transmission-gtk.desktop'
 
 [org/gnome/desktop/notifications/application/gnome-network-panel]
 application-id='gnome-network-panel.desktop'
@@ -371,7 +374,7 @@ font='Cantarell 14'
 toggle-overview=['<Super>w']
 
 [org/gnome/shell]
-enabled-extensions=['places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'mediaplayer@patapon.info', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'weather-extension@xeked.com', 'maximus@mathematical.coffee.gmail.com', 'alt-tab-workspace@kwalo.net', 'putWindow@clemens.lab21.org']
+enabled-extensions=['places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'mediaplayer@patapon.info', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'weather-extension@xeked.com', 'maximus@mathematical.coffee.gmail.com', 'alt-tab-workspace@kwalo.net', 'putWindow@clemens.lab21.org', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com']
 command-history=['r', 'gnome-session-properties', 'r', 'gnome-session-', 'r', 'gnome-system-printer', 'system-config-printer', 'r', 'firefox']
 remember-mount-password=false
 app-picker-view=uint32 1
@@ -398,8 +401,8 @@ hide-delay=0.050000000000000003
 show-delay=0.0
 
 [org/gnome/shell/extensions/weather]
-actual-city=0
-city=[<(uint32 1, <('Charles de Gaulle International Airport', 'LFPG', false, @m(dd) (0.85550222750365124, 0.044215001899425503), @m(dd) (0.8528842336256599, 0.040724343395436846))>)>, <(uint32 1, <('Pierre Elliot Trudeau International Airport', 'CYUL', false, @m(dd) (0.79354303905785273, -1.2871803233458181), @m(dd) (0.79354303905785273, -1.2871803233458181))>)>, <(uint32 1, <('Vancouver', 'CYVR', true, @m(dd) (0.85841109795478021, -2.1496638678574467), @m(dd) (0.85957465660720722, -2.1490820798045869))>)>, <(uint32 1, <('Toronto Pearson International', 'CYYZ', false, @m(dd) (0.76212711252195475, -1.3898638551870535), @m(dd) (0.76212711252195475, -1.3860823201099277))>)>]
+actual-city=4
+city=[<(uint32 1, <('Charles de Gaulle International Airport', 'LFPG', false, @m(dd) (0.85550222750365124, 0.044215001899425503), @m(dd) (0.8528842336256599, 0.040724343395436846))>)>, <(uint32 1, <('Pierre Elliot Trudeau International Airport', 'CYUL', false, @m(dd) (0.79354303905785273, -1.2871803233458181), @m(dd) (0.79354303905785273, -1.2871803233458181))>)>, <(uint32 1, <('Vancouver', 'CYVR', true, @m(dd) (0.85841109795478021, -2.1496638678574467), @m(dd) (0.85957465660720722, -2.1490820798045869))>)>, <(uint32 1, <('Toronto Pearson International', 'CYYZ', false, @m(dd) (0.76212711252195475, -1.3898638551870535), @m(dd) (0.76212711252195475, -1.3860823201099277))>)>, <(uint32 1, <('Ottawa', 'CYOW', true, @m(dd) (0.79092504517986117, -1.3206324731601402), @m(dd) (0.7926703744318554, -1.3212142437597076))>)>]
 
 [org/gnome/shell/extensions/appindicator-support]
 default='message-tray'
@@ -525,7 +528,7 @@ confirm-purge=true
 hpane-position=400
 work-day-sunday=false
 work-day-thursday=true
-last-notification-time=1389379800
+last-notification-time=1390202400
 prefer-new-item=''
 work-day-saturday=false
 time-divisions=30
@@ -598,7 +601,7 @@ upload-provider='Twitter'
 [org/gtk/settings/file-chooser]
 sort-column='name'
 sidebar-width=148
-window-position=(173, 246)
+window-position=(661, 157)
 show-size-column=true
 show-hidden=false
 window-size=(830, 622)
