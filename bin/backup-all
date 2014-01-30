@@ -1,6 +1,7 @@
 #!/bin/sh
 
 rsync -avl / /run/media/jeremy/jitte/ \
+    --quiet                           \
     --progress                        \
     --stats                           \
     --delete                          \
