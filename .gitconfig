@@ -26,7 +26,8 @@
 	count = !git log --pretty=format:'' | wc -l
 
 	df  = diff
-	dt  = difftool
+	dfs = diff --staged
+	dft = difftool
 	dtg = difftool -t gvimdiff
 	dfc = diff --cached
 	dfw = diff --color-words
