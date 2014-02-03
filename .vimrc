@@ -97,7 +97,7 @@ set noruler          " do not show ruler
 " history and viminfo are two separate settings.
 " Putting the same value only makes it more consistent.
 set history=5000
-set viminfo='5000,:5000,@5000,/5000,h,%
+set viminfo='5000,:5000,@5000,/5000,h
 
 "set whichwrap=<,>,h,l,[,]         " move freely between lines (wrap)
 set wildchar=<Tab> wildmenu wildmode=full
