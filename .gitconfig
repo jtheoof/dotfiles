@@ -42,19 +42,22 @@
 	logp = log --pretty=oneline --decorate=full -20
 	ll   = log --pretty="format:%h %cn %s" --decorate=full -20
 
-	ls  = ls-files
+	ls  = status
 
 	p   = pull
 
 	rb  = rebase
 	rba = rebase --abort
 	rbc = rebase --continue
+	rbs = rebase --skip
 	rbi = rebase -i
+
+	rv = revert
 
 	mt  = mergetool -t vimdiff
 	mtg = mergetool -t gvimdiff
 
-	st  = status
+	st  = status -sb
 	sta = status --ignored
 
 	su  = submodule update
@@ -120,3 +123,4 @@
 	email = jeremy.attali@gmail.com
 [grep]
 	extendedRegexp = true
+# vim: noet ts=4
