@@ -1,10 +1,3 @@
-# vim:set sw=4 ts=4 et:
-# Name:     Jeremy Attali's .tigrc
-# Author:   Jeremy Attali
-# URL:
-# License:  MIT license (see .vimrc end of file)
-# Created:  In Paris
-
 # Variables {{{
 
 set horizontal-scroll = 33%
@@ -34,6 +27,7 @@ color tree-dir cyan default
 
 # Generic {{{
 
+bind generic r refresh
 bind generic b view-branch
 bind generic s view-status
 bind generic F !git fetch
@@ -85,9 +79,8 @@ bind branch N !@git branch %(prompt) # Create a new branch
 # }}}
 # Status {{{
 
-bind status A !@git add %(file)        # Add
 bind status R !@git reset HEAD %(file) # Reset
-bind status M !@git commit --amend    # Amend
+bind status A !@git commit --amend     # Amend
 bind status N !@git add -N %(file)     # Intent to add
 
 # }}}
@@ -99,3 +92,4 @@ bind stage C !@git commit # Commit staging changes
 # }}}
 
 # }}}
+# vim:set sw=4 ts=4 et:
