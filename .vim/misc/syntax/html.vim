@@ -45,7 +45,7 @@ syn keyword htmlArg contained about typeof property resource content datatype re
 " HTML5 {{{
 
 " HTML 5 tags
-syn keyword htmlTagName contained article aside audio canvas command
+syn keyword htmlTagName contained article aside audio canvas command main
 syn keyword htmlTagName contained datalist details dialog embed figcaption figure footer
 syn keyword htmlTagName contained header hgroup keygen mark meter menu nav output
 syn keyword htmlTagName contained progress time ruby rt rp section source summary time track video wbr
