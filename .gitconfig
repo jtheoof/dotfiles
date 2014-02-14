@@ -116,7 +116,7 @@
 	cmd = sublime -w $MERGED
 	trustExitCode = false
 [merge]
-	tool = gvimdiff
+	tool = vimdiff
 [push]
 	default = tracking
 [user]
