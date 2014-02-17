@@ -63,6 +63,7 @@
 
 	su  = submodule update
 	sui = submodule update --init
+	sur = submodule update --recursive
 
 	undo    = reset HEAD^
 	unstash = stash apply
