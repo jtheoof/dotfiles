@@ -485,6 +485,7 @@ aug END
 
 aug misc
     au!
+    au BufNewFile,BufRead *.adoc setf asciidoc
     au BufNewFile,BufRead *.h    setf c
     au BufNewFile,BufRead *.blk  setf c
     au BufNewFile,BufRead *.blkk setf cpp
