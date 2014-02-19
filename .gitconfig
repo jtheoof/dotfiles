@@ -19,6 +19,7 @@
 	cv  = commit --verbose
 
 	ch  = cherry-pick
+	cha = cherry-pick --abort
 
 	co  = checkout
 	cop = checkout -p
