@@ -13,6 +13,7 @@
 # Local Order: .zshenv, .zprofile, .zshrc, .zlogin
 
 export EDITOR=vim
+export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
 
 # This won't work because it's already set by lib/misc.zsh
 # So I have to do it directly in ~/.zshrc which is not very clean.
