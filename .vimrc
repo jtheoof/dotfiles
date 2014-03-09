@@ -615,16 +615,16 @@ augroup END
 " 2}}}
 " CTRL-P {{{2
 
-let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_by_filename = 1
 let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_max_files = 0
+let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_match_window_bottom = 1
+let g:ctrlp_max_files = 0
 let g:ctrlp_regexp = 0
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_switch_buffer = 'H' " Jump to opened window with <c-x>
 let g:ctrlp_use_caching = 1
 let g:ctrlp_working_path_mode = ''
-let g:ctrlp_switch_buffer = 'H' " Jump to opened window with <c-x>
 
 let g:ctrlp_prompt_mappings = {
     \ 'PrtDeleteWord()':      ['<c-w>', '<c-bs>'],
