@@ -1,0 +1,40 @@
+# ~/.tmuxinator/home.yml
+
+name: root
+root: ~/
+
+# Optional tmux socket
+# socket_name: root
+
+# Runs before everything. Use it to start daemons etc.
+# pre: su -p
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+windows:
+  - watch:
+      layout: tiled
+      panes:
+        - i7z
+        - powertop
+        - journalctl -amfb
+        - dmesg -L -w
+        - acpi_listen
+        - udevadm monitor --kernel --udev --property
+  - shell:
+      layout: even-horizontal
+      panes:
+        - cd /proc/acpi/
+        - cd /etc/udev
+        - cd /root
+  - editor:
+      layout: even-horizontal
+      panes:
+        - vim
