@@ -26,7 +26,7 @@ windows:
         - powertop
         - journalctl -amfb
         - dmesg -L -w
-        - acpi_listen
+        - watch /proc/acpi/wakeup
         - udevadm monitor --kernel --udev --property
   - shell:
       layout: even-horizontal
