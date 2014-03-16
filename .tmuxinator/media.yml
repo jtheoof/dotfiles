@@ -1,0 +1,38 @@
+# ~/.tmuxinator/home.yml
+
+name: media
+root: ~/
+
+# Optional tmux socket
+# socket_name: root
+
+# Runs before everything. Use it to start daemons etc.
+# pre: su -p
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+windows:
+  - logs:
+      layout: tiled
+      panes:
+        - tail -F /var/log/sabnzbd/sabnzbd.log
+        - tail -F /var/log/transmission.log
+        - tail -F /var/log/couchpotato/*.log
+        - tail -F /var/log/sickbeard.log
+  - download:
+      layout: even-horizontal
+      panes:
+        - cd /mnt/download
+        - cd /mnt/download/library/videos/Movies
+        - cd /mnt/download/library/videos/TV
+  - media:
+      layout: even-horizontal
+      panes:
+        - cd /run/media/jeremy
