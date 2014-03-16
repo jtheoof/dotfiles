@@ -1,18 +1,18 @@
 #!/bin/sh
 
-sudo rsync -avl / /run/media/jeremy/jitte/ \
-    --quiet                                \
-    --progress                             \
-    --stats                                \
-    --delete                               \
-    --delete-during                        \
-    --delete-excluded                      \
-    --exclude=/proc                        \
-    --exclude=/sys                         \
-    --exclude=/dev                         \
-    --exclude=/run                         \
-    --exclude=/tmp                         \
-    --exclude=/mnt                         \
+sudo rsync -avl / /run/media/$USER/$HOSTNAME/  \
+    --quiet                                    \
+    --progress                                 \
+    --stats                                    \
+    --delete                                   \
+    --delete-during                            \
+    --delete-excluded                          \
+    --exclude=/proc                            \
+    --exclude=/sys                             \
+    --exclude=/dev                             \
+    --exclude=/run                             \
+    --exclude=/tmp                             \
+    --exclude=/mnt                             \
     --exclude=.cache
 
 # vim: tw=0 sts=4 sw=4 et
