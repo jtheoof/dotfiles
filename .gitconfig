@@ -24,6 +24,8 @@
 	co  = checkout
 	cop = checkout -p
 
+	cpf = !git show $1 --pretty=format: --name-only | xargs | xsel -ib
+
 	count = !git log --pretty=format:'' | wc -l
 
 	df  = diff
