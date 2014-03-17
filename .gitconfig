@@ -130,4 +130,5 @@
 	email = jeremy.attali@gmail.com
 [grep]
 	extendedRegexp = true
-# vim: noet ts=4
+[gc]
+	auto = 0
