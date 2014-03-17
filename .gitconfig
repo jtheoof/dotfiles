@@ -1,3 +1,5 @@
+# vim: noet ts=4
+
 [alias]
 	review-web   = !git-push-for --to frediani --to lopez --to mougnot --to dezitter --to nottret --to mariat --to boulle
 	review-tools = !git-push-for --to squirawski --to bruneau
