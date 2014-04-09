@@ -53,7 +53,7 @@ syntax on                    " enable syntax
 runtime macros/matchit.vim   " smarter use of '%'
 
 " 1}}}
-" Main options {{{1
+" Options {{{1
 
 " Text editing
 set encoding=utf8                       " utf-8 encoding
