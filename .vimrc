@@ -1,9 +1,4 @@
-" Name:     Jeremy Attali's .vimrc
-" Author:   Jeremy Attali
-" URL:
-" Created:  Paris
-" Comment:  Big thanks to amix.dk: http://amix.dk/vim/vimrc.html
-"
+" vim:set sts=4 sw=4 et:
 
 set nocompatible " be IMproved
 
@@ -628,5 +623,3 @@ if filereadable(vimrc_work)
 endif
 
 " }}}
-
-" vim:set sts=4 sw=4 et:
