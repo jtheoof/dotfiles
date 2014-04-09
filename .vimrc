@@ -50,6 +50,10 @@ runtime macros/matchit.vim   " smarter use of '%'
 " 1}}}
 " Options {{{1
 
+" Theme
+set background=light
+colorscheme monokai
+
 " Text editing
 set encoding=utf8                       " utf-8 encoding
 set formatoptions=tqrn1j                " see help
@@ -203,25 +207,6 @@ function! StripTrailingWhitespaces()
     %s/\s\+$//e
     call cursor(l, c)
 endfunction
-
-" 1}}}
-" GUI {{{1
-
-if has("gui_running")
-    if has("gui_gtk2")
-        set guifont=Consolas\ 10
-    elseif has("gui_win32")
-        set guifont=Consolas:h10
-    endif
-
-    "set guioptions-=m               " remove menu bar
-    "set guioptions-=T               " remove toolbar
-    "set guioptions-=r               " remove right-hand scroll bar
-    set guioptions=                  " turns off every option
-endif
-
-set background=light
-colorscheme monokai
 
 " 1}}}
 " Mappings {{{1
