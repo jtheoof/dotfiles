@@ -265,6 +265,17 @@ nnoremap <Leader>so :so %<CR>
 nnoremap <Leader>sc :so $HOME/.vim/misc/colors/monokai.vim<CR>
 nnoremap <Leader>sv :so $MYVIMRC<CR>
 
+" Use :mkspell! ~/.vim/spell/en.utf-8.add to regenerate spelling binary files
+
+" Pressing ,ss will toggle and untoggle spell checking
+map <Leader>ss :setlocal spell!<CR>
+
+" Shortcuts using <Leader>
+map <Leader>sn ]s
+map <Leader>sp [s
+map <Leader>sa zg
+map <Leader>s? z=
+
 " Splitting windows the right way
 " Thanks to: http://goo.gl/R73uk
 
@@ -484,20 +495,6 @@ autocmd BufWritePre * :call StripTrailingWhitespaces()
 
 " Save clipboard when vim exits
 "au VimLeave * call system("xsel -ib", getreg('+'))
-
-" 1}}}
-" Spell checking {{{1
-
-" Use :mkspell! ~/.vim/spell/en.utf-8.add to regenerate spelling binary files
-
-" Pressing ,ss will toggle and untoggle spell checking
-map <Leader>ss :setlocal spell!<CR>
-
-" Shortcuts using <Leader>
-map <Leader>sn ]s
-map <Leader>sp [s
-map <Leader>sa zg
-map <Leader>s? z=
 
 " 1}}}
 " Plugins {{{1
