@@ -105,6 +105,7 @@ set wildcharm=<C-Z>
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 set wildignore+=*/cache/*,*/undodir/*
 set wildignore+=*/.build*/*,*/build/*,*/.deps/*
+set wildignore+=*/*.compressed/*
 set wildignore+=*.pch,*.d,*.o,*.Po
 set wildmenu
 set wildmode=longest,full
