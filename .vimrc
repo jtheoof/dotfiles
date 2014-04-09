@@ -209,18 +209,6 @@ function! StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-function! GitGrep(...)
-    let save = &grepprg
-    set grepprg=git\ grep\ -n\ $*
-    let s = 'grep'
-    for i in a:000
-        let s = s . ' ' . i
-    endfor
-    exe s
-    let &grepprg = save
-endfunction
-command! -nargs=? GG call GitGrep(<f-args>)
-
 " 1}}}
 " GUI {{{1
 
