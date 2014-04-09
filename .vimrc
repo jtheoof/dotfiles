@@ -12,28 +12,41 @@ call vundle#rc()
 " XXX required!
 Bundle 'gmarik/vundle'
 
-" Github
-Bundle 'altercation/vim-colors-solarized'
+" Enhancements {{{
+
 Bundle 'ervandew/supertab'
-Bundle 'groenewege/vim-less'
 Bundle 'jlanzarotta/bufexplorer'
 Bundle 'justinmk/vim-gtfo'
-Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
-Bundle 'mattn/zencoding-vim'
-Bundle 'nacitar/terminalkeys.vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'scrooloose/syntastic'
-Bundle 'SirVer/ultisnips'
 Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-vinegar'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-session'
+
+" }}}
+" Programming {{{
+
+Bundle 'groenewege/vim-less'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'mattn/zencoding-vim'
+Bundle 'pangloss/vim-javascript'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+
+" }}}
+" Themes {{{
+
+Bundle 'altercation/vim-colors-solarized'
+
+" }}}
+" Misc {{{
+
+Bundle 'SirVer/ultisnips'
+Bundle 'nacitar/terminalkeys.vim'
+
+" }}}
 
 " Bypass Vundle for custom plugins.
 " See: https://github.com/gmarik/vundle/issues/67
