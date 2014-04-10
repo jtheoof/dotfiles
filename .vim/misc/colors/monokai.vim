@@ -1,27 +1,21 @@
-" Vim color file
-" Maintainer:  Jeremy Attali
-" Last Change: 2012 Dec 25
-" Version:     0.2.0
-" Author:      Damien Gombault <desintegr@gmail.com>
-" Maintainer:  Jeremy Attali <jeremy.attali@gmail.com>
-" Info:        This colorscheme was greatly based on monokai.
+" vim:set sts=4 sw=4 et:
 
-" Colorscheme initialization {{{
+" Initalization {{{
 
 hi clear
 if exists("syntax_on")
-  syntax reset
+    syntax reset
 endif
 let colors_name = "monokai"
 set background=dark
 
 " }}}
-" GUI & CSApprox hexadecimal palettes"{{{
+" Palette {{{
 "
 " Set both gui and terminal color values in separate conditional statements
 " Due to possibility that CSApprox is running (though I suppose we could just
 " leave the hex values out entirely in that case and include only cterm colors)
-" We also check to see if user has set solarized (force use of the
+" We also check to see if user has set monokai (force use of the
 " neutral gray monotone palette component)
 if (has("gui_running"))
     let s:vmode       = "gui"
@@ -70,21 +64,18 @@ else
     let s:front       = "7"
 endif
 "}}}
-" Formatting options and null values for passthrough effect {{{
+" Formatting {{{
 
-    let s:none            = "NONE"
-    let s:t_none          = "NONE"
-    let s:n               = "NONE"
-    let s:c               = ",undercurl"
-    let s:r               = ",reverse"
-    let s:s               = ",standout"
-    let s:ou              = ""
-    let s:ob              = ""
+let s:none            = "NONE"
+let s:t_none          = "NONE"
+let s:n               = "NONE"
+let s:c               = ",undercurl"
+let s:r               = ",reverse"
+let s:s               = ",standout"
+let s:ou              = ""
+let s:ob              = ""
 
-" }}}
-" Overrides dependent on user specified values and environment {{{
-
-if (&t_Co == 8)
+if (&t_Co == 8 )
     let s:b           = ""
     let s:bb          = ",bold"
 else
@@ -92,14 +83,11 @@ else
     let s:bb          = ""
 endif
 
-" Underline
-let s:u = ""
-
-" Italic
-let s:i = ""
+let s:u           = ",underline"
+let s:i           = ",italic"
 
 " }}}
-" Highlighting primitives {{{
+" Primitives {{{
 
 exe "let s:bg_none      = ' ".s:vmode."bg=".s:none      ."'"
 exe "let s:bg_red       = ' ".s:vmode."bg=".s:red       ."'"
@@ -182,7 +170,7 @@ else
 endif
 
 " }}}
-" Basic group colors {{{
+" Colors {{{
 
 exe "hi! Red"       .s:fmt_none    .s:fg_red        .s:bg_none
 exe "hi! Green"     .s:fmt_none    .s:fg_green      .s:bg_none
@@ -197,7 +185,7 @@ exe "hi! White"     .s:fmt_none    .s:fg_white      .s:bg_none
 exe "hi! Black"     .s:fmt_none    .s:fg_black      .s:bg_none
 
 " }}}
-" Basic highlighting {{{
+" Basic {{{
 
 " Note that link syntax to avoid duplicate configuration doesn't work with the
 " exe compiled formats.
@@ -284,51 +272,53 @@ exe "hi! Todo"           .s:fmt_none   .s:fg_white     .s:bg_orange
 "                        keywords TODO FIXME and XXX
 
 " }}}
-" Extended highlighting {{{
+" Advanced {{{
 
-exe "hi ColorColumn"     .s:fmt_none  .s:fg_none    .s:bg_black
-exe "hi Cursor"          .s:fmt_none  .s:fg_black   .s:bg_front
-exe "hi CursorLine"      .s:fmt_none  .s:fg_front   .s:bg_black
-exe "hi CursorLineNr"    .s:fmt_none  .s:fg_white   .s:bg_black
-exe "hi DiffAdd"         .s:fmt_none  .s:fg_black   .s:bg_green
-exe "hi DiffAdded"       .s:fmt_none  .s:fg_green   .s:bg_none
-exe "hi DiffChange"      .s:fmt_none  .s:fg_black   .s:bg_yellow
-exe "hi DiffDelete"      .s:fmt_none  .s:fg_black   .s:bg_magenta
-exe "hi DiffRemoved"     .s:fmt_none  .s:fg_red     .s:bg_none
-exe "hi DiffText"        .s:fmt_none  .s:fg_black   .s:bg_yellow
-exe "hi Directory"       .s:fmt_none  .s:fg_cyan    .s:bg_none
-exe "hi ErrorMsg"        .s:fmt_none  .s:fg_magenta .s:bg_none
-exe "hi FoldColumn"      .s:fmt_none  .s:fg_grey    .s:bg_black
-exe "hi Folded"          .s:fmt_none  .s:fg_grey    .s:bg_none
-exe "hi IncSearch"       .s:fmt_none  .s:fg_black   .s:bg_orange
-exe "hi LineNr"          .s:fmt_none  .s:fg_grey    .s:bg_none
-exe "hi MatchParen"      .s:fmt_bold  .s:fg_front   .s:bg_black
-exe "hi ModeMsg"         .s:fmt_bold  .s:fg_none    .s:bg_none
-exe "hi MoreMsg"         .s:fmt_none  .s:fg_cyan    .s:bg_none
-exe "hi NonText"         .s:fmt_none  .s:fg_black   .s:bg_none
-exe "hi Pmenu"           .s:fmt_none  .s:fg_front   .s:bg_black
-exe "hi PmenuSbar"       .s:fmt_none  .s:fg_none    .s:bg_back
-exe "hi PmenuSel"        .s:fmt_none  .s:fg_black   .s:bg_yellow
-exe "hi PmenuThumb"      .s:fmt_none  .s:fg_front   .s:bg_none
-exe "hi Question"        .s:fmt_none  .s:fg_magenta .s:bg_none
-exe "hi Search"          .s:fmt_none  .s:fg_black   .s:bg_yellow
-exe "hi SignColumn"      .s:fmt_none  .s:fg_white   .s:bg_none
-exe "hi SpecialKey"      .s:fmt_none  .s:fg_black   .s:bg_none
-exe "hi SpellBad"        .s:fmt_curl  .s:fg_none    .s:bg_none    .s:sp_magenta
-exe "hi SpellCap"        .s:fmt_curl  .s:fg_none    .s:bg_none    .s:sp_cyan
-exe "hi SpellRare"       .s:fmt_curl  .s:fg_none    .s:bg_none    .s:sp_purple
-exe "hi StatusLine"      .s:fmt_none  .s:fg_white   .s:bg_black
-exe "hi StatusLineNC"    .s:fmt_none  .s:fg_grey    .s:bg_black
-exe "hi TabLine"         .s:fmt_none  .s:fg_grey    .s:bg_black
-exe "hi TabLineFill"     .s:fmt_none  .s:fg_none    .s:bg_black
-exe "hi TabLineSel"      .s:fmt_none  .s:fg_none    .s:bg_black
-exe "hi Title"           .s:fmt_none  .s:fg_magenta .s:bg_none
-exe "hi VertSplit"       .s:fmt_none  .s:fg_black   .s:bg_none
-exe "hi Visual"          .s:fmt_none  .s:fg_none    .s:bg_black
-exe "hi WarningMsg"      .s:fmt_none  .s:fg_magenta .s:bg_none
+exe "hi! ColorColumn"        .s:fmt_none  .s:fg_none    .s:bg_black
+exe "hi! Cursor"             .s:fmt_none  .s:fg_black   .s:bg_front
+exe "hi! CursorLine"         .s:fmt_none  .s:fg_front   .s:bg_black
+exe "hi! CursorLineNr"       .s:fmt_none  .s:fg_white   .s:bg_black
+exe "hi! DiffAdd"            .s:fmt_none  .s:fg_black   .s:bg_green
+exe "hi! DiffAdded"          .s:fmt_none  .s:fg_green   .s:bg_none
+exe "hi! DiffChange"         .s:fmt_none  .s:fg_black   .s:bg_yellow
+exe "hi! DiffDelete"         .s:fmt_none  .s:fg_black   .s:bg_magenta
+exe "hi! DiffRemoved"        .s:fmt_none  .s:fg_red     .s:bg_none
+exe "hi! DiffText"           .s:fmt_none  .s:fg_black   .s:bg_yellow
+exe "hi! Directory"          .s:fmt_none  .s:fg_cyan    .s:bg_none
+exe "hi! ErrorMsg"           .s:fmt_none  .s:fg_magenta .s:bg_none
+exe "hi! FoldColumn"         .s:fmt_none  .s:fg_grey    .s:bg_black
+exe "hi! Folded"             .s:fmt_none  .s:fg_grey    .s:bg_none
+exe "hi! helpHyperTextJump"  .s:fmt_undr  .s:fg_yellow  .s:bg_none
+exe "hi! helpHyperTextEntry" .s:fmt_none  .s:fg_green   .s:bg_none
+exe "hi! IncSearch"          .s:fmt_none  .s:fg_black   .s:bg_orange
+exe "hi! LineNr"             .s:fmt_none  .s:fg_grey    .s:bg_none
+exe "hi! MatchParen"         .s:fmt_bold  .s:fg_front   .s:bg_black
+exe "hi! ModeMsg"            .s:fmt_bold  .s:fg_none    .s:bg_none
+exe "hi! MoreMsg"            .s:fmt_none  .s:fg_cyan    .s:bg_none
+exe "hi! NonText"            .s:fmt_none  .s:fg_black   .s:bg_none
+exe "hi! Pmenu"              .s:fmt_none  .s:fg_front   .s:bg_black
+exe "hi! PmenuSbar"          .s:fmt_none  .s:fg_none    .s:bg_back
+exe "hi! PmenuSel"           .s:fmt_none  .s:fg_black   .s:bg_yellow
+exe "hi! PmenuThumb"         .s:fmt_none  .s:fg_front   .s:bg_none
+exe "hi! Question"           .s:fmt_none  .s:fg_magenta .s:bg_none
+exe "hi! Search"             .s:fmt_none  .s:fg_black   .s:bg_yellow
+exe "hi! SignColumn"         .s:fmt_none  .s:fg_white   .s:bg_none
+exe "hi! SpecialKey"         .s:fmt_none  .s:fg_black   .s:bg_none
+exe "hi! SpellBad"           .s:fmt_curl  .s:fg_none    .s:bg_none    .s:sp_magenta
+exe "hi! SpellCap"           .s:fmt_curl  .s:fg_none    .s:bg_none    .s:sp_cyan
+exe "hi! SpellRare"          .s:fmt_curl  .s:fg_none    .s:bg_none    .s:sp_purple
+exe "hi! StatusLine"         .s:fmt_none  .s:fg_white   .s:bg_black
+exe "hi! StatusLineNC"       .s:fmt_none  .s:fg_grey    .s:bg_black
+exe "hi! TabLine"            .s:fmt_none  .s:fg_grey    .s:bg_black
+exe "hi! TabLineFill"        .s:fmt_none  .s:fg_none    .s:bg_black
+exe "hi! TabLineSel"         .s:fmt_none  .s:fg_none    .s:bg_black
+exe "hi! Title"              .s:fmt_none  .s:fg_magenta .s:bg_none
+exe "hi! VertSplit"          .s:fmt_none  .s:fg_black   .s:bg_none
+exe "hi! Visual"             .s:fmt_none  .s:fg_none    .s:bg_black
+exe "hi! WarningMsg"         .s:fmt_none  .s:fg_magenta .s:bg_none
 
 " }}}
-" Language specific highlight groups {{{
+" Language {{{
 
 hi! link cStatement              Green
 hi! link cppStatement            Green
@@ -403,39 +393,16 @@ hi! link lessFunction                Red
 hi! link lessClassName               Type
 
 " }}}
-" Plugin specific highlight groups {{{
+" Plugin {{{
 
+" Netrw
 hi! link netrwExe                    Red
 
 " BufExplorer
 hi! link bufExplorerMapping          Identifier
 hi! link bufExplorerTitle            Macro
 
-exe "hi MyTagListFileName"        .s:fmt_none    .s:fg_orange     .s:bg_none
-exe "hi fugitiveBlameAnnotation"  .s:fmt_none    .s:fg_magenta    .s:bg_none
+exe "hi! MyTagListFileName"        .s:fmt_none    .s:fg_orange     .s:bg_none
+exe "hi! fugitiveBlameAnnotation"  .s:fmt_none    .s:fg_magenta    .s:bg_none
 
-" }}}
-" License {{{
-"
-" Copyright (c) 2013 Jeremy Attali
-"
-" Permission is hereby granted, free of charge, to any person obtaining a copy
-" of this software and associated documentation files (the "Software"), to deal
-" in the Software without restriction, including without limitation the rights
-" to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-" copies of the Software, and to permit persons to whom the Software is
-" furnished to do so, subject to the following conditions:
-"
-" The above copyright notice and this permission notice shall be included in
-" all copies or substantial portions of the Software.
-"
-" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-" IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-" FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-" AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-" LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-" OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-" THE SOFTWARE.
-"
-" vim:foldmethod=marker:foldlevel=0
 " }}}
