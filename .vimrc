@@ -347,6 +347,10 @@ nnoremap <Home> ^
 nnoremap <Up> gk
 nnoremap <Down> gj
 
+" Moving over folds
+nnoremap z<Up> zk
+nnoremap z<Down> zj
+
 " Window navigation
 nnoremap <C-Right> <C-w><Right>
 nnoremap <C-Left> <C-w><Left>
