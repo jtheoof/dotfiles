@@ -249,9 +249,6 @@ nnoremap <silent> <Leader><Leader> :wa<CR>
 " Use <Leader>W to “strip all trailing whitespace in the current file”
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
-" Highlight current work
-nnoremap <Leader>hcw :call HighlightWord()<CR>
-
 " Fast editing of common files
 map <Leader>ec :e! $HOME/.vim/misc/colors/monokai.vim<CR>
 map <Leader>eg :e! $HOME/.gitconfig<CR>
@@ -362,9 +359,6 @@ nnoremap <PageDown> <C-D>
 nnoremap <S-Down> 3<C-E>
 nnoremap <S-Up> 3<C-Y>
 
-" Quick highlight
-nmap <S-kMultiply> <Leader>hcw
-
 nnoremap <silent> <C-S> :w<CR>
 nnoremap <silent> <C-c> :q!<CR>
 nnoremap <C-k> :let @/ = ""<CR>
@@ -375,7 +369,6 @@ nnoremap <silent> <F2> :BufExplorer<CR>
 nnoremap <F3> :NERDTreeToggle<CR>
 nnoremap <C-F3> :NERDTree %<CR>
 nnoremap <F4> :QFix<CR>
-nnoremap <C-F4> :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
 nnoremap <F5> :cprevious<CR>
 nnoremap <C-F5> :tabdo windo edit<CR>
 nnoremap <F6> :cnext<CR>
