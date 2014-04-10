@@ -41,12 +41,12 @@
 
 	fe  = fetch
 
-	files = show --pretty="format:" --name-only
+	files = show --pretty='format:' --name-only
 
 	lc   = log --pretty=oneline --decorate=full --stat --no-merges ORIG_HEAD..
 	lg   = log -p
-	logp = log --pretty=oneline --decorate=full -20
-	ll   = log --pretty="format:%h %cn %s" --decorate=full -20
+	logp = log --pretty=oneline --decorate=full
+	ll   = log --pretty=format:'%h %cn %s' --decorate=full
 
 	ls  = status
 
