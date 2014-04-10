@@ -286,34 +286,33 @@ exe "hi! Todo"           .s:fmt_none   .s:fg_white     .s:bg_orange
 " }}}
 " Extended highlighting {{{
 
+exe "hi ColorColumn"     .s:fmt_none  .s:fg_none    .s:bg_black
 exe "hi Cursor"          .s:fmt_none  .s:fg_black   .s:bg_front
 exe "hi CursorLine"      .s:fmt_none  .s:fg_front   .s:bg_black
-exe "hi ColorColumn"     .s:fmt_none  .s:fg_none    .s:bg_black
-exe "hi Directory"       .s:fmt_none  .s:fg_cyan    .s:bg_none
+exe "hi CursorLineNr"    .s:fmt_none  .s:fg_white   .s:bg_black
 exe "hi DiffAdd"         .s:fmt_none  .s:fg_black   .s:bg_green
+exe "hi DiffAdded"       .s:fmt_none  .s:fg_green   .s:bg_none
 exe "hi DiffChange"      .s:fmt_none  .s:fg_black   .s:bg_yellow
 exe "hi DiffDelete"      .s:fmt_none  .s:fg_black   .s:bg_magenta
-exe "hi DiffAdded"       .s:fmt_none  .s:fg_green   .s:bg_none
 exe "hi DiffRemoved"     .s:fmt_none  .s:fg_red     .s:bg_none
 exe "hi DiffText"        .s:fmt_none  .s:fg_black   .s:bg_yellow
+exe "hi Directory"       .s:fmt_none  .s:fg_cyan    .s:bg_none
 exe "hi ErrorMsg"        .s:fmt_none  .s:fg_magenta .s:bg_none
-exe "hi VertSplit"       .s:fmt_none  .s:fg_black   .s:bg_none
-exe "hi Folded"          .s:fmt_none  .s:fg_grey    .s:bg_none
 exe "hi FoldColumn"      .s:fmt_none  .s:fg_grey    .s:bg_black
-exe "hi SignColum"       .s:fmt_none  .s:fg_grey    .s:bg_black
+exe "hi Folded"          .s:fmt_none  .s:fg_grey    .s:bg_none
 exe "hi IncSearch"       .s:fmt_none  .s:fg_black   .s:bg_orange
 exe "hi LineNr"          .s:fmt_none  .s:fg_grey    .s:bg_none
-exe "hi CursorLineNr"    .s:fmt_none  .s:fg_white   .s:bg_black
 exe "hi MatchParen"      .s:fmt_bold  .s:fg_front   .s:bg_black
 exe "hi ModeMsg"         .s:fmt_bold  .s:fg_none    .s:bg_none
 exe "hi MoreMsg"         .s:fmt_none  .s:fg_cyan    .s:bg_none
 exe "hi NonText"         .s:fmt_none  .s:fg_black   .s:bg_none
 exe "hi Pmenu"           .s:fmt_none  .s:fg_front   .s:bg_black
-exe "hi PmenuSel"        .s:fmt_none  .s:fg_black   .s:bg_yellow
 exe "hi PmenuSbar"       .s:fmt_none  .s:fg_none    .s:bg_back
+exe "hi PmenuSel"        .s:fmt_none  .s:fg_black   .s:bg_yellow
 exe "hi PmenuThumb"      .s:fmt_none  .s:fg_front   .s:bg_none
 exe "hi Question"        .s:fmt_none  .s:fg_magenta .s:bg_none
 exe "hi Search"          .s:fmt_none  .s:fg_black   .s:bg_yellow
+exe "hi SignColumn"      .s:fmt_none  .s:fg_white   .s:bg_none
 exe "hi SpecialKey"      .s:fmt_none  .s:fg_black   .s:bg_none
 exe "hi SpellBad"        .s:fmt_curl  .s:fg_none    .s:bg_none    .s:sp_magenta
 exe "hi SpellCap"        .s:fmt_curl  .s:fg_none    .s:bg_none    .s:sp_cyan
@@ -324,6 +323,7 @@ exe "hi TabLine"         .s:fmt_none  .s:fg_grey    .s:bg_black
 exe "hi TabLineFill"     .s:fmt_none  .s:fg_none    .s:bg_black
 exe "hi TabLineSel"      .s:fmt_none  .s:fg_none    .s:bg_black
 exe "hi Title"           .s:fmt_none  .s:fg_magenta .s:bg_none
+exe "hi VertSplit"       .s:fmt_none  .s:fg_black   .s:bg_none
 exe "hi Visual"          .s:fmt_none  .s:fg_none    .s:bg_black
 exe "hi WarningMsg"      .s:fmt_none  .s:fg_magenta .s:bg_none
 
