@@ -1,7 +1,6 @@
-" Vim filetype plugin
-" Author:     Jeremy Attali <jeremy.attali@gmail.com>
-" Maintainer: Jeremy Attali <jeremy.attali@gmail.com>
-"
+" vim:set sts=4 sw=4 et:
+
+command! Format %!tidy -qmi -utf8
 
 let html_no_rendering = 1
 setlocal omnifunc=htmlcomplete#CompleteTags
