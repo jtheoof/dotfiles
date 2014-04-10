@@ -308,8 +308,6 @@ map <Leader>tt :tabnew %<CR>
 map <Leader>tn :tabnew<CR>
 
 " Format to XML, JSON, ...
-map <Leader>fj :r ! python -mjson.tool < % <CR>ggdd
-map <Leader>fh :! tidy -qmi -utf8 % <CR>
 map <Leader>fx :! tidy -qmi -xml -utf8 % <CR>
 
 " Quick toggles
