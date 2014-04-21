@@ -1,0 +1,102 @@
+[global_config]
+  window_state = maximise
+  handle_size = 1
+  title_hide_sizetext = True
+  title_transmit_fg_color = "#829496"
+  title_inactive_fg_color = "#829496"
+  title_transmit_bg_color = "#073642"
+  title_inactive_bg_color = "#002b36"
+[keybindings]
+  close_window = <Alt>w
+  group_tab = <Alt>t
+  resize_left = <Shift><Alt>Left
+  rotate_ccw = <Shift><Alt>x
+  reset_clear = <Alt>k
+  resize_right = <Shift><Alt>Right
+  group_all = <Alt>g
+  toggle_zoom = None
+  scaled_zoom = None
+  resize_down = <Shift><Alt>Down
+  full_screen = None
+  switch_to_tab_4 = <Alt>4
+  switch_to_tab_5 = <Alt>5
+  switch_to_tab_2 = <Alt>2
+  ungroup_all = <Shift><Alt>g
+  split_vert = <Alt>F12
+  ungroup_tab = <Shift><Alt>t
+  switch_to_tab_3 = <Alt>3
+  switch_to_tab_1 = <Alt>1
+  go_prev = None
+  close_term = <Alt>c
+  new_terminator = <Primary><Shift>n
+  hide_window = None
+  reset = <Alt>r
+  rotate_cw = <Alt>x
+  resize_up = <Shift><Alt>Up
+  split_horiz = <Alt>F11
+  new_window = <Alt>n
+  edit_window_title = <Alt>e
+  go_next = None
+  toggle_scrollbar = <Alt>s
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    palette = "#706449:#e2302e:#a6e22e:#fd971f:#3285d2:#f92672:#66d9ef:#f8f8f2:#706449:#f92672:#a6e22e:#e6db74:#3285d2:#f92672:#66d9ef:#f8f8f2"
+    background_image = None
+    background_darkness = 1.0
+    use_system_font = False
+    foreground_color = "#f8f8f2"
+    icon_bell = False
+    show_titlebar = False
+    font = Ubuntu Mono 10
+    background_color = "#272822"
+    scrollback_infinite = True
+  [[monokai]]
+    scrollbar_position = hidden
+    palette = "#706449:#E2302E:#A6E22E:#FD971F:#3285D2:#F92672:#66D9EF:#F8F8F2:#706449:#F92672:#A6E22E:#E6DB74:#3285D2:#F92672:#66D9EF:#F8F8F2"
+    background_image = None
+    background_darkness = 1.0
+    scrollback_lines = 2000
+    use_system_font = False
+    foreground_color = "#F8F8F2"
+    icon_bell = False
+    show_titlebar = False
+    font = Ubuntu Mono 10
+    background_color = "#272822"
+  [[solarized-dark]]
+    scrollbar_position = hidden
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#859900:#b58900:#268bd2:#d33682:#2aa198:#fdf6e3"
+    background_image = None
+    background_darkness = 1.0
+    use_system_font = False
+    foreground_color = "#829496"
+    icon_bell = False
+    show_titlebar = False
+    font = Ubuntu Mono 10
+    background_color = "#0a333c"
+    scrollback_infinite = True
+  [[solarized-light]]
+    scrollbar_position = hidden
+    palette = "#073642:#d30102:#859900:#b58900:#6c71c4:#d33682:#2aa198:#839496:#586e75:#cb4b16:#859900:#b58900:#268bd2:#d33682:#2aa198:#93a1a1"
+    background_darkness = 1.0
+    background_image = None
+    cursor_color = "#002b36"
+    foreground_color = "#002b36"
+    icon_bell = False
+    show_titlebar = False
+    background_color = "#eee8d5"
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = solarized-light
+    [[[child2]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+      profile = solarized-light
+[plugins]
