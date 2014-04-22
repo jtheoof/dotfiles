@@ -2,10 +2,11 @@
   window_state = maximise
   handle_size = 1
   title_hide_sizetext = True
-  title_transmit_fg_color = "#829496"
-  title_inactive_fg_color = "#829496"
+  title_transmit_fg_color = "#f8f8f2"
+  title_inactive_fg_color = "#f8f8f2"
+  enabled_plugins = ,
   title_transmit_bg_color = "#073642"
-  title_inactive_bg_color = "#002b36"
+  title_inactive_bg_color = "#000000"
 [keybindings]
   close_window = <Alt>w
   group_tab = <Alt>t
@@ -41,38 +42,32 @@
 [profiles]
   [[default]]
     scrollbar_position = hidden
-    palette = "#706449:#e2302e:#a6e22e:#fd971f:#3285d2:#f92672:#66d9ef:#f8f8f2:#706449:#f92672:#a6e22e:#e6db74:#3285d2:#f92672:#66d9ef:#f8f8f2"
-    background_image = None
+    palette = "#3e3d32:#e2302e:#a6e22e:#e6db74:#3285d2:#f92672:#66d9ef:#f8f8f0:#706449:#fd971f:#c0ff40:#fd971f:#45a5ff:#ae81ff:#94edff:#ffffff"
     background_darkness = 1.0
-    use_system_font = False
+    background_image = None
     foreground_color = "#f8f8f2"
     icon_bell = False
     show_titlebar = False
-    font = Ubuntu Mono 10
     background_color = "#272822"
     scrollback_infinite = True
   [[monokai]]
     scrollbar_position = hidden
-    palette = "#706449:#E2302E:#A6E22E:#FD971F:#3285D2:#F92672:#66D9EF:#F8F8F2:#706449:#F92672:#A6E22E:#E6DB74:#3285D2:#F92672:#66D9EF:#F8F8F2"
-    background_image = None
+    palette = "#3e3d32:#e2302e:#a6e22e:#e6db74:#3285d2:#f92672:#66d9ef:#f8f8f0:#706449:#fd971f:#c0ff40:#fd971f:#45a5ff:#ae81ff:#94edff:#ffffff"
     background_darkness = 1.0
     scrollback_lines = 2000
-    use_system_font = False
+    background_image = None
     foreground_color = "#F8F8F2"
     icon_bell = False
     show_titlebar = False
-    font = Ubuntu Mono 10
     background_color = "#272822"
   [[solarized-dark]]
     scrollbar_position = hidden
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#859900:#b58900:#268bd2:#d33682:#2aa198:#fdf6e3"
-    background_image = None
     background_darkness = 1.0
-    use_system_font = False
+    background_image = None
     foreground_color = "#829496"
     icon_bell = False
     show_titlebar = False
-    font = Ubuntu Mono 10
     background_color = "#0a333c"
     scrollback_infinite = True
   [[solarized-light]]
