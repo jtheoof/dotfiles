@@ -23,25 +23,14 @@ speed-unit='kph'
 pressure-unit='hpa'
 
 [org/gnome/settings-daemon/plugins/power]
+critical-battery-action='shutdown'
+sleep-inactive-ac-type='nothing'
 idle-dim=true
+sleep-inactive-battery-timeout=240
+button-sleep='suspend'
+percentage-critical=5
 sleep-inactive-battery-type='suspend'
-critical-battery-action='hibernate'
-sleep-inactive-ac-timeout=900
-sleep-inactive-ac-type='suspend'
-sleep-inactive-battery-timeout=900
-
-[org/gnome/settings-daemon/plugins/media-keys]
-screenreader=''
-magnifier-zoom-out=''
-logout='<Super>BackSpace'
-calculator='<Super>k'
-email='<Super>g'
-www='<Super>c'
-magnifier-zoom-in=''
-home='<Super>e'
-search='<Super>slash'
-magnifier=''
-custom-keybindings=['others', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+sleep-inactive-ac-timeout=3600
 
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
 binding='<CTRL><ALT>v'
@@ -53,9 +42,9 @@ antialiasing='rgba'
 hinting='full'
 
 [org/gnome/settings-daemon/peripherals/touchpad]
-motion-threshold=9
+motion-threshold=7
 natural-scroll=true
-motion-acceleration=1.4165497896213184
+motion-acceleration=3.3057851239669418
 disable-while-typing=false
 tap-to-click=true
 touchpad-enabled=true
@@ -63,7 +52,7 @@ touchpad-enabled=true
 [org/gnome/settings-daemon/peripherals/keyboard]
 repeat-interval=uint32 23
 delay=uint32 279
-numlock-state='on'
+numlock-state='off'
 repeat=true
 
 [org/gnome/settings-daemon/peripherals/mouse]
@@ -168,35 +157,28 @@ auto-save-interval=uint32 10
 [org/gnome/gedit/preferences/ui]
 statusbar-visible=true
 notebook-show-tabs-mode='always'
-side-panel-visible=false
+show-tabs-mode='auto'
+side-panel-visible=true
 
 [org/gnome/gedit/plugins/filebrowser]
-virtual-root='file:///home/jeremy/Dropbox/Temp/Interviews'
+virtual-root='file:///tmp'
 tree-view=true
 root='file:///'
 
 [org/gnome/gedit/plugins]
-active-plugins=['zeitgeistplugin', 'filebrowser', 'docinfo', 'modelines', 'spell', 'time']
+active-plugins=['filebrowser', 'docinfo', 'modelines', 'spell', 'time']
 
 [org/gnome/gedit/state/window]
-size=(650, 500)
-state=388
+size=(960, 1044)
+state=128
 bottom-panel-size=140
 side-panel-size=200
-side-panel-active-page=228660812
+side-panel-active-page='GeditWindowDocumentsPanel'
 
-[org/gnome/nautilus/window-state]
-geometry='855x550+501+137'
-maximized=true
-
-[org/gnome/nautilus/desktop]
-home-icon-visible=false
-volumes-visible=true
-trash-icon-visible=false
-
-[org/gnome/nautilus/list-view]
-default-visible-columns=['name', 'size', 'type', 'date_modified']
-default-column-order=['name', 'size', 'type', 'date_modified', 'date_accessed', 'owner', 'group', 'permissions', 'mime_type', 'where']
+[org/gnome/clocks/state/window]
+size=(870, 690)
+state=128
+panel-id='stopwatch'
 
 [org/gnome/charmap/window-state]
 size=(1080, 607)
@@ -210,18 +192,36 @@ window-position=[0, 25]
 window-maximized=true
 window-size=[1366, 743]
 
-[org/gnome/power-manager]
-info-history-type='charge'
-info-stats-type='discharge-accuracy'
-info-last-device='wakeups'
-info-page-number=3
-info-history-time=7200
+[org/gnome/packagekit]
+search-mode='details'
 
 [org/gnome/evince]
-document-directory=@ms nothing
+document-directory=@ms 'file:///home/jeremy/Dropbox/Personal/Canada'
 
 [org/gnome/evince/default]
-window-ratio=(4.5, 1.695736434108527)
+window-ratio=(3.1380453146645038, 1.2400684989607602)
+continuous=true
+fullscreen=false
+show-sidebar=true
+dual-page-odd-left=false
+inverted-colors=false
+sidebar-page='thumbnails'
+sidebar-size=170
+dual-page=false
+sizing-mode='fit-width'
+
+[org/gnome/nautilus/window-state]
+geometry='855x550+130+27'
+maximized=false
+
+[org/gnome/nautilus/desktop]
+home-icon-visible=false
+volumes-visible=true
+trash-icon-visible=false
+
+[org/gnome/nautilus/list-view]
+default-visible-columns=['name', 'size', 'type', 'date_modified']
+default-column-order=['name', 'size', 'type', 'date_modified', 'date_accessed', 'owner', 'group', 'permissions', 'mime_type', 'where']
 
 [org/gnome/desktop/interface]
 font-name='Arial 10'
@@ -237,7 +237,7 @@ gtk-theme='Adwaita'
 clock-show-date=true
 
 [org/gnome/desktop/notifications]
-application-children=['chromium', 'empathy', 'geary', 'synapse', 'gnome-do', 'gnome-music', 'dropbox', 'vlc', 'spotify', 'guake', 'steam', 'evolution', 'gnome-network-panel', 'transmission-gtk']
+application-children=['chromium', 'empathy', 'geary', 'synapse', 'gnome-do', 'gnome-music', 'dropbox', 'vlc', 'spotify', 'guake', 'steam', 'evolution', 'gnome-network-panel', 'transmission-gtk', 'skype', 'android-studio']
 
 [org/gnome/desktop/notifications/application/empathy]
 application-id='empathy.desktop'
@@ -250,6 +250,9 @@ application-id='dropbox.desktop'
 
 [org/gnome/desktop/notifications/application/synapse]
 application-id='synapse.desktop'
+
+[org/gnome/desktop/notifications/application/android-studio]
+application-id='android-studio.desktop'
 
 [org/gnome/desktop/notifications/application/file-roller]
 details-in-lock-screen=false
@@ -277,11 +280,14 @@ application-id='guake.desktop'
 [org/gnome/desktop/notifications/application/evolution]
 application-id='evolution.desktop'
 
-[org/gnome/desktop/notifications/application/gnome-music]
-application-id='gnome-music.desktop'
-
 [org/gnome/desktop/notifications/application/geary]
 application-id='geary.desktop'
+
+[org/gnome/desktop/notifications/application/skype]
+application-id='skype.desktop'
+
+[org/gnome/desktop/notifications/application/gnome-music]
+application-id='gnome-music.desktop'
 
 [org/gnome/desktop/notifications/application/steam]
 application-id='steam.desktop'
@@ -302,8 +308,9 @@ titlebar-font='Arial Bold 12'
 
 [org/gnome/desktop/wm/keybindings]
 maximize=['']
-toggle-fullscreen=['<Super>f']
+switch-to-workspace-down=['<Super>Down', '<Control><Alt>Down']
 toggle-maximized=['<Super>Return']
+toggle-fullscreen=['<Super>f']
 unmaximize=['', '<Alt>F5']
 close=['<Super>q']
 move-to-workspace-up=['<Shift><Super>Up', '<Control><Shift><Alt>Up']
@@ -325,7 +332,7 @@ begin-move=['<Super>F7']
 switch-to-workspace-3=['<Super>3']
 move-to-workspace-down=['<Shift><Super>Down', '<Control><Shift><Alt>Down']
 panel-run-dialog=['<Super>F2']
-switch-to-workspace-down=['<Super>Down', '<Control><Alt>Down']
+move-to-monitor-up=['']
 switch-to-workspace-right=['']
 switch-to-workspace-left=['']
 switch-to-workspace-up=['<Super>Up', '<Control><Alt>Up']
@@ -338,7 +345,7 @@ event-sounds=true
 automatic-timezone=false
 
 [org/gnome/desktop/background]
-picture-uri='file:///home/jeremy/Pictures/grand-theft-auto-v-33213-wp.jpg'
+picture-uri='file:///home/jeremy/Dropbox/Photos/Wallpapers/Single/Smashing%20Magazine/apr-14-cleanse-nocal-1920x1080.png'
 show-desktop-icons=true
 color-shading-type='solid'
 primary-color='#000000000000'
@@ -374,11 +381,11 @@ font='Cantarell 14'
 toggle-overview=['<Super>w']
 
 [org/gnome/shell]
-enabled-extensions=['places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'hidetopbar@mathieu.bidon.ca', 'mediaplayer@patapon.info', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'weather-extension@xeked.com', 'maximus@mathematical.coffee.gmail.com', 'alt-tab-workspace@kwalo.net', 'putWindow@clemens.lab21.org', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com']
-command-history=['r', 'gnome-session-properties', 'r', 'gnome-session-', 'r', 'gnome-system-printer', 'system-config-printer', 'r', 'firefox']
+enabled-extensions=['places-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'mediaplayer@patapon.info', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'maximus@mathematical.coffee.gmail.com', 'alt-tab-workspace@kwalo.net', 'putWindow@clemens.lab21.org', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'hidetopbar@mathieu.bidon.ca']
+command-history=['r', 'gnome-session-properties', 'r', 'gnome-session-', 'r', 'gnome-system-printer', 'system-config-printer', 'r', 'firefox', 'r', 'gksu gvim', 'gksu -k gvim', 'r']
 remember-mount-password=false
 app-picker-view=uint32 1
-favorite-apps=['nautilus.desktop', 'gnome-terminal.desktop', 'chromium.desktop', 'gvim.desktop', 'geary.desktop', 'empathy.desktop', 'spotify.desktop', 'gnome-control-center.desktop', 'gnome-tweak-tool.desktop']
+favorite-apps=['terminator.desktop', 'nautilus.desktop', 'gvim.desktop', 'chromium.desktop', 'android-studio.desktop', 'geary.desktop', 'chrome-cnkjkdjlofllcpbemipjbcpfnglbgieh-Default.desktop', 'empathy.desktop', 'gnome-control-center.desktop', 'gnome-tweak-tool.desktop']
 
 [org/gnome/shell/app-switcher]
 current-workspace-only=true
@@ -401,7 +408,7 @@ hide-delay=0.050000000000000003
 show-delay=0.0
 
 [org/gnome/shell/extensions/weather]
-actual-city=4
+actual-city=1
 city=[<(uint32 1, <('Charles de Gaulle International Airport', 'LFPG', false, @m(dd) (0.85550222750365124, 0.044215001899425503), @m(dd) (0.8528842336256599, 0.040724343395436846))>)>, <(uint32 1, <('Pierre Elliot Trudeau International Airport', 'CYUL', false, @m(dd) (0.79354303905785273, -1.2871803233458181), @m(dd) (0.79354303905785273, -1.2871803233458181))>)>, <(uint32 1, <('Vancouver', 'CYVR', true, @m(dd) (0.85841109795478021, -2.1496638678574467), @m(dd) (0.85957465660720722, -2.1490820798045869))>)>, <(uint32 1, <('Toronto Pearson International', 'CYYZ', false, @m(dd) (0.76212711252195475, -1.3898638551870535), @m(dd) (0.76212711252195475, -1.3860823201099277))>)>, <(uint32 1, <('Ottawa', 'CYOW', true, @m(dd) (0.79092504517986117, -1.3206324731601402), @m(dd) (0.7926703744318554, -1.3212142437597076))>)>]
 
 [org/gnome/shell/extensions/appindicator-support]
@@ -413,16 +420,23 @@ hello-text='asdasd'
 [org/gnome/shell/extensions/hidetopbar]
 animation-time-autohide=0.10000000000000003
 animation-time-overview=0.30000000000000004
+hot-corner=true
+shortcut-keybind=@as []
 mouse-sensitive=true
 
 [org/gnome/shell/extensions/mediaplayer]
 indicator-position='volume-menu'
 
+[org/gnome/gnome-chess]
+width=700
+maximized=true
+height=550
+
 [org/gnome/telepathy-account-widgets/ui]
 avatar-directory='/home/jeremy/Dropbox/Photos/Me'
 
 [org/gnome/eog/view]
-background-color='#000000'
+background-color='rgb(0,0,0)'
 use-background-color=true
 
 [org/gnome/eog/ui]
@@ -434,22 +448,29 @@ image-gallery=false
 [org/gnome/gnome-screenshot]
 auto-save-directory='file:///home/jeremy/Pictures/Screenshots'
 
+[org/gnome/power-manager]
+info-history-type='charge'
+info-stats-type='discharge-accuracy'
+info-last-device='wakeups'
+info-page-number=3
+info-history-time=7200
+
 [org/gnome/terminal/legacy/keybindings]
 reset-and-clear='<Primary><Shift>k'
 new-tab='<Primary><Shift>t'
-switch-to-tab-1='disabled'
-switch-to-tab-2='disabled'
-switch-to-tab-3='disabled'
+switch-to-tab-1='<Primary>exclam'
+switch-to-tab-2='<Primary>at'
+switch-to-tab-3='<Primary>numbersign'
 copy='<Primary><Shift>c'
-switch-to-tab-5='disabled'
-switch-to-tab-4='disabled'
+switch-to-tab-5='<Primary>percent'
+set-terminal-title='<Primary><Shift>e'
 prev-tab='<Primary>Page_Up'
 new-window='<Primary><Shift>n'
-close-tab='<Primary><Shift><Alt>t'
+close-tab='<Primary><Shift>w'
 move-tab-left='<Primary><Shift>Page_Up'
 full-screen='<Primary><Shift>F11'
-close-window='<Primary><Shift><Alt>n'
-reset='<Primary><Shift>r'
+close-window='<Primary><Shift>q'
+reset='disabled'
 switch-to-tab-11='disabled'
 switch-to-tab-12='disabled'
 move-tab-right='<Primary><Shift>Page_Down'
@@ -460,9 +481,10 @@ switch-to-tab-6='disabled'
 switch-to-tab-7='disabled'
 switch-to-tab-8='disabled'
 switch-to-tab-9='disabled'
-zoom-out='disabled'
+switch-to-tab-4='<Primary>dollar'
 next-tab='<Primary>Page_Down'
 zoom-in='disabled'
+zoom-out='disabled'
 new-profile='<Primary><Shift>p'
 
 [org/gnome/terminal/legacy]
@@ -501,7 +523,7 @@ allow-bold=false
 bold-color-same-as-fg=false
 bold-color='rgb(255,255,255)'
 background-color='rgb(39,40,34)'
-scrollbar-policy='never'
+scrollbar-policy='automatic'
 
 [org/gnome/evolution/shell/window]
 width=815
@@ -566,7 +588,7 @@ completion-minimum-query-length=3
 
 [org/gnome/gnome-system-monitor]
 show-dependencies=false
-current-tab='processes'
+current-tab='resources'
 maximized=true
 window-state=(1920, 1080, 0, 0)
 show-whose-processes='all'
@@ -587,9 +609,9 @@ col-15-width=92
 col-18-width=196
 
 [org/gnome/maps]
-last-location-description='Puteaux, Ile-de-France, France'
+last-location-description='(null), (null), Israel'
 last-location-user-set=false
-last-location=[48.883399963378906, 2.2388999462127686, 15000.0]
+last-location=[31.5, 34.75, 15000.0]
 window-maximized=true
 
 [org/baedert/corebird]
@@ -601,15 +623,15 @@ upload-provider='Twitter'
 [org/gtk/settings/file-chooser]
 sort-column='name'
 sidebar-width=148
-window-position=(661, 157)
+window-position=(-26, 3)
 show-size-column=true
 show-hidden=false
-window-size=(830, 622)
+window-size=(830, 658)
 sort-order='ascending'
 location-mode='filename-entry'
 
 [org/gtk/settings/color-chooser]
-selected-color=(true, 0.6705882352941176, 0.094117647058823528, 0.32156862745098042, 1.0)
+selected-color=(true, 0.45882352941176469, 0.44313725490196076, 0.36862745098039218, 1.0)
 custom-colors=[(0.6705882352941176, 0.094117647058823528, 0.32156862745098042, 1.0), (0.24313725490196078, 0.23921568627450981, 0.19607843137254902, 1.0), (0.20784313725490197, 0.21176470588235294, 0.20000000000000001, 1.0), (0.22745098039215686, 0.22745098039215686, 0.22745098039215686, 1.0), (0.45882352941176469, 0.44313725490196076, 0.36862745098039218, 1.0), (0.28627450980392155, 0.28235294117647058, 0.24313725490196078, 1.0), (0.75127551020408156, 1.0, 0.25, 1.0)]
 
 [org/yorba/geary]
@@ -618,7 +640,7 @@ window-maximize=true
 window-width=959
 compose-as-html=true
 folder-list-pane-position=294
-messages-pane-position=252
+messages-pane-position=505
 autoselect=false
 ask-open-attachment=false
 
