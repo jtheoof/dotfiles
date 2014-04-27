@@ -59,6 +59,7 @@ set rtp+=~/.vim/misc
 filetype plugin indent on    " put filetype plugin back on after pathogen
 syntax on                    " enable syntax
 runtime macros/matchit.vim   " smarter use of '%'
+runtime ftplugin/man.vim     " use Man in command mode
 
 " 1}}}
 " Options {{{1
