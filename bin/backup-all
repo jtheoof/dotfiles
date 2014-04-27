@@ -1,22 +1,32 @@
 #!/bin/sh
 
-sudo rsync -aAXvl / /run/media/$USER/$HOSTNAME/  \
-    --quiet                                      \
-    --progress                                   \
-    --stats                                      \
-    --delete                                     \
-    --delete-during                              \
-    --delete-excluded                            \
-    --exclude=/dev                               \
-    --exclude=/media                             \
-    --exclude=/mnt                               \
-    --exclude=/proc                              \
-    --exclude=/run                               \
-    --exclude=/sys                               \
-    --exclude=/tmp                               \
-    --exclude=/var/log/journal                   \
-    --exclude=/var/lib/pacman/sync               \
-    --exclude=/lost+found                        \
-    --exclude=.cache
+backupdir=/run/media/$USER/$HOSTNAME/
+
+die() {
+    echo $1
+    exit 1;
+}
+
+if [ ! -d $backupdir ]; then
+    die "$backupdir does not exist"
+fi
+
+time sudo rsync -aAXvl / $backupdir \
+    --quiet                         \
+    --progress                      \
+    --stats                         \
+    --delete                        \
+    --delete-during                 \
+    --delete-excluded               \
+    --exclude=/dev                  \
+    --exclude=/lost+found/*         \
+    --exclude=/media/*              \
+    --exclude=/mnt/*                \
+    --exclude=/proc/*               \
+    --exclude=/run/*                \
+    --exclude=/sys/*                \
+    --exclude=/tmp/*                \
+    --exclude=/var/lib/pacman/sync  \
+    --exclude=/var/log/journal
 
 # vim: tw=0 sts=4 sw=4 et
