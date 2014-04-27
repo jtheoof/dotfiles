@@ -192,7 +192,7 @@ set cinoptions+=m1             " align the closing ) properly
 set cinoptions+=j1,J1          " java/javascript -> fixes blocks
 
 " Tags
-set tags=./tags,tags " search file dir first, then current dir
+set tags=./tags;/
 
 " List invisible chars
 set listchars=eol:\ ,tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:¤
