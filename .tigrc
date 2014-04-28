@@ -74,7 +74,10 @@ bind tree V !vim %(file)
 # }}}
 # Branch {{{
 
-bind branch N !@git branch %(prompt) # Create a new branch
+bind branch N !@git branch %(prompt)
+bind branch C !@git co %(branch)
+bind branch R !@git rebase
+bind branch D !@git branch -D %(branch)
 
 # }}}
 # Status {{{
