@@ -402,6 +402,10 @@ hi! link netrwExe                    Red
 hi! link bufExplorerMapping          Identifier
 hi! link bufExplorerTitle            Macro
 
+" Syntastic
+exe "hi! SyntasticErrorSign"       .s:fmt_none    .s:fg_magenta    .s:bg_none
+exe "hi! SyntasticWarningSign"     .s:fmt_none    .s:fg_orange     .s:bg_none
+
 exe "hi! MyTagListFileName"        .s:fmt_none    .s:fg_orange     .s:bg_none
 exe "hi! fugitiveBlameAnnotation"  .s:fmt_none    .s:fg_magenta    .s:bg_none
 
