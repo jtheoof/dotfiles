@@ -598,6 +598,9 @@ let g:syntastic_mode_map = {
     \ 'passive_filetypes': [],
     \ }
 
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+
 " }}}
 " Zencoding {{{2
 
