@@ -260,6 +260,9 @@ map <Leader>ez :e! $HOME/.zshrc<CR>
 
 noremap <Leader>giw :Ggrep <C-R><C-W><CR>
 
+" Man helper
+nnoremap <Leader>M "myiw:Man <C-r>m<CR>
+
 " Ctrl-P Buffer
 nnoremap <Leader>pp :CtrlP<CR>
 nnoremap <Leader>pb :CtrlPBuffer<CR>
