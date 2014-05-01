@@ -267,6 +267,7 @@ nnoremap <Leader>M "myiw:Man <C-r>m<CR>
 nnoremap <Leader>pp :CtrlP<CR>
 nnoremap <Leader>pb :CtrlPBuffer<CR>
 nnoremap <Leader>pm :CtrlPMRU<CR>
+nnoremap <Leader>pt :CtrlPTag<CR>
 
 " Replace " with '
 nnoremap <Leader>s' :perldo s/"(.*?)"/'\1'/g<CR>
@@ -284,42 +285,16 @@ nnoremap <Leader>sv :so $MYVIMRC<CR>
 " Pressing ,ss will toggle and untoggle spell checking
 map <Leader>ss :setlocal spell!<CR>
 
-" Shortcuts using <Leader>
-map <Leader>sn ]s
-map <Leader>sp [s
-map <Leader>sa zg
-map <Leader>s? z=
-
-" Splitting windows the right way
-" Thanks to: http://goo.gl/R73uk
-
-" window
-nmap <Leader>sw<Left>  :topleft  vnew<CR>
-nmap <Leader>sw<Right> :botright vnew<CR>
-nmap <Leader>sw<Up>    :topleft  new<CR>
-nmap <Leader>sw<Down>  :botright new<CR>
-
-" buffer
-nmap <Leader>s<Left>   :leftabove  vnew<CR>
-nmap <Leader>s<Right>  :rightbelow vnew<CR>
-nmap <Leader>s<Up>     :leftabove  new<CR>
-nmap <Leader>s<Down>   :rightbelow new<CR>
-
 " Opening closing tabs
 map <Leader>tc :tabclose<CR>
 map <Leader>td ,bd,tc
 map <Leader>tt :tabnew %<CR>
 map <Leader>tn :tabnew<CR>
 
-" Format to XML, JSON, ...
-map <Leader>fx :! tidy -qmi -xml -utf8 % <CR>
-
 " Quick toggles
 nmap <Leader>ti :set ignorecase!<CR>
 nmap <Leader>tl :set list!<CR>
 nmap <Leader>tw :set wrap!<CR>
-
-nnoremap <Leader>y% :let @+ = expand("%:p")<CR>
 
 " 2}}}
 " Normal mode {{{2
@@ -369,29 +344,12 @@ nnoremap <silent> <C-S> :w<CR>
 nnoremap <silent> <C-c> :q!<CR>
 nnoremap <C-k> :let @/ = ""<CR>
 
-nnoremap <silent> <F1> :Explore<CR>
-nnoremap <C-F1> :tabe **/<cfile><CR>
 nnoremap <silent> <F2> :BufExplorer<CR>
-nnoremap <F3> :NERDTreeToggle<CR>
-nnoremap <C-F3> :NERDTree %<CR>
 nnoremap <F4> :QFix<CR>
-nnoremap <F5> :cprevious<CR>
-nnoremap <C-F5> :tabdo windo edit<CR>
-nnoremap <F6> :cnext<CR>
 nnoremap <F7> :make<Return>
-nnoremap <S-F7> yy:<C-R>"<BS><CR>
-nnoremap <F9> :cprevious<Return>
-nnoremap <F10> :cnext<Return>
 
 nnoremap <C-F11> :split<CR>
 nnoremap <C-F12> :vsplit<CR>
-
-" Alt-right/left to navigate forward/backward in the tags stack
-nnoremap <S-Left> <C-T>
-nnoremap <S-Right> <C-]>
-nnoremap <S-F9> :tselect<CR>
-nnoremap <S-F11> :tprevious<CR>
-nnoremap <S-F12> :tnext<CR>
 
 " Yank current file
 nnoremap <silent> ycf :let @* = expand("%:p")<CR>:let @+ = expand("%:p")<CR>
@@ -438,13 +396,6 @@ vnoremap sb "zdi<b><C-R>z</b><Esc>
 vnoremap st "zdi<?= <C-R>z ?><Esc>
 vnoremap s' "zdi'<C-R>z'<Esc>
 vnoremap s" "zdi"<C-R>z"<Esc>
-
-" Navigate through folded line
-vnoremap <M-j> gj
-vnoremap <M-k> gk
-vnoremap <M-4> g$
-vnoremap <M-6> g^
-vnoremap <M-0> g^
 
 " Tabs
 vnoremap <Space> <Esc>:'<,'>:s/^/ /<Enter>:let @/=""<Enter>gv
