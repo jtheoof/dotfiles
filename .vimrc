@@ -183,6 +183,9 @@ set expandtab     " transform tabs into spaces
 set softtabstop=4
 set shiftwidth=4
 
+" Session
+set sessionoptions-=options
+
 set cinoptions=
 set cinoptions+=L0.5s          " align labels at 0.5 shiftwidth
 set cinoptions+=:0.5s,=0.5s    " same for case labels and code following labels
