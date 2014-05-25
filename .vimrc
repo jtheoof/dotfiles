@@ -302,17 +302,8 @@ nmap <Leader>tw :set wrap!<CR>
 " 2}}}
 " Normal mode {{{2
 
-" Search should olways be 'very magic'
-" Fix ack.vim in order to work properly
-" Right now if you run AclFromSearch with a 'very magic' pattern
-" the \v is not removed so the grep command launched is looking
-" for it with the rest of the pattern
-" nnoremap / /\v
-" nnoremap ? ?\v
-
-" Easier navigation through code
-" Deactivated it because it seems to conflit with <C-i> to jump forward
-" nnoremap <Tab> %
+" Remap to : allowing to get rid of Shift
+nnoremap ; :
 
 " Make Y more consistent with C and D
 nnoremap Y y$
