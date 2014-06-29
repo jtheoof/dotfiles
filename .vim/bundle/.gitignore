@@ -1,6 +1,7 @@
 # Ignore every bundle except static
 bufexplorer/
 ctrlp.vim/
+emmet-vim/
 nerdtree/
 supertab/
 syntastic/
@@ -20,4 +21,3 @@ vim-session/
 vim-surround/
 vim-unimpaired/
 vim-vinegar/
-zencoding-vim/
