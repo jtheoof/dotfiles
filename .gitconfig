@@ -132,3 +132,5 @@
 	extendedRegexp = true
 [gc]
 	auto = 0
+[core]
+	editor = vim
