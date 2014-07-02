@@ -78,12 +78,9 @@ alias diff='colordiff -u'
 # Listing
 alias rpwd='readlink -f $PWD'
 
-alias ls='ls --color=auto'
-alias lsf='find . -nowarn -type f -maxdepth 1'
-alias ll='ls -lah --group-directories-first'
+alias ll='ls -lah'
 alias l='ll'
-alias dir='ls --color=auto --format=vertical'
-alias vdir='ls --color=auto --format=long'
+alias lsf='find . -nowarn -type f -maxdepth 1'
 
 alias h='history'
 alias hs='history'
@@ -224,7 +221,7 @@ function apt-history() {
 
 function chpwd() {
     emulate -L zsh
-    ls -a --group-directories-first
+    ls -a
 }
 
 # 1}}}
