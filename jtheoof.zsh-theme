@@ -10,7 +10,7 @@ function get_pwd() {
 function put_spacing() {
   local git=$(git_prompt_info)
   if [ ${#git} != 0 ]; then
-    ((git=${#git} - 10))
+    ((git=${#git} - 28))
   else
     git=0
   fi
