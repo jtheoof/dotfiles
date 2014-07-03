@@ -24,6 +24,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # Add custom directories to $PATH
 typeset -U path
 path=(
+    /usr/local/bin
     ~/bin
     $(ruby -e 'puts Gem.user_dir')/bin
     $path
