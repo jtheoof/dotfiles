@@ -2,11 +2,6 @@
 
 set horizontal-scroll = 33%
 set line-graphics = yes
-set show-id = yes
-set show-author = yes
-set show-date = default
-set show-refs = yes
-set show-rev-graph = no
 
 # }}}
 # Colors {{{
@@ -20,27 +15,18 @@ color main-tag magenta default
 color stat-staged green default
 color stat-unstaged red bold
 color stat-untracked yellow default
-color tree-head white default
-color tree-dir cyan default
+color tree.header white default
+color tree.directory cyan default
 # }}}
 # Bindings {{{
 
 # Generic {{{
 
-bind generic r refresh
-bind generic b view-branch
-bind generic s view-status
 bind generic F !git fetch
-bind generic y !@sh -c "echo -n %(commit) | xsel -ib"
-bind generic Y !@sh -c "echo -n %(commit) | xsel -ib"
+bind generic Y !@sh -c "echo -n %(commit) | pbcopy"
 
 # }}}
 # Main {{{
-
-bind main F6 !@git fetch
-bind main F7 !@git rebase
-bind main F8 !@git pull
-bind main F9 !@git push
 
 bind main ! !git revert %(commit)
 bind main C !?git checkout %(commit)
@@ -55,8 +41,8 @@ bind main V !<sh -c "vim $(git show %(commit) --pretty=format: --name-only | xar
 # }}}
 # Diff {{{
 
-bind diff Up move-up
-bind diff Down move-down
+bind diff <Up> move-up
+bind diff <Down> move-down
 
 # Edit all files of commit
 bind diff A !git add %(file)              # Add current file
