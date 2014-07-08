@@ -23,7 +23,7 @@ color tree.directory cyan default
 # Generic {{{
 
 bind generic F !git fetch
-bind generic Y !@sh -c "echo -n %(commit) | pbcopy"
+bind generic Y !@csh -c "echo -n %(commit) | pbcopy"
 
 # }}}
 # Main {{{
