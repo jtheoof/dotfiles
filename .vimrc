@@ -119,7 +119,7 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 set wildignore+=*/cache/*,*/undodir/*
 set wildignore+=*/.build*/*,*/build/*,*/.deps/*
 set wildignore+=*/*.compressed/*
-set wildignore+=*.pch,*.d,*.o,*.Po
+set wildignore+=*.pch,*.d,*.o,*.Po,*.class
 set wildmenu
 set wildmode=longest,full
 
