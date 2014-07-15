@@ -204,6 +204,10 @@ function chpwd() {
     ls -a
 }
 
+function strip-color {
+    perl -pe 's/\e\[?.*?[\@-~]//g'
+}
+
 # 1}}}
 # Misc {{{
 
