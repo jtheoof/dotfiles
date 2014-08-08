@@ -493,7 +493,7 @@ let g:ctrlp_switch_buffer = 'H' " Jump to opened window with <c-x>
 let g:ctrlp_use_caching = 1
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v(node_modules|js-build)'
+    \ 'dir': '\v(node_modules|js-build|bower_components)'
     \ }
 let g:ctrlp_prompt_mappings = {
     \ 'PrtDeleteWord()':      ['<c-w>', '<c-bs>'],
