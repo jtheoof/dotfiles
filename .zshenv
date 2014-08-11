@@ -14,7 +14,12 @@
 
 export EDITOR=vim
 export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
-export JAVA_HOME=$(/usr/libexec/java_home)
+
+# Java
+/usr/libexec/java_home 1>/dev/null 2>&1
+if [ $? -eq 0 ]; then
+    export JAVA_HOME=$(/usr/libexec/java_home)
+fi
 
 # This won't work because it's already set by lib/misc.zsh
 # So I have to do it directly in ~/.zshrc which is not very clean.
