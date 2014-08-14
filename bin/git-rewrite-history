@@ -1,0 +1,15 @@
+#!/bin/sh
+
+change_committer_to_jeremy_at_mnubo() {
+    git filter-branch --commit-filter '
+        if [ "$GIT_AUTHOR_NAME" = "mnubo" ]; then
+            export GIT_AUTHOR_NAME="Jeremy Attali"
+            export GIT_AUTHOR_EMAIL="jattali@mnubo.com"
+            export GIT_COMMITTER_NAME="Jeremy Attali"
+            export GIT_COMMITTER_EMAIL="jattali@mnubo.com"
+        fi
+        git commit-tree "$@"
+    ' $@
+}
+
+change_committer_to_jeremy_at_mnubo $@
