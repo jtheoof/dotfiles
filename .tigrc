@@ -6,6 +6,17 @@ set horizontal-scroll = 33%
 set line-graphics = yes
 
 # }}}
+# Views {{{
+
+set blame-view	= date:default author:full file-name:auto id:yes,color line-number:no,interval=5 text
+set grep-view	= file-name:no line-number:yes,interval=1 text
+set main-view	= line-number:no,interval=5 id:yes date:default author:full commit-title:yes,graph,refs,overflow=no
+set refs-view	= date:default author:full ref commit-title
+set stash-view	= line-number:no,interval=5 id:no date:default author:full commit-title
+set status-view	= line-number:no,interval=5 status:short file-name
+set tree-view	= line-number:no,interval=5 mode author:full file-size date:default id:no file-name
+
+# }}}
 # Colors {{{
 color cursor white black
 color status white default
@@ -35,7 +46,6 @@ bind main C !?git checkout %(commit)
 bind main H !?git reset --hard %(commit)
 bind main R !git rebase -i %(commit)^
 bind main P !git cherry-pick %(commit)
-bind main X !git push
 bind main F !@sh -c "git show %(commit) --pretty=format: --name-only | xargs | xsel -ib"
 bind main E !<sh -c "vim -c 'Gedit %(commit)' $(ls | head -1)"
 bind main V !<sh -c "vim $(git show %(commit) --pretty=format: --name-only | xargs)"
