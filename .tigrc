@@ -1,3 +1,5 @@
+# vim:set sw=4 ts=4 et:
+
 # Variables {{{
 
 set horizontal-scroll = 33%
@@ -81,4 +83,3 @@ bind stage C !@git commit # Commit staging changes
 # }}}
 
 # }}}
-# vim:set sw=4 ts=4 et:
