@@ -174,15 +174,6 @@ set shiftwidth=4
 " Session
 set sessionoptions-=options
 
-set cinoptions=
-set cinoptions+=L0.5s          " align labels at 0.5 shiftwidth
-set cinoptions+=:0.5s,=0.5s    " same for case labels and code following labels
-set cinoptions+=g0.5s,h0.5s    " same for C++ stuff
-set cinoptions+=t0             " type on the line before the function is not indented
-set cinoptions+=(0,Ws          " indent in functions ( ... ) when it breaks
-set cinoptions+=m1             " align the closing ) properly
-set cinoptions+=j1,J1          " java/javascript -> fixes blocks
-
 " Tags
 set tags=./tags;/
 
