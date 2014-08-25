@@ -44,6 +44,7 @@ Bundle 'altercation/vim-colors-solarized'
 " }}}
 " Misc {{{
 
+Bundle 'bling/vim-airline'
 Bundle 'nacitar/terminalkeys.vim'
 
 " }}}
@@ -145,19 +146,6 @@ if exists("+spelllang")
     set spelllang=en_us              " english is good enough
     set spellfile=~/.vim/spell/en.utf-8.add
 endif
-
-" Status line
-set statusline=%t       "tail of the filename
-set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
-set statusline+=%h      "help file flag
-set statusline+=%m      "modified flag
-set statusline+=%r      "read only flag
-set statusline+=%y      "filetype
-set statusline+=%=      "left/right separator
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
 
 " X Clipboard
 if has("unix")
