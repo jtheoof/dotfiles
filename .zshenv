@@ -29,8 +29,8 @@ fi
 # Add custom directories to $PATH
 typeset -U path
 path=(
+    ~/.local/bin
     /usr/local/bin
-    ~/bin
     $(ruby -e 'puts Gem.user_dir')/bin
     $path
 )
