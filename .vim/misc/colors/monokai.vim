@@ -19,16 +19,16 @@ set background=dark
 " neutral gray monotone palette component)
 if (has("gui_running"))
     let s:vmode       = "gui"
-    let s:red         = "#E2302E"
-    let s:green       = "#A6E22E"
+    let s:red         = "#F00F60"
+    let s:green       = "#98DD31"
     let s:blue        = "#3285D2"
-    let s:cyan        = "#66D9EF"
-    let s:magenta     = "#F92672"
-    let s:yellow      = "#E6DB74"
+    let s:cyan        = "#5CD1E8"
+    let s:magenta     = "#F00F60"
+    let s:yellow      = "#DED368"
     let s:orange      = "#FD971F"
-    let s:purple      = "#AE81FF"
+    let s:purple      = "#9B69FA"
     let s:grey        = "#75715E"
-    let s:white       = "#FFFFFF"
+    let s:white       = "#F8F8F2"
     let s:black       = "#3E3D32"
     let s:back        = "#222222"
     let s:front       = "#F8F8F2"
@@ -39,9 +39,9 @@ elseif &t_Co == 256
     let s:blue        = "4"
     let s:cyan        = "6"
     let s:magenta     = "5"
-    let s:yellow      = "3"
-    let s:orange      = "9"
-    let s:purple      = "13"
+    let s:yellow      = "11"
+    let s:orange      = "3"
+    let s:purple      = "4"
     let s:grey        = "8"
     let s:white       = "15"
     let s:black       = "0"
@@ -201,8 +201,8 @@ exe "hi! Constant"       .s:fmt_none   .s:fg_purple    .s:bg_none
 "        Boolean         a boolean constant: TRUE, false
 "        Float           a floating point constant: 2.3e10
 "
-exe "hi! String"         .s:fmt_none   .s:fg_yellow    .s:bg_none
-exe "hi! Character"      .s:fmt_none   .s:fg_yellow    .s:bg_none
+exe "hi! String"         .s:fmt_none   .s:fg_orange    .s:bg_none
+exe "hi! Character"      .s:fmt_none   .s:fg_orange    .s:bg_none
 "        String          a string constant: "this is a string"
 "        Character       a character constant: 'c', '\n'
 
@@ -244,7 +244,7 @@ exe "hi! Type"           .s:fmt_none   .s:fg_cyan      .s:bg_none
 exe "hi! StorageClass"   .s:fmt_none   .s:fg_magenta   .s:bg_none
 "        StorageClass    static, register, volatile, etc.
 
-exe "hi! Special"        .s:fmt_none   .s:fg_cyan      .s:bg_none
+exe "hi! Special"        .s:fmt_none   .s:fg_yellow    .s:bg_none
 "       *Special         any special symbol
 "        SpecialChar     special character in a constant
 "        Tag             you can use CTRL-] on this
@@ -280,16 +280,16 @@ exe "hi! CursorLine"         .s:fmt_none  .s:fg_front   .s:bg_black
 exe "hi! CursorLineNr"       .s:fmt_none  .s:fg_white   .s:bg_black
 exe "hi! DiffAdd"            .s:fmt_none  .s:fg_black   .s:bg_green
 exe "hi! DiffAdded"          .s:fmt_none  .s:fg_green   .s:bg_none
-exe "hi! DiffChange"         .s:fmt_none  .s:fg_black   .s:bg_yellow
+exe "hi! DiffChange"         .s:fmt_none  .s:fg_black   .s:bg_orange
 exe "hi! DiffDelete"         .s:fmt_none  .s:fg_black   .s:bg_magenta
 exe "hi! DiffRemoved"        .s:fmt_none  .s:fg_red     .s:bg_none
-exe "hi! DiffText"           .s:fmt_none  .s:fg_black   .s:bg_yellow
+exe "hi! DiffText"           .s:fmt_none  .s:fg_black   .s:bg_orange
 exe "hi! Directory"          .s:fmt_none  .s:fg_cyan    .s:bg_none
 exe "hi! ErrorMsg"           .s:fmt_none  .s:fg_magenta .s:bg_none
 exe "hi! FoldColumn"         .s:fmt_none  .s:fg_grey    .s:bg_black
 exe "hi! Folded"             .s:fmt_none  .s:fg_grey    .s:bg_none
-exe "hi! helpHyperTextJump"  .s:fmt_undr  .s:fg_yellow  .s:bg_none
-exe "hi! helpHyperTextEntry" .s:fmt_none  .s:fg_green   .s:bg_none
+exe "hi! helpHyperTextJump"  .s:fmt_undr  .s:fg_orange  .s:bg_none
+exe "hi! helpHyperTextEntry" .s:fmt_none  .s:fg_orange  .s:bg_none
 exe "hi! IncSearch"          .s:fmt_none  .s:fg_black   .s:bg_orange
 exe "hi! LineNr"             .s:fmt_none  .s:fg_grey    .s:bg_none
 exe "hi! MatchParen"         .s:fmt_bold  .s:fg_front   .s:bg_black
