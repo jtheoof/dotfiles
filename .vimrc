@@ -28,12 +28,13 @@ Bundle 'tpope/vim-vinegar'
 " Programming {{{
 
 Bundle 'groenewege/vim-less'
-Bundle 'kchmck/vim-coffee-script'
 Bundle 'mattn/emmet-vim'
 Bundle 'pangloss/vim-javascript'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
+Bundle 'SirVer/ultisnips'
 
 " }}}
 " Themes {{{
@@ -43,7 +44,6 @@ Bundle 'altercation/vim-colors-solarized'
 " }}}
 " Misc {{{
 
-Bundle 'SirVer/ultisnips'
 Bundle 'nacitar/terminalkeys.vim'
 
 " }}}
