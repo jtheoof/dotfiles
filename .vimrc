@@ -45,6 +45,7 @@ Bundle 'altercation/vim-colors-solarized'
 " Misc {{{
 
 Bundle 'bling/vim-airline'
+Bundle 'mkitt/tabline.vim'
 Bundle 'nacitar/terminalkeys.vim'
 
 " }}}

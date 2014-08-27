@@ -311,7 +311,7 @@ exe "hi! StatusLine"         .s:fmt_none  .s:fg_white   .s:bg_black
 exe "hi! StatusLineNC"       .s:fmt_none  .s:fg_grey    .s:bg_black
 exe "hi! TabLine"            .s:fmt_none  .s:fg_grey    .s:bg_black
 exe "hi! TabLineFill"        .s:fmt_none  .s:fg_none    .s:bg_black
-exe "hi! TabLineSel"         .s:fmt_none  .s:fg_none    .s:bg_black
+exe "hi! TabLineSel"         .s:fmt_none  .s:fg_none    .s:bg_grey
 exe "hi! Title"              .s:fmt_none  .s:fg_magenta .s:bg_none
 exe "hi! VertSplit"          .s:fmt_none  .s:fg_black   .s:bg_none
 exe "hi! Visual"             .s:fmt_none  .s:fg_none    .s:bg_black
