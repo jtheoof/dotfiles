@@ -349,6 +349,7 @@ hi! link cssPaddingProp          Cyan
 hi! link cssDimensionProp        Cyan
 hi! link cssBackgroundProp       Cyan
 hi! link cssFlexibleBoxProp      Cyan
+hi! link cssBorderProp           Cyan
 hi! link cssBorderOutlineProp    Cyan
 " Git
 hi! link gitrebaseFixup          Grey
