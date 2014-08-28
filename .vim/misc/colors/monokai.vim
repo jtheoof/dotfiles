@@ -358,9 +358,12 @@ hi! link javaStatement           Green
 " Javascript
 hi! link jsDocParam              Cyan
 hi! link jsDocTags               Magenta
+hi! link jsEnvComment            Comment
 hi! link jsFuncArgs              Orange
+hi! link jsFunction              Green
+hi! link jsFuncCall              Cyan
 hi! link jsFunctionKey           Green
-hi! link jsStorageClass          Cyan
+hi! link jsStorageClass          Magenta
 " Ruby
 hi! link rubyClassVariable       White
 hi! link rubyControl             Green
