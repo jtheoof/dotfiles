@@ -1,23 +1,6 @@
-# Ignore every bundle except static
-bufexplorer/
-ctrlp.vim/
-emmet-vim/
-nerdtree/
-supertab/
-syntastic/
-terminalkeys.vim/
-ultisnips/
-vim-coffee-script/
-vim-colors-solarized/
-vim-commentary/
-vim-fugitive/
-vim-gtfo/
-vim-javascript/
-vim-less/
-vim-markdown/
-vim-misc/
-vim-repeat/
-vim-session/
-vim-surround/
-vim-unimpaired/
-vim-vinegar/
+# Ignore every bundle vundle
+
+*
+
+!.gitignore
+!vundle/
