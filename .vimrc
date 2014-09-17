@@ -74,7 +74,6 @@ colorscheme monokai
 set encoding=utf8                       " utf-8 encoding
 set formatoptions=tqrn1j                " see help
 set number                              " show line numbers
-set textwidth=78                        " 78 characters limit
 set cmdheight=1                         " slightly bigger command line
 
 set nowrap                              " no wrapping
