@@ -286,9 +286,6 @@ nmap <Leader>tw :set wrap!<CR>
 " Remap to : allowing to get rid of Shift
 nnoremap ; :
 
-" Make Y more consistent with C and D
-nnoremap Y y$
-
 " Quickly select pasted test remembering the selection type
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
@@ -326,6 +323,8 @@ nnoremap <F7> :make<Return>
 nnoremap <C-F11> :split<CR>
 nnoremap <C-F12> :vsplit<CR>
 
+" Make Y more consistent with C and D
+nnoremap Y y$
 " Yank current file
 nnoremap <silent> ycf :let @* = expand("%:p")<CR>:let @+ = expand("%:p")<CR>
 
