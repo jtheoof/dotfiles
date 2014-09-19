@@ -505,7 +505,6 @@ let NERDTreeAutoDeleteBuffer=1 " always remove deleted buffer
 " 2}}}
 " UltiSnips {{{
 
-let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
 let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'ultisnips']
 let g:UltiSnipsExpandTrigger = '<F1>'
 let g:UltiSnipsListSnippets = '<F2>'
