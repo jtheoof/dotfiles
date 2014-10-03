@@ -35,6 +35,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'SirVer/ultisnips'
+Bundle 'editorconfig/editorconfig-vim'
 
 if has("mac")
     Bundle 'rizzatti/dash.vim'
