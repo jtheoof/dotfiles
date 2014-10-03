@@ -36,6 +36,10 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'SirVer/ultisnips'
 
+if has("mac")
+    Bundle 'rizzatti/dash.vim'
+endif
+
 " }}}
 " Themes {{{
 
