@@ -517,9 +517,7 @@ let NERDTreeAutoDeleteBuffer=1 " always remove deleted buffer
 
 let g:UltiSnipsSnippetDirectories = ['ultisnips']
 let g:UltiSnipsExpandTrigger = '<F1>'
-let g:UltiSnipsListSnippets = '<F2>'
-let g:UltiSnipsJumpForwardTrigger = '<F3>'
-let g:UltiSnipsJumpBackwardTrigger = '<F4>'
+let g:UltiSnipsListSnippets = '<C-F1>'
 let g:UltiSnipsEditSplit = 'vertical'
 
 " }}}
