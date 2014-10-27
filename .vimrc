@@ -42,6 +42,11 @@ if has("mac")
 endif
 
 " }}}
+" Editor {{{
+
+Bundle 'chrisbra/csv.vim'
+
+" }}}
 " Themes {{{
 
 Bundle 'altercation/vim-colors-solarized'
