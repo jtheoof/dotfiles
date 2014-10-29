@@ -26,7 +26,7 @@ color author green default
 color main-head magenta default
 color main-tag magenta default
 color stat-staged green default
-color stat-unstaged red bold
+color stat-unstaged red default
 color stat-untracked yellow default
 color tree.header white default
 color tree.directory cyan default
