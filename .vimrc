@@ -334,8 +334,6 @@ nnoremap <C-F12> :vsplit<CR>
 
 " Make Y more consistent with C and D
 nnoremap Y y$
-" Yank current window
-nnoremap ycw mzggyG'z
 " Yank current file
 nnoremap <silent> ycf :let @* = expand("%:p")<CR>:let @+ = expand("%:p")<CR>
 
