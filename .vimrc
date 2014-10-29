@@ -238,7 +238,7 @@ nmap <Leader>cd :cd %:p:h<CR>
 
 " Quick save
 nnoremap <Leader>w :w<CR>
-nnoremap <silent> <Leader><Leader> :wa<CR>
+nnoremap <silent> <Leader><Leader> :exe ":silent normal wa"<CR>
 
 " Use <Leader>W to “strip all trailing whitespace in the current file”
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
