@@ -63,6 +63,8 @@
 	mt  = mergetool -t vimdiff
 	mtg = mergetool -t gvimdiff
 
+	show-conflicts = diff --name-only --diff-filter=U
+
 	st  = status -sb
 	sta = status --ignored
 
