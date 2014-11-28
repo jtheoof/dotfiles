@@ -128,7 +128,7 @@ set wildchar=<Tab> wildmenu wildmode=full
 set wildcharm=<C-Z>
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 set wildignore+=*/cache/*,*/undodir/*
-set wildignore+=*/.build*/*,*/build/*,*/.deps/*
+set wildignore+=*/.build*/*,*/build/*,*/classes/*
 set wildignore+=*/.sass-cache*/*
 set wildignore+=*/*.compressed/*
 set wildignore+=*.pch,*.d,*.o,*.Po,*.class
