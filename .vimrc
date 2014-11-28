@@ -449,7 +449,7 @@ autocmd BufWritePre * :call StripTrailingWhitespaces()
 
 if has("unix")
     let g:ackhighlight = 1
-    let g:ackprg = "ack -H --nocolor --nogroup --column --sort-files"
+    let g:ackprg = "ag --vimgrep"
 endif
 
 " 2}}}
