@@ -511,6 +511,11 @@ noremap <Leader>nc :NERDTreeClose<cr>
 let NERDTreeAutoDeleteBuffer=1 " always remove deleted buffer
 
 " 2}}}
+" netrw {{{2
+
+let g:netrw_sort_options="i"
+
+" 2}}}
 " UltiSnips {{{
 
 let g:UltiSnipsSnippetDirectories = ['ultisnips']
