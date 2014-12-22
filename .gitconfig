@@ -136,3 +136,5 @@
 	auto = 0
 [core]
 	editor = vim
+[rebase]
+	autosquash = true

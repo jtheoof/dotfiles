@@ -44,7 +44,7 @@ bind generic Y !@csh -c "echo -n %(commit) | pbcopy"
 bind main ! !git revert %(commit)
 bind main C !?git checkout %(commit)
 bind main H !?git reset --hard %(commit)
-bind main R !git rebase -i %(commit)^
+bind main R !git rebase -i --autosquash %(commit)^
 bind main P !git cherry-pick %(commit)
 bind main F !@sh -c "git show %(commit) --pretty=format: --name-only | xargs | xsel -ib"
 bind main E !<sh -c "vim -c 'Gedit %(commit)' $(ls | head -1)"
