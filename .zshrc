@@ -130,9 +130,11 @@ alias tmn='tmux new'
 # Functions {{{1
 
 function man() {
-    /usr/bin/man $* | col -bp | iconv -c | \
-        vim -c 'map <silent> q :qa!<CR>' \
-            -c 'set ft=man nomod nolist nonu noma' -
+    vim -c "SuperMan $*"
+
+    if [ "$?" != "0" ]; then
+        echo "No manual entry for $*"
+    fi
 }
 
 # Compression
