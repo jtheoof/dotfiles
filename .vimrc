@@ -23,6 +23,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-vinegar'
+Bundle 'Z1MM32M4N/vim-superman'
 
 " }}}
 " Programming {{{
@@ -71,7 +72,6 @@ set rtp+=~/.vim/misc
 filetype plugin indent on    " put filetype plugin back on after pathogen
 syntax on                    " enable syntax
 runtime macros/matchit.vim   " smarter use of '%'
-runtime ftplugin/man.vim     " use Man in command mode
 
 " 1}}}
 " Options {{{1
@@ -254,7 +254,7 @@ map <Leader>ez :e! $HOME/.zshrc<CR>
 noremap <Leader>giw :Ggrep <C-R><C-W><CR>
 
 " Man helper
-nnoremap <Leader>M "myiw:Man <C-r>m<CR>
+nnoremap <Leader>M "myiw:SuperMan <C-r>m<CR>
 
 " Ctrl-P Buffer
 nnoremap <Leader>pp :CtrlP<CR>
