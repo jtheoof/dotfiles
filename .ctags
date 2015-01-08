@@ -21,6 +21,7 @@
 --regex-js=/\.filter\(['"]([A-Za-z0-9._$]+)['"]/\1/c,filter/
 --regex-js=/\.animation\(['"]([A-Za-z0-9._$]+)['"]/\1/c,animation/
 --regex-js=/\.value\(['"]([A-Za-z0-9._$]+)['"]/\1/c,value/
+--regex-js=/\.constant\(['"]([A-Za-z0-9._$]+)['"]/\1/c,constant/
 --regex-js=/\.factory\(['"]([A-Za-z0-9._$]+)['"]/\1/c,factory/
 --regex-js=/\.service\(['"]([A-Za-z0-9._$]+)['"]/\1/c,service/
 --regex-js=/\.provider\(['"]([A-Za-z0-9._$]+)['"]/\1/c,provider/
