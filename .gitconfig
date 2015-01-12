@@ -40,6 +40,7 @@
 	gr  = grep -n -I -i --break -e
 
 	fe  = fetch
+	fea  = fetch --all
 
 	files = show --pretty='format:' --name-only
 
