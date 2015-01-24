@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language:	    HTML (Version 5)
-" Maintainer:	Jeremy Attali <jeremy.attali@gmail.com>
+" Maintainer:	Jeremy Attali
 " URL:
 " Last Change:  2013-05-22
 " License:      MIT
