@@ -521,6 +521,7 @@ let NERDTreeAutoDeleteBuffer=1 " always remove deleted buffer
 " netrw {{{2
 
 let g:netrw_sort_options="i"
+let g:netrw_liststyle=1
 
 " 2}}}
 " UltiSnips {{{
