@@ -486,6 +486,7 @@ let g:ctrlp_regexp = 0
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_switch_buffer = 'H' " Jump to opened window with <c-x>
 let g:ctrlp_use_caching = 1
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_custom_ignore = {
     \ 'dir': '\v(node_modules|js-build|bower_components)'
