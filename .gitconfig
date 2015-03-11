@@ -40,8 +40,8 @@
 
 	gr  = grep -n -I -i --break -e
 
-	fe  = fetch
-	fea  = fetch --all
+	fe  = fetch --prune
+	fea  = fetch --all --prune
 
 	files = show --pretty='format:' --name-only
 
