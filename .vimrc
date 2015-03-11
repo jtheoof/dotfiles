@@ -439,9 +439,6 @@ au FocusLost * execute ":silent! wa"
 au InsertEnter * set cursorline
 au InsertLeave * set nocursorline
 
-au WinEnter * set colorcolumn=80
-au WinLeave * set colorcolumn=
-
 " Trim whitespaces
 autocmd BufWritePre * :call StripTrailingWhitespaces()
 
