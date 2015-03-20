@@ -16,7 +16,7 @@
 	c   = commit
 	cm  = commit -m
 	ca  = commit --amend
-	cA  = commit --amend --reuse-message=HEAD
+	car  = commit --amend --reuse-message=HEAD
 	cam = commit -am
 	caa = commit -a --amend
 	cv  = commit --verbose
