@@ -130,7 +130,7 @@
 [merge]
 	tool = vimdiff
 [push]
-	default = tracking
+	default = current
 [user]
 	name = Jeremy Attali
 	email = jeremy.attali@gmail.com
