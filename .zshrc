@@ -110,7 +110,7 @@ alias fl='find . -type l | ack'
 alias du0='du --max-depth 0 -h .'
 alias du1='du --max-depth 1 -h .'
 alias ducks='du -cks * | sort -rn | head -11'
-alias psa='ps -ef | ack'
+alias psa='ps -ef | ag'
 
 # Network
 alias ipwan='wget -q -O - checkip.dyndns.org | sed -e "s/.*Current IP Address: //" -e "s/<.*$//"'
