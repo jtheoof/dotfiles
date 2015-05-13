@@ -1,0 +1,34 @@
+@import "ui-variables";
+
+.tree-view {
+
+}
+
+.editor {
+
+}
+
+.editor .cursor {
+
+}
+
+atom-text-editor.vim-mode.command-mode.is-focused,
+atom-text-editor.vim-mode.operator-pending-mode.is-focused,
+atom-text-editor.vim-mode.visual-mode.is-focused
+{
+  &::shadow, // shadow-DOM enabled
+  &          // shadow-DOM disabled
+  {
+    /* cursor color */
+    .cursor, .cursor.blink-off {
+      background-color: rgba(59,117,140,1);
+      visibility: visible !important;
+    }
+    /* bracket matcher */
+    .bracket-matcher {
+      background-color: rgb(59,117,140) !important;
+      opacity: 0.6 !important;
+      width: 0.63em !important;
+    }
+  }
+}
