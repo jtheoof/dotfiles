@@ -1,0 +1,27 @@
+"*":
+  editor:
+    fontSize: 12
+    tabLength: 4
+    invisibles: {}
+    showInvisibles: true
+    preferredLineLength: 100
+  core:
+    themes: [
+      "one-dark-ui"
+      "solarized-dark-syntax"
+    ]
+    audioBeep: false
+    disabledPackages: [
+      "jshint"
+    ]
+  "exception-reporting":
+    userId: "c0191c2d-2e42-2a6b-6160-e625d859884b"
+  welcome:
+    showOnStartup: false
+  metrics:
+    userId: "6057499fffdb4ebd3e00447b9d5cfd4601f733bb"
+  autosave:
+    enabled: true
+  "atom-beautify":
+    _analyticsUserId: "f69d1bc0-5295-4402-bdb7-d293c000e4f0"
+  linter: {}
