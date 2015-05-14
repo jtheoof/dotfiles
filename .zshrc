@@ -92,7 +92,7 @@ alias lsf='find . -nowarn -type f -maxdepth 1'
 
 alias h='history'
 alias hs='history'
-alias hsa='history | ack'
+alias hsa='history | ag'
 alias hsl='history | less'
 
 # Search
@@ -101,10 +101,10 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias sgrep='grep --color=auto -inIEr'
 
-alias fa='find . | ack '
-alias ff='find . -type f | ack'
-alias fd='find . -type d | ack'
-alias fl='find . -type l | ack'
+alias fa='find . | ag '
+alias ff='find . -type f | ag'
+alias fd='find . -type d | ag'
+alias fl='find . -type l | ag'
 
 # Usage
 alias du0='du --max-depth 0 -h .'
