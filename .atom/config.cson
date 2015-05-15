@@ -2,7 +2,8 @@
   editor:
     fontSize: 12
     tabLength: 4
-    invisibles: {}
+    invisibles:
+      {}
     showInvisibles: true
     preferredLineLength: 100
   core:
@@ -24,4 +25,9 @@
     enabled: true
   "atom-beautify":
     _analyticsUserId: "f69d1bc0-5295-4402-bdb7-d293c000e4f0"
-  linter: {}
+  linter:
+    {}
+  "one-dark-ui":
+    layoutMode: "Compact"
+  "tree-view":
+    hideVcsIgnoredFiles: true
