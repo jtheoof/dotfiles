@@ -26,8 +26,29 @@
   "atom-beautify":
     _analyticsUserId: "f69d1bc0-5295-4402-bdb7-d293c000e4f0"
   linter:
-    {}
+    lintOnChange: false
+    clearOnChange: true
+    showInfoMessages: true
+    statusBar: "Show all errors"
+    lintDebug: true
   "one-dark-ui":
     layoutMode: "Compact"
   "tree-view":
     hideVcsIgnoredFiles: true
+  "atom-fuzzy-grep":
+    {}
+  "vim-mode":
+    useClipboardAsDefaultRegister: true
+  "file-explorer":
+    {}
+  "git-blame-plus":
+    {}
+  "git-blame":
+    {}
+  "linter-jscs":
+    onlyConfig: true
+    messageType: "warning"
+    executablePath: "/usr/local/bin"
+  "linter-jshint":
+    disableWhenNoJshintrcFileInPath: true
+    jshintExecutablePath: "~/.dotfiles/.atom/packages/linter-jshint/node_modules/jshint/bin"

@@ -17,7 +17,7 @@
 #   'ctrl-p': 'core:move-down'
 #
 
-'.editor:not(.mini)':
+'.atom-text-editor:not(.mini)':
   'ctrl-d': 'editor:delete-line'
 
 '.vim-mode':
