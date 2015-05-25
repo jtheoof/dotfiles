@@ -86,8 +86,6 @@
 
 	jshint = "!git status -uno -s | cut -f3 -d' ' | ack-grep '.js$' | xargs jshint"
 	jsfix  = "!f() { git ls-files | xargs jshint | cut -d':' -f1 | sort -u | xargs ; }; vim `f`"
-[branch]
-	autosetuprebase = always
 [color]
 	status = auto
 	diff = auto
@@ -143,3 +141,5 @@
 	whitespace = tab-in-indent
 [rebase]
 	autosquash = true
+[pull]
+	rebase = true
