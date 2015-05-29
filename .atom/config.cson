@@ -15,6 +15,7 @@
     disabledPackages: [
       "jshint"
     ]
+    projectHome: "~/dev/mnubo/main"
   "exception-reporting":
     userId: "c0191c2d-2e42-2a6b-6160-e625d859884b"
   welcome:
@@ -25,6 +26,8 @@
     enabled: true
   "atom-beautify":
     _analyticsUserId: "f69d1bc0-5295-4402-bdb7-d293c000e4f0"
+    html_wrap_attributes: "force"
+    analytics: false
   linter:
     lintOnChange: false
     clearOnChange: true
@@ -34,6 +37,7 @@
   "one-dark-ui":
     layoutMode: "Compact"
   "tree-view":
+    hideIgnoredNames: true
     hideVcsIgnoredFiles: true
   "atom-fuzzy-grep":
     {}
