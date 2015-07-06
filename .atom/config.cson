@@ -2,15 +2,10 @@
   editor:
     fontSize: 12
     tabLength: 4
-    invisibles:
-      {}
+    invisibles: {}
     showInvisibles: true
     preferredLineLength: 100
   core:
-    themes: [
-      "one-dark-ui"
-      "solarized-dark-syntax"
-    ]
     audioBeep: false
     disabledPackages: [
       "jshint"
@@ -39,16 +34,12 @@
   "tree-view":
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true
-  "atom-fuzzy-grep":
-    {}
+  "atom-fuzzy-grep": {}
   "vim-mode":
     useClipboardAsDefaultRegister: true
-  "file-explorer":
-    {}
-  "git-blame-plus":
-    {}
-  "git-blame":
-    {}
+  "file-explorer": {}
+  "git-blame-plus": {}
+  "git-blame": {}
   "linter-jscs":
     onlyConfig: true
     messageType: "warning"
