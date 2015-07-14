@@ -29,11 +29,13 @@
     showInfoMessages: true
     statusBar: "Show all errors"
     lintDebug: true
+    showErrorPanel: false
   "one-dark-ui":
     layoutMode: "Compact"
   "tree-view":
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true
+    hideIgnoredNames: true
   "atom-fuzzy-grep": {}
   "vim-mode":
     useClipboardAsDefaultRegister: true
