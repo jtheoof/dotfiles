@@ -5,3 +5,5 @@ packages
 .npm
 .node-gyp
 .apm
+npm-debug.log
+projects.cson
