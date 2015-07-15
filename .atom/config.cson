@@ -44,6 +44,3 @@
     onlyConfig: true
     messageType: "warning"
     executablePath: "/usr/local/bin"
-  "linter-jshint":
-    disableWhenNoJshintrcFileInPath: true
-    jshintExecutablePath: "~/.dotfiles/.atom/packages/linter-jshint/node_modules/jshint/bin"
