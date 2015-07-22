@@ -211,6 +211,13 @@ function! StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
+function! RestoreCursor()
+    if line("'\"") > 0 && line("'\"") <= line("$")
+        normal! g`"
+        return 1
+    endif
+endfunction
+
 " 1}}}
 " Mappings {{{1
 
@@ -417,10 +424,10 @@ aug END
 
 " This autocommand jumps to the last known position in a file
 " just after opening it, if the '"' mark is set:
-if has("autocmd")
-    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-        \| exe "normal! g'\"" | endif
-endif
+aug restorecursor
+    au!
+    au BufWinEnter * call RestoreCursor()
+aug END
 
 " Auto save when focus is lost
 au FocusLost * execute ":silent! wa"
