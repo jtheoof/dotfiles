@@ -1,4 +1,4 @@
-# General Ack Settings
+# General ack Settings
 ####################################################################
 
 # sort files
@@ -22,9 +22,6 @@
 # add tpl types
 --type-set=tpl=.tpl
 
-# types to ignore by default
---nogettext
-
 # Colors
 ####################################################################
 
@@ -36,3 +33,5 @@
 # Ignore directories
 ####################################################################
 
+# types to ignore by default
+--nogettext
