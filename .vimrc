@@ -158,13 +158,9 @@ if exists("+spelllang")
     set spellfile=~/.vim/spell/en.utf-8.add
 endif
 
-" X Clipboard
-if has("unix")
-    if has('unnamedplus')
-        set clipboard=unnamedplus
-    else
-        set clipboard=unnamed
-    endif
+" Set unnamedplus clipboard if present, default to unnamed
+if has('unnamedplus')
+    set clipboard=unnamedplus
 else
     set clipboard=unnamed
 endif
