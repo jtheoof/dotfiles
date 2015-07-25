@@ -412,16 +412,6 @@ aug quickfix
     au FileType qf call AdjustWindowHeight(3, 20)  " Adjust size automatically
 aug END
 
-aug misc
-    au!
-    au BufNewFile,BufRead *.adoc setf asciidoc
-    au BufNewFile,BufRead *.h    setf c
-    au BufNewFile,BufRead *.blk  setf c
-    au BufNewFile,BufRead *.blkk setf cpp
-    au BufNewFile,BufRead *.iop  setf d
-    au BufRead *.zsh-theme setf zsh
-aug END
-
 " This autocommand jumps to the last known position in a file
 " just after opening it, if the '"' mark is set:
 aug restorecursor
