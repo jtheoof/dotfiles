@@ -360,15 +360,10 @@ inoremap <silent> <C-S> <Esc>:w<CR>i
 " Delete current line
 inoremap <C-D> <Esc>dda
 
-" Function keys
-imap <F7> <Esc>:make<CR>a
-
 " map control-backspace to delete the previous word
 imap <C-BS> <C-W>
 " map control-del to remove word after cursor
 imap <C-Del> <C-O>"_de
-" Insert unicode characters
-imap <C-u> <C-v>u
 
 " 2}}}
 " Visual mode {{{2
