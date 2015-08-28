@@ -28,15 +28,23 @@ Bundle 'Z1MM32M4N/vim-superman'
 " }}}
 " Programming {{{
 
+" Less
 Bundle 'groenewege/vim-less'
+
+" HTML
 Bundle 'mattn/emmet-vim'
+
+" Javascript
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'scrooloose/syntastic'
+Bundle 'einars/js-beautify'
+Bundle 'maksimr/vim-jsbeautify'
+
+" Git
 Bundle 'tpope/vim-fugitive'
+
+" Markdown
 Bundle 'tpope/vim-markdown'
-Bundle 'SirVer/ultisnips'
-Bundle 'editorconfig/editorconfig-vim'
 
 if has("mac")
     Bundle 'rizzatti/dash.vim'
@@ -46,6 +54,9 @@ endif
 " Editor {{{
 
 Bundle 'chrisbra/csv.vim'
+Bundle 'SirVer/ultisnips'
+Bundle 'editorconfig/editorconfig-vim'
+Bundle 'scrooloose/syntastic'
 
 " }}}
 " Themes {{{
