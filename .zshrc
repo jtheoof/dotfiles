@@ -76,6 +76,9 @@ export LESS=-FRSX
 # Admin
 alias lgroups='cat /etc/passwd | cut -d: -f1'
 
+# Docker
+alias dm='docker-machine'
+
 # Editing
 alias v='vim'
 alias vi='vim'
