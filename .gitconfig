@@ -12,6 +12,7 @@
 
 	br  = branch
 	bra = branch -a
+	brv = branch -vv
 
 	c   = commit
 	cf  = commit --fixup
