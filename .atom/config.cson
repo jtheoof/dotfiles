@@ -7,6 +7,9 @@
     preferredLineLength: 100
   core:
     audioBeep: false
+    disabledPackages: [
+      "jshint"
+    ]
     projectHome: "~/dev/mnubo/main"
   "exception-reporting":
     userId: "c0191c2d-2e42-2a6b-6160-e625d859884b"
@@ -42,3 +45,13 @@
     onlyConfig: true
     messageType: "warning"
     executablePath: "/usr/local/bin"
+  minimap: {}
+  "linter-jshint":
+    disableWhenNoJshintrcFileInPath: true
+  "atom-typescript": {}
+".source.ts.tsx":
+  editor:
+    preferredLineLength: 100
+".source.ts":
+  editor:
+    preferredLineLength: 100
