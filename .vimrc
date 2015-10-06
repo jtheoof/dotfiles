@@ -40,6 +40,9 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'einars/js-beautify'
 Bundle 'maksimr/vim-jsbeautify'
 
+" Typescript
+Bundle 'leafgarland/typescript-vim'
+
 " Git
 Bundle 'tpope/vim-fugitive'
 
