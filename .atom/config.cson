@@ -1,19 +1,13 @@
 "*":
   editor:
-    fontSize: 12
+    fontSize: 14
     tabLength: 4
     invisibles: {}
     showInvisibles: true
     preferredLineLength: 100
   core:
     audioBeep: false
-<<<<<<< HEAD
-    projectHome: "~/dev/mnubo/main"
-=======
-    disabledPackages: [
-      "jshint"
-    ]
->>>>>>> atom: update config
+    projectHome: "~/dev"
   "exception-reporting":
     userId: "c0191c2d-2e42-2a6b-6160-e625d859884b"
   welcome:
@@ -55,9 +49,9 @@
 ".source.ts.tsx":
   editor:
     preferredLineLength: 100
-".diff.source":
+".source.ts":
   editor:
     preferredLineLength: 100
-".source.ts":
+".diff.source":
   editor:
     preferredLineLength: 100
