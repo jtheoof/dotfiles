@@ -1,9 +1,10 @@
-storage
+.apm
+.git-history
+.node-gyp
+.npm
 compile-cache
 dev
-packages
-.npm
-.node-gyp
-.apm
 npm-debug.log
+packages
 projects.cson
+storage
