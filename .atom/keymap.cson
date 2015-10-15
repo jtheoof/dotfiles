@@ -17,11 +17,10 @@
 #   'ctrl-p': 'core:move-down'
 #
 
-'.atom-text-editor:not(.mini)':
-  'ctrl-d': 'editor:delete-line'
-
-'.vim-mode':
+'atom-text-editor.vim-mode.normal-mode':
+  # 'shift-y': 'editor:copy-to-end-of-line'
   'cmd-up': 'window:focus-pane-above'
   'cmd-down': 'window:focus-pane-below'
   'cmd-right': 'window:focus-pane-on-right'
   'cmd-left': 'window:focus-pane-on-left'
+  'g f': 'open-this:here'
