@@ -31,8 +31,8 @@
     layoutMode: "Compact"
   "tree-view":
     hideIgnoredNames: true
-    hideVcsIgnoredFiles: true
-  "atom-fuzzy-grep": {}
+  "atom-fuzzy-grep":
+    preserveLastSearch: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
   "file-explorer": {}
