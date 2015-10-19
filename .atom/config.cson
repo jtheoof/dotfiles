@@ -1,13 +1,15 @@
 "*":
   editor:
-    fontSize: 14
+    fontSize: 12
     tabLength: 4
     invisibles: {}
     showInvisibles: true
     preferredLineLength: 100
   core:
     audioBeep: false
-    projectHome: "~/dev"
+    disabledPackages: [
+      "jshint"
+    ]
   "exception-reporting":
     userId: "c0191c2d-2e42-2a6b-6160-e625d859884b"
   welcome:
@@ -27,6 +29,7 @@
     statusBar: "Show all errors"
     lintDebug: true
     showErrorPanel: false
+    lintOnFly: false
   "one-dark-ui":
     layoutMode: "Compact"
   "tree-view":
@@ -46,6 +49,7 @@
   "linter-jshint":
     disableWhenNoJshintrcFileInPath: true
   "atom-typescript": {}
+  "tree-view-open-files": {}
 ".source.ts.tsx":
   editor:
     preferredLineLength: 100
