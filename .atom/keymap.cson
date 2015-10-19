@@ -24,3 +24,7 @@
   'cmd-right': 'window:focus-pane-on-right'
   'cmd-left': 'window:focus-pane-on-left'
   'g f': 'open-this:here'
+
+'.fuzzy-finder atom-text-editor[mini]':
+  'cmd-|': 'pane:split-right'
+  'cmd-\\': 'pane:split-down'
