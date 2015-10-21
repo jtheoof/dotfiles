@@ -142,7 +142,7 @@
 	editor = vim
 	whitespace = tab-in-indent
 [rebase]
-	autosquash = true
+	autoSquash = true
 	autoStash = true
 [pull]
 	rebase = true
