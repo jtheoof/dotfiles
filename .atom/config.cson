@@ -1,15 +1,12 @@
 "*":
   editor:
-    fontSize: 12
     tabLength: 4
     invisibles: {}
-    showInvisibles: true
     preferredLineLength: 100
+    fontSize: 12
   core:
     audioBeep: false
-    disabledPackages: [
-      "jshint"
-    ]
+    projectHome: "~/dev"
   "exception-reporting":
     userId: "c0191c2d-2e42-2a6b-6160-e625d859884b"
   welcome:
@@ -49,13 +46,15 @@
   "linter-jshint":
     disableWhenNoJshintrcFileInPath: true
   "atom-typescript": {}
-  "tree-view-open-files": {}
+  jumpy: {}
+  whitespace:
+    ignoreWhitespaceOnCurrentLine: false
 ".source.ts.tsx":
   editor:
     preferredLineLength: 100
-".source.ts":
+".diff.source":
   editor:
     preferredLineLength: 100
-".diff.source":
+".source.ts":
   editor:
     preferredLineLength: 100
