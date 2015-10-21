@@ -140,7 +140,6 @@
 	auto = 0
 [core]
 	editor = vim
-	whitespace = tab-in-indent
 [rebase]
 	autoSquash = true
 	autoStash = true
