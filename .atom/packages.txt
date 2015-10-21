@@ -15,7 +15,7 @@ linter-jshint@1.2.1
 minimap@4.13.4
 open-this@0.1.5
 open-vim@0.2.2
-project-manager@2.6.3
+project-manager@2.6.5
 sort-lines@0.11.0
 symbols-tree-view@0.10.0
 vim-mode@0.61.0
