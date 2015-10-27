@@ -34,3 +34,27 @@
 
 
         """
+
+    'mnubo-spec':
+        'prefix': 'mnspec'
+        'body': """
+        'use strict';
+
+         describe('mnubo.$1', function() {
+             var _;
+
+             beforeEach(angular.mock.module('mnubo.$1'));
+
+             beforeEach(function() {
+                 angular.module('mnubo.common.layoutManager').service('appService', function() {
+                     this.init = angular.noop;
+                 });
+             });
+
+             beforeEach(angular.mock.inject(function(___) {
+                 _ = ___;
+             }));
+
+             $2
+         });
+        """
