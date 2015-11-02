@@ -58,3 +58,19 @@
              $2
          });
         """
+
+    'spec describe':
+        'prefix': 'desc'
+        'body': """
+         describe('$1', function() {
+             $2
+         });
+        """
+
+    'spec test':
+        'prefix': 'it'
+        'body': """
+         it('should $1', function() {
+             $2
+         });
+        """
