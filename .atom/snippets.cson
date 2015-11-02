@@ -15,7 +15,7 @@
 #
 
 '.source.js':
-    'copyright':
+    'Copyright':
         'prefix': 'copyright'
         'body': """
         /*
@@ -35,7 +35,7 @@
 
         """
 
-    'mnubo-spec':
+    'Mnubo Spec':
         'prefix': 'mnspec'
         'body': """
         'use strict';
