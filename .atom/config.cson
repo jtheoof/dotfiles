@@ -52,12 +52,14 @@
   jumpy: {}
   whitespace:
     ignoreWhitespaceOnCurrentLine: false
+  docblockr: {}
+  emmet: {}
 ".source.ts.tsx":
   editor:
     preferredLineLength: 100
-".diff.source":
+".source.ts":
   editor:
     preferredLineLength: 100
-".source.ts":
+".diff.source":
   editor:
     preferredLineLength: 100
