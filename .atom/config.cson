@@ -54,6 +54,10 @@
     ignoreWhitespaceOnCurrentLine: false
   docblockr: {}
   emmet: {}
+  "fuzzy-finder":
+    useAlternateScoring: true
+  "autocomplete-plus":
+    useAlternateScoring: true
 ".source.ts.tsx":
   editor:
     preferredLineLength: 100
