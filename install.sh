@@ -67,7 +67,7 @@ link() {
   if [ -d $l ]; then
     if [ ! -h $l ]; then # not a symlink, we should remove the directory
       print_info "$l is a directory"
-      case "$OSTYPE" in)
+      case "$OSTYPE" in
         darwin*)
           rm -ri $l
           ;;
