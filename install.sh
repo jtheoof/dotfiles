@@ -167,7 +167,6 @@ install_packages_darwin() {
     macvim \
     multimarkdown \
     mysql \
-    neovim \
     node \
     openssl \
     python \
