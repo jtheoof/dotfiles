@@ -105,15 +105,6 @@ install_dotfiles() {
     in_array $(basename $i) "${exclude[@]}" || link $(basename $i)
   done
 
-  if [ ! -d $HOME/.oh-my-zsh ]; then
-    print_info "Cloning oh-my-zsh"
-    git clone https://github.com/robyrussel/oh-my-zsh $HOME/.oh-my-zsh
-  else
-    print_info "oh-my-zsh found, skipping..."
-  fi
-
-  link $FILESPATH/.oh-my-zsh/custom/themes $HOME/.oh-my-zsh/custom/themes
-
   # .config directories
   case "$OSTYPE" in
     darwin*)
@@ -127,6 +118,13 @@ install_dotfiles() {
       link ".local/bin"
       ;;
   esac
+}
+
+install_oh_my_zsh() {
+  echo "installing oh-my-zsh"
+  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+  link $FILESPATH/.oh-my-zsh/custom/themes $HOME/.oh-my-zsh/custom/themes
 }
 
 install_packages_npm() {
@@ -299,6 +297,7 @@ install_all() {
   fi
   install_packages
   install_dotfiles
+  install_oh_my_zsh
   install_vim_bundles
 }
 
