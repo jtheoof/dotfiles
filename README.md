@@ -2,8 +2,6 @@
 
 A simple config repo to store my main config files.
 
-# Misc
+## Installation
 
-## Kernel
-
-    echo "/srv/data/cores/%e.%t.%p.core" > /proc/sys/kernel/core_pattern
+    sh -c "$(curl -fsSL https://raw.github.com/jtheoof/dotfiles/master/install.sh)"
