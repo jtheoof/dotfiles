@@ -164,7 +164,6 @@ install_packages_darwin() {
     docker \
     docker-machine \
     git \
-    macvim \
     multimarkdown \
     mysql \
     node \
@@ -195,6 +194,7 @@ install_packages_darwin() {
     flux \
     google-chrome \
     iterm2 \
+    macvim \
     mailbox \
     messenger \
     slack \
