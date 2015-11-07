@@ -200,7 +200,6 @@ install_packages_darwin() {
     slack \
     spectacle \
     spotify \
-    twitter \
     visual-studio-code \
   "
 
