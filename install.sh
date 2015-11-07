@@ -33,10 +33,6 @@ print_error() {
 # }}}
 # Utils {{{
 
-get_github_repos() {
-  git clone -q https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
-}
-
 die() {
   echo $1
   exit ${2:-1}
@@ -71,7 +67,14 @@ link() {
   if [ -d $l ]; then
     if [ ! -h $l ]; then # not a symlink, we should remove the directory
       print_info "$l is a directory"
-      rm -rI $l
+      case "$OSTYPE" in)
+        darwin*)
+          rm -ri $l
+          ;;
+        *)
+          rm -rI $l
+          ;;
+      esac
     fi
   fi
   if $FORCE_MODE ; then
@@ -90,9 +93,9 @@ link() {
 }
 
 # }}}
-# Handlers {{{
+# Installers {{{
 
-handle_install_dotfiles() {
+install_dotfiles() {
   print_info "installing symlinks"
 
   local exclude
@@ -112,29 +115,101 @@ handle_install_dotfiles() {
   link $FILESPATH/.oh-my-zsh/custom/themes $HOME/.oh-my-zsh/custom/themes
 
   # .config directories
-  config_dirs="fontconfig htop transmission tranmission-remote-cli"
-  for i in $config_dirs; do
-    link ".config/$i"
-  done
+  case "$OSTYPE" in
+    darwin*)
+      ;;
+    *)
+      config_dirs="fontconfig htop transmission tranmission-remote-cli"
+      for i in $config_dirs; do
+        link ".config/$i"
+      done
 
-  link ".local/bin"
-
-  exit 0
+      link ".local/bin"
+      ;;
+  esac
 }
 
-handle_packages_npm() {
-  packages="\
+install_packages_npm() {
+  npm_packages="\
+    bower \
+    grunt-cli \
+    gulp \
     jshint \
-    grunt \
-    less"
+    karma-cli \
+    less
+    tsd \
+    tslint \
+    typescript \
+  "
 
-  for p in $packages; do
-    print_info "installing node package: $p"
-    sudo npm install $p -g
-  done
+  print_info "installing npm package..."
+  case "$OSTYPE" in
+    darwin*)
+      npm install -g $npm_packages
+      ;;
+    *)
+      sudo npm install -g $npm_packages
+      ;;
+    esac
 }
 
-handle_packages() {
+install_packages_darwin() {
+  print_info "installing homebrew"
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+  brew_packages="\
+    ack \
+    cloc \
+    ctags \
+    docker \
+    docker-machine \
+    git \
+    macvim \
+    multimarkdown \
+    mysql \
+    neovim \
+    node \
+    openssl \
+    python \
+    readline \
+    rename \
+    the_silver_searcher \
+    tig \
+    tmux \
+    tree \
+    vim \
+    watch \
+  "
+
+  echo "installing brew packages..."
+  brew install $brew_packages
+
+
+  echo "installing brew cask"
+  brew install caskroom/cask/brew-cask
+
+  cask_packages="\
+    1password \
+    alfred \
+    atom \
+    dropbox \
+    flux \
+    google-chrome \
+    iterm2 \
+    mailbox \
+    messenger \
+    slack \
+    spectacle \
+    spotify \
+    twitter \
+    visual-studio-code \
+  "
+
+  echo "installing brew cask packages..."
+  brew cask install $cask_packages
+}
+
+install_packages_linux() {
   packages="\
     ack \
     autoconf \
@@ -168,85 +243,18 @@ handle_packages() {
     xsel \
     zsh"
 
-  echo "Installing packages..."
+  echo "installing packages..."
   sudo pacman -S --needed $packages
 }
 
-handle_install() {
-  shift
-  case "$1" in
-    dotfiles)
-      handle_install_dotfiles
-      get_github_repos
-      ;;
-    packages)
-      handle_packages
-      ;;
-    npm)
-      handle_packages_npm
-      ;;
-  esac
-}
-
-handle_dconf() {
-  shift
-  case "$1" in
-    load)
-      print_info "loading: $FILESPATH/conf/dconf"
-      dconf load / < $FILESPATH/conf/dconf
-      ;;
-    dump)
-      print_info "dumping: $FILESPATH/conf/dconf"
-      dconf dump / > $FILESPATH/conf/dconf
-      ;;
-    *)
-      print_error "usage: dconf [dump] [load]"
-  esac
-}
-
-handle_vim() {
-  shift
-  case "$1" in
-    package)
-      case "$2" in
-        windows)
-          print_info "Creating vim package"
-          tmp="/tmp/vim.package"
-          dir=$PWD
-          bak=$HOME/Dropbox/Backup/Vim
-          if [ -d  $tmp ]; then
-            rm -rf $tmp
-          fi
-          mkdir $tmp && cd $tmp
-          rsync -q -avz -C --exclude=undodir/ $HOME/.vim/ vimfiles
-          cp -rL $HOME/.vimrc _vimrc
-          zip -q -r vim-$(date +%Y%m%d).zip vimfiles _vimrc
-          if [ ! -d $bak ]; then
-            print_error "unable to find $bak"
-            cd $dir
-            exit 1
-          fi
-          mv vim-$(date +%Y%m%d).zip $bak
-          cd $dir
-      esac
-  esac
+install_vim_bundles() {
+  vim -c ":BundleInstall" -c ":qa!"
 }
 
 # }}}
 # Global variables {{{
 
-# Get the path where the file is located.
-# Then resolve symbolic link just to make sure.
-SCRIPTPATH=$(dirname $(readlink -f ${0}))
-cd $SCRIPTPATH
-GITPATH=$(git rev-parse --show-toplevel $SCRIPTPATH | head -1)
-cd $OLDPWD
-if [ ! -d $GITPATH ]; then
-    print_error "could not find .git directory, something is fishy"
-    exit 1
-fi
-
-FILESPATH=$GITPATH
+FILESPATH=$HOME/.dotfiles
 
 # }}}
 # Getting options {{{
@@ -272,48 +280,41 @@ done
 shift # removing '--'
 
 # }}}
-# Interactive helpers {{{
 
-interactive_help() {
-  echo "This script will guide you after a fresh install of the system."
-  echo "I switched from Ubuntu to Arch Linux so a couple of packages and"
-  echo "some behaviour might have changed."
-  echo "By default, it runs in the interactive mode, but it also can be run"
-  echo "non-interactively, just feed it with the necessary options, see"
-  echo "'jtheoof --help' for details."
-  echo
+install_packages() {
+  case "$OSTYPE" in
+    darwin*)
+      install_packages_darwin
+      ;;
+    *)
+      install_packages_linux
+      ;;
+  esac
+    install_packages_npm
 }
 
-interactive_select_command() {
-  echo "Select the command you want to use:"
-  select command
-  do
-    if [[ -z $command ]]
-    then
-      die "Unkown selection, exiting" 2
-    fi
-    break
-  done
-  echo
+install_all() {
+  if [ ! -d $FILESPATH ]; then
+    cd $HOME
+    git clone --recursive https://github.com/jtheoof/dotfiles .dotfiles
+    cd $FILESPATH
+  fi
+  install_packages
+  install_dotfiles
+  install_vim_bundles
 }
-
-# }}}
-
-interactive_help
-interactive_select_command "${commands[@]}"
 
 if [[ -n $command ]]; then
   case "$command" in
     packages)
-      handle_packages
-      #handle_packages_npm
+      install_packages
       ;;
     dotfiles)
-      handle_install_dotfiles
+      install_dotfiles
       ;;
   esac
 else
-  usage
+  install_all
 fi
 
 # vim: sts=2 sw=2 et
