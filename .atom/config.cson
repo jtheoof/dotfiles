@@ -58,6 +58,7 @@
     useAlternateScoring: true
   "autocomplete-plus":
     useAlternateScoring: true
+  "vim-surround": {}
 ".source.ts.tsx":
   editor:
     preferredLineLength: 100
