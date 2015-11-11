@@ -40,23 +40,175 @@
         'body': """
         'use strict';
 
-         describe('mnubo.$1', function() {
-             var _;
+        describe('mnubo.$1', function() {
+            var _;
 
-             beforeEach(angular.mock.module('mnubo.$1'));
+            beforeEach(angular.mock.module('mnubo.$1'));
 
-             beforeEach(function() {
-                 angular.module('mnubo.common.layoutManager').service('appService', function() {
-                     this.init = angular.noop;
-                 });
-             });
+            beforeEach(function() {
+                angular.module('mnubo.common.layoutManager').service('appService', function() {
+                    this.init = angular.noop;
+                });
+            });
 
-             beforeEach(angular.mock.inject(function(___) {
-                 _ = ___;
-             }));
+            beforeEach(angular.mock.inject(function(___) {
+                _ = ___;
+            }));
 
-             $2
-         });
+            $2
+        });
+        """
+
+    'AngularJS Module':
+        'prefix': 'ng-module'
+        'body': """
+        /**
+         * @module $1
+         */
+        (function(angular) {
+            'use strict';
+
+            angular
+                .module('$1', [
+                    $2
+                ])
+                .config(config)
+                .run(run);
+
+            /**
+             * @ngInject
+             */
+            function config() { }
+
+            /**
+             * @ngInject
+             */
+            function run() { }
+        })(angular);
+        """
+
+    'AngularJS Controller':
+        'prefix': 'ng-controller'
+        'body': """
+        /**
+         * @module ${1:Module}
+         */
+        (function(angular) {
+            'use strict';
+
+            angular
+                .module('$1')
+                .controller('$2', $2);
+
+            /**
+             * @class
+             * @name ${2:Controller}
+             * @ngInject
+             */
+            function $2() {
+                var vm = this;
+            }
+        })(angular);
+        """
+
+    'AngularJS Factory':
+        'prefix': 'ng-factory'
+        'body': """
+        /**
+         * @module ${1:Module}
+         */
+        (function(angular) {
+            'use strict';
+
+            angular
+                .module('$1')
+                .factory('$2', $2);
+
+            /**
+             * @class
+             * @name ${2:Name}
+             * @ngInject
+             */
+            function $2() { $0 }
+        })(angular);
+        """
+
+    'AngularJS Constant':
+        'prefix': 'ng-constant'
+        'body': """
+        /**
+         * @module ${1:Module}
+         */
+        (function(angular) {
+            'use strict';
+
+            /**
+             * @constant
+             * @name ${2:Constant}
+             */
+            angular
+                .module('$1')
+                .constant('$2', $0);
+        })(angular);
+        """
+
+    'AngularJS Directive':
+        'prefix': 'ng-directive'
+        'body': """
+        /**
+         * @module ${1:Module}
+         */
+        (function(angular) {
+            'use strict';
+
+            angular
+                .module('$1')
+                .directive('$2', $2);
+
+            /**
+             * @directive
+             * @name ${2:Directive}
+             * @ngInject
+             */
+            function $2() {
+                return {
+                    restrict: 'E',
+                    templateUrl: '$3',
+                    replace: true,
+                    scope: false,
+                    scope: {
+                        $4
+                    },
+                    controllerAs: 'vm',
+                    bindToController: true,
+                    link: function() { $0 }
+                };
+            }
+        })(angular);
+        """
+
+    'AngularJS Service':
+        'prefix': 'ng-service'
+        'body': """
+        /**
+         * @module ${1:Module}
+         */
+        (function(angular) {
+            'use strict';
+
+            angular
+                .module('$1')
+                .service('$2', $2);
+
+            /**
+             * @service
+             * @name ${2:Service}
+             * @ngInject
+             */
+            function $2() {
+                $0
+            }
+        })(angular);
         """
 
     'spec describe':
