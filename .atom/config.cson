@@ -42,9 +42,9 @@
   "git-blame-plus": {}
   "git-blame": {}
   "linter-jscs":
-    onlyConfig: true
     messageType: "warning"
     executablePath: "/usr/local/bin"
+    onlyConfig: true
   minimap: {}
   "linter-jshint":
     disableWhenNoJshintrcFileInPath: true
@@ -59,6 +59,7 @@
   "autocomplete-plus":
     useAlternateScoring: true
   "vim-surround": {}
+  "markdown-preview": {}
 ".source.ts.tsx":
   editor:
     preferredLineLength: 100
