@@ -17,6 +17,9 @@
 #   'ctrl-p': 'core:move-down'
 #
 
+'.tree-view':
+  'cmd-right': 'tree-view:toggle-focus'
+
 'atom-text-editor.vim-mode.normal-mode':
   # 'shift-y': 'editor:copy-to-end-of-line'
   'cmd-up': 'window:focus-pane-above'
