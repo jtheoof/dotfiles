@@ -281,6 +281,9 @@ install_packages() {
   case "$OSTYPE" in
     darwin*)
       install_packages_darwin
+
+      # Turn off the character accent selector and re-enable key repetition.
+      defaults write -g ApplePressAndHoldEnabled -bool false
       ;;
     *)
       install_packages_linux
