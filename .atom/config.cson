@@ -1,14 +1,15 @@
 "*":
   editor:
-    tabLength: 4
     invisibles: {}
     preferredLineLength: 100
     fontSize: 12
+    tabLength: 4
   core:
     audioBeep: false
     projectHome: "~/dev"
     disabledPackages: [
       "minimap"
+      "git-blame"
     ]
   "exception-reporting":
     userId: "c0191c2d-2e42-2a6b-6160-e625d859884b"
@@ -52,15 +53,17 @@
   jumpy: {}
   whitespace:
     ignoreWhitespaceOnCurrentLine: false
-  docblockr: {}
-  emmet: {}
   "fuzzy-finder":
     useAlternateScoring: true
   "autocomplete-plus":
     useAlternateScoring: true
   "vim-surround": {}
   "markdown-preview": {}
+  emmet: {}
 ".source.ts.tsx":
+  editor:
+    preferredLineLength: 100
+".source.tsx":
   editor:
     preferredLineLength: 100
 ".source.ts":
