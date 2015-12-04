@@ -189,8 +189,8 @@ set hlsearch     " highlight searches
 " Indentation
 set autoindent    " copy indentation from previous line
 set expandtab     " transform tabs into spaces
-set softtabstop=4
-set shiftwidth=4
+set softtabstop=2
+set shiftwidth=2
 
 " Session
 set sessionoptions-=options
