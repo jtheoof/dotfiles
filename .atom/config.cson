@@ -46,9 +46,11 @@
     messageType: "warning"
     executablePath: "/usr/local/bin"
     onlyConfig: true
-  minimap: {}
   "linter-jshint":
     disableWhenNoJshintrcFileInPath: true
+  "linter-eslint":
+    disableWhenNoEslintrcFileInPath: true
+  minimap: {}
   "atom-typescript": {}
   jumpy: {}
   whitespace:

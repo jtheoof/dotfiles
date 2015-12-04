@@ -22,6 +22,8 @@
 
 'atom-text-editor.vim-mode.normal-mode':
   # 'shift-y': 'editor:copy-to-end-of-line'
+  'cmd-f11': 'pane:split-down'
+  'cmd-f12': 'pane:split-right'
   'cmd-up': 'window:focus-pane-above'
   'cmd-down': 'window:focus-pane-below'
   'cmd-right': 'window:focus-pane-on-right'
