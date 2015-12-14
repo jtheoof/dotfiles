@@ -2,6 +2,7 @@
 .git-history
 .node-gyp
 .npm
+blob-store
 compile-cache
 dev
 npm-debug.log
