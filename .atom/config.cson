@@ -9,7 +9,7 @@
     projectHome: "~/dev"
     disabledPackages: [
       "minimap"
-      "git-blame"
+      "emmet"
     ]
   "exception-reporting":
     userId: "c0191c2d-2e42-2a6b-6160-e625d859884b"
