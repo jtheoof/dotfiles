@@ -2,3 +2,5 @@
 *.bak
 *.pyc
 *.lock
+
+.local/share
