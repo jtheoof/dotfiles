@@ -15,6 +15,7 @@
 	brv = branch -vv
 
 	c   = commit
+	cc  = commit -C
 	cf  = commit --fixup
 	cm  = commit -m
 	ca  = commit --amend
