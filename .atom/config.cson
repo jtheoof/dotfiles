@@ -1,81 +1,83 @@
 "*":
-  editor:
-    invisibles: {}
-    preferredLineLength: 100
-    fontSize: 12
-    tabLength: 4
+  "atom-beautify":
+    _analyticsUserId: "f69d1bc0-5295-4402-bdb7-d293c000e4f0"
+    analytics: false
+    html_wrap_attributes: "force"
+  "atom-fuzzy-grep":
+    preserveLastSearch: true
+  "atom-typescript": {}
+  "autocomplete-plus":
+    useAlternateScoring: true
+  autosave:
+    enabled: true
+  "color-picker":
+    preferredFormat: "HEX"
+    uppercaseColorValues: true
   core:
     audioBeep: false
-    projectHome: "~/dev"
     disabledPackages: [
       "minimap"
       "emmet"
+      "linter-tslint"
+      "jumpy"
     ]
+    projectHome: "~/dev"
+  editor:
+    fontSize: 12
+    invisibles: {}
+    preferredLineLength: 100
+    showInvisibles: true
+  emmet: {}
   "exception-reporting":
     userId: "c0191c2d-2e42-2a6b-6160-e625d859884b"
-  welcome:
-    showOnStartup: false
-  metrics:
-    userId: "6057499fffdb4ebd3e00447b9d5cfd4601f733bb"
-  autosave:
-    enabled: true
-  "atom-beautify":
-    _analyticsUserId: "f69d1bc0-5295-4402-bdb7-d293c000e4f0"
-    html_wrap_attributes: "force"
-    analytics: false
+  "file-explorer": {}
+  "find-and-replace":
+    openProjectFindResultsInRightPane: true
+  "fuzzy-finder":
+    useAlternateScoring: true
+  "git-blame": {}
+  "git-blame-plus": {}
+  jumpy: {}
   linter:
-    lintOnChange: false
     clearOnChange: true
+    lintDebug: true
+    lintOnChange: false
+    lintOnFly: false
+    showErrorPanel: false
     showInfoMessages: true
     statusBar: "Show all errors"
-    lintDebug: true
-    showErrorPanel: false
-    lintOnFly: false
+  "linter-eslint":
+    disableWhenNoEslintrcFileInPath: true
+  "linter-jscs":
+    executablePath: "/usr/local/bin"
+    messageType: "warning"
+    onlyConfig: true
+  "linter-jshint":
+    disableWhenNoJshintrcFileInPath: true
+  "markdown-preview": {}
+  metrics:
+    userId: "6057499fffdb4ebd3e00447b9d5cfd4601f733bb"
+  minimap: {}
   "one-dark-ui":
     layoutMode: "Compact"
   "tree-view":
     hideIgnoredNames: true
-  "atom-fuzzy-grep":
-    preserveLastSearch: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
-  "file-explorer": {}
-  "git-blame-plus": {}
-  "git-blame": {}
-  "linter-jscs":
-    messageType: "warning"
-    executablePath: "/usr/local/bin"
-    onlyConfig: true
-  "linter-jshint":
-    disableWhenNoJshintrcFileInPath: true
-  "linter-eslint":
-    disableWhenNoEslintrcFileInPath: true
-  minimap: {}
-  "atom-typescript": {}
-  jumpy: {}
+  "vim-surround": {}
+  welcome:
+    showOnStartup: false
   whitespace:
     ignoreWhitespaceOnCurrentLine: false
-  "fuzzy-finder":
-    useAlternateScoring: true
-  "autocomplete-plus":
-    useAlternateScoring: true
-  "vim-surround": {}
-  "markdown-preview": {}
-  emmet: {}
-  "find-and-replace":
-    openProjectFindResultsInRightPane: true
-  "color-picker":
-    preferredFormat: "HEX"
-    uppercaseColorValues: true
-".source.ts.tsx":
-  editor:
-    preferredLineLength: 100
-".source.tsx":
-  editor:
-    preferredLineLength: 100
 ".diff.source":
   editor:
     preferredLineLength: 100
 ".source.ts":
+  editor:
+    preferredLineLength: 100
+".source.ts.tsx":
+  editor:
+    preferredLineLength: 100
+".source.tsx":
   editor:
     preferredLineLength: 100
