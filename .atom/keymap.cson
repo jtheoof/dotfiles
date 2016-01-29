@@ -28,6 +28,9 @@
   'cmd-down': 'window:focus-pane-below'
   'cmd-right': 'window:focus-pane-on-right'
   'cmd-left': 'window:focus-pane-on-left'
+
+  'shift-cmd-g': 'find-and-replace:replace-next'
+
   'g f': 'open-this:here'
 
 '.fuzzy-finder atom-text-editor[mini]':

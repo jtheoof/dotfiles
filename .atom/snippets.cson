@@ -14,14 +14,14 @@
 #     'body': 'console.log $1'
 #
 
-'.source.js':
+'.source.js, .source.less':
     'Copyright':
         'prefix': 'copyright'
         'body': """
         /*
          * ---------------------------------------------------------------------------
          *
-         * COPYRIGHT (c) 2015 Mnubo Inc. All Rights Reserved.
+         * COPYRIGHT (c) 2016 Mnubo Inc. All Rights Reserved.
          *
          * The copyright to the computer program(s) herein is the property of Mnubo
          * Inc. The program(s) may be used and/or copied only with the written
@@ -35,6 +35,7 @@
 
         """
 
+'.source.js':
     'Mnubo Spec':
         'prefix': 'mnspec'
         'body': """
