@@ -9,3 +9,6 @@ npm-debug.log
 packages
 projects.cson
 storage
+
+# Package folders
+git-time-machine/
