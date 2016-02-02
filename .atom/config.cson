@@ -41,6 +41,7 @@
     useAlternateScoring: true
   "git-blame": {}
   "git-blame-plus": {}
+  hex: {}
   jumpy: {}
   linter:
     clearOnChange: true
