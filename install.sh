@@ -163,7 +163,6 @@ install_packages_darwin() {
     docker-machine \
     git \
     multimarkdown \
-    mysql \
     node \
     openssl \
     python \
@@ -174,6 +173,7 @@ install_packages_darwin() {
     tmux \
     tree \
     vim \
+    wget \
     watch \
   "
 
@@ -185,7 +185,6 @@ install_packages_darwin() {
   brew install caskroom/cask/brew-cask
 
   cask_packages="\
-    1password \
     alfred \
     atom \
     dropbox \
