@@ -5,85 +5,86 @@ set nocompatible " be IMproved
 " Vundle {{{1
 
 filetype off " required for ftdetect to kick in
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
 
-" let Vundle manage Vundle
-" XXX required!
-Bundle 'gmarik/vundle'
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
 " Enhancements {{{
 
-Bundle 'ervandew/supertab'
-Bundle 'jlanzarotta/bufexplorer'
-Bundle 'justinmk/vim-gtfo'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-vinegar'
-Bundle 'Z1MM32M4N/vim-superman'
+Plugin 'ervandew/supertab'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'justinmk/vim-gtfo'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-vinegar'
+Plugin 'Z1MM32M4N/vim-superman'
 
 " }}}
 " Programming {{{
 
 " Less
-Bundle 'groenewege/vim-less'
+Plugin 'groenewege/vim-less'
 
 " HTML
-Bundle 'mattn/emmet-vim'
+Plugin 'mattn/emmet-vim'
 
 " Javascript
-Bundle 'pangloss/vim-javascript'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'einars/js-beautify'
-Bundle 'maksimr/vim-jsbeautify'
+Plugin 'pangloss/vim-javascript'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'einars/js-beautify'
+Plugin 'maksimr/vim-jsbeautify'
 
 " Typescript
-Bundle 'leafgarland/typescript-vim'
+Plugin 'leafgarland/typescript-vim'
 
 " Git
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 
 " Markdown
-Bundle 'tpope/vim-markdown'
+Plugin 'tpope/vim-markdown'
 
 if has("mac")
-    Bundle 'rizzatti/dash.vim'
+    Plugin 'rizzatti/dash.vim'
 endif
 
 " }}}
 " Editor {{{
 
-Bundle 'chrisbra/csv.vim'
-Bundle 'SirVer/ultisnips'
-Bundle 'editorconfig/editorconfig-vim'
-Bundle 'scrooloose/syntastic'
+Plugin 'chrisbra/csv.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'scrooloose/syntastic'
 
 " }}}
 " Themes {{{
 
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 
 " }}}
 " Misc {{{
 
-Bundle 'bling/vim-airline'
-Bundle 'mkitt/tabline.vim'
-Bundle 'nacitar/terminalkeys.vim'
+Plugin 'bling/vim-airline'
+Plugin 'mkitt/tabline.vim'
+Plugin 'nacitar/terminalkeys.vim'
 
 " }}}
 
 " Bypass Vundle for custom plugins.
 " See: https://github.com/gmarik/vundle/issues/67
-
 set rtp+=~/.vim/misc
+"
+call vundle#end()            " required
 
 "1}}}
 " Init {{{1
 
-filetype plugin indent on    " put filetype plugin back on after pathogen
+filetype plugin indent on    " put filetype plugin back on after plugins
 syntax on                    " enable syntax
 runtime macros/matchit.vim   " smarter use of '%'
 
