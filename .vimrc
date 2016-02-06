@@ -98,7 +98,7 @@ endif
 " Options {{{1
 
 " Theme
-set background=light
+set background=dark
 colorscheme monokai
 
 " Text editing
