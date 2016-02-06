@@ -69,7 +69,8 @@ Plugin 'altercation/vim-colors-solarized'
 " }}}
 " Misc {{{
 
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'mkitt/tabline.vim'
 Plugin 'nacitar/terminalkeys.vim'
 
