@@ -75,19 +75,13 @@
     showOnStartup: false
   whitespace:
     ignoreWhitespaceOnCurrentLine: false
+".angular.html.text":
+  editor:
+    preferredLineLength: 100
 ".diff.source":
   editor:
     preferredLineLength: 100
 ".source.ts":
-  editor:
-    preferredLineLength: 100
-".angular.html.text":
-  editor:
-    preferredLineLength: 100
-".source.ts.tsx":
-  editor:
-    preferredLineLength: 100
-".source.tsx":
   editor:
     preferredLineLength: 100
 ".source.ts.tsx":
