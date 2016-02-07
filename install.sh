@@ -182,7 +182,7 @@ install_packages_darwin() {
 
 
   echo "installing brew cask"
-  brew install caskroom/cask/brew-cask
+  brew tap caskroom/cask
 
   cask_packages="\
     alfred \
