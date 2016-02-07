@@ -71,6 +71,8 @@ Plugin 'altercation/vim-colors-solarized'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'joshdick/onedark.vim'
+Plugin 'joshdick/airline-onedark.vim'
 Plugin 'mkitt/tabline.vim'
 Plugin 'nacitar/terminalkeys.vim'
 
@@ -100,7 +102,7 @@ endif
 
 " Theme
 set background=dark
-colorscheme monokai
+colorscheme onedark
 
 " Text editing
 set encoding=utf8                       " utf-8 encoding
