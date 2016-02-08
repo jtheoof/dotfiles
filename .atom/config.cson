@@ -25,6 +25,10 @@
       "git-time-machine"
     ]
     projectHome: "~/dev"
+    themes: [
+      "atom-material-ui"
+      "atom-material-syntax"
+    ]
   editor:
     fontSize: 12
     invisibles: {}
