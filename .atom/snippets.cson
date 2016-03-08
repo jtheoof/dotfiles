@@ -156,36 +156,19 @@
     'AngularJS Directive':
         'prefix': 'ng-directive'
         'body': """
+        import template from './${1:directive}.html!text';
+
         /**
-         * @module ${1:Module}
+         * @ngInject
          */
-        (function(angular) {
-            'use strict';
-
-            angular
-                .module('$1')
-                .directive('$2', $2);
-
-            /**
-             * @directive
-             * @name ${2:Directive}
-             * @ngInject
-             */
-            function $2() {
-                return {
-                    restrict: 'E',
-                    templateUrl: '$3',
-                    replace: true,
-                    scope: false,
-                    scope: {
-                        $4
-                    },
-                    controllerAs: 'vm',
-                    bindToController: true,
-                    link: function() { $0 }
-                };
-            }
-        })(angular);
+        export function $1() {
+            return {
+                restrict: 'E',
+                template: template,
+                replace: true,
+                scope: false
+            };
+        }$0
         """
 
     'AngularJS Service':
