@@ -5,6 +5,16 @@
     html_wrap_attributes: "force"
   "atom-fuzzy-grep":
     preserveLastSearch: true
+  "atom-material-ui":
+    colors: {}
+    fonts:
+      fontSize: 14
+    tabs:
+      compactTabs: true
+    treeView:
+      compactList: true
+    ui:
+      panelContrast: true
   "atom-typescript": {}
   "autocomplete-plus":
     useAlternateScoring: true
@@ -23,6 +33,7 @@
       "git-history"
       "git-blame"
       "git-time-machine"
+      "tool-bar-main"
     ]
     projectHome: "~/dev"
     themes: [
@@ -83,6 +94,24 @@
   editor:
     preferredLineLength: 100
 ".diff.source":
+  editor:
+    preferredLineLength: 100
+".git-commit.text":
+  editor:
+    preferredLineLength: 100
+".git-config.source":
+  editor:
+    preferredLineLength: 100
+".git-rebase.text":
+  editor:
+    preferredLineLength: 100
+".js.regexp.replacement.source":
+  editor:
+    preferredLineLength: 100
+".js.regexp.source":
+  editor:
+    preferredLineLength: 100
+".js.source":
   editor:
     preferredLineLength: 100
 ".source.ts":
