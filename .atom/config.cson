@@ -31,9 +31,9 @@
       "linter-tslint"
       "jumpy"
       "git-history"
-      "git-blame"
       "git-time-machine"
       "tool-bar-main"
+      "linter-jscs"
     ]
     projectHome: "~/dev"
     themes: [
@@ -44,7 +44,6 @@
     fontSize: 12
     invisibles: {}
     preferredLineLength: 100
-    showInvisibles: true
     tabLength: 4
   emmet: {}
   "exception-reporting":
