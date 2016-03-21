@@ -2,8 +2,8 @@ angularjs@0.3.4
 atom-beautify@0.28.26
 atom-fuzzy-grep@0.13.0
 atom-material-syntax@0.4.3
-atom-material-ui@1.2.0
-atom-typescript@8.3.0
+atom-material-ui@1.2.8
+atom-typescript@8.4.0
 color-picker@2.1.1
 compare-files@0.6.2
 copy-path@0.4.0
@@ -11,7 +11,7 @@ dash@1.6.0
 docblockr@0.7.3
 emmet@2.4.2
 file-explorer@0.3.0
-file-icons@1.6.17
+file-icons@1.6.18
 git-blame@0.4.8
 git-history@3.2.0
 git-plus@5.13.0
@@ -20,11 +20,12 @@ hex@0.6.2
 jumpy@3.0.3
 language-diff@0.4.0
 linter@1.11.3
-linter-eslint@7.0.0
-linter-jscs@3.4.8
-linter-jshint@2.0.2
+linter-eslint@7.1.1
+linter-jscs@3.4.10
+linter-jshint@2.0.3
 linter-tslint@0.8.3
-minimap@4.19.0
+merge-conflicts@1.3.7
+minimap@4.21.0
 native-ui@0.17.0
 open-this@0.2.0
 open-vim@0.2.2
@@ -33,8 +34,8 @@ pretty-json@0.4.1
 project-manager@2.7.6
 sort-lines@0.14.0
 symbols-tree-view@0.11.0
-tool-bar@0.2.1
+tool-bar@0.3.0
 tool-bar-main@0.0.9
-vim-mode@0.64.0
+vim-mode@0.65.0
 vim-surround@0.8.1
 
