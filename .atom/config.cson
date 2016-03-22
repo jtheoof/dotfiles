@@ -89,36 +89,3 @@
     showOnStartup: false
   whitespace:
     ignoreWhitespaceOnCurrentLine: false
-".angular.html.text":
-  editor:
-    preferredLineLength: 100
-".diff.source":
-  editor:
-    preferredLineLength: 100
-".git-commit.text":
-  editor:
-    preferredLineLength: 100
-".git-config.source":
-  editor:
-    preferredLineLength: 100
-".git-rebase.text":
-  editor:
-    preferredLineLength: 100
-".js.regexp.replacement.source":
-  editor:
-    preferredLineLength: 100
-".js.regexp.source":
-  editor:
-    preferredLineLength: 100
-".js.source":
-  editor:
-    preferredLineLength: 100
-".source.ts":
-  editor:
-    preferredLineLength: 100
-".source.ts.tsx":
-  editor:
-    preferredLineLength: 100
-".source.tsx":
-  editor:
-    preferredLineLength: 100
