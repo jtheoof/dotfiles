@@ -7,8 +7,7 @@
     preserveLastSearch: true
   "atom-material-ui":
     colors: {}
-    fonts:
-      fontSize: 14
+    fonts: {}
     tabs:
       compactTabs: true
     treeView:
@@ -34,6 +33,7 @@
       "git-time-machine"
       "tool-bar-main"
       "linter-jscs"
+      "linter-jshint"
     ]
     projectHome: "~/dev"
     themes: [
