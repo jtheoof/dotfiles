@@ -2,6 +2,8 @@
   "atom-beautify":
     _analyticsUserId: "f69d1bc0-5295-4402-bdb7-d293c000e4f0"
     analytics: false
+    general:
+      _analyticsUserId: "fdfb699a-b6f5-435a-ba09-13555a54a3f2"
     html_wrap_attributes: "force"
   "atom-fuzzy-grep":
     preserveLastSearch: true
@@ -29,11 +31,10 @@
       "emmet"
       "linter-tslint"
       "jumpy"
-      "git-history"
-      "git-time-machine"
       "tool-bar-main"
       "linter-jscs"
       "linter-jshint"
+      "atom-fuzzy-grep"
     ]
     projectHome: "~/dev"
     themes: [

@@ -210,3 +210,12 @@
              $2
          });
         """
+
+'.text.html':
+    'mnubo tooltip':
+        'prefix': 'tooltip'
+        'body': """
+        <i class="fa fa-info-circle tooltip-info"
+           uib-tooltip="{{ '$0' | translate }}">
+        </i>
+        """
