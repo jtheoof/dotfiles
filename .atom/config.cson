@@ -8,14 +8,17 @@
   "atom-fuzzy-grep":
     preserveLastSearch: true
   "atom-material-ui":
-    colors: {}
+    colors:
+      abaseColor:
+        red: 47
+        green: 128
+        blue: 152
+        alpha: 1
     fonts: {}
     tabs:
       compactTabs: true
     treeView:
       compactList: true
-    ui:
-      panelContrast: true
   "atom-typescript": {}
   "autocomplete-plus":
     useAlternateScoring: true
@@ -27,14 +30,15 @@
   core:
     audioBeep: false
     disabledPackages: [
-      "minimap"
-      "emmet"
-      "linter-tslint"
+      "atom-fuzzy-grep"
+      "git-history"
       "jumpy"
-      "tool-bar-main"
       "linter-jscs"
       "linter-jshint"
-      "atom-fuzzy-grep"
+      "linter-tslint"
+      "minimap"
+      "pretty-json"
+      "tool-bar-main"
     ]
     projectHome: "~/dev"
     themes: [
@@ -45,6 +49,7 @@
     fontSize: 12
     invisibles: {}
     preferredLineLength: 100
+    showInvisibles: true
     tabLength: 4
   emmet: {}
   "exception-reporting":
@@ -56,14 +61,12 @@
     useAlternateScoring: true
   "git-blame": {}
   "git-blame-plus": {}
-  hex: {}
   jumpy: {}
   linter:
     clearOnChange: true
     lintDebug: true
     lintOnChange: false
     lintOnFly: false
-    showErrorPanel: false
     showInfoMessages: true
     statusBar: "Show all errors"
   "linter-eslint":
@@ -90,3 +93,18 @@
     showOnStartup: false
   whitespace:
     ignoreWhitespaceOnCurrentLine: false
+".angular.html.text":
+  editor:
+    preferredLineLength: 100
+".diff.source":
+  editor:
+    preferredLineLength: 100
+".source.ts":
+  editor:
+    preferredLineLength: 100
+".source.ts.tsx":
+  editor:
+    preferredLineLength: 100
+".source.tsx":
+  editor:
+    preferredLineLength: 100
