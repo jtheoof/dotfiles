@@ -171,6 +171,21 @@
         }$0
         """
 
+    'AngularJS Component':
+        'prefix': 'ng-component'
+        'body': """
+        import template from './$1.html!text';
+
+        export const ${1:component} = {
+            bindings: {$2},
+            template: template,
+            controller: function() {
+                $0
+            },
+            controllersAs: 'vm',
+        };
+        """
+
     'AngularJS Service':
         'prefix': 'ng-service'
         'body': """
