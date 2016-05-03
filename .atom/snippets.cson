@@ -91,25 +91,14 @@
     'AngularJS Controller':
         'prefix': 'ng-controller'
         'body': """
-        /**
-         * @module ${1:Module}
-         */
-        (function(angular) {
-            'use strict';
-
-            angular
-                .module('$1')
-                .controller('$2', $2);
-
+        export class $1 {
             /**
-             * @class
-             * @name ${2:Controller}
              * @ngInject
              */
-            function $2() {
-                var vm = this;
-            }
-        })(angular);
+            constructor() {}
+
+            $onInit() {}
+        }
         """
 
     'AngularJS Factory':
