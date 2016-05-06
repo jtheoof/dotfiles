@@ -2,6 +2,7 @@
 .git-history
 .node-gyp
 .npm
+.package-cop.json
 blob-store
 compile-cache
 dev
