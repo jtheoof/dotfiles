@@ -129,6 +129,9 @@ alias t='tig'
 alias tm='tmux'
 alias tmn='tmux new'
 
+# npm
+alias ncub='ncu -m bower'
+
 # 1}}}
 # Functions {{{1
 
