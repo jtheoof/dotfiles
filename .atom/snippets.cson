@@ -42,19 +42,15 @@
         'use strict';
 
         describe('mnubo.$1', function() {
-            var _;
-
-            beforeEach(angular.mock.module('mnubo.$1'));
-
             beforeEach(function() {
                 angular.module('mnubo.common.layoutManager').service('appService', function() {
                     this.init = angular.noop;
                 });
             });
 
-            beforeEach(angular.mock.inject(function(___) {
-                _ = ___;
-            }));
+            beforeEach(angular.mock.module('mnubo.$1'));
+
+            beforeEach(angular.mock.inject(function() {}));
 
             $2
         });
@@ -199,7 +195,7 @@
         })(angular);
         """
 
-    'spec describe':
+    'Spec Describe':
         'prefix': 'desc'
         'body': """
          describe('$1', function() {
@@ -207,12 +203,30 @@
          });
         """
 
-    'spec test':
+    'Before Each':
+        'prefix': 'bef'
+        'body': """
+         beforeEach(function() {
+             $1
+         });
+        """
+
+    'Spec Test':
         'prefix': 'it'
         'body': """
          it('should $1', function() {
              $2
          });
+        """
+
+    'Spec App Service':
+        'prefix': 'befas'
+        'body': """
+        beforeEach(function() {
+            angular.module('mnubo.common.layoutManager').service('appService', function() {
+                this.init = angular.noop;
+            });
+        });
         """
 
 '.text.html':
