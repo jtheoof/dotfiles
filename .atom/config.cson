@@ -44,6 +44,7 @@
     ]
     packagesWithKeymapsDisabled: [
       "git-time-machine"
+      "linter-eslint"
     ]
     projectHome: "~/dev"
     themes: [
@@ -89,7 +90,16 @@
   minimap: {}
   "one-dark-ui":
     layoutMode: "Compact"
+  "split-diff":
+    diffWords: true
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    syncHorizontalScroll: true
   "symbols-tree-view": {}
+  "symbols-view": {}
+  "tool-bar":
+    position: "Right"
   "tree-view":
     hideIgnoredNames: true
   "vim-mode":
