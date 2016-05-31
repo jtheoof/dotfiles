@@ -40,7 +40,6 @@
       "minimap"
       "pretty-json"
       "tool-bar-main"
-      "activate-power-mode"
     ]
     packagesWithKeymapsDisabled: [
       "git-time-machine"
