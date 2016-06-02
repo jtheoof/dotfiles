@@ -101,6 +101,7 @@
     position: "Right"
   "tree-view":
     hideIgnoredNames: true
+    squashDirectoryNames: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
   "vim-surround": {}
