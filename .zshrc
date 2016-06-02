@@ -129,6 +129,10 @@ alias t='tig'
 alias tm='tmux'
 alias tmn='tmux new'
 
+if [ -x /usr/bin/pbcopy ]; then
+    alias pjc='pbpaste | python -m json.tool | pbcopy'
+fi
+
 # npm
 alias ncub='ncu -m bower'
 
