@@ -29,6 +29,7 @@
     preferredFormat: "HEX"
     uppercaseColorValues: true
   core:
+    allowPendingPaneItems: false
     audioBeep: false
     disabledPackages: [
       "atom-fuzzy-grep"
@@ -40,6 +41,7 @@
       "minimap"
       "pretty-json"
       "tool-bar-main"
+      "vim-mode"
     ]
     packagesWithKeymapsDisabled: [
       "git-time-machine"
@@ -103,6 +105,9 @@
     hideIgnoredNames: true
     squashDirectoryNames: true
   "vim-mode":
+    useClipboardAsDefaultRegister: true
+  "vim-mode-plus":
+    incrementalSearch: true
     useClipboardAsDefaultRegister: true
   "vim-surround": {}
   welcome:
