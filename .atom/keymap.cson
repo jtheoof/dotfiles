@@ -20,7 +20,7 @@
 '.tree-view':
   'cmd-right': 'tree-view:toggle-focus'
 
-'atom-text-editor.vim-mode.normal-mode':
+'atom-text-editor.vim-mode-plus.normal-mode':
   # 'shift-y': 'editor:copy-to-end-of-line'
   'cmd-f11': 'pane:split-down'
   'cmd-f12': 'pane:split-right'
