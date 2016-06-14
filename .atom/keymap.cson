@@ -43,4 +43,3 @@
 
 'atom-text-editor:not(.mini).vim-mode-plus:not(.insert-mode):not(.jumpy-jump-mode)':
   '-': 'advanced-open-file:toggle'
-  'f': 'jumpy:toggle'
