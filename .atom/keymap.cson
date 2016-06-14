@@ -41,6 +41,6 @@
   'cmd-|': 'pane:split-right'
   'cmd-\\': 'pane:split-down'
 
-'atom-text-editor:not(.mini).vim-mode:not(.insert-mode):not(.jumpy-jump-mode)':
-  '-': 'file-explorer:toggle-current-directory'
+'atom-text-editor:not(.mini).vim-mode-plus:not(.insert-mode):not(.jumpy-jump-mode)':
+  '-': 'advanced-open-file:toggle'
   'f': 'jumpy:toggle'
