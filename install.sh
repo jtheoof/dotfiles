@@ -161,6 +161,7 @@ install_packages_darwin() {
     ctags \
     docker \
     docker-machine \
+    fswatch \
     git \
     multimarkdown \
     node \
