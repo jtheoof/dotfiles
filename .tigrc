@@ -78,6 +78,12 @@ bind branch R !@git rebase
 bind branch D !@git branch -D %(branch)
 
 # }}}
+# Refs {{{
+
+bind refs C !@git checkout %(branch)
+bind refs ! ?git branch -D %(branch)
+
+# }}}
 # Status {{{
 
 bind status R !@git reset HEAD %(file)
