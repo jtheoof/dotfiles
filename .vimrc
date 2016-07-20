@@ -60,6 +60,7 @@ endif
 Plugin 'chrisbra/csv.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'terryma/vim-multiple-cursors'
 
 " }}}
 " Themes {{{
