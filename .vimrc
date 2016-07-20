@@ -103,7 +103,12 @@ endif
 
 " Theme
 set background=dark
-colorscheme onedark
+
+if has("gui_running")
+    colorscheme onedark
+else
+    colorscheme monokai
+endif
 
 " Text editing
 set encoding=utf8                       " utf-8 encoding
