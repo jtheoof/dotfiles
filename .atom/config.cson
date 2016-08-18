@@ -35,13 +35,9 @@
       "atom-fuzzy-grep"
       "git-history"
       "jumpy"
-      "linter-jscs"
-      "linter-jshint"
       "linter-tslint"
-      "minimap"
       "pretty-json"
       "tool-bar-main"
-      "vim-mode"
     ]
     packagesWithKeymapsDisabled: [
       "git-time-machine"
