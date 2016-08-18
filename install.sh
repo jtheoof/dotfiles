@@ -176,6 +176,7 @@ install_packages_darwin() {
     vim \
     wget \
     watch \
+    zsh \
   "
 
   echo "installing brew packages..."
