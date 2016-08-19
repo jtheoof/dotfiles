@@ -33,6 +33,8 @@
 
   'g f': 'open-this:here'
 
+  'cmd-shift-v': 'open-vim:open'
+
 '.fuzzy-finder atom-text-editor[mini]':
   'cmd-|': 'pane:split-right'
   'cmd-\\': 'pane:split-down'
