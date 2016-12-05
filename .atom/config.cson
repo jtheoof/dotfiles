@@ -9,11 +9,7 @@
     preserveLastSearch: true
   "atom-material-ui":
     colors:
-      abaseColor:
-        red: 47
-        green: 128
-        blue: 152
-        alpha: 1
+      abaseColor: "#2f8098"
     fonts:
       fontSize: 14
     tabs:
@@ -44,6 +40,7 @@
       "linter-eslint"
     ]
     projectHome: "~/dev"
+    telemetryConsent: "limited"
     themes: [
       "atom-material-ui"
       "atom-material-syntax"
