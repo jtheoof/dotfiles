@@ -1,3 +1,5 @@
+set clipboard=unnamedplus
+
 nnoremap <Leader>si :source ~/.ideavimrc<CR>
 
 " Search
