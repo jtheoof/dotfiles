@@ -39,7 +39,6 @@
       "git-time-machine"
       "linter-eslint"
     ]
-    projectHome: "~/dev"
     telemetryConsent: "limited"
     themes: [
       "atom-material-ui"
@@ -49,6 +48,8 @@
     fontSize: 12
     invisibles: {}
     preferredLineLength: 100
+    scrollPastEnd: true
+    showIndentGuide: true
     showInvisibles: true
     tabLength: 4
   emmet: {}
@@ -57,11 +58,14 @@
   "file-explorer": {}
   "file-icons": {}
   "find-and-replace":
-    openProjectFindResultsInRightPane: true
+    projectSearchResultsPaneSplitDirection: "right"
   "fuzzy-finder":
     useAlternateScoring: true
   "git-blame": {}
   "git-blame-plus": {}
+  "git-plus":
+    general:
+      _analyticsUserId: "99991d87-8fec-4b96-ba35-8f3cd63a00f6"
   jumpy: {}
   linter:
     clearOnChange: true
