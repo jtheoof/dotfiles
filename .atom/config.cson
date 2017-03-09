@@ -100,6 +100,7 @@
     position: "Right"
   "tree-view":
     hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
     squashDirectoryNames: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
