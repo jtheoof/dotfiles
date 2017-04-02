@@ -22,7 +22,7 @@ color cursor white black
 color status white default
 color title-focus white black
 color date yellow default
-color author green default
+color author red default bold
 color main-head magenta default
 color main-tag magenta default
 color stat-staged green default

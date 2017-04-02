@@ -101,7 +101,7 @@
 	local = cyan
 	remote = cyan
 [color "decorate"]
-	branch = cyan
+	branch = green
 	remoteBranch = green
 	tag = magenta
 	HEAD = magenta
@@ -115,10 +115,10 @@
 	match = yellow
 	filename = cyan
 [color "status"]
-	header = blue
+	header = yellow
 	added = green
-	changed = red bold
-	untracked = yellow
+	changed = red
+	untracked = red bold
 [diff]
 	tool = vimdiff
 [difftool]
