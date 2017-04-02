@@ -67,6 +67,7 @@ Plugin 'terryma/vim-multiple-cursors'
 " Themes {{{
 
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'jdkanani/vim-material-theme'
 
 " }}}
 " Misc {{{
@@ -103,13 +104,11 @@ endif
 " Options {{{1
 
 " Theme
-set background=dark
-
-if has("gui_running")
-    colorscheme onedark
-else
-    colorscheme monokai
+if (has("termguicolors"))
+    set termguicolors
 endif
+set background=dark
+colorscheme onedark
 
 " Text editing
 set encoding=utf8                       " utf-8 encoding
