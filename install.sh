@@ -159,8 +159,6 @@ install_packages_darwin() {
     ack \
     cloc \
     ctags \
-    docker \
-    docker-machine \
     fswatch \
     git \
     multimarkdown \
