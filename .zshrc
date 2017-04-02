@@ -65,11 +65,6 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 # 1}}}
-# Bindings {{{
-
-bindkey '5~' delete-word
-
-# }}}
 # Exports {{{
 
 export LESS=-FRSX
