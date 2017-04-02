@@ -245,6 +245,10 @@ if [[ -f /usr/bin/dircolors && -f $HOME/.dir_colors ]]; then
     eval $(dircolors -b $HOME/.dir_colors)
 fi
 
+if [[ `uname` == 'Darwin' ]]; then
+    export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+fi
+
 if [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]]; then
     source $HOME/.tmuxinator/scripts/tmuxinator
 fi
