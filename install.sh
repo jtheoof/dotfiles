@@ -124,7 +124,7 @@ install_oh_my_zsh() {
   echo "installing oh-my-zsh"
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-  link $FILESPATH/.oh-my-zsh/custom/themes $HOME/.oh-my-zsh/custom/themes
+  link $FILESPATH/.oh-my-zsh/custom/themes/*.zsh* $HOME/.oh-my-zsh/custom/
 }
 
 install_packages_npm() {
