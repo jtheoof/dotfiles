@@ -112,8 +112,8 @@
 	new = green
 	whitespace = magenta reverse
 [color "grep"]
-	match = yellow
-	filename = cyan
+	match = red bold
+	filename = yellow
 [color "status"]
 	header = yellow
 	added = green
