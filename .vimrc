@@ -75,7 +75,6 @@ Plugin 'jdkanani/vim-material-theme'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'joshdick/onedark.vim'
-Plugin 'joshdick/airline-onedark.vim'
 Plugin 'mkitt/tabline.vim'
 Plugin 'nacitar/terminalkeys.vim'
 
