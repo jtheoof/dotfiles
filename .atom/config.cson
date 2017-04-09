@@ -71,17 +71,18 @@
     clearOnChange: true
     lintDebug: true
     lintOnChange: false
-    lintOnFly: false
     showInfoMessages: true
     statusBar: "Show all errors"
   "linter-eslint":
     disableWhenNoEslintrcFileInPath: true
+    fixOnSave: true
   "linter-jscs":
     executablePath: "/usr/local/bin"
     messageType: "warning"
     onlyConfig: true
   "linter-jshint":
     disableWhenNoJshintrcFileInPath: true
+  "linter-ui-default": {}
   "markdown-preview": {}
   metrics:
     userId: "6057499fffdb4ebd3e00447b9d5cfd4601f733bb"
