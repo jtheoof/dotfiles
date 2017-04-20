@@ -1,0 +1,27 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    {
+        "key": "cmd+left",
+        "command": "workbench.action.navigateEditorGroups",
+        "when": "editorTextFocus && vim.useCtrlKeys && !inDebugRepl"
+    },
+    {
+        "key": "cmd+right",
+        "command": "workbench.action.navigateEditorGroups",
+        "when": "editorTextFocus && vim.useCtrlKeys && !inDebugRepl"
+    },
+    {
+        "key": "cmd+1",
+        "command": "workbench.view.explorer"
+    },
+    {
+        "key": "shift+cmd+\\",
+        "command": "markdown.showPreviewToSide",
+        "when": "editorFocus"
+    },
+    {
+        "key": "cmd+k v",
+        "command": "-markdown.showPreviewToSide",
+        "when": "editorFocus"
+    }
+]

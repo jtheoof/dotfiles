@@ -108,6 +108,7 @@ install_dotfiles() {
   # .config directories
   case "$OSTYPE" in
     darwin*)
+      ln -sf ~/.dotfiles/vscode/User ~/Library/Application\ Support/Code/User
       ;;
     *)
       config_dirs="fontconfig htop transmission tranmission-remote-cli"
