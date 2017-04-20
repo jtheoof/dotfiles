@@ -16,5 +16,7 @@
         "editorGroupBackground": "#282c34",
         "sideBarBackground": "#21242b",
         "statusBarBackground": "#353a44"
-    }
+    },
+    "workbench.editor.showTabs": false,
+    "vim.useSystemClipboard": true
 }
