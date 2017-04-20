@@ -1,0 +1,20 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "editor.fontFamily": "Source Pro Code, Monaco, 'Courier New', monospace",
+    "files.autoSave": "onFocusChange",
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Material Theme",
+    "vim.leader": ",",
+    "files.trimTrailingWhitespace": true,
+    "openvim.executablePath": "/usr/local/bin/mvim",
+    "workbench.iconTheme": "vs-seti",
+    "workbench.experimental.colorCustomizations": {
+        "activeTabBackground": "#282c34",
+        "inactiveTabBackground": "#2D2F33",
+        "tabsContainerBackground": "#21242B",
+        "activityBarBackground":"#2D313A",
+        "editorGroupBackground": "#282c34",
+        "sideBarBackground": "#21242b",
+        "statusBarBackground": "#353a44"
+    }
+}
