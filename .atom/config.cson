@@ -83,7 +83,8 @@
   "linter-jshint":
     disableWhenNoJshintrcFileInPath: true
   "linter-ui-default": {}
-  "markdown-preview": {}
+  "markdown-preview":
+    liveUpdate: false
   metrics:
     userId: "6057499fffdb4ebd3e00447b9d5cfd4601f733bb"
   minimap: {}
