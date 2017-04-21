@@ -22,5 +22,44 @@
 			"});"
 		],
 		"description": "Add beforeEach in jasmine spec file"
+	},
+
+	"copyright": {
+		"prefix": "copyright",
+		"body": [
+			"/*",
+			" * ---------------------------------------------------------------------------",
+			" *",
+			" * COPYRIGHT (c) 2017 Mnubo Inc. All Rights Reserved.",
+			" *",
+			" * The copyright to the computer program(s) herein is the property of Mnubo",
+			" * Inc. The program(s) may be used and/or copied only with the written",
+			" * permission from Mnubo Inc. or in accordance with the terms and conditions",
+			" * stipulated in the agreement/contract under which the program(s) have been",
+			" * supplied.",
+			" *",
+			" * ---------------------------------------------------------------------------",
+			" */",
+			"",
+			"$0"
+		],
+		"description": "mnubo copyyright ©"
+	},
+
+	"AngularJS Component": {
+		"prefix": "ng-component",
+		"body": [
+			"import * as template from './$1.html';",
+			"",
+			"export const $1: ng.IComponentOptions = {",
+			"    bindings: {$2},",
+			"    template: template,",
+			"    controller: function() {",
+			"        $0",
+			"    },",
+			"    controllerAs: 'vm',",
+			"};"
+		],
+		"description": "AngularJS Component"
 	}
 }
