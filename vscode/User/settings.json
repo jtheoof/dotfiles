@@ -18,5 +18,7 @@
         "statusBarBackground": "#353a44"
     },
     "workbench.editor.showTabs": false,
-    "vim.useSystemClipboard": true
+    "vim.useSystemClipboard": true,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false
 }
