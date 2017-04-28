@@ -46,6 +46,30 @@
 		"description": "mnubo copyyright ©"
 	},
 
+	"AngularJS Directive": {
+		"prefix": "ng-directive",
+		"body": [
+			"import { $2 } from './$2.controller';",
+			"import * as template from './$1.html';",
+			"",
+			"/**",
+			" * @ngInject",
+			" */",
+			"export function $1() {",
+			"    return {",
+			"        restrict: 'A',",
+			"        scope: {},",
+			"        controller: $2,",
+			"        controllerAs: 'vm',",
+			"        bindToController: true,",
+			"        link: function(scope: ng.IScope, element: JQuery, attrs: ng.IAttributes, ctrl: ng.IController) {",
+			"            $0",
+			"        }",
+			"    };",
+			"}"
+		],
+		"description": "AngularJS Directive"
+	},
 	"AngularJS Component": {
 		"prefix": "ng-component",
 		"body": [
