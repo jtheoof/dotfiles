@@ -61,5 +61,22 @@
 			"};"
 		],
 		"description": "AngularJS Component"
+	},
+
+	"AngularJS Filter": {
+		"prefix": "ng-filter",
+		"body": [
+			"/**",
+			" * @ngInject",
+			" */",
+			"export function $1() {",
+			"    return function(input, options) {",
+			"        let out = '';",
+			"        $0",
+			"        return out.trim();",
+			"    };",
+			"}"
+		],
+		"description": "AngularJS Filter"
 	}
 }
