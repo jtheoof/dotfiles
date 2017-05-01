@@ -2,12 +2,16 @@
 {
     "editor.fontFamily": "Source Pro Code, Monaco, 'Courier New', monospace",
     "files.autoSave": "onFocusChange",
-    "window.zoomLevel": 0,
-    "workbench.colorTheme": "Material Theme",
-    "vim.leader": ",",
     "files.trimTrailingWhitespace": true,
     "openvim.executablePath": "/usr/local/bin/mvim",
+    "vim.leader": ",",
+    "vim.useSystemClipboard": true,
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "One Dark pro",
     "workbench.iconTheme": "vs-seti",
+    "workbench.editor.showTabs": false,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.experimental.colorCustomizations": {
         "activeTabBackground": "#282c34",
         "inactiveTabBackground": "#2D2F33",
@@ -16,9 +20,5 @@
         "editorGroupBackground": "#282c34",
         "sideBarBackground": "#21242b",
         "statusBarBackground": "#353a44"
-    },
-    "workbench.editor.showTabs": false,
-    "vim.useSystemClipboard": true,
-    "workbench.editor.enablePreview": false,
-    "workbench.editor.enablePreviewFromQuickOpen": false
+    }
 }
