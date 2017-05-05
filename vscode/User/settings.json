@@ -1,24 +1,21 @@
 // Place your settings in this file to overwrite the default settings
+
 {
     "editor.fontFamily": "Source Pro Code, Monaco, 'Courier New', monospace",
     "files.autoSave": "onFocusChange",
     "files.trimTrailingWhitespace": true,
-    "openvim.executablePath": "/usr/local/bin/mvim",
-    "vim.leader": ",",
-    "vim.useSystemClipboard": true,
-    "window.zoomLevel": 0,
-    "workbench.colorTheme": "One Dark pro",
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#353a44"
+    },
     "workbench.iconTheme": "vs-seti",
     "workbench.editor.showTabs": false,
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
-    "workbench.experimental.colorCustomizations": {
-        "activeTabBackground": "#282c34",
-        "inactiveTabBackground": "#2D2F33",
-        "tabsContainerBackground": "#21242B",
-        "activityBarBackground":"#2D313A",
-        "editorGroupBackground": "#282c34",
-        "sideBarBackground": "#21242b",
-        "statusBarBackground": "#353a44"
-    }
+    "window.zoomLevel": 0,
+
+    // Extensions
+    "openvim.executablePath": "/usr/local/bin/mvim",
+    "vim.leader": ",",
+    "vim.useSystemClipboard": true
 }
