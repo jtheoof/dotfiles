@@ -2,6 +2,8 @@
 
 {
     "editor.fontFamily": "Source Pro Code, Monaco, 'Courier New', monospace",
+    "editor.formatOnPaste": true,
+    "editor.snippetSuggestions": "top",
     "files.autoSave": "onFocusChange",
     "files.trimTrailingWhitespace": true,
     "workbench.colorTheme": "One Dark Pro",
