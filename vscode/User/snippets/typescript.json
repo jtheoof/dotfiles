@@ -76,7 +76,9 @@
 			"import * as template from './$1.html';",
 			"",
 			"export const $1: ng.IComponentOptions = {",
-			"    bindings: {$2},",
+			"    bindings: {",
+			"        $2",
+			"    },",
 			"    template: template,",
 			"    controller: function() {",
 			"        $0",
@@ -102,5 +104,26 @@
 			"}"
 		],
 		"description": "AngularJS Filter"
+	},
+
+    "AngularJS Controller": {
+		"prefix": "ng-controller",
+        "body": [
+            "export class $1 implements ng.IController {",
+            "    $0",
+            "",
+            "    /**",
+            "     * @ngInject",
+            "     */",
+            "    constructor() {}",
+            "",
+            "    \\$onChanges(changes) {}",
+            "",
+            "    \\$onInit() {}",
+            "",
+            "    \\$onDestroy() {}",
+            "}"
+        ],
+		"description": "AngularJS Controller"
 	}
 }
