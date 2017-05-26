@@ -6,15 +6,16 @@
     "editor.snippetSuggestions": "top",
     "files.autoSave": "onFocusChange",
     "files.trimTrailingWhitespace": true,
+    "window.zoomLevel": 0,
     "workbench.colorTheme": "One Dark Pro",
     "workbench.colorCustomizations": {
         "statusBar.background": "#353a44"
     },
     "workbench.iconTheme": "vs-seti",
-    "workbench.editor.showTabs": false,
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
-    "window.zoomLevel": 0,
+    "workbench.editor.revealIfOpen": false,
+    "workbench.editor.showTabs": false,
 
     // Extensions
     "openvim.executablePath": "/usr/local/bin/mvim",
