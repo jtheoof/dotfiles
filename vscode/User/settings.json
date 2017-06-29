@@ -3,6 +3,7 @@
 {
     "editor.fontFamily": "Source Pro Code, Monaco, 'Courier New', monospace",
     "editor.formatOnPaste": true,
+    "editor.minimap.enabled": false,
     "editor.snippetSuggestions": "top",
     "files.autoSave": "onFocusChange",
     "files.trimTrailingWhitespace": true,
@@ -20,5 +21,7 @@
     // Extensions
     "openvim.executablePath": "/usr/local/bin/mvim",
     "vim.leader": ",",
-    "vim.useSystemClipboard": true
+    "vim.useSystemClipboard": true,
+    "vim.disableAnnoyingNeovimMessage": true,
+    "vim.disableAnnoyingGcMessage": true
 }
