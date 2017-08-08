@@ -22,6 +22,5 @@
     "openvim.executablePath": "/usr/local/bin/mvim",
     "vim.leader": ",",
     "vim.useSystemClipboard": true,
-    "vim.disableAnnoyingNeovimMessage": true,
-    "vim.disableAnnoyingGcMessage": true
+    "vim.disableAnnoyingNeovimMessage": true
 }
