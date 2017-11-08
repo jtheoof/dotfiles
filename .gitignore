@@ -4,3 +4,4 @@
 *.lock
 
 .local/share
+.DS_Store
