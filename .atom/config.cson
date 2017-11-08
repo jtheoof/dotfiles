@@ -7,6 +7,9 @@
       wrap_attributes: "force"
   "atom-fuzzy-grep":
     preserveLastSearch: true
+  "atom-ide-ui":
+    "atom-ide-diagnostics-ui":
+      showDiagnosticTraces: true
   "atom-material-ui":
     colors:
       abaseColor: "#2f8098"
@@ -35,6 +38,7 @@
       "pretty-json"
       "tool-bar-main"
       "vim-mode"
+      "linter"
     ]
     packagesWithKeymapsDisabled: [
       "git-time-machine"
@@ -82,14 +86,14 @@
     onlyConfig: true
   "linter-jshint":
     disableWhenNoJshintrcFileInPath: true
-  "linter-ui-default": {}
+  "linter-ui-default":
+    panelHeight: 286
   "markdown-preview":
     liveUpdate: false
   metrics:
     userId: "6057499fffdb4ebd3e00447b9d5cfd4601f733bb"
   minimap: {}
-  "one-dark-ui":
-    layoutMode: "Compact"
+  "one-dark-ui": {}
   "split-diff":
     diffWords: true
     ignoreWhitespace: true
