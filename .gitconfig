@@ -18,8 +18,8 @@
 	cc  = commit -C
 	cf  = commit --fixup
 	cm  = commit -m
-	ca  = commit --amend
-	car  = commit --amend --reuse-message=HEAD
+	ca  = commit --verbose --amend
+	car  = commit --verbose --amend --reuse-message=HEAD
 	cam = commit -am
 	caa = commit -a --amend
 	cv  = commit --verbose
