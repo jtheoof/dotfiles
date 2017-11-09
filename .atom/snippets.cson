@@ -219,16 +219,6 @@
          });
         """
 
-    'Spec App Service':
-        'prefix': 'befas'
-        'body': """
-        beforeEach(function() {
-            angular.module('mnubo.common.layoutManager').service('appService', function() {
-                this.init = angular.noop;
-            });
-        });
-        """
-
 '.text.html':
     'mnubo tooltip':
         'prefix': 'tooltip'
