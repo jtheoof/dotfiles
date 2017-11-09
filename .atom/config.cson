@@ -34,7 +34,6 @@
       "atom-fuzzy-grep"
       "git-history"
       "jumpy"
-      "linter-tslint"
       "pretty-json"
       "tool-bar-main"
       "vim-mode"
@@ -88,6 +87,7 @@
     disableWhenNoJshintrcFileInPath: true
   "linter-ui-default":
     panelHeight: 286
+    showPanel: true
   "markdown-preview":
     liveUpdate: false
   metrics:
@@ -112,6 +112,7 @@
     useClipboardAsDefaultRegister: true
   "vim-mode-plus":
     incrementalSearch: true
+    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
     useClipboardAsDefaultRegister: true
   "vim-surround": {}
   welcome:
