@@ -1,9 +1,12 @@
 // Place your settings in this file to overwrite the default settings
 
 {
+    "editor.cursorBlinking": "smooth",
     "editor.fontFamily": "Source Pro Code, Monaco, 'Courier New', monospace",
     "editor.formatOnPaste": true,
     "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "all",
+    "editor.smoothScrolling": true,
     "editor.snippetSuggestions": "top",
     "files.autoSave": "onFocusChange",
     "files.trimTrailingWhitespace": true,
