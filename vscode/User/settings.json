@@ -3,9 +3,8 @@
 {
     "editor.cursorBlinking": "smooth",
     "editor.fontFamily": "Source Pro Code, Monaco, 'Courier New', monospace",
-    "editor.formatOnPaste": true,
     "editor.minimap.enabled": false,
-    "editor.renderWhitespace": "all",
+    "editor.renderWhitespace": "none",
     "editor.smoothScrolling": true,
     "editor.snippetSuggestions": "top",
     "files.autoSave": "onFocusChange",
@@ -25,5 +24,14 @@
     "openvim.executablePath": "/usr/local/bin/mvim",
     "vim.leader": ",",
     "vim.useSystemClipboard": true,
-    "vim.disableAnnoyingNeovimMessage": true
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressUpdateNotice": false,
+        "suppressWelcomeNotice": true
+    }
 }
