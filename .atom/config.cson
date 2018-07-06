@@ -85,9 +85,7 @@
     onlyConfig: true
   "linter-jshint":
     disableWhenNoJshintrcFileInPath: true
-  "linter-ui-default":
-    panelHeight: 286
-    showPanel: true
+  "linter-ui-default": {}
   "markdown-preview":
     liveUpdate: false
   metrics:
@@ -112,7 +110,6 @@
     useClipboardAsDefaultRegister: true
   "vim-mode-plus":
     incrementalSearch: true
-    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
     useClipboardAsDefaultRegister: true
   "vim-surround": {}
   welcome:
