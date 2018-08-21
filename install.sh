@@ -160,10 +160,6 @@ install_packages_darwin() {
   echo "installing brew packages..."
   brew install $brew_packages
 
-
-  echo "installing brew cask"
-  brew tap caskroom/cask
-
   cask_packages="\
     alfred \
     atom \
@@ -172,7 +168,6 @@ install_packages_darwin() {
     google-chrome \
     iterm2 \
     macvim \
-    mailbox \
     messenger \
     slack \
     spectacle \
