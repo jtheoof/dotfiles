@@ -131,30 +131,6 @@ install_oh_my_zsh() {
   ln -s $FILESPATH/.oh-my-zsh/custom/themes/async.zsh
 }
 
-install_packages_npm() {
-  npm_packages="\
-    bower \
-    grunt-cli \
-    gulp \
-    jshint \
-    karma-cli \
-    less
-    tsd \
-    tslint \
-    typescript \
-  "
-
-  print_info "installing npm package..."
-  case "$OSTYPE" in
-    darwin*)
-      npm install -g $npm_packages
-      ;;
-    *)
-      sudo npm install -g $npm_packages
-      ;;
-    esac
-}
-
 install_packages_darwin() {
   print_info "installing homebrew"
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -292,7 +268,6 @@ install_packages() {
       install_packages_linux
       ;;
   esac
-    install_packages_npm
 }
 
 install_all() {
