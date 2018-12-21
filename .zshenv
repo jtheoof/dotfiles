@@ -13,7 +13,6 @@
 # Local Order: .zshenv, .zprofile, .zshrc, .zlogin
 
 export EDITOR=vim
-export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
 
 # Java
 /usr/libexec/java_home 1>/dev/null 2>&1
@@ -31,7 +30,6 @@ typeset -U path
 path=(
     ~/.local/bin
     /usr/local/bin
-    $(ruby -e 'puts Gem.user_dir')/bin
     $path
 )
 
