@@ -178,10 +178,8 @@ install_packages_darwin() {
 
 install_packages_linux() {
   packages="\
-    ack \
     autoconf \
     base-devel \
-    chromium \
     cmake \
     colordiff \
     ctags
@@ -193,14 +191,11 @@ install_packages_linux() {
     gnome-tweak-tool \
     gvim \
     inkscape \
-    mercurial \
     nodejs \
     openssh \
     perl-rename \
     python \
-    ruby \
-    rubygems \
-    subversion \
+    ripgrep \
     tig \
     tmux \
     tree \
