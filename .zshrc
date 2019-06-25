@@ -122,6 +122,7 @@ alias n='nautilus'
 alias n.='nautilus .'
 alias view='eog'
 alias cdg='cd $(git rev-parse --show-toplevel)'
+alias cdt='cd `mktemp -d`'
 
 # Programming
 alias t='tig'
