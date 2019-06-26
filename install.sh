@@ -225,6 +225,16 @@ install_vim_bundles() {
   vim -c ":BundleInstall" -c ":qa!"
 }
 
+install_tmux_plugins() {
+  echo "installing tmux plugins..."
+  TMUX_PLUGINS_PATH=$HOME/.tmux/plugins
+  if [ ! -d $TMUX_PLUGINS_PATH ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  else
+    echo "already found $TMUX_PLUGINS_PATH, skipping"
+  fi
+}
+
 # }}}
 # Global variables {{{
 
@@ -279,6 +289,7 @@ install_all() {
   install_dotfiles
   install_oh_my_zsh
   install_vim_bundles
+  install_tmux_plugins
 }
 
 if [[ -n $command ]]; then
