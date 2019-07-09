@@ -62,12 +62,14 @@ endif
 Plugin 'chrisbra/csv.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'timakro/vim-searchant'
 
 " }}}
 " Themes {{{
 
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'jdkanani/vim-material-theme'
+Plugin 'hzchirs/vim-material'
+Plugin 'kaicataldo/material.vim'
 
 " }}}
 " Misc {{{
@@ -108,8 +110,11 @@ if exists('+termguicolors')
   let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'default'
+let g:airline_theme='material'
 set background=dark
-colorscheme onedark
+colorscheme material
 
 " Text editing
 set encoding=utf8                       " utf-8 encoding
@@ -534,6 +539,12 @@ let g:UltiSnipsSnippetDirectories = ['ultisnips']
 let g:UltiSnipsExpandTrigger = '<F1>'
 let g:UltiSnipsListSnippets = '<C-F1>'
 let g:UltiSnipsEditSplit = 'vertical'
+
+" }}}
+" Session {{{
+
+highlight SearchCurrent ctermbg=red
+highlight SearchCurrent ctermfg=white
 
 " }}}
 " Session {{{
