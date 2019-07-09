@@ -29,6 +29,7 @@ fi
 typeset -U path
 path=(
     ~/.local/bin
+    ~/.local/work/bin
     /usr/local/bin
     $path
 )
