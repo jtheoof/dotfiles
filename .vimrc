@@ -95,12 +95,6 @@ filetype plugin indent on    " put filetype plugin back on after plugins
 syntax on                    " enable syntax
 runtime macros/matchit.vim   " smarter use of '%'
 
-" FIX: PluginUpdate => git pull: git-sh-setup: No such file or directory in MacVim (OK in non-GUI version of Vim)
-" SEE: https://github.com/gmarik/Vundle.vim/issues/510#issuecomment-66959233
-if has("gui_macvim")
-    set shell=/bin/bash\ -l
-endif
-
 " 1}}}
 " Options {{{1
 
