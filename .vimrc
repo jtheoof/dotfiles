@@ -348,6 +348,13 @@ nnoremap <C-Left> <C-w><Left>
 nnoremap <C-Up> <C-w><Up>
 nnoremap <C-Down> <C-w><Down>
 
+if has("gui_macvim")
+  nnoremap <D-Right> <C-w><Right>
+  nnoremap <D-Left> <C-w><Left>
+  nnoremap <D-Up> <C-w><Up>
+  nnoremap <D-Down> <C-w><Down>
+endif
+
 " Useful navigation
 nnoremap <PageUp> <C-U>
 nnoremap <PageDown> <C-D>
