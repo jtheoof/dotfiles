@@ -26,6 +26,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-vinegar'
 Plugin 'Z1MM32M4N/vim-superman'
+Plugin 'jremmen/vim-ripgrep'
 
 " }}}
 " Programming {{{
