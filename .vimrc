@@ -356,7 +356,6 @@ nnoremap <S-Down> 3<C-E>
 nnoremap <S-Up> 3<C-Y>
 
 nnoremap <silent> <C-S> :w<CR>
-nnoremap <silent> <C-c> :q!<CR>
 nnoremap <C-k> :let @/ = ""<CR>
 
 nnoremap <silent> <F2> :BufExplorer<CR>
