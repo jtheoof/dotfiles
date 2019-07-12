@@ -296,9 +296,15 @@ vnoremap <Leader>s' :perldo s/"(.*?)"/'\1'/g<CR>
 vnoremap <Leader>s" :perldo s/'(.*?)'/"\1"/g<CR>
 
 " Fast reload of common files
-nnoremap <Leader>so :so %<CR>
-nnoremap <Leader>sc :so $HOME/.vim/misc/colors/monokai.vim<CR>
-nnoremap <Leader>sv :so $MYVIMRC<CR>
+nnoremap <Leader>oo :so %<CR>
+nnoremap <Leader>oc :so $HOME/.vim/misc/colors/monokai.vim<CR>
+nnoremap <Leader>ov :so $MYVIMRC<CR>
+
+" Split easily
+nnoremap <Leader>sv :vsplit<CR>
+nnoremap <Leader>sh :split<CR>
+
+nnoremap <Leader>q :q<CR>
 
 " Use :mkspell! ~/.vim/spell/en.utf-8.add to regenerate spelling binary files
 
