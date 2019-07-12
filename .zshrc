@@ -94,7 +94,7 @@ alias lsf='find . -nowarn -type f -maxdepth 1'
 
 alias h='history'
 alias hs='history'
-alias hsa='history | ag'
+alias hsa='history | rg'
 alias hsl='history | less'
 
 # Search
@@ -103,16 +103,16 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias sgrep='grep --color=auto -inIEr'
 
-alias fa='find . | ag '
-alias ff='find . -type f | ag'
-alias fd='find . -type d | ag'
-alias fl='find . -type l | ag'
+alias fa='find . | rg '
+alias ff='find . -type f | rg'
+alias fd='find . -type d | rg'
+alias fl='find . -type l | rg'
 
 # Usage
 alias du0='du --max-depth 0 -h .'
 alias du1='du --max-depth 1 -h .'
 alias ducks='du -cks * | sort -rn | head -11'
-alias psa='ps -ef | ag'
+alias psa='ps -ef | rg'
 
 # Network
 alias ipwan='wget -q -O - checkip.dyndns.org | sed -e "s/.*Current IP Address: //" -e "s/<.*$//"'
