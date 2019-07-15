@@ -108,10 +108,10 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: Noto Sans Mono Medium
+    family: Noto Sans Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    style: Medium
 
   # Bold font face
   bold:
@@ -119,10 +119,10 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Noto Sans Mono Bold
+    family: Noto Sans Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Bold
+    style: Black
 
   # Italic font face
   italic:
@@ -130,7 +130,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Noto Sans Mono Medium
+    family: Noto Sans Mono
 
     # The `style` can be specified to pick a specific face.
     style: Italic
