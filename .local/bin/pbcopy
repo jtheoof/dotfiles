@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if [ -x /usr/bin/xclip ]; then
+  xclip -i -selection clipboard > /dev/null
+  alias pbpaste='xclip -selection clipboard -o'
+fi

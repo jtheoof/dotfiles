@@ -129,16 +129,6 @@ alias t='tig'
 alias tm='tmux'
 alias tmn='tmux new'
 
-# Copy / Paste
-if [ -x /usr/bin/xclip ]; then
-  alias pbcopy='xclip -selection clipboard'
-  alias pbpaste='xclip -selection clipboard -o'
-fi
-
-if [ -x /usr/bin/pbcopy ]; then
-    alias pjc='pbpaste | python -m json.tool | pbcopy'
-fi
-
 # npm
 alias ncub='ncu -m bower'
 
