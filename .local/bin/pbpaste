@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if [ -x /usr/bin/xclip ]; then
+  xclip -selection clipboard -o
+fi
