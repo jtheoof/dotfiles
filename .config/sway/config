@@ -14,7 +14,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term termite
+set $term alacritty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 set $menu dmenu_path | dmenu | xargs swaymsg exec
@@ -22,7 +22,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * mode 3440x1440@75.050003Hz bg "/home/jattali/Dropbox/Photos/Wallpapers/Games/Destiny 2/PCvUS9l.jpg" fill
 #
 # Example configuration:
 #
@@ -66,7 +66,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Return exec $term
 
     # kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+q kill
 
     # start your launcher
     bindsym $mod+d exec $menu
@@ -155,7 +155,8 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    #bindsym $mod+space focus mode_toggle
+    bindsym $mod+space exec --no-startup-id j4-dmenu-desktop --dmenu='bemenu -i --nb "#323232" --nf "#ffffff" --fn "Noto Sans Mono 10"' --term='alacritty'
 
     # move focus to the parent container
     bindsym $mod+a focus parent
