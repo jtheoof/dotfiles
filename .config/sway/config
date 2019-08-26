@@ -17,12 +17,14 @@ set $right l
 set $term alacritty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu dmenu_path | dmenu | xargs swaymsg exec
+set $menu j4-dmenu-desktop --dmenu='bemenu --ignorecase --prompt "" --bottom --nb "#323232" --nf "#ffffff" --fn "Roboto Mono 10"' --usage-log=/home/jattali/.cache/j4-dmenu-desktop --display-binary --term="alacritty" | xargs swaymsg exec
+set $wallpaper "/home/jattali/Dropbox/Photos/Wallpapers/Games/Destiny 2/PCvUS9l.jpg"
+set $wallpaper_lock "/home/jattali/Dropbox/Photos/Wallpapers/Games/Warframe/warframe-fortuna-3840x2160-artwork-poster-4k-20928.jpg"
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * mode 3440x1440@75.050003Hz bg "/home/jattali/Dropbox/Photos/Wallpapers/Games/Destiny 2/PCvUS9l.jpg" fill
+output * mode 3440x1440@75.050003Hz bg $wallpaper fill
 #
 # Example configuration:
 #
@@ -44,6 +46,10 @@ output * mode 3440x1440@75.050003Hz bg "/home/jattali/Dropbox/Photos/Wallpapers/
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
+### Font Configuration
+# Font for window titles
+font pango:Roboto Mono 10
+
 ### Input configuration
 #
 # Example configuration:
@@ -58,6 +64,21 @@ output * mode 3440x1440@75.050003Hz bg "/home/jattali/Dropbox/Photos/Wallpapers/
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+input "1133:16511:Logitech_G502" {
+    natural_scroll disabled
+    pointer_accel 0.4
+    accel_profile adaptive
+}
+
+input "6700:45855:DREVO.Inc_BladeMaster_PRO_2.4G_Keyboard" {
+    repeat_delay 200
+    repeat_rate 30
+    xkb_layout us,fr
+    xkb_variant ,nodeadkeys
+    xkb_options grp:alt_shift_toggle
+    xkb_options compose:ralt
+}
+
 ### Key bindings
 #
 # Basics:
@@ -69,7 +90,7 @@ output * mode 3440x1440@75.050003Hz bg "/home/jattali/Dropbox/Photos/Wallpapers/
     bindsym $mod+q kill
 
     # start your launcher
-    bindsym $mod+d exec $menu
+    bindsym Control+Space exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -82,16 +103,11 @@ output * mode 3440x1440@75.050003Hz bg "/home/jattali/Dropbox/Photos/Wallpapers/
     bindsym $mod+Shift+c reload
 
     # exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym Ctrl+Alt+Backspace exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
     # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
-    # or use $mod+[up|down|left|right]
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
     bindsym $mod+Up focus up
@@ -155,11 +171,16 @@ output * mode 3440x1440@75.050003Hz bg "/home/jattali/Dropbox/Photos/Wallpapers/
     bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    #bindsym $mod+space focus mode_toggle
-    bindsym $mod+space exec --no-startup-id j4-dmenu-desktop --dmenu='bemenu -i --nb "#323232" --nf "#ffffff" --fn "Noto Sans Mono 10"' --term='alacritty'
+    bindsym $mod+space focus mode_toggle
 
     # move focus to the parent container
     bindsym $mod+a focus parent
+
+#
+# Screen Lock
+
+    bindsym $mod+l exec swaylock -i $wallpaper_lock --scaling fill
+
 #
 # Scratchpad:
 #
@@ -202,17 +223,21 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top
+    #position top
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    ## When the status_command prints a new line to stdout, swaybar updates.
+    ## The default just shows the current date and time.
+    #status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
 
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+    #colors {
+    #    statusline #ffffff
+    #    background #323232
+    #    inactive_workspace #32323200 #32323200 #5c5c5c
+    #}
+
+    swaybar_command waybar
 }
+
+exec mako
 
 include /etc/sway/config.d/*
