@@ -259,6 +259,7 @@ bar {
     swaybar_command waybar
 }
 
+exec redshift
 exec mako
 
 include /etc/sway/config.d/*
