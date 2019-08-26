@@ -108,7 +108,7 @@ let g:material_terminal_italics = 1
 let g:material_theme_style = 'default'
 let g:airline_theme='material'
 set background=dark
-colorscheme material
+colorscheme onedark
 
 " Text editing
 set encoding=utf8                       " utf-8 encoding
