@@ -81,7 +81,8 @@ alias dm='docker-machine'
 # Editing
 alias v='vim'
 alias vi='vim'
-alias gv='gvim'
+alias vim='vim -X'
+alias gv='gvim -X'
 alias sub='sublime'
 alias diff='colordiff -u'
 
