@@ -182,6 +182,16 @@ input "6700:45855:DREVO.Inc_BladeMaster_PRO_2.4G_Keyboard" {
     bindsym $mod+l exec swaylock -i $wallpaper_lock --scaling fill
 
 #
+# Audio
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
+    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    bindsym XF86AudioNext exec playerctl next
+    bindsym XF86AudioPlay exec playerctl play-pause
+    bindsym XF86AudioPrev exec playerctl previous
+    bindsym XF86AudioStop exec playerctl stop
+
+#
 # Scratchpad:
 #
     # Sway has a "scratchpad", which is a bag of holding for windows.
@@ -217,6 +227,17 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+#
+# Notifications
+#
+mode "notifications" {
+    bindsym Escape mode default
+    bindsym Return exec makoctl invoke; exec makoctl dismiss; mode default
+    bindsym d exec makoctl dismiss; mode default
+    bindsym Shift+d makoctl dismiss -a; mode default
+}
+bindsym $mod+n mode notifications
 
 #
 # Status Bar:
