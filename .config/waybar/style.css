@@ -83,12 +83,14 @@ window#waybar.chromium {
 }
 
 #memory.warning,
-#cpu.warning {
+#cpu.warning,
+#temperature.warning {
   background-color: orange;
 }
 
 #memory.critical,
-#cpu.critical {
+#cpu.critical,
+#temperature.critical {
   background-color: red;
 }
 
