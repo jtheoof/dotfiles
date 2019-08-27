@@ -140,6 +140,8 @@ input "6700:45855:DREVO.Inc_BladeMaster_PRO_2.4G_Keyboard" {
 # Workspaces:
 #
     # switch to workspace
+    bindsym $mod+Prior workspace prev
+    bindsym $mod+Next workspace next
     bindsym $mod+1 workspace 1
     bindsym $mod+2 workspace 2
     bindsym $mod+3 workspace 3
@@ -151,6 +153,8 @@ input "6700:45855:DREVO.Inc_BladeMaster_PRO_2.4G_Keyboard" {
     bindsym $mod+9 workspace 9
     bindsym $mod+0 workspace 10
     # move focused container to workspace
+    bindsym $mod+Shift+Prior move container to workspace prev
+    bindsym $mod+Shift+Next move container to workspace next
     bindsym $mod+Shift+1 move container to workspace 1
     bindsym $mod+Shift+2 move container to workspace 2
     bindsym $mod+Shift+3 move container to workspace 3
