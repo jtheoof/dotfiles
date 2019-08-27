@@ -43,6 +43,9 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'einars/js-beautify'
 Plugin 'maksimr/vim-jsbeautify'
 
+" JSONC
+Plugin 'neoclide/jsonc.vim'
+
 " Typescript
 Plugin 'leafgarland/typescript-vim'
 
