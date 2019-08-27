@@ -205,6 +205,11 @@ input "6700:45855:DREVO.Inc_BladeMaster_PRO_2.4G_Keyboard" {
     bindsym XF86AudioStop exec playerctl stop
 
 #
+# Screenshots
+    bindsym $mod+Print exec grim $(xdg-user-dir PICTURES)/Screenshot-$(date +'%Y-%m-%d-%H%M%S.png')
+    bindsym $mod+Shift+Print slurp | grim -g - $(xdg-user-dir PICTURES)/Screenshot-$(date +'%Y-%m-%d-%H%M%S.png')
+
+#
 # Scratchpad:
 #
     # Sway has a "scratchpad", which is a bag of holding for windows.
