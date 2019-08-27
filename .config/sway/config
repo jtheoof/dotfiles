@@ -225,6 +225,11 @@ input "6700:45855:DREVO.Inc_BladeMaster_PRO_2.4G_Keyboard" {
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+
+#
+# Assignments
+#
+    assign [class="Steam"] 9
 #
 # Resizing containers:
 #
