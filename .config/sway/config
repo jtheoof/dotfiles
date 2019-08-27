@@ -24,6 +24,8 @@ set $wallpaper_lock "/home/jattali/Dropbox/Photos/Wallpapers/Games/Warframe/warf
 set $bgf #313440
 set $bgu #262831
 set $fg #d7d8e0
+set $fgu #53576a
+set $bof #5d637a
 
 ### Output configuration
 #
@@ -55,9 +57,10 @@ output * mode 3440x1440@75.050003Hz bg $wallpaper fill
 font pango:Roboto Mono 10
 
 ### Client configuration
-client.focused $bgf $bgf $fg $bgf $bgf
-client.focused_inactive $bgu $bgu $fg $bgu $bgu
-client.unfocused $bgu $bgu $fg $bgu $bgu
+#<colorclass> <border> <background> <text> <indicator> <child_border>
+client.focused $bgf $bgf $fg $bgf $bof
+client.focused_inactive $bgu $bgu $fgu $bgu $bgu
+client.unfocused $bgu $bgu $fgu $bgu $bgu
 client.placeholder $bgu $bgu $fg $bgu $bgu
 
 ### Input configuration
