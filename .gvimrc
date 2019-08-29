@@ -3,7 +3,7 @@
 set guioptions= " turn off every option
 
 if has("gui_gtk2") || has("gui_gtk3")
-    set guifont=Roboto\ Mono\ 10
+    set guifont=Roboto\ Mono\ Medium\ 10
 elseif has("gui_win32")
     set guifont=Consolas:h10
 elseif has("gui_macvim") || has("gui_vimr")
