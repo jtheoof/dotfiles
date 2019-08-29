@@ -79,8 +79,8 @@ client.placeholder $bgu $bgu $fg $bgu $bgu
 
 input "1133:16511:Logitech_G502" {
     natural_scroll disabled
-    pointer_accel 0.4
-    accel_profile adaptive
+    pointer_accel 1.0
+    accel_profile flat
 }
 
 input "6700:45855:DREVO.Inc_BladeMaster_PRO_2.4G_Keyboard" {
