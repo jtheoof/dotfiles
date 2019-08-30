@@ -21,11 +21,11 @@ set $menu j4-dmenu-desktop --dmenu='bemenu --ignorecase --prompt "" --bottom --n
 set $wallpaper "/home/jattali/Dropbox/Photos/Wallpapers/Games/Destiny 2/PCvUS9l.jpg"
 set $wallpaper_lock "/home/jattali/Dropbox/Photos/Wallpapers/Games/Warframe/warframe-fortuna-3840x2160-artwork-poster-4k-20928.jpg"
 
-set $bgf #313440
+set $bgf #455a64
 set $bgu #262831
-set $fg #d7d8e0
+set $fg #ffffff
 set $fgu #53576a
-set $bof #5d637a
+set $bof #455a64
 
 ### Output configuration
 #
