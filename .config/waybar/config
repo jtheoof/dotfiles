@@ -8,21 +8,23 @@
     "modules-center": ["sway/window"],
     "modules-right": ["tray", "pulseaudio", "cpu", "memory", "temperature#cpu", "temperature#gpu", "clock#calendar", "clock"],
     // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "1": " ",
+            "2": " ",
+            "3": " ",
+            "4": " ",
+            "5": "",
+            "9": "",
+            "10": "",
+            "urgent": " ",
+            "focused": " ",
+            "default": " "
+        }
+    },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
