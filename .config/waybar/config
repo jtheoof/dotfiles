@@ -1,11 +1,9 @@
 {
-    "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 28, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    // Choose the order of the modules
+    "layer": "top",
+    "position": "top",
+    "height": 28,
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
+    "modules-center": ["clock"],
     "modules-right": [
         "tray",
         "pulseaudio",
@@ -13,11 +11,8 @@
         "memory",
         "temperature#cpu",
         "temperature#gpu",
-        "clock#calendar",
-        "clock",
         "custom/power"
     ],
-    // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -36,7 +31,7 @@
         }
     },
     "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
+        "format": " {}"
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
@@ -72,31 +67,34 @@
         }
     },
     "tray": {
-        // "icon-size": 21,
-        "spacing": 10
+        "spacing": 10,
+        "tooltip": false
     },
     "clock#calendar": {
         "format": "{:%D}",
         "format-alt": "{:%A, %B %d, %Y}"
     },
     "clock": {
+        "format": "{:%A %d %B - %H:%M}",
         "tooltip-format": "{:%Y-%m-%d | %H:%M}",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%Y-%m-%d}",
+        "tooltip": false
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false,
         "states": {
             "warning": 60,
             "critical": 90
-        }
+        },
+        "tooltip": false
     },
     "memory": {
         "format": "{}% ",
         "states": {
             "warning": 60,
             "critical": 90
-        }
+        },
+        "tooltip": false
     },
     "temperature#cpu": {
         // "thermal-zone": 2,
@@ -104,7 +102,8 @@
         "critical-threshold": 80,
         "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
-        "format-icons": [""]
+        "format-icons": [""],
+        "tooltip": false
     },
     "temperature#gpu": {
         // "thermal-zone": 2,
@@ -112,16 +111,18 @@
         "critical-threshold": 70,
         "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
-        "format-icons": [""]
+        "format-icons": [""],
+        "tooltip": false
     },
     "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "format-icons": ["", ""]
+        "format-icons": ["", ""],
+        "tooltip": false
     },
     "battery": {
         "states": {
-            // "good": 95,
+            "good": 75,
             "warning": 30,
             "critical": 15
         },
@@ -131,10 +132,8 @@
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "battery#bat2": {
-        "bat": "BAT2"
+        "format-icons": ["", "", "", "", ""],
+        "tooltip": false
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
@@ -142,10 +141,11 @@
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip": false
     },
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
+        "scroll-step": 5, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-muted": " {format_source}",
@@ -160,7 +160,8 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pactl-switch-sink"
+        "on-click": "pactl-switch-sink",
+        "tooltip": false
     },
     "custom/media": {
         "format": "{icon} {}",
@@ -175,6 +176,8 @@
     },
     "custom/power": {
         "format": "",
-        "on-click": "swaynag -t warning -m 'Power Menu Options' -b 'Logout' 'swaymsg exit' -b 'Suspend' 'systemctl suspend' -b 'Restart' 'systemctl reboot' -b 'shutdown'  'shutdown 0 '"
+        "max-length": 40,
+        "on-click": "swaynag -t warning -m 'Power Menu Options' -b 'Logout' 'swaymsg exit' -b 'Suspend' 'systemctl suspend' -b 'Restart' 'systemctl reboot' -b 'shutdown'  'shutdown 0 '",
+        "tooltip": false
     }
 }
