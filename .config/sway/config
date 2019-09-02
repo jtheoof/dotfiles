@@ -54,7 +54,7 @@ output * mode 3440x1440@75.050003Hz bg $wallpaper fill
 
 ### Font configuration
 # Font for window titles
-font pango:Roboto Mono 10
+font pango:monospace Bold 10
 
 ### Client configuration
 #<colorclass> <border> <background> <text> <indicator> <child_border>
