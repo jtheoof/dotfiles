@@ -6,7 +6,17 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["tray", "pulseaudio", "cpu", "memory", "temperature#cpu", "temperature#gpu", "clock#calendar", "clock", "custom/power"],
+    "modules-right": [
+        "tray",
+        "pulseaudio",
+        "cpu",
+        "memory",
+        "temperature#cpu",
+        "temperature#gpu",
+        "clock#calendar",
+        "clock",
+        "custom/power"
+    ],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
@@ -163,5 +173,8 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
     },
-    "custom/power": { "format":"", "on-click":"swaynag -t warning -m 'Power Menu Options' -b 'Logout' 'swaymsg exit' -b 'Suspend' 'systemctl suspend' -b 'Restart' 'systemctl reboot' -b 'shutdown'  'shutdown 0 '" }
+    "custom/power": {
+        "format": "",
+        "on-click": "swaynag -t warning -m 'Power Menu Options' -b 'Logout' 'swaymsg exit' -b 'Suspend' 'systemctl suspend' -b 'Restart' 'systemctl reboot' -b 'shutdown'  'shutdown 0 '"
+    }
 }
