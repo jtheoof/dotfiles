@@ -1,7 +1,8 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: 'Roboto Mono', Helvetica, Arial, sans-serif;
+    font-family: Waybar;
+    font-weight: 800;
     font-size: 12px;
     min-height: 0;
 }
