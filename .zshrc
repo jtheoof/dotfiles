@@ -119,6 +119,7 @@ alias psa='ps -ef | rg'
 alias ipwan='wget -q -O - checkip.dyndns.org | sed -e "s/.*Current IP Address: //" -e "s/<.*$//"'
 
 # Navigation
+alias r='ranger'
 alias n='nautilus'
 alias n.='nautilus .'
 alias view='eog'
