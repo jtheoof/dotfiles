@@ -150,7 +150,7 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "pactl-switch-sink"
     },
     "custom/media": {
         "format": "{icon} {}",
