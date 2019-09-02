@@ -30,6 +30,7 @@ typeset -U path
 path=(
     ~/.local/bin
     ~/.local/work/bin
+    ~/.npm/bin
     /usr/local/bin
     $path
 )
