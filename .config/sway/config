@@ -258,6 +258,7 @@ mode "resize" {
     bindsym Right resize grow width 10px
 
     # return to default mode
+    bindsym q mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
