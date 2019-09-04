@@ -160,7 +160,7 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pactl-switch-sink",
+        "on-click": "~/.local/bin/pactl-switch-sink",
         "tooltip": false
     },
     "custom/media": {
