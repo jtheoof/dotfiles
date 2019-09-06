@@ -276,6 +276,12 @@ mode "notifications" {
 bindsym $mod+n mode notifications
 
 #
+# Window Managemnt
+#
+for_window [title="win0"] floating enable
+for_window [class="^jetbrains-.+"][window_type=dialog] focus
+
+#
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
