@@ -217,9 +217,9 @@ exec_always {
 
 #
 # Audio
-    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    bindsym XF86AudioLowerVolume exec volctl down
+    bindsym XF86AudioRaiseVolume exec volctl up
+    bindsym XF86AudioMicMute exec volctl toggle
     bindsym XF86AudioNext exec playerctl next
     bindsym XF86AudioPlay exec playerctl play-pause
     bindsym XF86AudioPrev exec playerctl previous

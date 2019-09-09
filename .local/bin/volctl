@@ -1,0 +1,56 @@
+#!/bin/sh
+
+set -x
+
+if [ $# -ne 1 ]; then
+    echo "Need 1 argument (volup, voldown, volmute)"
+    exit 1;
+fi
+
+
+currentvolume() {
+  pamixer --get-volume
+}
+
+volume_up() {
+  if [[ $(( $(currentvolume) + 5 )) -ge 100 ]]; then
+    pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ 100%
+  else
+    pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ +5%
+  fi
+}
+
+volume_down() {
+  if [[ $(( $(currentvolume) - 5 )) -le 0 ]]; then
+    pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ 0%
+  else
+    pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ -5%
+  fi
+}
+
+volume_toggle_mute() {
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
+}
+
+send_notification() {
+  volume=$(currentvolume)
+  bar=$(seq -s "" $(( $volume / 5 )) | sed 's/[0-9]//g')
+  barempty=$(seq -s "" $(( (105 - $volume) / 5)) | sed 's/[0-9]//g')
+  makoctl dismiss --all && \
+  notify-send -i audio-volume-high-symbolic.symbolic --hint=int:transient:1 --hint=int:value:$volume --hint=string:synchronous:volume "Volume at $volume%"
+}
+
+if [ $1 = 'up' ]; then
+  volume_up
+elif [ $1 = 'down' ]; then
+  volume_down
+elif [ $1 = 'toggle' ]; then
+  volume_toggle_mute
+fi
+
+
+send_notification
+
+XDG_RUNTIME_DIR=/run/user/1000 paplay /usr/share/sounds/freedesktop/stereo/bell.oga
+
+
