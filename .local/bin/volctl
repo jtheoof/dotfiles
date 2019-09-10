@@ -1,9 +1,7 @@
 #!/bin/sh
 
-set -x
-
 if [ $# -ne 1 ]; then
-    echo "Need 1 argument (volup, voldown, volmute)"
+    echo "Need 1 argument (up, down, toggle)"
     exit 1;
 fi
 
@@ -34,8 +32,6 @@ volume_toggle_mute() {
 
 send_notification() {
   volume=$(currentvolume)
-  bar=$(seq -s "" $(( $volume / 5 )) | sed 's/[0-9]//g')
-  barempty=$(seq -s "" $(( (105 - $volume) / 5)) | sed 's/[0-9]//g')
   makoctl dismiss --all && \
   notify-send -i audio-volume-high-symbolic.symbolic --hint=int:transient:1 --hint=int:value:$volume --hint=string:synchronous:volume "Volume at $volume%"
 }
