@@ -517,7 +517,7 @@ key_bindings:
 
   - { key: Paste,                   action: Paste                            }
   - { key: Copy,                    action: Copy                             }
-  - { key: K,        mods: Control, action: ClearHistory                     }
+  - { key: H,        mods: Control, action: ClearHistory                     }
   - { key: L,        mods: Control, action: ClearLogNotice                   }
   - { key: L,        mods: Control, chars: "\x0c"                            }
   - { key: N,        mods: Control, action: SpawnNewInstance                 }
