@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 if [ $# -ne 1 ]; then
     echo "Need 1 argument (up, down, toggle)"
@@ -6,12 +6,16 @@ if [ $# -ne 1 ]; then
 fi
 
 
-currentvolume() {
+current_volume() {
   pamixer --get-volume
 }
 
+muted() {
+  pamixer --get-mute
+}
+
 volume_up() {
-  if [[ $(( $(currentvolume) + 5 )) -ge 100 ]]; then
+  if [[ $(( $(current_volume) + 5 )) -ge 100 ]]; then
     pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ 100%
   else
     pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -19,7 +23,7 @@ volume_up() {
 }
 
 volume_down() {
-  if [[ $(( $(currentvolume) - 5 )) -le 0 ]]; then
+  if [[ $(( $(current_volume) - 5 )) -le 0 ]]; then
     pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ 0%
   else
     pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -31,9 +35,24 @@ volume_toggle_mute() {
 }
 
 send_notification() {
-  volume=$(currentvolume)
+  volume=$(current_volume)
+  muted=$(muted)
+  iconpath=/usr/share/icons/Papirus-Dark/symbolic/status/
+  ext=svg
+  icon=$iconpath/audio-volume-low-symbolic.$ext
+
+  if [ "$muted" = "true" ]; then
+    icon=$iconpath/audio-volume-muted-symbolic.$ext
+  elif [ $volume -ge 0 ] && [ $volume -le 33 ]; then
+    icon=$iconpath/audio-volume-low-symbolic.$ext
+  elif [ $volume -ge 33 ] && [ $volume -le 66 ]; then
+    icon=$iconpath/audio-volume-medium-symbolic.$ext
+  elif [ $volume -ge 66 ]; then
+    icon=$iconpath/audio-volume-high-symbolic.$ext
+  fi
+
   makoctl dismiss --all && \
-  notify-send -i audio-volume-high-symbolic.symbolic --hint=int:transient:1 --hint=int:value:$volume --hint=string:synchronous:volume "Volume at $volume%"
+  notify-send -i $icon --hint=int:transient:1 --hint=int:value:$volume --hint=string:synchronous:volume " "
 }
 
 if [ $1 = 'up' ]; then
