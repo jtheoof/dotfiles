@@ -299,6 +299,6 @@ bar {
 }
 
 exec redshift
-exec mako --default-timeout 5000 --border-radius 5 --background-color "#455a64aa" --height 200 --width 350 --padding 8 --border-size 2 --margin 30,10,0,0
+exec mako
 
 include /etc/sway/config.d/*
