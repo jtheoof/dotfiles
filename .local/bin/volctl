@@ -66,6 +66,3 @@ fi
 
 send_notification
 
-XDG_RUNTIME_DIR=/run/user/1000 paplay /usr/share/sounds/freedesktop/stereo/bell.oga
-
-
