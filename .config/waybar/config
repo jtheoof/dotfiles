@@ -80,7 +80,8 @@
         "tooltip": false
     },
     "cpu": {
-        "format": "{usage}% ",
+        "format": "{usage:2}% ",
+        "interval": 2,
         "states": {
             "warning": 60,
             "critical": 90
@@ -98,6 +99,7 @@
     "temperature#cpu": {
         // "thermal-zone": 2,
         "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "interval": 2,
         "critical-threshold": 80,
         "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
@@ -107,6 +109,7 @@
     "temperature#gpu": {
         // "thermal-zone": 2,
         "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
+        "interval": 2,
         "critical-threshold": 70,
         "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
