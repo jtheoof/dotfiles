@@ -20,9 +20,10 @@ set tree-view	= line-number:no,interval=5 mode author:full file-size date:defaul
 
 # }}}
 # Colors {{{
-color cursor white black
+color cursor white blue
 color status white default
-color title-focus white black
+color title-focus white blue
+color title-blur white default
 color date yellow default
 color author red default bold
 color main-head magenta default
@@ -114,9 +115,14 @@ bind generic ca !?@git commit --amend --no-edit
 bind generic y none
 bind generic yy !@csh -c "echo -n %(commit) | pbcopy"
 
-bind generic <C-w><C-w> view-next
-
 bind generic Q quit
+
+bind generic [ none
+bind generic ] none
+bind generic [m move-prev-merge
+bind generic ]m move-next-merge
+bind generic [q find-prev
+bind generic ]q find-next
 
 # }}}
 # Main {{{
@@ -124,6 +130,7 @@ bind generic Q quit
 
 bind main g none
 bind main gf !git fetch
+bind main gr !git revert %(commit)
 
 bind main ! !git revert %(commit)
 bind main A @git commit --amend --reuse-message=HEAD
@@ -150,6 +157,11 @@ bind diff F !@sh -c "git show %(commit) --pretty=format: --name-only | xargs | x
 bind diff E !<sh -c "vim -c 'Gedit %(commit)' $(ls | head -1)"
 bind diff V !<sh -c "vim $(git show %(commit) --pretty=format: --name-only | xargs)"
 
+bind diff [ none
+bind diff ] none
+bind diff [c :toggle diff-context -5
+bind diff ]c :toggle diff-context +5
+
 # }}}
 # Tree {{{
 
@@ -166,12 +178,15 @@ bind branch D !@git branch -D %(branch)
 # }}}
 # Refs {{{
 
-bind refs C !@git checkout %(branch)
+bind refs C !git checkout %(ref)
 bind refs D !@git branch -D %(branch)
 bind refs ! ?@git branch -D %(branch)
 
 bind refs d none
 bind refs dd !@git branch -D %(branch)
+
+bind refs g none
+bind refs gc !@git checkout %(ref)
 
 # }}}
 # Status {{{
