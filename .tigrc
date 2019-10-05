@@ -70,8 +70,8 @@ bind generic vm view-main
 bind generic vd view-diff
 bind generic vl view-log
 bind generic vt view-tree
-bind generic vb view-blob
-bind generic vx view-blame
+bind generic vx view-blob
+bind generic vb view-blame
 bind generic vr view-refs
 bind generic vs view-status
 bind generic vu view-stage
