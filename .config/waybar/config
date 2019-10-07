@@ -11,6 +11,7 @@
         "memory",
         "temperature#cpu",
         "temperature#gpu",
+        "temperature#gpu-junction",
         "custom/power"
     ],
     "sway/workspaces": {
@@ -97,8 +98,7 @@
         "tooltip": false
     },
     "temperature#cpu": {
-        // "thermal-zone": 2,
-        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
         "interval": 2,
         "critical-threshold": 80,
         "format-critical": "{temperatureC}°C {icon}",
@@ -107,10 +107,18 @@
         "tooltip": false
     },
     "temperature#gpu": {
-        // "thermal-zone": 2,
-        "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
         "interval": 2,
-        "critical-threshold": 70,
+        "critical-threshold": 80,
+        "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": [""],
+        "tooltip": false
+    },
+    "temperature#gpu-junction": {
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp2_input",
+        "interval": 2,
+        "critical-threshold": 100,
         "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
         "format-icons": [""],
