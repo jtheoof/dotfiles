@@ -1,0 +1,3 @@
+SURFRAW_graphical_browser=/usr/bin/chromium
+SURFRAW_text_browser=/usr/bin/lynx
+SURFRAW_graphical=yes
