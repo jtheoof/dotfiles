@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ -z "$@" ]]; then
+  surfraw -elvi  | cut -d$'\t' -f 1 | cut -d ' ' -f 1
+else
+  surfraw $@
+fi

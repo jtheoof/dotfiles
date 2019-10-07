@@ -18,6 +18,7 @@ set $term alacritty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 set $menu_j4 j4-dmenu-desktop --dmenu='bemenu --ignorecase --prompt "" --bottom --nb "#323232" --nf "#ffffff" --fn "Roboto Mono 10"' --usage-log=/home/jattali/.cache/j4-dmenu-desktop --display-binary --term="alacritty" | xargs swaymsg exec
+set $menu_rofi_surfraw rofi -modi surfraw:rofi-surfraw -show surfraw
 set $menu_rofi rofi -show combi
 set $wallpaper "/home/jattali/Dropbox/Photos/Wallpapers/Games/Destiny 2/PCvUS9l.jpg"
 set $wallpaper_lock "/home/jattali/Dropbox/Photos/Wallpapers/Games/Warframe/warframe-fortuna-3840x2160-artwork-poster-4k-20928.jpg"
@@ -115,6 +116,7 @@ exec_always {
     # start your launcher
     bindsym Control+Shift+Space exec $menu_j4
     bindsym Control+Space exec $menu_rofi
+    bindsym $mod+F1 exec $menu_rofi_surfraw
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.

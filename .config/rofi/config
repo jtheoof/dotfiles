@@ -3,5 +3,8 @@ rofi.combi-modi: window,drun,ssh
 rofi.m: -4
 rofi.terminal: alacritty
 
+rofi.kb-row-tab:
+rofi.kb-row-select: Tab
+
 rofi.theme: onedark
 rofi.show-icons: false
