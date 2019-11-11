@@ -2,6 +2,8 @@
 
 if [[ -z "$@" ]]; then
   surfraw -elvi  | cut -d$'\t' -f 1 | cut -d ' ' -f 1
+  exit
 else
   surfraw $@
+  exit
 fi
