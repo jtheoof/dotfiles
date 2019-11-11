@@ -7,4 +7,4 @@ rofi.kb-row-tab:
 rofi.kb-row-select: Tab
 
 rofi.theme: onedark
-rofi.show-icons: false
+rofi.show-icons: true
