@@ -14,6 +14,10 @@
 
 export EDITOR=vim
 
+if [ -f $HOME/.ripgreprc ]; then
+  export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+fi
+
 # Java
 /usr/libexec/java_home 1>/dev/null 2>&1
 if [ $? -eq 0 ]; then
