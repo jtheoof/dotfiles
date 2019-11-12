@@ -26,7 +26,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-vinegar'
 Plugin 'Z1MM32M4N/vim-superman'
-Plugin 'jremmen/vim-ripgrep'
 
 " }}}
 " Programming {{{
@@ -198,6 +197,7 @@ set ignorecase   " ignore case when searching
 set smartcase    " ignore case only if all chars are lower
 set incsearch    " do incremental searching
 set hlsearch     " highlight searches
+set grepprg=rg\ --vimgrep
 
 " Indentation
 set autoindent    " copy indentation from previous line
