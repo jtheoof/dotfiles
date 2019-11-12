@@ -1,0 +1,23 @@
+# General ack Settings
+####################################################################
+
+# sort files
+--sort-files
+# only search with case sensitivity if there is mixed case
+--smart-case
+# do not follow symlinks
+--no-follow
+
+# Ack Type Settings
+####################################################################
+
+--type-add
+text:*.{md,mdown,markdown,mkdn,textile,rst,txt}*
+--type-add
+csv:*.{txt,csv,tsv}*
+
+# Colors
+####################################################################
+
+--colors=match:fg:black
+--colors=match:bg:yellow
