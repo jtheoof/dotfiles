@@ -1,5 +1,5 @@
 rofi.modi: combi
-rofi.combi-modi: window,drun,ssh,surfraw:rofi-surfraw
+rofi.combi-modi: window,drun,ssh,surfraw:rofi-surfraw,run
 rofi.m: -4
 rofi.terminal: alacritty
 
