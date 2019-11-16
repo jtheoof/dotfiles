@@ -1,8 +1,8 @@
 font=monospace 10
 default-timeout=5000
 border-radius=5
-background-color=#0f82e6aa
-border-color=#0f82e6
+background-color=#546e7aee
+border-color=#263238
 height=200
 width=350
 padding=8
@@ -10,6 +10,6 @@ border-size=2
 margin=30,10,0,0
 
 [urgency=high]
-background-color=#d13c2eaa
+background-color=#d13c2eee
 border-color=#d13c2e
 
