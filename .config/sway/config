@@ -220,9 +220,9 @@ exec_always {
 
 #
 # Audio
-    bindsym XF86AudioLowerVolume exec volctl down
-    bindsym XF86AudioRaiseVolume exec volctl up
-    bindsym XF86AudioMicMute exec volctl toggle
+    bindsym XF86AudioLowerVolume exec volumectl lower
+    bindsym XF86AudioRaiseVolume exec volumectl raise
+    bindsym XF86AudioMute exec volumectl mute
     bindsym XF86AudioNext exec playerctl next
     bindsym XF86AudioPlay exec playerctl play-pause
     bindsym XF86AudioPrev exec playerctl previous
@@ -293,6 +293,10 @@ bindsym $mod+n mode notifications
 for_window [title="win0"] floating enable
 for_window [class="^jetbrains-.+"][window_type=dialog] focus
 
+for_window [app_id="avizo-service"] border pixel 0
+for_window [app_id="avizo-service"] sticky toggle
+no_focus [app_id="avizo-service"]
+
 #
 # Status Bar:
 #
@@ -303,5 +307,7 @@ bar {
 
 exec redshift
 exec mako
+exec avizo-service
+
 
 include /etc/sway/config.d/*
