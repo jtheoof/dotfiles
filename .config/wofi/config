@@ -1,0 +1,6 @@
+width=800
+height=600
+mode=run,drun,dmenu
+colors=colors
+filter_rate=100
+allow_images=true
