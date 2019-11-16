@@ -20,8 +20,7 @@ set $term alacritty
 set $menu_j4 j4-dmenu-desktop --dmenu='bemenu --ignorecase --prompt "" --bottom --nb "#323232" --nf "#ffffff" --fn "Roboto Mono 10"' --usage-log=/home/jattali/.cache/j4-dmenu-desktop --display-binary --term="alacritty" | xargs swaymsg exec
 set $menu_rofi_surfraw rofi -modi surfraw:rofi-surfraw -show surfraw
 set $menu_rofi rofi -show combi
-set $wallpaper "/home/jattali/Dropbox/Photos/Wallpapers/Games/Destiny 2/PCvUS9l.jpg"
-set $wallpaper_lock "/home/jattali/Dropbox/Photos/Wallpapers/Games/Warframe/warframe-fortuna-3840x2160-artwork-poster-4k-20928.jpg"
+set $wallpaper "/home/jattali/Dropbox/Wallpapers/Gaming/Destiny 2/PCvUS9l.jpg"
 
 set $bgf #455a64
 set $bgu #262831
@@ -217,7 +216,7 @@ exec_always {
 #
 # Screen Lock
 
-    bindsym $mod+l exec swaylock -i $wallpaper_lock --scaling fill
+    bindsym $mod+l exec swaylock
 
 #
 # Audio
