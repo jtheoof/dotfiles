@@ -216,7 +216,7 @@ exec_always {
 #
 # Screen Lock
 
-    bindsym $mod+l exec swaylock
+    bindsym $mod+l exec loginctl lock-session
 
 #
 # Audio
@@ -304,6 +304,11 @@ no_focus [app_id="avizo-service"]
 bar {
     swaybar_command waybar
 }
+
+#
+# swayidle
+#
+exec swayidle -w before-sleep 'loginctl lock-session' lock 'swaylock'
 
 exec redshift
 exec mako
