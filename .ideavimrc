@@ -7,7 +7,7 @@ nnoremap ]q :action NextOccurence<CR>
 nnoremap [q :action PreviousOccurence<CR>
 
 " Navigation
-nnoremap <M-Left> :action VimWindowLeft<CR>
-nnoremap <M-Right> :action VimWindowRight<CR>
-nnoremap <M-Up> :action VimWindowUp<CR>
-nnoremap <M-Down> :action VimWindowDown<CR>
+nnoremap <C-Left> :action PrevSplitter<CR>
+nnoremap <C-Right> :action NextSplitter<CR>
+nnoremap <C-Up> :action VimWindowUp<CR>
+nnoremap <C-Down> :action VimWindowDown<CR>
