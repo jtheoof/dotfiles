@@ -20,6 +20,8 @@ set $term alacritty
 set $menu_j4 j4-dmenu-desktop --dmenu='bemenu --ignorecase --prompt "" --bottom --nb "#323232" --nf "#ffffff" --fn "Roboto Mono 10"' --usage-log=/home/jattali/.cache/j4-dmenu-desktop --display-binary --term="alacritty" | xargs swaymsg exec
 set $menu_rofi_surfraw rofi -modi surfraw:rofi-surfraw -show surfraw
 set $menu_rofi rofi -show combi
+set $menu_wofi wofi
+
 set $wallpaper "/home/jattali/Dropbox/Wallpapers/Gaming/Destiny 2/PCvUS9l.jpg"
 
 set $bgf #455a64
@@ -115,6 +117,7 @@ exec_always {
     # start your launcher
     bindsym Control+Shift+Space exec $menu_j4
     bindsym Control+Space exec $menu_rofi
+    bindsym $mod+Space exec $menu_wofi
     bindsym $mod+F1 exec $menu_rofi_surfraw
 
     # Drag floating windows by holding down $mod and left mouse button.
@@ -208,7 +211,7 @@ exec_always {
     bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    bindsym $mod+Alt+space focus mode_toggle
 
     # move focus to the parent container
     bindsym $mod+a focus parent
