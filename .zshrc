@@ -16,7 +16,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="sindresorhus"
+ZSH_THEME=""
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -246,6 +246,10 @@ fi
 if [[ -s $HOME/.zshrc_work ]]; then
     source $HOME/.zshrc_work
 fi
+
+autoload -U promptinit; promptinit
+
+prompt pure
 
 # }}}
 
