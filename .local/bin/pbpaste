@@ -1,5 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ -x /usr/bin/xclip ]; then
-  xclip -selection clipboard -o
+if [ -x /usr/bin/pbpaste ]; then
+  /usr/bin/pbpaste
+elif [ -x /usr/bin/wl-paste ]; then
+  /usr/bin/wl-paste
+elif [ -x /usr/bin/xclip ]; then
+  /usr/bin/xclip -selection clipboard -o
 fi
