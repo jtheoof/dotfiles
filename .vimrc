@@ -64,7 +64,6 @@ endif
 Plugin 'chrisbra/csv.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'timakro/vim-searchant'
 
 " }}}
 " Themes {{{
@@ -72,6 +71,7 @@ Plugin 'timakro/vim-searchant'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'hzchirs/vim-material'
 Plugin 'kaicataldo/material.vim'
+Plugin 'connorholyday/vim-snazzy'
 
 " }}}
 " Misc {{{
@@ -110,7 +110,7 @@ let g:material_terminal_italics = 1
 let g:material_theme_style = 'default'
 let g:airline_theme='material'
 set background=dark
-colorscheme onedark
+colorscheme snazzy
 
 " Text editing
 set encoding=utf8                       " utf-8 encoding
