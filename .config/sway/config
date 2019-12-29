@@ -233,8 +233,8 @@ exec_always {
 
 #
 # Screenshots
-    bindsym $mod+Print exec grim $(xdg-user-dir PICTURES)/Screenshot-$(date +'%Y-%m-%d-%H%M%S.png')
-    bindsym $mod+Shift+Print exec slurp | grim -g - $(xdg-user-dir PICTURES)/Screenshot-$(date +'%Y-%m-%d-%H%M%S.png')
+    bindsym $mod+Print exec swappy -g "$(pick-sway-window)"
+    bindsym $mod+Shift+Print exec swappy -g "$(slurp)"
 
 #
 # Scratchpad:
