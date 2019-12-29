@@ -92,7 +92,7 @@
     "memory": {
         "format": "{}% ",
         "states": {
-            "warning": 60,
+            "warning": 80,
             "critical": 90
         },
         "tooltip": false
