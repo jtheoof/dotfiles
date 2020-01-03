@@ -96,7 +96,9 @@ input "type:keyboard" {
     xkb_options compose:ralt
 }
 
+focus_follows_mouse always
 seat seat0 xcursor_theme $cursor_theme $cursor_size
+
 exec_always {
     gsettings set org.gnome.desktop.interface cursor-theme $my_cursor
     gsettings set org.gnome.desktop.interface cursor-size $my_cursor_size
