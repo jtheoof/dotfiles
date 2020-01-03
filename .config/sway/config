@@ -22,8 +22,6 @@ set $menu_rofi_surfraw rofi -modi surfraw:rofi-surfraw -show surfraw
 set $menu_rofi rofi -show combi
 set $menu_wofi wofi
 
-set $wallpaper "/home/jattali/Dropbox/Wallpapers/Gaming/Destiny 2/PCvUS9l.jpg"
-
 set $bgf #455a64
 set $bgu #262831
 set $fg #ffffff
@@ -35,8 +33,8 @@ set $cursor_size 24
 
 ### Output configuration
 #
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * mode 3440x1440@75.050003Hz bg $wallpaper fill
+output DP-1 mode 3440x1440@75.050003Hz
+swaybg_command -
 #
 # Example configuration:
 #
@@ -85,7 +83,7 @@ client.placeholder $bgu $bgu $fg $bgu $bgu
 
 input "type:pointer" {
     natural_scroll disabled
-    pointer_accel 0.9
+    pointer_accel 0.2
     scroll_factor 2.0
     accel_profile flat
 }
@@ -316,6 +314,7 @@ exec swayidle -w before-sleep 'loginctl lock-session' lock 'swaylock'
 exec redshift
 exec mako
 exec avizo-service
+exec oguri
 
 
 include /etc/sway/config.d/*
