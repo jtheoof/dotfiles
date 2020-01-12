@@ -63,6 +63,7 @@ endif
 
 Plugin 'chrisbra/csv.vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'prettier/vim-prettier'
 Plugin 'terryma/vim-multiple-cursors'
 
 " }}}
