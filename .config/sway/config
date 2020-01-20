@@ -83,7 +83,7 @@ client.placeholder $bgu $bgu $fg $bgu $bgu
 
 input "type:pointer" {
     natural_scroll disabled
-    pointer_accel 0.2
+    pointer_accel 0.0
     scroll_factor 2.0
     accel_profile flat
 }
