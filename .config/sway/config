@@ -33,7 +33,8 @@ set $cursor_size 24
 
 ### Output configuration
 #
-output DP-1 mode 3440x1440@75.050003Hz
+output DP-1 mode 3440x1440@75.050003Hz scale 1
+output HDMI-A-1 disable
 swaybg_command -
 #
 # Example configuration:
