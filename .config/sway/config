@@ -234,8 +234,8 @@ exec_always {
 
 #
 # Screenshots
-    bindsym $mod+Print exec swappy -g "$(pick-sway-window)"
-    bindsym $mod+Shift+Print exec swappy -g "$(slurp)"
+    bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy
+    bindsym $mod+Shift+Print exec grim -g "$(slurp)" - | swappy -f -
 
 #
 # Scratchpad:
