@@ -304,23 +304,5 @@ for_window [app_id="avizo-service"] border pixel 0
 for_window [app_id="avizo-service"] sticky toggle
 no_focus [app_id="avizo-service"]
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    swaybar_command waybar
-}
-
-#
-# swayidle
-#
-exec swayidle -w before-sleep 'loginctl lock-session' lock 'swaylock'
-
-exec redshift
-exec mako
-exec avizo-service
-exec oguri
-
-
 include /etc/sway/config.d/*
+
