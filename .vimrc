@@ -73,6 +73,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'hzchirs/vim-material'
 Plugin 'kaicataldo/material.vim'
 Plugin 'connorholyday/vim-snazzy'
+Plugin 'arcticicestudio/nord-vim'
 
 " }}}
 " Misc {{{
@@ -111,7 +112,7 @@ let g:material_terminal_italics = 1
 let g:material_theme_style = 'default'
 let g:airline_theme='material'
 set background=dark
-colorscheme snazzy
+colorscheme nord
 
 " Text editing
 set encoding=utf8                       " utf-8 encoding
