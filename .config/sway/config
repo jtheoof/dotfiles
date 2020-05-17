@@ -4,6 +4,9 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+### Wayland only
+xwayland disable
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
