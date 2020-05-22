@@ -223,7 +223,7 @@ exec_always {
 #
 # Screen Lock
 
-    bindsym $mod+l exec loginctl lock-session
+    bindsym $mod+l exec swaylock -f
 
 #
 # Audio
