@@ -237,8 +237,14 @@ exec_always {
 
 #
 # Screenshots
-    bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy
-    bindsym $mod+Shift+Print exec grim -g "$(slurp)" - | swappy -f -
+mode "print" {
+    bindsym y exec grim -g "$(slurp)" - | wl-copy; mode "default"
+    bindsym g exec grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/Grimshot $(date +%c).png"; mode "default"
+    bindsym s exec grim -g "$(slurp)" - | swappy -f -; mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Print mode "print"
+
 
 #
 # Scratchpad:
