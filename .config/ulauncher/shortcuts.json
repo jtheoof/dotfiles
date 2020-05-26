@@ -1,0 +1,72 @@
+{
+    "b24b6543-491e-40fa-bb66-aca865eaf700": {
+        "id": "b24b6543-491e-40fa-bb66-aca865eaf700",
+        "name": "Google Search",
+        "keyword": "g",
+        "cmd": "https://google.com/search?q=%s",
+        "icon": "/usr/share/ulauncher/media/google-search-icon.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1590402427.553987
+    },
+    "14d23919-ae8e-4b4e-9d69-61b8d96aba3b": {
+        "id": "14d23919-ae8e-4b4e-9d69-61b8d96aba3b",
+        "name": "Stack Overflow",
+        "keyword": "so",
+        "cmd": "http://stackoverflow.com/search?q=%s",
+        "icon": "/usr/share/ulauncher/media/stackoverflow-icon.svg",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1590402427.5540779
+    },
+    "7bd2994b-7980-49ed-a9fe-767367faa446": {
+        "id": "7bd2994b-7980-49ed-a9fe-767367faa446",
+        "name": "Wikipedia",
+        "keyword": "wiki",
+        "cmd": "https://en.wikipedia.org/wiki/%s",
+        "icon": "/usr/share/ulauncher/media/wikipedia-icon.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1590402427.5541396
+    },
+    "0cb7bd6c-a5bd-4a9f-80d8-f96de0ad20c9": {
+        "id": "0cb7bd6c-a5bd-4a9f-80d8-f96de0ad20c9",
+        "name": "Arch User Repository",
+        "keyword": "aur",
+        "cmd": "https://aur.archlinux.org/packages/?O=0&K=%s",
+        "icon": "/usr/share/icons/hicolor/128x128/apps/chromium.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1590402427.5541396
+    },
+    "56fd645a-5e37-4208-882b-58665c3240ac": {
+        "id": "56fd645a-5e37-4208-882b-58665c3240ac",
+        "name": "Arch Package",
+        "keyword": "abs",
+        "cmd": "https://www.archlinux.org/packages/?q=%s",
+        "icon": "/usr/share/icons/hicolor/128x128/apps/chromium.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1590402427.5541396
+    },
+    "7c9f15bf-ff50-4925-8636-4a1fdfaa5387": {
+        "id": "7c9f15bf-ff50-4925-8636-4a1fdfaa5387",
+        "name": "Youtube",
+        "keyword": "yt",
+        "cmd": "http://www.youtube.com/results?search_query=%s",
+        "icon": "/usr/share/icons/hicolor/128x128/apps/chromium.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1590402427.5541396
+    },
+    "": {
+        "id": "",
+        "name": "",
+        "keyword": "",
+        "cmd": "",
+        "icon": "/usr/share/icons/hicolor/128x128/apps/chromium.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1590402427.5541396
+    }
+}
