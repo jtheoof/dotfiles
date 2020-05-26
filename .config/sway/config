@@ -24,6 +24,7 @@ set $menu_j4 j4-dmenu-desktop --dmenu='bemenu --ignorecase --prompt "" --bottom 
 set $menu_rofi_surfraw rofi -modi surfraw:rofi-surfraw -show surfraw
 set $menu_rofi rofi -show combi
 set $menu_wofi wofi
+set $menu_ulauncher ulauncher --hide-window
 
 set $bgf #455a64
 set $bgu #262831
@@ -121,7 +122,7 @@ exec_always {
     # start your launcher
     bindsym Control+Shift+Space exec $menu_j4
     bindsym Control+Space exec $menu_rofi
-    bindsym $mod+Space exec $menu_wofi
+    bindsym $mod+Space exec $menu_ulauncher
     bindsym $mod+F1 exec $menu_rofi_surfraw
 
     # Drag floating windows by holding down $mod and left mouse button.
@@ -303,6 +304,7 @@ bindsym $mod+n mode notifications
 #
 # Window Managemnt
 #
+for_window [app_id="ulauncher"] floating enable, border none
 for_window [title="win0"] floating enable
 for_window [class="^jetbrains-.+"][window_type=dialog] focus
 
