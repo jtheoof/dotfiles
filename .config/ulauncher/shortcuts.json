@@ -59,6 +59,16 @@
         "run_without_argument": false,
         "added": 1590402427.5541396
     },
+    "00ea4ac2-914b-4159-b4b8-a84b829619da": {
+        "id": "00ea4ac2-914b-4159-b4b8-a84b829619da",
+        "name": "Github",
+        "keyword": "gh",
+        "cmd": "https://github.com/search?q=%s",
+        "icon": "/usr/share/icons/hicolor/128x128/apps/chromium.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1590402427.5541396
+    },
     "": {
         "id": "",
         "name": "",
