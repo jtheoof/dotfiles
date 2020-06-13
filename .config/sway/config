@@ -96,9 +96,9 @@ input "type:pointer" {
 input "type:keyboard" {
     repeat_delay 200
     repeat_rate 30
-    xkb_layout us,fr
+    xkb_layout us
     xkb_variant ,nodeadkeys
-    xkb_options grp:alt_shift_toggle,compose:ralt
+    xkb_options compose:ralt
 }
 
 focus_follows_mouse always
