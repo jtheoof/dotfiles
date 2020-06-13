@@ -1,6 +1,5 @@
 [Default]
 save_dir=$HOME/Pictures
-blur_level=50
 line_size=5
 text_size=20
 text_font=monospace
