@@ -86,11 +86,11 @@ client.placeholder $bgu $bgu $fg $bgu $bgu
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-input "type:pointer" {
+input "1133:16511:Logitech_G502" {
     natural_scroll disabled
-    pointer_accel 0.0
+    pointer_accel -0.6
     scroll_factor 2.0
-    accel_profile flat
+    accel_profile adaptive
 }
 
 input "type:keyboard" {
