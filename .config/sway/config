@@ -241,6 +241,7 @@ mode "print" {
     bindsym y exec grim -g "$(slurp)" - | wl-copy; mode "default"
     bindsym g exec grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/Grimshot $(date +%c).png"; mode "default"
     bindsym s exec grim -g "$(slurp)" - | swappy -f -; mode "default"
+    bindsym w exec swaymsg -t get_tree | jq -r '.. | (.nodes? // empty)[] | select(.focused) | "\(.rect.x),\(.rect.y) \(.rect.width)x\(.rect.height)"' | grim -g - - | swappy -f -
     bindsym Escape mode "default"
 }
 bindsym $mod+Print mode "print"
