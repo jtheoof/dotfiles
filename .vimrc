@@ -378,6 +378,9 @@ nnoremap <F7> :make<Return>
 nnoremap <C-F11> :split<CR>
 nnoremap <C-F12> :vsplit<CR>
 
+nnoremap <A-Left> <C-o>
+nnoremap <A-Right> <C-i>
+
 " Make Y more consistent with C and D
 nnoremap Y y$
 " Make U more consistent with vim logic
