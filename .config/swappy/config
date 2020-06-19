@@ -1,5 +1,6 @@
 [Default]
 save_dir=$HOME/Pictures
 line_size=5
+show_panel=false
 text_size=20
 text_font=monospace
