@@ -379,6 +379,8 @@ nnoremap <C-F12> :vsplit<CR>
 
 " Make Y more consistent with C and D
 nnoremap Y y$
+" Make U more consistent with vim logic
+nnoremap U :redo<CR>
 " Yank current file
 nnoremap <silent> ycf :let @* = expand("%:p")<CR>:let @+ = expand("%:p")<CR>
 
