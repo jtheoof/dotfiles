@@ -69,6 +69,16 @@
         "run_without_argument": false,
         "added": 1590402427.5541396
     },
+    "cb6a6798-067e-4e03-83ea-15b03c22c5ea": {
+        "id": "cb6a6798-067e-4e03-83ea-15b03c22c5ea",
+        "name": "Mozilla Developer Network",
+        "keyword": "mdn",
+        "cmd": "https://developer.mozilla.org/en-US/search?q=%s",
+        "icon": "/usr/share/icons/hicolor/128x128/apps/chromium.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1590402427.5541396
+    },
     "": {
         "id": "",
         "name": "",
