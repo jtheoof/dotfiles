@@ -44,3 +44,6 @@ rstpep2html.py
 
 # Python PIP
 blurb
+
+# Rust
+rust-analyzer-linux
