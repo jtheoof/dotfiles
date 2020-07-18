@@ -1,0 +1,10 @@
+include "%L"
+
+<Multi_key> <a> <a> : "à" agrave # LATIN SMALL LETTER A WITH GRAVE
+<Multi_key> <a> <A> : "À" Agrave # LATIN CAPITAL LETTER A WITH GRAVE
+<Multi_key> <e> <e> : "é" eacute # LATIN SMALL LETTER E WITH ACUTE
+<Multi_key> <e> <E> : "É" Eacute # LATIN CAPITAL LETTER E WITH ACUTE
+<Multi_key> <c> <C> : "Ç" Ccedilla # LATIN CAPITAL LETTER C WITH CEDILLA
+<Multi_key> <c> <c> : "ç" ccedilla # LATIN SMALL LETTER C WITH CEDILLA
+<Multi_key> <u> <U> : "Ù" Ugrave # LATIN CAPITAL LETTER U WITH GRAVE
+<Multi_key> <u> <u> : "ù" ugrave # LATIN SMALL LETTER U WITH GRAVE
