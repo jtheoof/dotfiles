@@ -5,7 +5,7 @@
 # Read `man 5 sway` for a complete reference.
 
 ### Wayland only
-xwayland disable
+#xwayland disable
 
 ### Variables
 #
