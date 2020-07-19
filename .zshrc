@@ -70,7 +70,7 @@ setopt menu_complete
 # Bindings {{{1
 
 bindkey "^H" backward-delete-word
-bindkey "^K"clear-screen
+bindkey "^K" clear-screen
 bindkey "^[[3;5~" delete-word
 
 # 1}}}
