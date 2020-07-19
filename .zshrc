@@ -64,6 +64,8 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
+setopt menu_complete
+
 # 1}}}
 # Bindings {{{1
 
