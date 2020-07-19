@@ -65,6 +65,13 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 # 1}}}
+# Bindings {{{1
+
+bindkey "^H" backward-delete-word
+bindkey "^K"clear-screen
+bindkey "^[[3;5~" delete-word
+
+# 1}}}
 # Exports {{{
 
 export LESS=-FRSX
