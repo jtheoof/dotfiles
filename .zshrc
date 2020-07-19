@@ -72,6 +72,8 @@ setopt menu_complete
 bindkey "^H" backward-delete-word
 bindkey "^K" clear-screen
 bindkey "^[[3;5~" delete-word
+bindkey "^[[1;5H" beginning-of-line
+bindkey "^[[1;5F" end-of-line
 
 # 1}}}
 # Exports {{{
