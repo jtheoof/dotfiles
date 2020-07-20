@@ -90,11 +90,9 @@ alias lgroups='cat /etc/passwd | cut -d: -f1'
 alias dm='docker-machine'
 
 # Editing
-alias v='vim'
-alias vi='vim'
-alias vim='vim -X'
-alias gv='gvim -X'
-alias sub='sublime'
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
 alias diff='colordiff -u'
 
 # Listing
