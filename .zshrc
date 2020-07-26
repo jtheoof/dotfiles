@@ -98,7 +98,14 @@ alias diff='colordiff -u'
 # Listing
 alias rpwd='readlink -f $PWD'
 
-alias ll='ls -lah --color=always'
+case "$OSTYPE" in
+  darwin*)
+    alias ll='ls -lah -G'
+  ;;
+  linux*)
+    alias ll='ls -lah --color=always'
+  ;;
+esac
 alias l='ll'
 alias lsf='find . -nowarn -type f -maxdepth 1'
 
