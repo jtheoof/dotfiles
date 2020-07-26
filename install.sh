@@ -168,24 +168,6 @@ install_packages_darwin() {
 
   echo "installing brew packages..."
   brew install $brew_packages
-
-  cask_packages="\
-    alfred \
-    atom \
-    dropbox \
-    flux \
-    google-chrome \
-    iterm2 \
-    macvim \
-    messenger \
-    slack \
-    spectacle \
-    spotify \
-    visual-studio-code \
-  "
-
-  echo "installing brew cask packages..."
-  brew cask install $cask_packages
 }
 
 install_packages_linux() {
