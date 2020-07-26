@@ -556,6 +556,14 @@ let g:netrw_sort_options="i"
 let g:netrw_liststyle=1
 
 " 2}}}
+" Prettier {{{2
+
+" when running at every change you may want to disable quickfix
+let g:prettier#autoformat = 0
+let g:prettier#quickfix_enabled = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
+" 2}}}
 " UltiSnips {{{
 
 let g:UltiSnipsSnippetDirectories = ['ultisnips']
