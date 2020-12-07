@@ -35,6 +35,7 @@ path=(
     ~/.local/bin
     ~/.local/work/bin
     ~/.npm/bin
+    /opt/homebrew/bin
     /usr/local/bin
     $path
 )
