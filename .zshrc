@@ -166,33 +166,6 @@ function ctar() {
     tar czf $1.tar.gz $1
 }
 
-# Track experimental
-function TE {
-    ln -sf /etc/apt/experimental.list /etc/apt/sources.list
-    echo 'Tracking experimental repo'
-    echo 'Updating...'
-    sleep 2
-    apt-get update
-}
-
-# Track unstable
-function TU {
-    ln -sf /etc/apt/unstable.list /etc/apt/sources.list
-    echo 'Tracking unstable repo'
-    echo 'Updating...'
-    sleep 2
-    apt-get update
-}
-
-# Track testing
-function TT {
-    ln -sf /etc/apt/testing.list /etc/apt/sources.list
-    echo 'Tracking testing repo'
-    echo 'Updating...'
-    sleep 2
-    apt-get update
-}
-
 # Make a backup copy w/ date-time appended
 function bak {
     cp $1 $1_`date +%H:%M:%S_%m-%d-%Y`
@@ -206,21 +179,6 @@ function byte {
     done
     TotalMeg=$(echo -e "scale=3 \n$TotalBytes/1048576 \nquit" | bc)
     echo -n "$TotalMeg"
-}
-
-# Hold a package
-function hold {
-    echo "$1 hold" | dpkg --set-selections
-}
-
-# Unhold package
-function unhold {
-    echo "$1 install" | dpkg --set-selections
-}
-
-# What packages are held
-function held {
-    dpkg --get-selections | grep hold
 }
 
 # Hex to Dec
