@@ -43,7 +43,7 @@
 	gr  = grep -n -I -i --break -e
 
 	fe  = fetch --prune
-	fea  = fetch --all --prune
+	fea  = fetch --all --tags --prune
 
 	files = show --pretty='format:' --name-only
 
