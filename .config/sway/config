@@ -37,8 +37,7 @@ set $cursor_size 24
 
 ### Output configuration
 #
-output DP-1 mode 3440x1440@75.050003Hz scale 1 max_render_time 1 adaptive_sync on
-output HDMI-A-1 disable
+#output HDMI-A-1 disable
 swaybg_command -
 #
 # Example configuration:
