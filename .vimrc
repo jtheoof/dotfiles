@@ -19,7 +19,6 @@ Plugin 'ervandew/supertab'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'justinmk/vim-gtfo'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'kana/vim-fakeclip'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-repeat'
@@ -528,11 +527,6 @@ let g:ctrlp_prompt_mappings = {
     \ }
 
  " 2}}}
-" Fakeclip {{{2
-
-let g:fakeclip_provide_clipboard_key_mappings = !empty($WAYLAND_DISPLAY)
-
-" 2}}}
 " LanguageTool {{{2
 
 let g:languagetool_jar = '/usr/share/languagetool/languagetool-commandline.jar'
