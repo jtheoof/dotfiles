@@ -12,7 +12,7 @@ window#waybar {
     border-bottom: 3px solid rgba(100, 114, 125, 0.5);
     color: #ffffff;
     transition-property: background-color;
-    transition-duration: .5s;
+    transition-duration: 0.5s;
 }
 
 window#waybar.hidden {
@@ -29,7 +29,7 @@ window#waybar.solo {
 */
 
 window#waybar.termite {
-    background-color: #3F3F3F;
+    background-color: #3f3f3f;
 }
 
 window#waybar.chromium {
@@ -38,7 +38,7 @@ window#waybar.chromium {
 }
 
 #workspaces button {
-    padding: 0 2px;
+    padding: 5px;
     background-color: transparent;
     color: #ffffff;
     border-bottom: 3px solid transparent;
@@ -52,7 +52,7 @@ window#waybar.chromium {
 }
 
 #workspaces button.focused {
-    background-color: #64727D;
+    background-color: #64727d;
     border-bottom: 3px solid #ffffff;
 }
 
@@ -61,7 +61,7 @@ window#waybar.chromium {
 }
 
 #mode {
-    background-color: #64727D;
+    background-color: #64727d;
     border-bottom: 3px solid #ffffff;
 }
 
@@ -77,8 +77,7 @@ window#waybar.chromium {
 #tray,
 #mode,
 #idle_inhibitor {
-    padding: 0 5px;
-    margin: 0 4px;
+    padding: 10px;
     color: #ffffff;
     background-color: transparent;
 }
@@ -86,13 +85,13 @@ window#waybar.chromium {
 #memory.warning,
 #cpu.warning,
 #temperature.warning {
-  background-color: orange;
+    background-color: orange;
 }
 
 #memory.critical,
 #cpu.critical,
 #temperature.critical {
-  background-color: red;
+    background-color: red;
 }
 
 #battery {
@@ -102,7 +101,7 @@ window#waybar.chromium {
 
 #battery.charging {
     color: #ffffff;
-    background-color: #26A65B;
+    background-color: #26a65b;
 }
 
 @keyframes blink {
