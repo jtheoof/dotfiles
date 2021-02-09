@@ -11,7 +11,6 @@
         "memory",
         "temperature#cpu",
         "temperature#gpu",
-        "temperature#gpu-junction",
         "custom/power"
     ],
     "sway/workspaces": {
@@ -98,7 +97,8 @@
         "tooltip": false
     },
     "temperature#cpu": {
-        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
+        "input-filename": "temp1_input",
         "interval": 2,
         "critical-threshold": 80,
         "format-critical": "{temperatureC}°C {icon}",
@@ -108,8 +108,8 @@
     },
     "temperature#gpu": {
         "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-        "interval": 60,
-        "critical-threshold": 80,
+        "interval": 70,
+        "critical-threshold": 90,
         "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
         "format-icons": [""],
