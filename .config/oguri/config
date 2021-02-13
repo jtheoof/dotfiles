@@ -1,5 +1,5 @@
 [output DP-1]
-image="$HOME/Dropbox/Wallpapers/Abstract/astronaut.jpg"
-filter=nearest
+image=~/Dropbox/Wallpapers/Abstract/Screenshot 2020-11-12 183717.jpg
+filter=best
 scaling-mode=fill
 anchor=center
