@@ -37,7 +37,7 @@ set $cursor_size 24
 
 ### Output configuration
 #
-#output HDMI-A-1 disable
+output HDMI-A-1 disable
 swaybg_command -
 #
 # Example configuration:
