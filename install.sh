@@ -108,7 +108,8 @@ install_dotfiles() {
   # .config directories
   case "$OSTYPE" in
     *)
-      config_dirs="alacritty fontconfig htop termite transmission tranmission-remote-cli sway"
+      config_dirs="alacritty environment.d fontconfig htop mako nvim oguri pulse ranger redshift rofi surfraw swappy sway swaylock terminator termite transmission transmission-remote-cli ulauncher waybar wlogout wofi"
+
       for i in $config_dirs; do
         link ".config/$i"
       done
