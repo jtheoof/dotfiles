@@ -118,8 +118,8 @@ exec_always {
     bindsym $mod+q kill
 
     # start your launcher
-    bindsym Control+Shift+Space exec $menu_j4
-    bindsym Control+Space exec $menu_rofi
+    #bindsym Control+Shift+Space exec $menu_j4
+    #bindsym Control+Space exec $menu_rofi
     bindsym $mod+Space exec $menu_ulauncher
     bindsym $mod+F1 exec $menu_rofi_surfraw
 
