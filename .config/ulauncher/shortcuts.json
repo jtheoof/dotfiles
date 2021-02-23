@@ -34,7 +34,7 @@
         "name": "Arch User Repository",
         "keyword": "aur",
         "cmd": "https://aur.archlinux.org/packages/?O=0&K=%s",
-        "icon": "~/.config/ulauncher/arch.svg",
+        "icon": "~/.config/ulauncher/logo/arch.svg",
         "is_default_search": true,
         "run_without_argument": false,
         "added": 1590402427.5541396
@@ -44,7 +44,7 @@
         "name": "Arch Package",
         "keyword": "arch",
         "cmd": "https://www.archlinux.org/packages/?q=%s",
-        "icon": "~/.config/ulauncher/arch.svg",
+        "icon": "~/.config/ulauncher/logo/arch.svg",
         "is_default_search": true,
         "run_without_argument": false,
         "added": 1590402427.5541396
@@ -54,7 +54,7 @@
         "name": "Youtube",
         "keyword": "yt",
         "cmd": "http://www.youtube.com/results?search_query=%s",
-        "icon": "~/.config/ulauncher/youtube.png",
+        "icon": "~/.config/ulauncher/logo/youtube.png",
         "is_default_search": true,
         "run_without_argument": false,
         "added": 1590402427.5541396
@@ -64,7 +64,7 @@
         "name": "Github",
         "keyword": "gh",
         "cmd": "https://github.com/search?q=%s",
-        "icon": "~/.config/ulauncher/github.svg",
+        "icon": "~/.config/ulauncher/logo/github.svg",
         "is_default_search": true,
         "run_without_argument": false,
         "added": 1590402427.5541396
@@ -74,7 +74,7 @@
         "name": "Mozilla Developer Network",
         "keyword": "mdn",
         "cmd": "https://developer.mozilla.org/en-US/search?q=%s",
-        "icon": "~/.config/ulauncher/mdn.jpg",
+        "icon": "~/.config/ulauncher/logo/mdn.jpg",
         "is_default_search": true,
         "run_without_argument": false,
         "added": 1590402427.5541396
