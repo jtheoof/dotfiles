@@ -34,7 +34,7 @@
         "name": "Arch User Repository",
         "keyword": "aur",
         "cmd": "https://aur.archlinux.org/packages/?O=0&K=%s",
-        "icon": "/usr/share/icons/hicolor/128x128/apps/chromium.png",
+        "icon": "~/.config/ulauncher/arch.svg",
         "is_default_search": true,
         "run_without_argument": false,
         "added": 1590402427.5541396
@@ -42,9 +42,9 @@
     "56fd645a-5e37-4208-882b-58665c3240ac": {
         "id": "56fd645a-5e37-4208-882b-58665c3240ac",
         "name": "Arch Package",
-        "keyword": "abs",
+        "keyword": "arch",
         "cmd": "https://www.archlinux.org/packages/?q=%s",
-        "icon": "/usr/share/icons/hicolor/128x128/apps/chromium.png",
+        "icon": "~/.config/ulauncher/arch.svg",
         "is_default_search": true,
         "run_without_argument": false,
         "added": 1590402427.5541396
@@ -54,7 +54,7 @@
         "name": "Youtube",
         "keyword": "yt",
         "cmd": "http://www.youtube.com/results?search_query=%s",
-        "icon": "/usr/share/icons/hicolor/128x128/apps/chromium.png",
+        "icon": "~/.config/ulauncher/youtube.png",
         "is_default_search": true,
         "run_without_argument": false,
         "added": 1590402427.5541396
@@ -64,7 +64,7 @@
         "name": "Github",
         "keyword": "gh",
         "cmd": "https://github.com/search?q=%s",
-        "icon": "/usr/share/icons/hicolor/128x128/apps/chromium.png",
+        "icon": "~/.config/ulauncher/github.svg",
         "is_default_search": true,
         "run_without_argument": false,
         "added": 1590402427.5541396
@@ -74,7 +74,7 @@
         "name": "Mozilla Developer Network",
         "keyword": "mdn",
         "cmd": "https://developer.mozilla.org/en-US/search?q=%s",
-        "icon": "/usr/share/icons/hicolor/128x128/apps/chromium.png",
+        "icon": "~/.config/ulauncher/mdn.jpg",
         "is_default_search": true,
         "run_without_argument": false,
         "added": 1590402427.5541396
