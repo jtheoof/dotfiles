@@ -6,7 +6,7 @@
 #  * Fonts (especially Windows into /usr/share/fonts/truetype/windows)
 
 declare -a commands
-commands=(packages dotfiles)
+commands=(platform dotfiles)
 
 # Print functions {{{
 
@@ -45,7 +45,7 @@ usage() {
   echo
   echo "Commands"
   echo
-  echo "  packages              Install common packages"
+  echo "  platform              Install common platform (darwin or linux) packages and scripts"
   echo "  dotfiles              Symlink dotfiles to $HOME"
   echo
 }
@@ -218,6 +218,14 @@ install_tmux_plugins() {
   fi
 }
 
+install_plist_launchd_darwin() {
+  mkdir -p ~/Library/LaunchAgents
+
+  ln -sf $FILESPATH/launchd/me.jtheoof.launched.brew_update.plist ~/Library/LaunchAgents/
+
+  launchctl load -w ~/Library/LaunchAgents/me.jtheoof.launched.brew_update.plist
+}
+
 # }}}
 # Global variables {{{
 
@@ -248,10 +256,11 @@ shift # removing '--'
 
 # }}}
 
-install_packages() {
+install_platform() {
   case "$OSTYPE" in
     darwin*)
       install_packages_darwin
+      install_plist_launchd_darwin
 
       # Turn off the character accent selector and re-enable key repetition.
       defaults write -g ApplePressAndHoldEnabled -bool false
@@ -268,7 +277,7 @@ install_all() {
     git clone --recursive https://github.com/jtheoof/dotfiles .dotfiles
     cd $FILESPATH
   fi
-  install_packages
+  install_platform
   install_dotfiles
   install_oh_my_zsh
   install_vim_bundles
@@ -277,8 +286,8 @@ install_all() {
 
 if [[ -n $command ]]; then
   case "$command" in
-    packages)
-      install_packages
+    platform)
+      install_platform
       ;;
     dotfiles)
       install_dotfiles
