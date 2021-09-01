@@ -1,0 +1,57 @@
+total 68K
+drwxr-xr-x 2 root root 4.0K Sep  1 16:13 .
+drwxr-xr-x 3 root root 4.0K Sep  1 11:38 ..
+lrwxrwxrwx 1 root root   57 Sep  1 11:37 10-hinting-slight.conf -> /usr/share/fontconfig/conf.default/10-hinting-slight.conf
+lrwxrwxrwx 1 root root   61 Sep  1 11:37 10-scale-bitmap-fonts.conf -> /usr/share/fontconfig/conf.default/10-scale-bitmap-fonts.conf
+lrwxrwxrwx 1 root root   54 Sep  1 16:13 10-sub-pixel-rgb.conf -> /usr/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf
+lrwxrwxrwx 1 root root   58 Sep  1 16:13 11-lcdfilter-default.conf -> /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf
+lrwxrwxrwx 1 root root   71 Sep  1 11:38 20-unhint-small-dejavu-lgc-sans.conf -> /usr/share/fontconfig/conf.default/20-unhint-small-dejavu-lgc-sans.conf
+lrwxrwxrwx 1 root root   76 Sep  1 11:38 20-unhint-small-dejavu-lgc-sans-mono.conf -> /usr/share/fontconfig/conf.default/20-unhint-small-dejavu-lgc-sans-mono.conf
+lrwxrwxrwx 1 root root   72 Sep  1 11:38 20-unhint-small-dejavu-lgc-serif.conf -> /usr/share/fontconfig/conf.default/20-unhint-small-dejavu-lgc-serif.conf
+lrwxrwxrwx 1 root root   67 Sep  1 11:38 20-unhint-small-dejavu-sans.conf -> /usr/share/fontconfig/conf.default/20-unhint-small-dejavu-sans.conf
+lrwxrwxrwx 1 root root   72 Sep  1 11:38 20-unhint-small-dejavu-sans-mono.conf -> /usr/share/fontconfig/conf.default/20-unhint-small-dejavu-sans-mono.conf
+lrwxrwxrwx 1 root root   68 Sep  1 11:38 20-unhint-small-dejavu-serif.conf -> /usr/share/fontconfig/conf.default/20-unhint-small-dejavu-serif.conf
+lrwxrwxrwx 1 root root   60 Sep  1 11:37 20-unhint-small-vera.conf -> /usr/share/fontconfig/conf.default/20-unhint-small-vera.conf
+lrwxrwxrwx 1 root root   57 Sep  1 11:37 30-metric-aliases.conf -> /usr/share/fontconfig/conf.default/30-metric-aliases.conf
+lrwxrwxrwx 1 root root   51 Sep  1 11:37 40-nonlatin.conf -> /usr/share/fontconfig/conf.default/40-nonlatin.conf
+lrwxrwxrwx 1 root root   50 Sep  1 11:37 45-generic.conf -> /usr/share/fontconfig/conf.default/45-generic.conf
+lrwxrwxrwx 1 root root   48 Sep  1 11:37 45-latin.conf -> /usr/share/fontconfig/conf.default/45-latin.conf
+lrwxrwxrwx 1 root root   52 Sep  1 11:38 46-noto-mono.conf -> /usr/share/fontconfig/conf.default/46-noto-mono.conf
+lrwxrwxrwx 1 root root   52 Sep  1 11:38 46-noto-sans.conf -> /usr/share/fontconfig/conf.default/46-noto-sans.conf
+lrwxrwxrwx 1 root root   53 Sep  1 11:38 46-noto-serif.conf -> /usr/share/fontconfig/conf.default/46-noto-serif.conf
+lrwxrwxrwx 1 root root   52 Sep  1 11:37 49-sansserif.conf -> /usr/share/fontconfig/conf.default/49-sansserif.conf
+lrwxrwxrwx 1 root root   47 Sep  1 11:37 50-user.conf -> /usr/share/fontconfig/conf.default/50-user.conf
+lrwxrwxrwx 1 root root   48 Sep  1 11:37 51-local.conf -> /usr/share/fontconfig/conf.default/51-local.conf
+lrwxrwxrwx 1 root root   54 Sep  1 11:38 57-dejavu-sans.conf -> /usr/share/fontconfig/conf.default/57-dejavu-sans.conf
+lrwxrwxrwx 1 root root   59 Sep  1 11:38 57-dejavu-sans-mono.conf -> /usr/share/fontconfig/conf.default/57-dejavu-sans-mono.conf
+lrwxrwxrwx 1 root root   55 Sep  1 11:38 57-dejavu-serif.conf -> /usr/share/fontconfig/conf.default/57-dejavu-serif.conf
+lrwxrwxrwx 1 root root   58 Sep  1 11:38 58-dejavu-lgc-sans.conf -> /usr/share/fontconfig/conf.default/58-dejavu-lgc-sans.conf
+lrwxrwxrwx 1 root root   63 Sep  1 11:38 58-dejavu-lgc-sans-mono.conf -> /usr/share/fontconfig/conf.default/58-dejavu-lgc-sans-mono.conf
+lrwxrwxrwx 1 root root   59 Sep  1 11:38 58-dejavu-lgc-serif.conf -> /usr/share/fontconfig/conf.default/58-dejavu-lgc-serif.conf
+lrwxrwxrwx 1 root root   50 Sep  1 11:37 60-generic.conf -> /usr/share/fontconfig/conf.default/60-generic.conf
+lrwxrwxrwx 1 root root   48 Sep  1 11:37 60-latin.conf -> /usr/share/fontconfig/conf.default/60-latin.conf
+lrwxrwxrwx 1 root root   56 Sep  1 11:37 65-fonts-persian.conf -> /usr/share/fontconfig/conf.default/65-fonts-persian.conf
+lrwxrwxrwx 1 root root   51 Sep  1 11:37 65-nonlatin.conf -> /usr/share/fontconfig/conf.default/65-nonlatin.conf
+lrwxrwxrwx 1 root root   52 Sep  1 11:38 66-noto-mono.conf -> /usr/share/fontconfig/conf.default/66-noto-mono.conf
+lrwxrwxrwx 1 root root   52 Sep  1 11:38 66-noto-sans.conf -> /usr/share/fontconfig/conf.default/66-noto-sans.conf
+lrwxrwxrwx 1 root root   53 Sep  1 11:38 66-noto-serif.conf -> /usr/share/fontconfig/conf.default/66-noto-serif.conf
+lrwxrwxrwx 1 root root   50 Sep  1 11:37 69-unifont.conf -> /usr/share/fontconfig/conf.default/69-unifont.conf
+lrwxrwxrwx 1 root root   54 Sep  1 11:38 69-urw-bookman.conf -> /usr/share/fontconfig/conf.default/69-urw-bookman.conf
+lrwxrwxrwx 1 root root   51 Sep  1 11:38 69-urw-c059.conf -> /usr/share/fontconfig/conf.default/69-urw-c059.conf
+lrwxrwxrwx 1 root root   55 Sep  1 11:38 69-urw-d050000l.conf -> /usr/share/fontconfig/conf.default/69-urw-d050000l.conf
+lrwxrwxrwx 1 root root   65 Sep  1 11:38 69-urw-fallback-backwards.conf -> /usr/share/fontconfig/conf.default/69-urw-fallback-backwards.conf
+lrwxrwxrwx 1 root root   64 Sep  1 11:38 69-urw-fallback-generics.conf -> /usr/share/fontconfig/conf.default/69-urw-fallback-generics.conf
+lrwxrwxrwx 1 root root   65 Sep  1 11:38 69-urw-fallback-specifics.conf -> /usr/share/fontconfig/conf.default/69-urw-fallback-specifics.conf
+lrwxrwxrwx 1 root root   53 Sep  1 11:38 69-urw-gothic.conf -> /usr/share/fontconfig/conf.default/69-urw-gothic.conf
+lrwxrwxrwx 1 root root   61 Sep  1 11:38 69-urw-nimbus-mono-ps.conf -> /usr/share/fontconfig/conf.default/69-urw-nimbus-mono-ps.conf
+lrwxrwxrwx 1 root root   59 Sep  1 11:38 69-urw-nimbus-roman.conf -> /usr/share/fontconfig/conf.default/69-urw-nimbus-roman.conf
+lrwxrwxrwx 1 root root   58 Sep  1 11:38 69-urw-nimbus-sans.conf -> /usr/share/fontconfig/conf.default/69-urw-nimbus-sans.conf
+lrwxrwxrwx 1 root root   51 Sep  1 11:38 69-urw-p052.conf -> /usr/share/fontconfig/conf.default/69-urw-p052.conf
+lrwxrwxrwx 1 root root   66 Sep  1 11:38 69-urw-standard-symbols-ps.conf -> /usr/share/fontconfig/conf.default/69-urw-standard-symbols-ps.conf
+lrwxrwxrwx 1 root root   51 Sep  1 11:38 69-urw-z003.conf -> /usr/share/fontconfig/conf.default/69-urw-z003.conf
+lrwxrwxrwx 1 root root   51 Sep  1 11:38 70-noto-cjk.conf -> /usr/share/fontconfig/conf.default/70-noto-cjk.conf
+lrwxrwxrwx 1 root root   52 Sep  1 16:11 70-yes-bitmaps.conf -> /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf
+lrwxrwxrwx 1 root root   52 Sep  1 11:37 80-delicious.conf -> /usr/share/fontconfig/conf.default/80-delicious.conf
+lrwxrwxrwx 1 root root   49 Sep  1 11:38 81-ubuntu.conf -> /usr/share/fontconfig/conf.default/81-ubuntu.conf
+lrwxrwxrwx 1 root root   52 Sep  1 11:37 90-synthetic.conf -> /usr/share/fontconfig/conf.default/90-synthetic.conf
+-rw-r--r-- 1 root root  979 Jun 28 18:41 README
