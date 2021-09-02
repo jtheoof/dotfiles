@@ -24,7 +24,7 @@ set $menu_j4 j4-dmenu-desktop --dmenu='bemenu --ignorecase --prompt "" --bottom 
 set $menu_rofi_surfraw rofi -modi surfraw:rofi-surfraw -show surfraw
 set $menu_rofi rofi -show combi
 set $menu_wofi wofi
-set $menu_ulauncher ulauncher --hide-window
+set $menu_ulauncher ulauncher-toggle
 
 set $bgf #455a64
 set $bgu #262831
