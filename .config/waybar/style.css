@@ -28,10 +28,6 @@ window#waybar.solo {
 }
 */
 
-window#waybar.termite {
-    background-color: #3f3f3f;
-}
-
 window#waybar.chromium {
     background-color: #000000;
     border: none;
