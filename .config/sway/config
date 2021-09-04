@@ -37,7 +37,8 @@ set $cursor_size 24
 
 ### Output configuration
 #
-output HDMI-A-1 disable
+output DP-1 position 0,320
+output HDMI-A-1 resolution 1920x1200 position 3840,0 transform 270
 swaybg_command -
 #
 # Example configuration:
