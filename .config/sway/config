@@ -188,11 +188,12 @@ exec_always {
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 
+    bindsym $mod+Ctrl+Shift+Left move container to output left
+    bindsym $mod+Ctrl+Shift+Right move container to output right
+
 #
 # Outputs
 #
-
-    bindsym $mod+Shift+x move workspace to output right
 
 #
 # Layout stuff:
