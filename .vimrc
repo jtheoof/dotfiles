@@ -257,14 +257,6 @@ endfunction
 let mapleader = ","
 let g:mapleader = ","
 
-" Use Ack shortcut
-nnoremap <Leader>aa :Ack ''<Left>
-" Find current word
-nnoremap <Leader># "ayiw:Ack '<C-R>a'<CR>
-nnoremap <Leader>aiw :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:exec("Ack '\\b".expand("<cword>")."\\b'")<CR>
-nnoremap <Leader>aiW :let @/='\<<C-R>=expand("<cWORD>")<CR>\>'<CR>:exec("Ack '\\b".expand("<cWORD>")."\\b'")<CR>
-vnoremap <Leader>a y<Esc>:Ack '<C-R>"'<CR>:let @/='<C-R>"'<CR>
-
 " change to directory containing current file
 nmap <Leader>cd :cd %:p:h<CR>
 
@@ -478,14 +470,6 @@ autocmd BufWritePre * :call StripTrailingWhitespaces()
 " 1}}}
 " Plugins {{{1
 
-" Ack {{{2
-
-if has("unix")
-    let g:ackhighlight = 1
-    let g:ackprg = "ag --vimgrep"
-endif
-
-" 2}}}
 " Buff Explorer {{{2
 
 let g:bufExplorerDefaultHelp=0      " do not show default help
