@@ -241,6 +241,9 @@ function! StripTrailingWhitespaces()
 endfunction
 
 function! RestoreCursor()
+    if (&filetype=='gitcommit' || &ft=='gitrebase')
+      return
+    endif
     if line("'\"") > 0 && line("'\"") <= line("$")
         normal! g`"
         return 1
