@@ -276,6 +276,7 @@ nnoremap <Leader><Leader> :wa<CR>
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 " Fast editing of common files
+map <Leader>ea :e! $HOME/.config/alacritty/alacritty.yml<CR>
 map <Leader>ec :e! $HOME/.vim/misc/colors/monokai.vim<CR>
 map <Leader>eg :e! $HOME/.gitconfig<CR>
 map <Leader>et :e! $HOME/.tmux.conf<CR>
