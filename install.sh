@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
+#set -x
+
 # TODO Install
-#  * jtheoof.zsh-theme
-#  * Google Chrome
 #  * Fonts (especially Windows into /usr/share/fonts/truetype/windows)
 
 declare -a commands
@@ -41,82 +41,48 @@ die() {
 usage() {
   echo "Usage"
   echo
-  echo " jtheoof COMMAND"
+  echo "Installs basic tooling for new machine setup"
   echo
-  echo "Commands"
+  echo "Supports"
   echo
-  echo "  platform              Install common platform (darwin or linux) packages and scripts"
-  echo "  dotfiles              Symlink dotfiles to $HOME"
+  echo "  macOS"
+  echo "  Arch Linux"
   echo
-}
-
-in_array() {
-  local e
-  for e in "${@:2}"; do [[ $e == $1 ]] && return 0; done
-  return 1
 }
 
 link() {
-  local l
-  if [ -n "$2" ]; then
-    l=$2
-  else
-    l=$HOME/$1
-  fi
-  print_info "linking: $l"
-  if [ -d $l ]; then
-    if [ ! -h $l ]; then # not a symlink, we should remove the directory
-      print_info "$l is a directory"
-      case "$OSTYPE" in
-        darwin*)
-          rm -ri $l
-          ;;
-        *)
-          rm -rI $l
-          ;;
-      esac
-    fi
-  fi
-  if $FORCE_MODE ; then
-    print_info "forcing symlink $l"
-    ln -sf $FILESPATH/$1 $l
-    return
-  fi
-  if [ ! -h $l ]; then # not a symlink, we should make it one
-    ln -is $FILESPATH/$1 $l
-    if [ -h $l ]; then # checking user response after previous question
-      print_success "$l has been symlinked"
-    fi
-  else
-    print_noop "$l already a symlink"
-  fi
+  ln -nsf $1 $2
 }
 
 # }}}
 # Installers {{{
 
 install_dotfiles() {
-  print_info "installing symlinks"
+  local dotfiles
 
-  local exclude
-  exclude=(.git .gitattributes .gitignore .config .oh-my-zsh)
+  print_info "installing dotfiles and folders"
 
-  for i in $FILESPATH/.[a-zA-Z]*; do
-    in_array $(basename $i) "${exclude[@]}" || link $(basename $i)
+  dotfiles=$(find $FILESPATH -maxdepth 1 -type f \( -iname '.*' ! -iname '.gitattributes' ! -iname '.gitignore' \))
+  for i in $dotfiles; do
+    link $i $HOME
   done
 
+  [ -d $CONFIG_DIR ] || mkdir -p $CONFIG_DIR
   # .config directories
   case "$OSTYPE" in
     *)
-      config_dirs="alacritty environment.d fontconfig htop mako nvim oguri pulse ranger redshift rofi surfraw swappy sway swaylock terminator termite transmission transmission-remote-cli ulauncher waybar wlogout wofi"
+      config_dirs=$(ls -d $FILESPATH/.config/*)
 
       for i in $config_dirs; do
-        link ".config/$i"
+        link $i $CONFIG_DIR
       done
 
-      link ".local/bin"
       ;;
   esac
+
+   # .local directories
+   [ -d $HOME/.local ] || mkdir -p $HOME/.local
+   link $FILESPATH/.local/bin $HOME/.local
 }
 
 install_oh_my_zsh() {
@@ -126,10 +92,8 @@ install_oh_my_zsh() {
   echo "installing oh-my-zsh plugins"
   cd $HOME/.oh-my-zsh/custom/
 
-  ln -sf $FILESPATH/.oh-my-zsh/custom/themes/sindresorhus.zsh-theme
-  ln -sf $FILESPATH/.oh-my-zsh/custom/themes/async.zsh
-
   ZSH_CUSTOM_PLUGINS_PATH=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins
+
   if [ ! -d $ZSH_CUSTOM_PLUGINS_PATH/history-search-multi-word ]; then
     echo "installing oh-my-zsh history-search-multi-word plugin"
     git clone https://github.com/zdharma/history-search-multi-word $ZSH_CUSTOM_PLUGINS_PATH/history-search-multi-word
@@ -139,6 +103,14 @@ install_oh_my_zsh() {
     echo "installing oh-my-zsh zsh-autosuggestions plugin"
     git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM_PLUGINS_PATH/zsh-autosuggestions
   fi
+
+  if [ ! -d $ZSH_CUSTOM_PLUGINS_PATH/zsh-syntax-highlighting ]; then
+    echo "installing oh-my-zsh zsh-syntax-highlighting plugin"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM_PLUGINS_PATH/zsh-syntax-highlighting
+  fi
+
+  # switch to zsh default shell
+  chsh -s $(which zsh)
 }
 
 install_packages_darwin() {
@@ -146,76 +118,174 @@ install_packages_darwin() {
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
   brew_packages="\
-    ack \
+    asciidoc \
+    bash \
+    certbot \
+    clang-format \
     cloc \
+    colordiff \
     ctags \
+    ctop \
+    curl \
+    direnv \
+    docker \
+    docker-compose \
+    dos2unix \
+    doxygen \
+    freetype \
     fswatch \
     git \
+    graphicsmagick \
+    grep \
+    htop \
+    httpie \
+    jpeg \
+    jq \
+    kubernetes-cli \
+    kubernetes-helm \
+    md5deep \
+    mtr \
     multimarkdown \
+    ncdu \
+    neofetch \
+    neovim \
+    ninja \
+    nmap \
     node \
-    openssl \
+    nvm \
+    openconnect \
+    openssh \
+    openvpn \
+    optipng \
+    pcre \
+    perl \
+    pidof \
+    pkg-config \
+    pngquant \
+    pure \
+    pyenv \
     python \
+    python3 \
+    ranger \
     readline \
     rename \
-    the_silver_searcher \
+    ripgrep \
+    rsync \
+    snappy \
+    ssh-copy-id \
+    terminal-notifier \
     tig \
+    tldr \
     tmux \
+    trash \
     tree \
     vim \
-    wget \
     watch \
+    watchman \
+    webp \
+    wget \
+    yarn \
     zsh \
+  "
+
+brew_cask_packages="\
+    1password \
+    1password-ci \
+    alfred \
+    appcleaner \
+    dropbox \
+    google-chrome \
+    iterm2 \
+    macvim \
+    rectangle \
+    slack \
+    spotify \
+    visual-studio-code \
   "
 
   echo "installing brew packages..."
   brew install $brew_packages
+
+  echo "installing brew cask packages..."
+  brew install --cask $brew_cask_packages
+}
+
+install_yay() {
+  print_info "installing yay..."
+  cd $(mktemp -d)
+  git clone https://aur.archlinux.org/yay-bin.git
+  cd yay-bin
+  makepkg -sif
+  cd $FILESPATH
 }
 
 install_packages_linux() {
   packages="\
+    alacritty \
+    asciidoc \
     autoconf \
     base-devel \
-    cmake \
+    bash \
+    bat \
+    binutils \
     colordiff \
-    ctags
+    coreutils \
+    cscope \
+    ctags \
     curl \
-    gcolor2 \
-    geary \
-    gimp \
+    diffutils \
+    docker \
     git \
-    gnome-tweak-tool \
-    gvim \
-    inkscape \
+    gnupg \
+    gnutls \
+    grep \
+    gzip \
+    htop \
+    httpie \
+    imagemagick \
+    jq \
+    less \
+    lsof \
+    make \
+    neofetch \
+    neovim \
+    ninja \
     nodejs \
     openssh \
+    pango \
     perl-rename \
     python \
     ripgrep \
+    scdoc \
+    sed \
     tig \
     tmux \
     tree \
+    unzip \
     vlc \
     wget \
     xclip \
     xsel \
-    zsh"
+    zsh \
+  "
 
   echo "installing packages..."
   sudo pacman -S --needed $packages
+
+  read -p "Press enter to continue"
+}
+
+
+install_packages_linux_aur() {
+  packages="\
+    zsh-pure-prompt \
+  "
+
+  yay -S --needed $packages
 }
 
 install_vim_bundles() {
   vim -c ":BundleInstall" -c ":qa!"
-}
-
-install_tmux_plugins() {
-  echo "installing tmux plugins..."
-  TMUX_PLUGINS_PATH=$HOME/.tmux/plugins
-  if [ ! -d $TMUX_PLUGINS_PATH ]; then
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-  else
-    echo "already found $TMUX_PLUGINS_PATH, skipping"
-  fi
 }
 
 install_plist_launchd_darwin() {
@@ -230,14 +300,16 @@ install_plist_launchd_darwin() {
 # Global variables {{{
 
 FILESPATH=$HOME/.dotfiles
+CONFIG_DIR=${XDG_CONFIG_HOME:-$HOME/.config}
+
+print_info "dotfiles directory: $FILESPATH"
+print_info "config directory: $CONFIG_DIR"
 
 # }}}
 # Getting options {{{
 
 # Preserving initial argument
-MODE=$1
-FORCE_MODE=false
-set -- `getopt -l help fh $@`
+set -- `getopt -l help h $@`
 while [ $1 != -- ]
 do
   case $1 in
@@ -245,10 +317,6 @@ do
     shift
     usage
     exit 0
-    ;;
-  -f)
-    shift
-    FORCE_MODE=true
     ;;
   esac
 done
@@ -267,6 +335,8 @@ install_platform() {
       ;;
     *)
       install_packages_linux
+      install_yay
+      install_packages_linux_aur
       ;;
   esac
 }
@@ -274,14 +344,13 @@ install_platform() {
 install_all() {
   if [ ! -d $FILESPATH ]; then
     cd $HOME
-    git clone --recursive https://github.com/jtheoof/dotfiles .dotfiles
+    git clone --recursive https://github.com/jtheoof/dotfiles $FILESPATH
     cd $FILESPATH
   fi
   install_platform
-  install_dotfiles
   install_oh_my_zsh
+  install_dotfiles
   install_vim_bundles
-  install_tmux_plugins
 }
 
 if [[ -n $command ]]; then
