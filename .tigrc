@@ -7,6 +7,9 @@ set horizontal-scroll = 33%
 set line-graphics = utf-8
 set commit-order = default
 
+set log-options = --show-signature
+set diff-options = --show-signature
+
 # }}}
 # Views {{{
 
