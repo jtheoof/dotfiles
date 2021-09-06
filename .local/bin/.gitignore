@@ -9,6 +9,7 @@
 !pbcopy
 !pbpaste
 !pick-sway-window
+!reset-active-tty
 !rofi-surfraw
 !test-xterm256
 !tmux-resurrect

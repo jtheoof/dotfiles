@@ -1,0 +1,7 @@
+#!/bin/sh
+
+focus_pid=$(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true).pid')
+
+tty=$(ps o tty= --ppid $focus_pid)
+
+echo -e "\ec" > /dev/$tty
