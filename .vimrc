@@ -38,9 +38,6 @@ Plugin 'mattn/emmet-vim'
 
 " Javascript
 Plugin 'pangloss/vim-javascript'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'einars/js-beautify'
-Plugin 'maksimr/vim-jsbeautify'
 
 " JSONC
 Plugin 'neoclide/jsonc.vim'
@@ -69,10 +66,6 @@ Plugin 'terryma/vim-multiple-cursors'
 " }}}
 " Themes {{{
 
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'hzchirs/vim-material'
-Plugin 'kaicataldo/material.vim'
-Plugin 'connorholyday/vim-snazzy'
 Plugin 'arcticicestudio/nord-vim'
 
 " }}}
@@ -80,7 +73,6 @@ Plugin 'arcticicestudio/nord-vim'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'joshdick/onedark.vim'
 Plugin 'mkitt/tabline.vim'
 Plugin 'nacitar/terminalkeys.vim'
 
