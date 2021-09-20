@@ -1,6 +1,8 @@
 #!/bin/sh
 
-backupdir=/run/media/$USER/$HOSTNAME/
+backupdir=/mnt/backup/$(hostname)/
+
+echo "backing data to folder: $backupdir"
 
 die() {
     echo $1
@@ -11,7 +13,7 @@ if [ ! -d $backupdir ]; then
     die "$backupdir does not exist"
 fi
 
-time sudo rsync -aAXvl / $backupdir \
+time sudo rsync -aAXHv / $backupdir \
     --quiet                         \
     --progress                      \
     --stats                         \
@@ -26,7 +28,10 @@ time sudo rsync -aAXvl / $backupdir \
     --exclude=/run/*                \
     --exclude=/sys/*                \
     --exclude=/tmp/*                \
-    --exclude=/var/lib/pacman/sync  \
-    --exclude=/var/log/journal
+                                    \
+    --exclude=$HOME/.cache/*        \
+    --exclude=$HOME/Downloads/*     \
+    --exclude=$HOME/Dropbox/*       \
+    --exclude=$HOME/dev/*
 
 # vim: tw=0 sts=4 sw=4 et
