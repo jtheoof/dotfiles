@@ -102,7 +102,7 @@ if exists('+termguicolors')
 endif
 let g:material_terminal_italics = 1
 let g:material_theme_style = 'default'
-let g:airline_theme='material'
+let g:airline_theme='nord'
 set background=dark
 colorscheme nord
 
