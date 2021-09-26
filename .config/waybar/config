@@ -6,6 +6,7 @@
     "modules-center": ["clock"],
     "modules-right": [
         "tray",
+        "idle_inhibitor",
         "pulseaudio",
         "cpu",
         "memory",
