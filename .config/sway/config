@@ -310,6 +310,7 @@ for_window [title="win0"] floating enable
 for_window [title="1Password"] floating enable
 for_window [class="^jetbrains-.+"][window_type=dialog] focus
 
+# Might not be necessary in a pure wayland environment
 for_window [title=".*YouTube"] inhibit_idle focus
 
 for_window [app_id="avizo-service"] border pixel 0
