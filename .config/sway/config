@@ -93,7 +93,7 @@ client.placeholder $bgu $bgu $fg $bgu $bgu
 
 input "1133:16511:Logitech_G502" {
     natural_scroll disabled
-    pointer_accel 0.0
+    pointer_accel 0.5
     scroll_factor 2.0
     accel_profile adaptive
 }
@@ -311,7 +311,6 @@ bindsym $mod+n mode notifications
 #
 for_window [app_id="ulauncher"] floating enable, border none
 for_window [title="win0"] floating enable
-for_window [title="1Password"] floating enable
 for_window [class="^jetbrains-.+"][window_type=dialog] focus
 
 # Might not be necessary in a pure wayland environment
