@@ -1,5 +1,12 @@
 [output DP-1]
-image=~/Dropbox/Wallpapers/Abstract/Screenshot 2020-11-12 183717.jpg
+image=~/Pictures/Wallpapers/3840x2160/abstract-001.jpg
+filter=best
+scaling-mode=fill
+anchor=center
+
+
+[output DP-2]
+image=~/Pictures/Wallpapers/1440x2560/abstract-001.jpg
 filter=best
 scaling-mode=fill
 anchor=center
