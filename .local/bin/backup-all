@@ -1,22 +1,24 @@
 #!/bin/sh
 
-backupdir=/mnt/backup/$(hostname)/
-
-echo "backing data to folder: $backupdir"
-
 die() {
     echo $1
     exit 1;
 }
 
+backupdir=/mnt/backup/$(hostname)/
+
+echo "backing data to folder: $backupdir"
+
+if [[ $EUID -ne 0 ]]; then
+    die "This script must be run as root"
+fi
+
 if [ ! -d $backupdir ]; then
     die "$backupdir does not exist"
 fi
 
-time sudo rsync -aAXHv / $backupdir \
+time sudo rsync -aAXH  / $backupdir \
     --quiet                         \
-    --progress                      \
-    --stats                         \
     --delete                        \
     --delete-during                 \
     --delete-excluded               \
