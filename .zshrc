@@ -101,6 +101,7 @@ alias rpwd='readlink -f $PWD'
 case "$OSTYPE" in
   darwin*)
     alias ll='ls -lah -G'
+    alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'
   ;;
   linux*)
     alias ll='ls -lah --color=always'
