@@ -141,7 +141,7 @@
 [gc]
 	auto = 0
 [core]
-	editor = vim
+	editor = nvim
 [rebase]
 	autoSquash = true
 	autoStash = true
