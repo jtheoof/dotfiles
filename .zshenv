@@ -35,6 +35,7 @@ path=(
     ~/.local/bin
     ~/.local/work/bin
     ~/.npm/bin
+    ~/.rvm/bin
     ~/.krew/bin
     /usr/local/bin
     $path
