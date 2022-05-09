@@ -147,3 +147,6 @@
 	autoStash = true
 [pull]
 	rebase = true
+
+[includeIf "gitdir:~/dev/ubisoft/"]
+  path = .gitconfig-ubisoft
