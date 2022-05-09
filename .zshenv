@@ -14,6 +14,8 @@
 
 export EDITOR=vim
 
+export ZLE_SPACE_SUFFIX_CHARS=$'&|'
+
 if [ -f $HOME/.ripgreprc ]; then
   export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 fi
