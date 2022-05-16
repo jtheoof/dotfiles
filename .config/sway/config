@@ -322,3 +322,5 @@ no_focus [app_id="avizo-service"]
 
 include /etc/sway/config.d/*
 
+exec_always nwg-panel
+
