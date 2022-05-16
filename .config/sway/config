@@ -42,8 +42,8 @@ set $cursor_size 24
 #output DP-1 position 1920,320
 #output DP-2 position 720,0 transform 90
 
-output "Unknown Gigabyte M32U 21251B001163" mode 3840x2160@143.999Hz position 2160,230 scale 1 subpixel rgb adaptive_sync on
-output "Unknown M27Q 21240B003350" mode 2560x1440@169.831Hz position 720,0 transform 90 scale 1 subpixel vrgb adaptive_sync on
+output "Unknown Gigabyte M32U 21251B001163" mode 3840x2160@143.999Hz position 2160,230 scale 1 subpixel rgb adaptive_sync off
+output "Unknown M27Q 21240B003350" mode 2560x1440@169.831Hz position 720,0 transform 90 scale 1 subpixel vrgb adaptive_sync off
 
 swaybg_command -
 #
