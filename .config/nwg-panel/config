@@ -81,7 +81,9 @@
         "5",
         "6",
         "7",
-        "8"
+        "8",
+        "9",
+        "0"
       ],
       "name-max-len": 20,
       "image-size": 16,
@@ -222,7 +224,7 @@
       "all-workspaces": true,
       "mark-autotiling": true,
       "mark-xwayland": true,
-      "all-outputs": false
+      "all-outputs": true
     },
     "sway-workspaces": {
       "numbers": [
@@ -267,6 +269,10 @@
       "on-middle-click": "",
       "on-scroll-up": "",
       "on-scroll-down": ""
-    }
+    },
+    "menu-start": "off",
+    "scratchpad": {},
+    "dwl-tags": {},
+    "tray": {}
   }
 ]
