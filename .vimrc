@@ -225,13 +225,6 @@ function! AdjustWindowHeight(minheight, maxheight)
     exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
 endfunction
 
-function! StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfunction
-
 function! RestoreCursor()
     if (&filetype=='gitcommit' || &ft=='gitrebase')
       return
@@ -455,9 +448,6 @@ au FocusLost * execute ":silent! wa"
 " Show cursor line in insert mode
 au InsertEnter * set cursorline
 au InsertLeave * set nocursorline
-
-" Trim whitespaces
-autocmd BufWritePre * :call StripTrailingWhitespaces()
 
 " Save clipboard when vim exits
 "au VimLeave * call system("xsel -ib", getreg('+'))
