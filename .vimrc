@@ -524,9 +524,9 @@ let g:netrw_liststyle=3
 " Prettier {{{2
 
 " when running at every change you may want to disable quickfix
-let g:prettier#autoformat = 0
-let g:prettier#quickfix_enabled = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+let g:prettier#autoformat_config_present = 1
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#exec_cmd_async = 1
 
 " 2}}}
 " UltiSnips {{{
