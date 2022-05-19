@@ -58,6 +58,7 @@ endif
 " }}}
 " Editor {{{
 
+Plugin 'tpope/vim-sensible'
 Plugin 'chrisbra/csv.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'prettier/vim-prettier'
