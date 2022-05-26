@@ -321,6 +321,3 @@ for_window [app_id="avizo-service"] sticky toggle
 no_focus [app_id="avizo-service"]
 
 include /etc/sway/config.d/*
-
-exec_always nwg-panel
-
