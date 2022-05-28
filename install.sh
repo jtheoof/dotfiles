@@ -94,9 +94,9 @@ install_oh_my_zsh() {
 
   ZSH_CUSTOM_PLUGINS_PATH=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins
 
-  if [ ! -d $ZSH_CUSTOM_PLUGINS_PATH/history-search-multi-word ]; then
-    echo "installing oh-my-zsh history-search-multi-word plugin"
-    git clone https://github.com/zdharma/history-search-multi-word $ZSH_CUSTOM_PLUGINS_PATH/history-search-multi-word
+  if [ ! -d $ZSH_CUSTOM_PLUGINS_PATH/H-S-MW ]; then
+    echo "installing oh-my-zsh H-S-MW plugin"
+    git clone https://github.com/z-shell/H-S-MW $ZSH_CUSTOM_PLUGINS_PATH/H-S-MW
   fi
 
   if [ ! -d $ZSH_CUSTOM_PLUGINS_PATH/zsh-autosuggestions ]; then
@@ -222,22 +222,17 @@ install_yay() {
 install_packages_linux() {
   packages="\
     alacritty \
-    asciidoc \
-    autoconf \
-    base-devel \
     bash \
     bat \
     binutils \
     colordiff \
     coreutils \
     cscope \
-    ctags \
     curl \
     diffutils \
     docker \
     git \
     gnupg \
-    gnutls \
     grep \
     gzip \
     htop \
@@ -249,12 +244,6 @@ install_packages_linux() {
     make \
     neofetch \
     neovim \
-    ninja \
-    nodejs \
-    openssh \
-    pango \
-    perl-rename \
-    python \
     ripgrep \
     scdoc \
     sed \
@@ -262,17 +251,24 @@ install_packages_linux() {
     tmux \
     tree \
     unzip \
-    vlc \
     wget \
-    xclip \
-    xsel \
     zsh \
   "
 
-  echo "installing packages..."
-  sudo pacman -S --needed $packages
+  case "$1" in
+    arch)
+      install_command="pacman -S --needed"
+      ;;
+    pop)
+      install_command="apt install"
+      ;;
+    *)
+      die "install command is unkown for that OS"
+      ;;
+  esac
 
-  read -p "Press enter to continue"
+  echo "installing packages..."
+  sudo $install_command $packages
 }
 
 
@@ -285,6 +281,9 @@ install_packages_linux_aur() {
 }
 
 install_vim_bundles() {
+  if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  fi
   vim -c ":BundleInstall" -c ":qa!"
 }
 
@@ -333,10 +332,28 @@ install_platform() {
       # Turn off the character accent selector and re-enable key repetition.
       defaults write -g ApplePressAndHoldEnabled -bool false
       ;;
-    *)
-      install_packages_linux
-      install_yay
-      install_packages_linux_aur
+    linux*)
+      if [ -f /etc/os-release ]; then
+        # freedesktop.org and systemd
+        . /etc/os-release
+        OS_ID=$ID
+      else
+        die 'unable to read /etc/os-release'
+      fi
+      case "$OS_ID" in
+        arch)
+          install_packages_linux $OS_ID
+          install_yay
+          install_packages_linux_aur
+          ;;
+        pop)
+          install_packages_linux $OS_ID
+          ;;
+        *)
+          die "OS with ID: $OS_ID is not supported"
+          ;;
+      esac
+
       ;;
   esac
 }
