@@ -222,6 +222,13 @@ if [[ -s $HOME/.zshrc_work ]]; then
     source $HOME/.zshrc_work
 fi
 
+# }}}
+# Prompt {{{1
+
+PURE_PROMPT_SYMBOL='»'
+PURE_GIT_DOWN_ARROW='↓'
+PURE_GIT_UP_ARROW='↑'
+
 autoload -U promptinit; promptinit
 
 prompt pure
