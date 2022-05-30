@@ -59,7 +59,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(git docker npm H-S-MW zsh-autosuggestions zsh-syntax-highlighting)
 
 if [[ `uname` == 'Darwin' ]]; then
-    plugins=($plugins osx)
+    plugins=($plugins macos)
 fi
 
 source $ZSH/oh-my-zsh.sh
