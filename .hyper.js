@@ -4,7 +4,7 @@ module.exports = {
     fontSize: 12,
 
     // font family with optional fallbacks
-    fontFamily: 'Monaco, "DejaVu Sans Mono", "Lucida Console", monospace',
+    fontFamily: 'SF Mono, Monaco, monospace',
 
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
     cursorColor: 'rgba(255,255,255,0.75)',
@@ -66,7 +66,8 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-      'hyper-snazzy'
+      'hyper-snazzy',
+      'nord-hyper'
   ],
 
   // in development, you can create a directory under
