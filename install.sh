@@ -256,7 +256,7 @@ install_packages_linux() {
   "
 
   case "$1" in
-    arch)
+    arch | manjaro)
       install_command="pacman -S --needed"
       ;;
     pop)
@@ -341,7 +341,7 @@ install_platform() {
         die 'unable to read /etc/os-release'
       fi
       case "$OS_ID" in
-        arch)
+        arch | manjaro)
           install_packages_linux $OS_ID
           install_yay
           install_packages_linux_aur
