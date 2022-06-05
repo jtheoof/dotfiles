@@ -6,7 +6,9 @@
 # only search with case sensitivity if there is mixed case
 --smart-case
 # do not follow symlinks
---no-follow
+--follow
+# pretty for less pager
+--pretty
 
 # Ack Type Settings
 ####################################################################
@@ -19,5 +21,27 @@ csv:*.{txt,csv,tsv}*
 # Colors
 ####################################################################
 
---colors=match:fg:black
---colors=match:bg:yellow
+# Adjust the color styles for match the "Nord" theme.
+# Note that the "Nord" color palettes must be provided through the terminal.
+# Due to the format of this configuration file it is currently not possible to use shell syntax like
+# environment variables in order to dynamically pass color values.
+# See:
+#   1. https://www.nordtheme.com
+#   2. https://github.com/BurntSushi/ripgrep/issues/1548
+
+# Use `nord9` with an underlined font style for the column number of the matched line.
+# It will be displayed next to the line number separated by a colon when the `--column` flag has been set.
+--colors=column:none
+--colors=column:fg:4
+--colors=column:style:underline
+# Use `nord9` for the line number of the search pattern match.
+--colors=line:none
+--colors=line:fg:green
+# Use `nord1` as background and `nord8` as foreground color for the search pattern match.
+--colors=match:none
+--colors=match:bg:6
+--colors=match:fg:0
+# Use `nord7` with an bold font style for the file path of the search pattern match.
+--colors=path:none
+--colors=path:fg:14
+--colors=path:style:bold
