@@ -14,6 +14,11 @@
 
 export EDITOR=vim
 
+if [ -x "$(command -v vim)" ]; then
+  export EDITOR=vim
+  export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+fi
+
 export ZLE_SPACE_SUFFIX_CHARS=$'&|'
 
 if [ -f $HOME/.ripgreprc ]; then

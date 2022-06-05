@@ -154,14 +154,6 @@ alias ncub='ncu -m bower'
 # 1}}}
 # Functions {{{1
 
-function man() {
-    vim -c "SuperMan $*"
-
-    if [ "$?" != "0" ]; then
-        echo "No manual entry for $*"
-    fi
-}
-
 # Compression
 function ctar() {
     tar czf $1.tar.gz $1

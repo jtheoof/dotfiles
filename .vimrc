@@ -25,7 +25,6 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-vinegar'
-Plugin 'Z1MM32M4N/vim-superman'
 
 " }}}
 " Programming {{{
@@ -266,9 +265,6 @@ map <Leader>ex :set ft=xxd<CR>:%!xxd<CR>
 map <Leader>ez :e! $HOME/.zshrc<CR>
 
 noremap <Leader>giw :Ggrep <C-R><C-W><CR>
-
-" Man helper
-nnoremap <Leader>M "myiw:SuperMan <C-r>m<CR>
 
 " Ctrl-P Buffer
 nnoremap <Leader>pp :CtrlP<CR>
