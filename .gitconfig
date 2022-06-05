@@ -40,7 +40,7 @@
 	dfc = diff --cached
 	dfw = diff --color-words
 
-	gr  = grep -n -I -i --break -e
+	gr  = grep -n -I -i --heading --break -e
 
 	fe  = fetch --prune
 	fea  = fetch --all --tags --prune
@@ -113,8 +113,8 @@
 	new = green
 	whitespace = magenta reverse
 [color "grep"]
-	match = red bold
-	filename = yellow
+	match = black cyan bold
+	filename = blue
 [color "status"]
 	header = yellow
 	added = green
