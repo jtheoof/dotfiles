@@ -151,6 +151,9 @@ alias tmn='tmux new'
 # npm
 alias ncub='ncu -m bower'
 
+# git
+alias tig='gitui'
+
 # 1}}}
 # Functions {{{1
 
