@@ -143,6 +143,7 @@ install_packages_darwin() {
     jq \
     kubernetes-cli \
     kubernetes-helm \
+    lazygit \
     md5deep \
     mtr \
     multimarkdown \
@@ -239,6 +240,7 @@ install_packages_linux() {
     httpie \
     imagemagick \
     jq \
+    lazygit \
     less \
     lsof \
     make \

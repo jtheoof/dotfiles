@@ -152,7 +152,7 @@ alias tmn='tmux new'
 alias ncub='ncu -m bower'
 
 # git
-alias tig='gitui'
+alias lg='lazygit'
 
 # 1}}}
 # Functions {{{1
