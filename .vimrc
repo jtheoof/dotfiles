@@ -35,14 +35,12 @@ Plugin 'groenewege/vim-less'
 " HTML
 Plugin 'mattn/emmet-vim'
 
-" Javascript
+" Javascript / Typescript
 Plugin 'pangloss/vim-javascript'
+Plugin 'leafgarland/typescript-vim'
 
 " JSONC
 Plugin 'neoclide/jsonc.vim'
-
-" Typescript
-Plugin 'leafgarland/typescript-vim'
 
 " Git
 Plugin 'tpope/vim-fugitive'
@@ -57,6 +55,7 @@ endif
 " }}}
 " Editor {{{
 
+Plugin 'neoclide/coc.nvim' " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'tpope/vim-sensible'
 Plugin 'chrisbra/csv.vim'
 Plugin 'scrooloose/syntastic'
@@ -470,6 +469,11 @@ augroup bufexplorer
     autocmd BufEnter \[BufExplorer\] unmap ds
     autocmd BufLeave \[BufExplorer\] nmap ds <Plug>Dsurround
 augroup END
+
+" 2}}}
+" CoC {{{2
+
+let g:coc_global_extensions = ['coc-tsserver', 'coc-rls']
 
 " 2}}}
 " CTRL-P {{{2
