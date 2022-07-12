@@ -41,5 +41,5 @@ else
     endfunction
 endif
 
-nmap <C-F11> :call FontSizeMinus()<CR>
-nmap <C-F12> :call FontSizePlus()<CR>
+nmap <C-_> :call FontSizeMinus()<CR>
+nmap <C-=> :call FontSizePlus()<CR>
