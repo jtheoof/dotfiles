@@ -403,11 +403,15 @@ vnoremap st "zdi<?= <C-R>z ?><Esc>
 vnoremap s' "zdi'<C-R>z'<Esc>
 vnoremap s" "zdi"<C-R>z"<Esc>
 
+" make < and > work a bit nicer
+vnoremap < <gv
+vnoremap > >gv
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
 " Tabs
 vnoremap <Space> <Esc>:'<,'>:s/^/ /<Enter>:let @/=""<Enter>gv
 vnoremap <Backspace> <Esc>:'<,'>:s/^ //<Enter>:let @/=""<Enter>gv
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
 
 " Substitutiion
 vmap ! y<Esc>:%s/<C-R>"/
