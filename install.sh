@@ -256,6 +256,7 @@ install_packages_linux() {
     tmux \
     tree \
     unzip \
+    vim \
     wget \
     zsh \
   "
