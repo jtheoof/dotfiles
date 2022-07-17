@@ -103,7 +103,7 @@ let g:material_terminal_italics = 1
 let g:material_theme_style = 'default'
 let g:airline_theme='nord'
 set background=dark
-colorscheme nord
+silent! colorscheme nord
 
 " Text editing
 set encoding=utf8                       " utf-8 encoding
