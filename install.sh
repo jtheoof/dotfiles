@@ -371,9 +371,9 @@ install_all() {
     cd $FILESPATH
   fi
   install_platform
-  install_oh_my_zsh
   install_dotfiles
   install_vim_bundles
+  install_oh_my_zsh
 }
 
 if [[ -n $command ]]; then
