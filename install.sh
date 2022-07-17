@@ -89,26 +89,26 @@ install_dotfiles() {
 }
 
 install_oh_my_zsh() {
-  echo "installing oh-my-zsh"
+  print_info "installing oh-my-zsh"
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-  echo "installing oh-my-zsh plugins"
+  print_info "installing oh-my-zsh plugins"
   cd $HOME/.oh-my-zsh/custom/
 
   ZSH_CUSTOM_PLUGINS_PATH=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins
 
   if [ ! -d $ZSH_CUSTOM_PLUGINS_PATH/H-S-MW ]; then
-    echo "installing oh-my-zsh H-S-MW plugin"
+    print_debug "installing oh-my-zsh H-S-MW plugin"
     git clone https://github.com/z-shell/H-S-MW $ZSH_CUSTOM_PLUGINS_PATH/H-S-MW
   fi
 
   if [ ! -d $ZSH_CUSTOM_PLUGINS_PATH/zsh-autosuggestions ]; then
-    echo "installing oh-my-zsh zsh-autosuggestions plugin"
+    print_debug "installing oh-my-zsh zsh-autosuggestions plugin"
     git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM_PLUGINS_PATH/zsh-autosuggestions
   fi
 
   if [ ! -d $ZSH_CUSTOM_PLUGINS_PATH/zsh-syntax-highlighting ]; then
-    echo "installing oh-my-zsh zsh-syntax-highlighting plugin"
+    print_debug "installing oh-my-zsh zsh-syntax-highlighting plugin"
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM_PLUGINS_PATH/zsh-syntax-highlighting
   fi
 
@@ -207,10 +207,10 @@ brew_cask_packages="\
     visual-studio-code \
   "
 
-  echo "installing brew packages..."
+  print_info "installing brew packages..."
   brew install $brew_packages
 
-  echo "installing brew cask packages..."
+  print_info "installing brew cask packages..."
   brew install --cask $brew_cask_packages
 }
 
@@ -272,7 +272,7 @@ install_packages_linux() {
       ;;
   esac
 
-  echo "installing packages..."
+  print_info "installing packages..."
   sudo $install_command $packages
 }
 
