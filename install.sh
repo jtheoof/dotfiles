@@ -67,6 +67,9 @@ install_dotfiles() {
     link $i $HOME
   done
 
+  # Link .vim directory
+  link $FILESPATH/.vim $HOME
+
   [ -d $CONFIG_DIR ] || mkdir -p $CONFIG_DIR
   # .config directories
   case "$OSTYPE" in

@@ -7,3 +7,6 @@ tags
 # vim-update-bundles
 bundle-log.txt
 bundles.txt
+
+# undodir
+undodir
