@@ -224,6 +224,8 @@ install_yay() {
 }
 
 install_packages_linux() {
+  local install_command=""
+
   packages="\
     alacritty \
     bash \
@@ -261,12 +263,16 @@ install_packages_linux() {
     zsh \
   "
 
+  aur_packages="\
+    zsh-pure-prompt \
+  "
+
   case "$1" in
     arch | manjaro)
-      install_command="pacman -S --needed --noconfirm"
+      install_command="yay -S --needed --noconfirm"
       ;;
     pop)
-      install_command="apt install"
+      install_command="sudo apt install"
       ;;
     *)
       die "install command is unkown for that OS"
@@ -274,16 +280,14 @@ install_packages_linux() {
   esac
 
   print_info "installing packages..."
-  sudo $install_command $packages
-}
+  $install_command $packages
 
-
-install_packages_linux_aur() {
-  packages="\
-    zsh-pure-prompt \
-  "
-
-  yay -S --needed $packages
+  case "$1" in
+    arch | manjaro)
+      print_info "installing AUR packages..."
+      $install_command $aur_packages
+      ;;
+  esac
 }
 
 install_vim_bundles() {
@@ -348,9 +352,8 @@ install_platform() {
       fi
       case "$OS_ID" in
         arch | manjaro)
-          install_packages_linux $OS_ID
           install_yay
-          install_packages_linux_aur
+          install_packages_linux $OS_ID
           ;;
         pop)
           install_packages_linux $OS_ID
