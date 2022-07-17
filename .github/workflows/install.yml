@@ -1,0 +1,19 @@
+name: Install
+
+on: [push, pull_request]
+
+jobs:
+  archlinux:
+    runs-on: ubuntu-20.04
+    container: archlinux
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup
+        run: |
+          pacman --noconfirm -Sy # Generate database file
+          pacman --noconfirm --needed -S base-devel git sudo # Install basic required packages
+          useradd -m -G wheel -s /bin/bash jtheoof # Create a non root user
+          sed -i 's/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers # Enable wheel users to run sudo commands without password
+      - name: Install
+        run: |
+          sudo -u jtheoof bash -c "cd && ${GITHUB_WORKSPACE}/install.sh"
