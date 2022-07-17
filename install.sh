@@ -219,7 +219,7 @@ install_yay() {
   cd $(mktemp -d)
   git clone https://aur.archlinux.org/yay-bin.git
   cd yay-bin
-  makepkg -sif
+  makepkg -sif --noconfirm
   cd $FILESPATH
 }
 
@@ -262,7 +262,7 @@ install_packages_linux() {
 
   case "$1" in
     arch | manjaro)
-      install_command="pacman -S --needed"
+      install_command="pacman -S --needed --noconfirm"
       ;;
     pop)
       install_command="apt install"
