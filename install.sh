@@ -90,7 +90,7 @@ install_dotfiles() {
 
 install_oh_my_zsh() {
   print_info "installing oh-my-zsh"
-  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended --keep-zshrc
 
   print_info "installing oh-my-zsh plugins"
   cd $HOME/.oh-my-zsh/custom/
