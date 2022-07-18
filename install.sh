@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#set -x
+set -e
 
 # TODO Install
 #  * Fonts (especially Windows into /usr/share/fonts/truetype/windows)
