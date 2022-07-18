@@ -298,6 +298,16 @@ install_vim_bundles() {
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   fi
   vim -c ":BundleInstall" -c ":qa!"
+
+  coc_folder=$HOME/.vim/bundle/coc.nvim
+
+  # Checkout release branch because Vundle does not allow it
+  if [ -d $coc_folder ]; then
+    old_dir=$(pwd)
+    cd $coc_folder
+    git checkout -b release -t origin/release
+    cd $old_dir
+  fi
 }
 
 install_plist_launchd_darwin() {
