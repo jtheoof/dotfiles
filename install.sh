@@ -113,7 +113,8 @@ install_oh_my_zsh() {
   fi
 
   # switch to zsh default shell
-  chsh -s $(which zsh)
+  print_info "switch to zsh..."
+  sudo usermod --shell /usr/bin/zsh $(whoami)
 }
 
 install_packages_darwin() {
