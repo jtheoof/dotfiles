@@ -252,6 +252,8 @@ install_packages_linux() {
     make \
     neofetch \
     neovim \
+    nodejs \
+    npm \
     ripgrep \
     scdoc \
     sed \
