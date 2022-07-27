@@ -150,5 +150,7 @@
 
 [includeIf "gitdir:~/dev/ubisoft/"]
   path = .gitconfig-ubisoft
+[includeIf "gitdir:~/dev/gitlab-ncsa.ubisoft.org/"]
+  path = .gitconfig-ubisoft
 [advice]
 	skippedCherryPicks = false
