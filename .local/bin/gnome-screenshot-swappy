@@ -1,0 +1,3 @@
+#!/bin/sh
+
+gnome-screenshot -a -f /tmp/swappy.png && swappy -f /tmp/swappy.png
