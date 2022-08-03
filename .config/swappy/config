@@ -5,3 +5,4 @@ show_panel=false
 text_size=20
 text_font=monospace
 save_filename_format=screenshot-%Y%m%d-%H%M%S.png
+early_exit=true
