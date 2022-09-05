@@ -810,6 +810,8 @@ key_bindings:
   #- { key: Space,  mods: Shift|Control, mode: Vi|~Search, action: ScrollToBottom          }
   - { key: Scroll,                       mode: ~Search,    action: ToggleViMode            }
   - { key: Scroll,                       mode: Vi|~Search, action: ScrollToBottom          }
+  - { key: Q,                            mode: Vi|~Search, action: ClearSelection          }
+  - { key: Q,                            mode: Vi|~Search, action: ToggleViMode            }
   #- { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
   #- { key: I,                           mode: Vi|~Search, action: ToggleViMode            }
   #- { key: I,                           mode: Vi|~Search, action: ScrollToBottom          }
