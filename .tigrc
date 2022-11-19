@@ -116,7 +116,8 @@ bind generic cc !git commit
 bind generic ca !?@git commit --amend --no-edit
 
 bind generic y none
-bind generic yy !@csh -c "echo -n %(commit) | pbcopy"
+bind generic yy !@sh -c "echo -n %(commit) | pbcopy"
+bind generic yc !@sh -c "echo -n %(commit) | pbcopy"
 
 bind generic Q quit
 
@@ -144,7 +145,6 @@ bind main P !git cherry-pick %(commit)
 bind main F @git commit --fixup %(commit)
 bind main E !<sh -c "vim -c 'Gedit %(commit)' $(ls | head -1)"
 bind main V !<sh -c "vim $(git show %(commit) --pretty=format: --name-only | xargs)"
-bind main Y !@csh -c "echo -n %(commit) | pbcopy"
 
 # }}}
 # Diff {{{
