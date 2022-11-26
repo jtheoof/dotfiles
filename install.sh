@@ -90,7 +90,11 @@ install_dotfiles() {
 
 install_oh_my_zsh() {
   print_info "installing oh-my-zsh"
-  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+  if [ ! -d $HOME/.oh-my-zsh ]; then
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+  else
+    print_info "already found .oh-my-zsh at $HOME/.oh-my-zsh"
+  fi
 
   print_info "installing oh-my-zsh plugins"
   cd $HOME/.oh-my-zsh/custom/
@@ -217,11 +221,16 @@ brew_cask_packages="\
 
 install_yay() {
   print_info "installing yay..."
-  cd $(mktemp -d)
-  git clone https://aur.archlinux.org/yay-bin.git
-  cd yay-bin
-  makepkg -sif --noconfirm
-  cd $FILESPATH
+
+  if [ -x "$(command -v yay)" ]; then
+    print_info "found yay at: $(which yay), skipping install"
+  else
+    cd $(mktemp -d)
+    git clone https://aur.archlinux.org/yay-bin.git
+    cd yay-bin
+    makepkg -sif --noconfirm
+    cd $FILESPATH
+  fi
 }
 
 install_packages_linux() {
