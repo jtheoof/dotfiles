@@ -14,7 +14,7 @@
 
 if [ -x "$(command -v nvim)" ]; then
   export EDITOR=nvim
-  export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+  export MANPAGER="nvim +Man!"
 else
   export EDITOR=vim
   export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""

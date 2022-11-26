@@ -241,6 +241,7 @@ install_packages_linux() {
     bash \
     bat \
     binutils \
+    cargo \
     colordiff \
     coreutils \
     cscope \
@@ -263,6 +264,10 @@ install_packages_linux() {
     neovim \
     nodejs \
     npm \
+    python \
+    python-neovim \
+    python-pip \
+    python-setuptools \
     ripgrep \
     scdoc \
     sed \
@@ -314,9 +319,20 @@ install_vim_bundles() {
   if [ -d $coc_folder ]; then
     old_dir=$(pwd)
     cd $coc_folder
-    git checkout -b release -t origin/release
+    git checkout -B release -t origin/release
     cd $old_dir
   fi
+}
+
+install_neovim_plugins() {
+  print_info "installing neovim plugins..."
+  if [ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]; then
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+  else
+    print_info "packer already found skipping packer install"
+  fi
+
+  nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 }
 
 install_plist_launchd_darwin() {
@@ -398,6 +414,7 @@ install_all() {
   install_platform
   install_dotfiles
   install_vim_bundles
+  install_neovim_plugins
   install_oh_my_zsh
 }
 
