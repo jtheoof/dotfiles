@@ -317,6 +317,10 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 nnoremap <Home> ^
 
 " Normal wrapping navigation
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
 nnoremap <Up> gk
 nnoremap <Down> gj
 
