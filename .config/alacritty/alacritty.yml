@@ -928,11 +928,11 @@ key_bindings:
   #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
 
   # Custom
-  - { key: H,          mods: Control, action: ClearHistory}
-  - { key: K,          mods: Control, command: { program: "sh", args: ["-c", "~/.local/bin/reset-active-tty"] } }
-  - { key: N,          mods: Control, action: SpawnNewInstance }
-  - { key: Up,         mods: Shift,   action: ScrollLineUp,   mode: ~Alt }
-  - { key: Down,       mods: Shift,   action: ScrollLineDown, mode: ~Alt }
+  - { key: H,          mods: Control|Alt, action: ClearHistory}
+  - { key: K,          mods: Control|Alt, command: { program: "sh", args: ["-c", "~/.local/bin/reset-active-tty"] } }
+  - { key: N,          mods: Control|Alt, action: SpawnNewInstance }
+  - { key: Up,         mods: Shift|Alt,   action: ScrollLineUp,   mode: ~Alt }
+  - { key: Down,       mods: Shift|Alt,   action: ScrollLineDown, mode: ~Alt }
 
 #debug:
   # Display the time it takes to redraw each frame.
