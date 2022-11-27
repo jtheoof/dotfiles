@@ -1,8 +1,9 @@
 # General ack Settings
 ####################################################################
 
-# search in hidden files
+# search in hidden files but hide .git/ contents
 --hidden
+--glob=!.git/
 # sort files
 --sort-files
 # only search with case sensitivity if there is mixed case
