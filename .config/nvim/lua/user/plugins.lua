@@ -47,6 +47,22 @@ return packer.startup(function()
   -- LSP
   use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 
+  -- Treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    "nvim-treesitter/playground",
+    run = ":TSUpdate",
+  }
+
+  -- nvim-tree
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
+
   -- Fiefox
   use {
     'glacambre/firenvim',

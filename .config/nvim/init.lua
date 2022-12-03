@@ -2,10 +2,17 @@ require('user/plugins')
 require('user/options')
 require('user/reload')
 require('user/autocommands')
-require('user/telescope')
+
+-- Plugins
+require('lualine').setup()
 require('user/cmp')
+require('user/firenvim')
+require('user/nvim-tree')
+require('user/telescope')
+require('user/treesitter')
+
+-- Keymaps
 require('user/keymaps')
 
-require('lualine').setup()
-
+-- Colorscheme
 vim.cmd [[colorscheme nord]]

@@ -34,8 +34,14 @@ end
 -- }}}
 -- Normal Mode {{{
 
-nmap('-', ':Explore<CR>')
-nmap('<C-b>', ':Lexplore<CR>')
+-- Quickly select pasted test remembering the selection type
+-- Not sure how to translate this to lua code
+vim.cmd [[
+  nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+]]
+
+nmap('-', ':NvimTreeToggle<CR>')
+nmap('<C-b>', ':NvimTreeToggle<CR>')
 
 -- Normal wrapping navigation
 nmap('j', 'gj')
@@ -50,6 +56,11 @@ nmap('<C-Left>', '<C-w><Left>')
 nmap('<C-Up>', '<C-w><Up>')
 nmap('<C-Down>', '<C-w><Down>')
 
+-- Pane splitting
+-- According to: nvim -V3log -c ':q' && rg '\[2[34];5~' log
+nmap('<F35>', ':split<CR>') -- <C-F11>
+nmap('<F36>', ':vsplit<CR>') -- <C-F12>
+
 -- Clear search
 nmap('<C-k>', ":let @/=''<CR>")
 
@@ -63,10 +74,6 @@ nmap('<S-Up>', '3<C-Y>')
 nmap('U', ':redo<CR>')
 nmap('ycf', ':let @* = expand("%:p")<CR>:let @+ = expand("%:p")<CR>')
 nmap('t', 'yyp')
-
--- Pane splitting
-nmap('<C-F11>', ':split<CR>')
-nmap('<C-F12>', ':vsplit<CR>')
 
 -- Navigate back and forth like in a browser
 nmap('<A-Left>', '<C-o>')
