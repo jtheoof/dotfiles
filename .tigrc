@@ -143,8 +143,9 @@ bind main H !?git reset --hard %(commit)
 bind main R !git rebase -i --autosquash %(commit)^
 bind main P !git cherry-pick %(commit)
 bind main F @git commit --fixup %(commit)
-bind main E !<sh -c "vim -c 'Gedit %(commit)' $(ls | head -1)"
-bind main V !<sh -c "vim $(git show %(commit) --pretty=format: --name-only | xargs)"
+bind main E !<sh -c "nvim -c 'Gedit %(commit)' $(ls | head -1)"
+bind main V !<sh -c "nvim $(git show %(commit) --pretty=format: --name-only | xargs)"
+bind main Y !@csh -c "echo -n %(commit) | pbcopy"
 
 # }}}
 # Diff {{{
@@ -157,8 +158,8 @@ bind diff A !git add %(file)              # Add current file
 bind diff C !git commit -av               # Add and commit
 bind diff P !git add -p %(file)           # Partially add current file
 bind diff F !@sh -c "git show %(commit) --pretty=format: --name-only | xargs | xsel -ib"
-bind diff E !<sh -c "vim -c 'Gedit %(commit)' $(ls | head -1)"
-bind diff V !<sh -c "vim $(git show %(commit) --pretty=format: --name-only | xargs)"
+bind diff E !<sh -c "nvim -c 'Gedit %(commit)' $(ls | head -1)"
+bind diff V !<sh -c "nvim $(git show %(commit) --pretty=format: --name-only | xargs)"
 
 bind diff [ none
 bind diff ] none
@@ -168,7 +169,7 @@ bind diff ]c :toggle diff-context +5
 # }}}
 # Tree {{{
 
-bind tree V !vim %(file)
+bind tree V !nvim %(file)
 
 # }}}
 # Branch {{{
