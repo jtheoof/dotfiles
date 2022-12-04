@@ -141,7 +141,7 @@ nmap('<Leader>Q', ':qa!<CR>')
 -- Quick edit of common files
 nmap('<Leader>ea', ':edit ~/.config/alacritty/alacritty.yml<CR>')
 nmap('<Leader>eg', ':edit ~/.gitconfig<CR>')
-nmap('<Leader>et', ':edit ~/.tmux.conf<CR>')
+nmap('<Leader>et', ':edit ~/.config/tmux/tmux.conf<CR>')
 nmap('<Leader>ez', ':edit ~/.zshrc<CR>')
 nmap('<Leader>enn', ':edit ~/.config/nvim/init.lua<CR>')
 nmap('<Leader>ena', ':edit ~/.config/nvim/lua/user/autocommands.lua<CR>')

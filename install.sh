@@ -88,6 +88,20 @@ install_dotfiles() {
    link $FILESPATH/.local/bin $HOME/.local
 }
 
+install_tmux_plugins() {
+  print_info "installing tmux plugin manager..."
+
+  if [ -d $CONFIG_DIR/tmux/plugins ]; then
+    print_info "tmux plugins folder found, skipping"
+    return
+  fi
+
+  git clone https://github.com/tmux-plugins/tpm $CONFIG_DIR/tmux/plugins/tpm
+
+  print_info "installing tpm plugins..."
+  sh -c "$HOME/.config/tmux/plugins/tpm/bin/install_plugins"
+}
+
 install_oh_my_zsh() {
   print_info "installing oh-my-zsh"
   if [ ! -d $HOME/.oh-my-zsh ]; then
@@ -413,6 +427,7 @@ install_all() {
   fi
   install_platform
   install_dotfiles
+  install_tmux_plugins
   install_vim_bundles
   install_neovim_plugins
   install_oh_my_zsh
