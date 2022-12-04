@@ -2,7 +2,7 @@
 vim.cmd [[
   augroup _general_settings
     autocmd!
-    autocmd FileType qf,help,netrw,lspinfo nnoremap <silent> <buffer> q :close<CR>
+    autocmd FileType qf,help,netrw,lspinfo,fugitiveblame nnoremap <silent> <buffer> q :close<CR>
     autocmd InsertEnter * set cursorline
     autocmd InsertLeave * set nocursorline
     autocmd FocusLost * execute ":silent! wa"
