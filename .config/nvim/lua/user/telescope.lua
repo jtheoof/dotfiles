@@ -20,7 +20,13 @@ telescope.setup {
     path_display = { "smart" },
 
     layout_strategy = 'vertical',
-    layout_config = { height = 0.95 },
+    layout_config = {
+      height = 0.95,
+      mirror = true,
+      prompt_position = 'top'
+    },
+
+    sorting_strategy = 'ascending',
 
     mappings = {
       i = {
