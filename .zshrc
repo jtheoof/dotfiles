@@ -90,6 +90,7 @@ alias lgroups='cat /etc/passwd | cut -d: -f1'
 alias dm='docker-machine'
 
 # Editing
+alias n='nvim'
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
@@ -137,8 +138,6 @@ alias ipwan='wget -q -O - checkip.dyndns.org | sed -e "s/.*Current IP Address: /
 
 # Navigation
 alias r='ranger'
-alias n='nautilus'
-alias n.='nautilus .'
 alias view='eog'
 alias cdg='cd $(git rev-parse --show-toplevel)'
 alias cdt='cd `mktemp -d`'
