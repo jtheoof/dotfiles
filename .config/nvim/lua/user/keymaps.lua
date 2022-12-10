@@ -67,8 +67,8 @@ nmap('<C-k>', ":let @/=''<CR>")
 -- Useful navigation
 nmap('<PageUp>', '<C-U>')
 nmap('<PageDown>', '<C-D>')
-nmap('<S-Down>', '3<C-E>')
-nmap('<S-Up>', '3<C-Y>')
+nmap('<S-Down>', '<C-E>')
+nmap('<S-Up>', '<C-Y>')
 
 -- Make U more consistent with vim logic
 nmap('U', ':redo<CR>')
@@ -90,8 +90,8 @@ imap('<C-S>', '<Esc>:w<CR>a')
 
 imap('<C-Left>', '<Esc>bi')
 imap('<C-Right>', '<Esc>lea')
-imap('<S-Down>', '<Esc>3<C-E>a')
-imap('<S-Up>', '<Esc>3<C-Y>a')
+imap('<S-Down>', '<Esc><C-E>a')
+imap('<S-Up>', '<Esc><C-Y>a')
 
 -- map control-backspace to delete the previous word
 imap('<C-BS>', '<C-W>')
