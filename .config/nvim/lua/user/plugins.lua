@@ -30,13 +30,26 @@ return packer.startup(function()
   use 'tpope/vim-repeat'
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
-  --use 'tpope/vim-vinegar'
 
-  --  -- cmp plugins
+  -- Collection of common configurations for the Nvim LSP client
+  use("neovim/nvim-lspconfig")
+  -- Visualize lsp progress
+  use({
+    "j-hui/fidget.nvim",
+    config = function()
+      require("fidget").setup()
+    end
+  })
+  use 'simrat39/rust-tools.nvim'
+
+  -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
+  use "hrsh7th/cmp-nvim-lsp" -- The LSP plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
 
   -- Telescope
   use {
