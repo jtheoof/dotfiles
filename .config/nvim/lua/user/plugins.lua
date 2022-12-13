@@ -30,6 +30,7 @@ return packer.startup(function()
   use 'tpope/vim-repeat'
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
+  use "windwp/nvim-autopairs"
 
   -- Collection of common configurations for the Nvim LSP client
   use("neovim/nvim-lspconfig")
