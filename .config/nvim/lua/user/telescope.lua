@@ -1,32 +1,32 @@
-local telescope = require('telescope')
-local builtin = require('telescope.builtin')
+local telescope = require("telescope")
+local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
 
-vim.keymap.set('n', '<Leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<Leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<Leader>fG', builtin.git_files, {})
-vim.keymap.set('n', '<Leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<Leader>fh', builtin.help_tags, {})
+vim.keymap.set("n", "<Leader>ff", builtin.find_files, {})
+vim.keymap.set("n", "<Leader>fg", builtin.live_grep, {})
+vim.keymap.set("n", "<Leader>fG", builtin.git_files, {})
+vim.keymap.set("n", "<Leader>fb", builtin.buffers, {})
+vim.keymap.set("n", "<Leader>fh", builtin.help_tags, {})
 
-vim.keymap.set('n', '<F2>', builtin.buffers, {})
-vim.keymap.set('n', '<F3>', builtin.find_files, {})
-vim.keymap.set('n', '<S-F3>', builtin.git_files, {})
+vim.keymap.set("n", "<F2>", builtin.buffers, {})
+vim.keymap.set("n", "<F3>", builtin.find_files, {})
+vim.keymap.set("n", "<S-F3>", builtin.git_files, {})
 
-telescope.setup {
+telescope.setup({
   defaults = {
 
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
 
-    layout_strategy = 'vertical',
+    layout_strategy = "vertical",
     layout_config = {
       height = 0.95,
       mirror = true,
-      prompt_position = 'top'
+      prompt_position = "top",
     },
 
-    sorting_strategy = 'ascending',
+    sorting_strategy = "ascending",
 
     mappings = {
       i = {
@@ -114,6 +114,5 @@ telescope.setup {
       sort_mru = true,
     },
   },
-  extensions = {
-  },
-}
+  extensions = {},
+})

@@ -1,3 +1,3 @@
-local lualine = require('lualine');
+local lualine = require("lualine")
 
 lualine.setup()

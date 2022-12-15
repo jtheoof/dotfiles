@@ -1,4 +1,4 @@
-require'nvim-treesitter.configs'.setup {
+require("nvim-treesitter.configs").setup({
   -- A directory to install the parsers into.
   -- If this is excluded or nil parsers are installed
   -- to either the package dir, or the "site" dir.
@@ -30,4 +30,4 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
-}
+})

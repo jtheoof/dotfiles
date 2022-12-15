@@ -1,82 +1,84 @@
 local packer = require("packer")
 
 -- Have packer use a popup window
-packer.init {
+packer.init({
   display = {
     open_fn = function()
-      return require("packer.util").float { border = "rounded" }
+      return require("packer.util").float({ border = "rounded" })
     end,
   },
-}
+})
 
 return packer.startup(function()
-  use 'wbthomason/packer.nvim'
+  use("wbthomason/packer.nvim")
 
   -- colorscheme
-  use 'shaunsingh/nord.nvim' -- https://github.com/shaunsingh/nord.nvim
-  use 'nvim-lualine/lualine.nvim' -- https://github.com/nvim-lualine/lualine.nvim
+  use("shaunsingh/nord.nvim") -- https://github.com/shaunsingh/nord.nvim
+  use("nvim-lualine/lualine.nvim") -- https://github.com/nvim-lualine/lualine.nvim
 
   -- utils
-  use "nvim-lua/plenary.nvim" -- https://github.com/nvim-lua/plenary.nvim
+  use("nvim-lua/plenary.nvim") -- https://github.com/nvim-lua/plenary.nvim
 
   -- common
-  use 'farmergreg/vim-lastplace'
-  use 'ntpeters/vim-better-whitespace'
-  use 'christoomey/vim-tmux-navigator'
-  use 'tpope/vim-commentary'
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-repeat'
-  use 'tpope/vim-surround'
-  use 'tpope/vim-unimpaired'
-  use "windwp/nvim-autopairs"
+  use("farmergreg/vim-lastplace")
+  use("ntpeters/vim-better-whitespace")
+  use("christoomey/vim-tmux-navigator")
+  use("tpope/vim-commentary")
+  use("tpope/vim-fugitive")
+  use("tpope/vim-repeat")
+  use("tpope/vim-surround")
+  use("tpope/vim-unimpaired")
+  use("windwp/nvim-autopairs")
 
   -- cmp plugins
-  use {
+  use({
     "hrsh7th/nvim-cmp", -- The completion plugin
     "hrsh7th/cmp-nvim-lsp", -- The LSP plugin
     "hrsh7th/cmp-buffer", -- buffer completions
     "hrsh7th/cmp-path", -- path completions
     "hrsh7th/cmp-cmdline", -- cmdline completions
-    'hrsh7th/cmp-vsnip',
-    'hrsh7th/vim-vsnip',
-  }
+    "hrsh7th/cmp-vsnip",
+    "hrsh7th/vim-vsnip",
+  })
 
   -- Telescope
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
+  use({
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.0",
+    requires = { { "nvim-lua/plenary.nvim" } },
+  })
 
   -- Treesitter
-  use {
+  use({
     "nvim-treesitter/nvim-treesitter",
     "nvim-treesitter/playground",
     run = ":TSUpdate",
-  }
+  })
 
   -- nvim-tree
-  use {
-    'nvim-tree/nvim-tree.lua',
+  use({
+    "nvim-tree/nvim-tree.lua",
     requires = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+      "nvim-tree/nvim-web-devicons", -- optional, for file icons
     },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
-  }
+    tag = "nightly", -- optional, updated every week. (see issue #1193)
+  })
 
   -- LSP
-  use {
+  use({
     "neovim/nvim-lspconfig", -- Collection of common configurations for the Nvim LSP client
-    "williamboman/mason.nvim", -- Portable package manager for Neovim that runs everywhere Neovim runs.
     "j-hui/fidget.nvim", -- Visualize lsp progress
-    'weilbith/nvim-code-action-menu',
+    "weilbith/nvim-code-action-menu",
     config = function()
       require("fidget").setup()
-    end
-  }
+    end,
+  })
 
   -- Firefox
-  use {
-    'glacambre/firenvim',
-    run = function() vim.fn['firenvim#install'](0) end
-}
+  use({
+    "glacambre/firenvim",
+    run = function()
+      vim.fn["firenvim#install"](0)
+    end,
+  })
 end)
