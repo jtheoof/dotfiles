@@ -1,9 +1,0 @@
-#!/usr/bin/pulseaudio -nF
-
-.include /etc/pulse/default.pa
-
-# automatically switch to newly-connected devices
-.ifexists module-switch-on-connect.so
-load-module module-switch-on-connect
-.endif
-
