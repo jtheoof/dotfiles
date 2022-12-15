@@ -14,12 +14,10 @@ return packer.startup(function()
 
   -- colorscheme
   use 'shaunsingh/nord.nvim' -- https://github.com/shaunsingh/nord.nvim
+  use 'nvim-lualine/lualine.nvim' -- https://github.com/nvim-lualine/lualine.nvim
 
-  -- lualine.nvim: https://github.com/nvim-lualine/lualine.nvim
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
+  -- utils
+  use "nvim-lua/plenary.nvim" -- https://github.com/nvim-lua/plenary.nvim
 
   -- common
   use 'farmergreg/vim-lastplace'
@@ -32,34 +30,22 @@ return packer.startup(function()
   use 'tpope/vim-unimpaired'
   use "windwp/nvim-autopairs"
 
-  -- Collection of common configurations for the Nvim LSP client
-  use("neovim/nvim-lspconfig")
-  -- Visualize lsp progress
-  use({
-    "j-hui/fidget.nvim",
-    config = function()
-      require("fidget").setup()
-    end
-  })
-  use 'simrat39/rust-tools.nvim'
-
   -- cmp plugins
-  use "hrsh7th/nvim-cmp" -- The completion plugin
-  use "hrsh7th/cmp-nvim-lsp" -- The LSP plugin
-  use "hrsh7th/cmp-buffer" -- buffer completions
-  use "hrsh7th/cmp-path" -- path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/vim-vsnip'
+  use {
+    "hrsh7th/nvim-cmp", -- The completion plugin
+    "hrsh7th/cmp-nvim-lsp", -- The LSP plugin
+    "hrsh7th/cmp-buffer", -- buffer completions
+    "hrsh7th/cmp-path", -- path completions
+    "hrsh7th/cmp-cmdline", -- cmdline completions
+    'hrsh7th/cmp-vsnip',
+    'hrsh7th/vim-vsnip',
+  }
 
   -- Telescope
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
-
-  -- LSP
-  use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 
   -- Treesitter
   use {
@@ -77,7 +63,18 @@ return packer.startup(function()
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
 
-  -- Fiefox
+  -- LSP
+  use {
+    "neovim/nvim-lspconfig", -- Collection of common configurations for the Nvim LSP client
+    "williamboman/mason.nvim", -- Portable package manager for Neovim that runs everywhere Neovim runs.
+    "j-hui/fidget.nvim", -- Visualize lsp progress
+    'weilbith/nvim-code-action-menu',
+    config = function()
+      require("fidget").setup()
+    end
+  }
+
+  -- Firefox
   use {
     'glacambre/firenvim',
     run = function() vim.fn['firenvim#install'](0) end

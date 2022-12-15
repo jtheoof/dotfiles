@@ -1,4 +1,4 @@
-local rt = require("rust-tools")
+-- local rt = require("rust-tools")
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -23,8 +23,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workLeader_folder, bufopts)
-  vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workLeader_folder, bufopts)
+  vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   vim.keymap.set('n', '<Leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workLeader_folders()))
   end, bufopts)
@@ -33,6 +33,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<Leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+  vim.keymap.set('n', '<M-Enter>', ':CodeActionMenu<CR>', opts)
 end
 
 local lsp_flags = {
@@ -47,22 +49,22 @@ require('lspconfig')['tsserver'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
--- require('lspconfig')['rust_analyzer'].setup{
---     on_attach = on_attach,
---     flags = lsp_flags,
---     -- Server-specific settings...
---     settings = {
---       ["rust-analyzer"] = {}
---     }
--- }
+require('lspconfig')['rust_analyzer'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    -- Server-specific settings...
+    settings = {
+      ["rust-analyzer"] = {}
+    }
+}
 
-rt.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      -- Hover actions
-      vim.keymap.set("n", "<C-Space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
-  },
-})
+-- rt.setup({
+--   server = {
+--     on_attach = function(_, bufnr)
+--       -- Hover actions
+--       vim.keymap.set("n", "<C-Space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+--       -- Code action groups
+--       vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+--     end,
+--   },
+-- })

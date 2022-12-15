@@ -1,10 +1,14 @@
+-- See :help *nvim-tree.disable_netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 require('user/plugins')
 require('user/options')
 require('user/reload')
 require('user/autocommands')
 
 -- Plugins
-require('lualine').setup()
+require('user/lualine')
 require('user/cmp')
 require('user/firenvim')
 require('user/lsp')
@@ -17,4 +21,4 @@ require('user/treesitter')
 require('user/keymaps')
 
 -- Colorscheme
-vim.cmd [[colorscheme nord]]
+require('user/colorscheme')
