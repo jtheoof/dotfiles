@@ -153,7 +153,6 @@ nmap("<Leader>eno", ":edit ~/.config/nvim/lua/user/options.lua<CR>")
 keymap("n", "<Leader>sc", ":lua ReloadConfig()<CR>", { silent = false })
 
 -- Strip all trailing whitespace in the current file
-nmap("<Leader>fw", ":StripWhitespace<CR>")
 nmap("<Leader>d$", ":StripWhitespace<CR>")
 
 -- Quick toggles
