@@ -95,7 +95,6 @@ imap("<S-Up>", "<Esc><C-Y>a")
 
 -- map control-backspace to delete the previous word
 imap("<C-BS>", "<C-W>")
-imap("", "<C-W>") -- Hack for alacritty
 -- map control-del to remove word after cursor
 imap("<C-Del>", '<C-O>"_de')
 
