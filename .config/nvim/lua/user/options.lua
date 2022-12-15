@@ -15,6 +15,7 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- Display
 vim.opt.diffopt:append({ "vertical" })
 
+vim.opt.cursorline = true
 vim.opt.foldlevel = 0
 vim.opt.foldmethod = "marker"
 vim.opt.lazyredraw = true
