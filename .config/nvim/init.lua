@@ -16,6 +16,7 @@ require("user/nvim-autopairs")
 require("user/nvim-tree")
 require("user/telescope")
 require("user/treesitter")
+require("user/mason")
 
 -- Keymaps
 require("user/keymaps")
