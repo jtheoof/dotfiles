@@ -9,7 +9,7 @@ packer.init({
   },
 })
 
-return packer.startup(function()
+return packer.startup(function(use)
   use("wbthomason/packer.nvim")
 
   -- colorscheme
@@ -69,7 +69,6 @@ return packer.startup(function()
     "neovim/nvim-lspconfig", -- Collection of common configurations for the Nvim LSP client
     "williamboman/mason.nvim", -- Portable package manager for Neovim that runs everywhere Neovim runs.
     "j-hui/fidget.nvim", -- Visualize lsp progress
-    "weilbith/nvim-code-action-menu",
     config = function()
       require("fidget").setup()
     end,
