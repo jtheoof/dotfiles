@@ -172,6 +172,7 @@ nmap("<Leader>d$", ":StripWhitespace<CR>")
 -- Quick toggles
 nmap("<Leader>ti", ":set ignorecase!<CR>")
 nmap("<Leader>ts", ":set spell!<CR>")
+nmap("<Leader>tt", ":TSPlaygroundToggle<CR>")
 nmap("<Leader>tl", ":set list!<CR>")
 nmap("<Leader>tw", ":set wrap!<CR>")
 
