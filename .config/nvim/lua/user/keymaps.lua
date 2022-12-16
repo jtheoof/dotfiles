@@ -75,7 +75,7 @@ nmap("<F35>", ":split<CR>") -- <C-F11>
 nmap("<F36>", ":vsplit<CR>") -- <C-F12>
 
 -- Clear search
-nmap("<C-k>", ":let @/=''<CR>")
+nmap("<C-k>", ":set nohlsearch<CR>")
 
 -- Useful navigation
 nmap("<PageUp>", "<C-U>")
@@ -157,9 +157,11 @@ nmap("<Leader>et", ":edit ~/.config/tmux/tmux.conf<CR>")
 nmap("<Leader>ez", ":edit ~/.zshrc<CR>")
 nmap("<Leader>enn", ":edit ~/.config/nvim/init.lua<CR>")
 nmap("<Leader>ena", ":edit ~/.config/nvim/lua/user/autocommands.lua<CR>")
-nmap("<Leader>enp", ":edit ~/.config/nvim/lua/user/plugins.lua<CR>")
 nmap("<Leader>enk", ":edit ~/.config/nvim/lua/user/keymaps.lua<CR>")
+nmap("<Leader>enl", ":edit ~/.config/nvim/lua/user/lsp.lua<CR>")
 nmap("<Leader>eno", ":edit ~/.config/nvim/lua/user/options.lua<CR>")
+nmap("<Leader>enp", ":edit ~/.config/nvim/lua/user/plugins.lua<CR>")
+nmap("<Leader>ent", ":edit ~/.config/nvim/lua/user/telescope.lua<CR>")
 
 -- Reload configuration
 keymap("n", "<Leader>sc", ":lua ReloadConfig()<CR>", { silent = false })
