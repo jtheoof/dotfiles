@@ -10,6 +10,7 @@ require("user/autocommands")
 -- Plugins
 require("user/lualine")
 require("user/cmp")
+require("user/comment")
 require("user/firenvim")
 require("user/lsp")
 require("user/nvim-autopairs")

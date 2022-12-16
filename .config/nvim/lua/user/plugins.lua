@@ -20,17 +20,17 @@ return packer.startup(function(use)
   use("nvim-lua/plenary.nvim") -- https://github.com/nvim-lua/plenary.nvim
 
   -- common
+  use("christoomey/vim-tmux-navigator")
   use("farmergreg/vim-lastplace")
   use("ntpeters/vim-better-whitespace")
-  use("christoomey/vim-tmux-navigator")
-  use("tpope/vim-commentary")
+  use("numToStr/Comment.nvim")
   use("tpope/vim-fugitive")
   use("tpope/vim-repeat")
   use("tpope/vim-surround")
   use("tpope/vim-unimpaired")
   use("windwp/nvim-autopairs")
 
-  -- cmp plugins
+  -- completion
   use({
     "hrsh7th/nvim-cmp", -- The completion plugin
     "hrsh7th/cmp-nvim-lsp", -- The LSP plugin
