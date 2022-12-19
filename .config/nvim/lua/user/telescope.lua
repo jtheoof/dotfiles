@@ -53,6 +53,8 @@ telescope.setup({
 
         ["<A-Up>"] = actions.cycle_history_prev,
         ["<A-Down>"] = actions.cycle_history_next,
+        ["<C-Up>"] = actions.cycle_history_prev,
+        ["<C-Down>"] = actions.cycle_history_next,
 
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
