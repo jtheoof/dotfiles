@@ -130,6 +130,10 @@ xmap("<A-j>", ":move '>+1<CR>gv-gv")
 xmap("<A-k>", ":move '<-2<CR>gv-gv")
 xmap("<A-Down>", ":move '>+1<CR>gv-gv")
 xmap("<A-Up>", ":move '<-2<CR>gv-gv")
+xmap("<C-j>", ":move '>+1<CR>gv-gv")
+xmap("<C-k>", ":move '<-2<CR>gv-gv")
+xmap("<C-Down>", ":move '>+1<CR>gv-gv")
+xmap("<C-Up>", ":move '<-2<CR>gv-gv")
 
 -- Better paste
 vmap("p", '"_dP')
