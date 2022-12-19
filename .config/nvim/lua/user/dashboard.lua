@@ -38,7 +38,7 @@ dashboard.custom_center = {
     shortcut = "<Leader> f G  ",
   },
   {
-    icon = "  ",
+    icon = "  ",
     desc = "Project git grep                        ",
     action = "Telescope git_grep",
     shortcut = "<Leader> f G  ",
