@@ -70,6 +70,9 @@ nmap("<C-Up>", "<C-w><Up>")
 nmap("<C-Down>", "<C-w><Down>")
 
 -- Pane splitting
+nmap("<C-F11>", ":split<CR>")
+nmap("<C-F12>", ":vsplit<CR>")
+-- Alacritty weirdness
 -- According to: nvim -V3log -c ':q' && rg '\[2[34];5~' log
 nmap("<F35>", ":split<CR>") -- <C-F11>
 nmap("<F36>", ":vsplit<CR>") -- <C-F12>
