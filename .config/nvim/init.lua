@@ -6,6 +6,7 @@ require("user/plugins")
 require("user/options")
 require("user/reload")
 require("user/autocommands")
+require("user/neovide")
 
 -- Plugins
 require("user/lualine")
