@@ -179,6 +179,7 @@ nmap("<Leader>ts", ":set spell!<CR>")
 nmap("<Leader>tt", ":TSPlaygroundToggle<CR>")
 nmap("<Leader>tl", ":set list!<CR>")
 nmap("<Leader>tw", ":set wrap!<CR>")
+nmap("<Leader>ty", ":SymbolsOutline<CR>")
 
 -- }}}
 -- Plugins {{{
