@@ -322,9 +322,14 @@ install_packages_linux() {
 }
 
 install_vim_bundles() {
+  if [ ! -d ~/.local/state/vim/undo ]; then
+    mkdir -p ~/.local/state/vim/undo
+  fi
+
   if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   fi
+
   vim -c ":BundleInstall" -c ":qa!"
 
   coc_folder=$HOME/.vim/bundle/coc.nvim

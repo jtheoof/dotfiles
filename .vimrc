@@ -167,7 +167,7 @@ if exists("+undofile")
     if has("win32")
         set undodir=~/vimfiles/undodir
     else
-        set undodir=~/.vim/undodir
+        set undodir=~/.local/state/vim/undo
     endif
 endif
 
