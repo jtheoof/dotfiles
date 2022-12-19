@@ -50,6 +50,13 @@ return packer.startup(function(use)
     tag = "0.1.0",
     requires = { { "nvim-lua/plenary.nvim" } },
   })
+  use({
+    "nvim-telescope/telescope-frecency.nvim",
+    config = function()
+      require("telescope").load_extension("frecency")
+    end,
+    requires = { "kkharji/sqlite.lua" },
+  })
 
   -- Treesitter
   use({
