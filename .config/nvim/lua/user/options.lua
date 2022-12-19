@@ -7,6 +7,19 @@ vim.opt.formatoptions = "tcqrn1j"
 vim.opt.cmdheight = 1
 vim.opt.wrap = false
 
+-- Format Options
+vim.opt.formatoptions = vim.opt.formatoptions
+  - "a" -- Auto formatting is BAD.
+  - "t" -- Don't auto format my code. I got linters for that.
+  + "c" -- In general, I like it when comments respect textwidth
+  + "q" -- Allow formatting comments w/ gq
+  - "o" -- O and o, don't continue comments
+  + "r" -- But do continue when pressing enter.
+  + "n" -- Indent past the formatlistpat, not underneath it.
+  + "j" -- Auto-remove comments if possible.
+  + "j" -- Auto-remove comments if possible.
+  - "2" -- I'm not in gradeschool anymore
+
 -- Vim specific
 vim.opt.timeoutlen = 2000
 --vim.opt.omnifunc=syntaxcomplete#Complete
@@ -29,7 +42,6 @@ vim.opt.splitright = true
 vim.opt.termguicolors = true
 vim.opt.title = true
 --vim.opt.ruler=false
-
 --vim.opt.viminfo='5000,:5000,@5000,/5000,h
 
 --set whichwrap=<,>,h,l,[,]         -- move freely between lines (wrap)
@@ -47,7 +59,7 @@ vim.opt.undofile = true
 vim.opt.spellfile = "~/.config/nvim/spell/en.utf-8.add"
 
 -- Clipboard
-vim.opt.clipboard:append({ "unnamedplus" })
+vim.opt.clipboard = "unnamedplus"
 
 -- Search
 vim.opt.gdefault = true
@@ -58,8 +70,12 @@ vim.opt.grepprg = "rg --vimgrep"
 -- Indentation
 vim.opt.autoindent = true
 vim.opt.smartindent = true
+vim.opt.breakindent = true
+vim.opt.showbreak = "> "
+
+-- Tabs
 vim.opt.expandtab = true
-vim.opt.softtabstop = 0
+vim.opt.softtabstop = 2
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 
