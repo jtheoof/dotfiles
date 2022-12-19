@@ -11,6 +11,9 @@ nvim_tree.setup({
     "alpha",
   },
   sync_root_with_cwd = false,
+  git = {
+    ignore = false,
+  },
   diagnostics = {
     enable = true,
   },
