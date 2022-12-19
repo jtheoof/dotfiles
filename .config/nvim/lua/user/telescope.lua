@@ -5,6 +5,7 @@ local actions = require("telescope.actions")
 local keymap_opt = { silent = true, noremap = true }
 
 vim.keymap.set("n", "<Leader>ff", builtin.find_files, keymap_opt)
+vim.keymap.set("n", "<Leader>fd", builtin.diagnostics, keymap_opt)
 vim.keymap.set("n", "<Leader>fg", builtin.live_grep, keymap_opt)
 vim.keymap.set("n", "<Leader>fG", builtin.git_files, keymap_opt)
 vim.keymap.set("n", "<Leader>fb", builtin.buffers, keymap_opt)
@@ -16,7 +17,6 @@ vim.keymap.set("n", "<Leader>fq", builtin.quickfix, keymap_opt)
 vim.keymap.set("n", "<Leader>fk", builtin.keymaps, keymap_opt)
 vim.keymap.set("n", "<Leader>lr", builtin.lsp_references, keymap_opt)
 vim.keymap.set("n", "<Leader>ls", builtin.lsp_workspace_symbols, keymap_opt)
-vim.keymap.set("n", "<Leader>fd", builtin.diagnostics, keymap_opt)
 
 vim.keymap.set("n", "<F2>", builtin.buffers, keymap_opt)
 vim.keymap.set("n", "<F3>", builtin.find_files, keymap_opt)
