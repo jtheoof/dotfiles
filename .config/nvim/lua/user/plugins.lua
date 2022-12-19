@@ -68,6 +68,7 @@ return packer.startup(function(use)
   use({
     "neovim/nvim-lspconfig", -- Collection of common configurations for the Nvim LSP client
     "williamboman/mason.nvim", -- Portable package manager for Neovim that runs everywhere Neovim runs.
+    "folke/trouble.nvim",
     "j-hui/fidget.nvim", -- Visualize lsp progress
     config = function()
       require("fidget").setup()
