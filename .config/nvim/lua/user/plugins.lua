@@ -30,6 +30,9 @@ return packer.startup(function(use)
   use("tpope/vim-unimpaired")
   use("windwp/nvim-autopairs")
 
+  -- Dashboard
+  use("glepnir/dashboard-nvim")
+
   -- completion
   use({
     "hrsh7th/nvim-cmp", -- The completion plugin
