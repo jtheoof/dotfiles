@@ -3,8 +3,6 @@ vim.cmd([[
   augroup _general_settings
     autocmd!
     autocmd FileType qf,help,netrw,lspinfo,fugitiveblame,tsplayground nnoremap <silent> <buffer> q :close<CR>
-    autocmd InsertEnter * set cursorline
-    autocmd InsertLeave * set nocursorline
     autocmd FocusLost * execute ":silent! wa"
   augroup end
   augroup packer_user_config
