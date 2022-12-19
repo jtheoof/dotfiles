@@ -173,6 +173,7 @@ keymap("n", "<Leader>sc", ":lua ReloadConfig()<CR>", { silent = false })
 nmap("<Leader>d$", ":StripWhitespace<CR>")
 
 -- Quick toggles
+nmap("<Leader>tb", ":TroubleToggle<CR>")
 nmap("<Leader>ti", ":set ignorecase!<CR>")
 nmap("<Leader>ts", ":set spell!<CR>")
 nmap("<Leader>tt", ":TSPlaygroundToggle<CR>")
