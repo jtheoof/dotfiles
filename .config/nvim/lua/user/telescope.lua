@@ -15,8 +15,8 @@ vim.keymap.set("n", "<Leader>ft", builtin.treesitter, keymap_opt)
 vim.keymap.set("n", "<Leader>fc", builtin.commands, keymap_opt)
 vim.keymap.set("n", "<Leader>fq", builtin.quickfix, keymap_opt)
 vim.keymap.set("n", "<Leader>fk", builtin.keymaps, keymap_opt)
-vim.keymap.set("n", "<Leader>lr", builtin.lsp_references, keymap_opt)
-vim.keymap.set("n", "<Leader>ls", builtin.lsp_workspace_symbols, keymap_opt)
+vim.keymap.set("n", "<Leader>fR", builtin.lsp_references, keymap_opt)
+vim.keymap.set("n", "<Leader>fS", builtin.lsp_workspace_symbols, keymap_opt)
 
 vim.keymap.set("n", "<F2>", builtin.buffers, keymap_opt)
 vim.keymap.set("n", "<F3>", builtin.find_files, keymap_opt)
@@ -129,6 +129,7 @@ telescope.setup({
     },
     git_files = {
       previewer = false,
+      show_untracked = true,
     },
     buffers = {
       sort_mru = true,
