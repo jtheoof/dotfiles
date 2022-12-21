@@ -80,6 +80,7 @@ return packer.startup(function(use)
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig", -- Collection of common configurations for the Nvim LSP client
     "folke/trouble.nvim",
+    "glepnir/lspsaga.nvim",
     "simrat39/symbols-outline.nvim",
     "j-hui/fidget.nvim", -- Visualize lsp progress
     config = function()

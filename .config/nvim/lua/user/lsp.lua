@@ -5,11 +5,11 @@ local lspconfig = require("lspconfig")
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<Leader>dd", vim.diagnostic.open_float, opts)
+-- vim.keymap.set("n", "<Leader>dd", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "<Leader>dl", vim.diagnostic.setloclist, opts)
 vim.keymap.set("n", "<Leader>dq", vim.diagnostic.setqflist, opts)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+-- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+-- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -20,8 +20,23 @@ local on_attach = function(_, bufnr)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+  vim.keymap.set("n", "gd", "<Cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
+  -- vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
+  vim.keymap.set("n", "gp", "<Cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
+  -- vim.keymap.set("n", "gi", "<Cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
+  vim.keymap.set("n", "<Leader>ca", "<Cmd>Lspsaga code_action<CR>", opts) -- see available code actions
+  vim.keymap.set("n", "<M-Enter>", "<Cmd>Lspsaga code_action<CR>", opts)
+  vim.keymap.set("n", "<Leader>lr", "<Cmd>Lspsaga rename<CR>", opts) -- smart rename
+  vim.keymap.set("n", "<Leader>D", "<Cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
+  vim.keymap.set("n", "<Leader>dd", "<Cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
+  vim.keymap.set("n", "[d", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
+  vim.keymap.set("n", "]d", "<Cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
+  vim.keymap.set("n", "K", "<Cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
+  -- vim.keymap.set("n", "<Leader>o", "<Cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
+
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+  -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
@@ -30,14 +45,13 @@ local on_attach = function(_, bufnr)
   vim.keymap.set("n", "<Leader>wl", function()
     print(vim.inspect(vim.lsp.buf.list_workLeader_folders()))
   end, bufopts)
-  vim.keymap.set("n", "<Leader>D", vim.lsp.buf.type_definition, bufopts)
+  -- vim.keymap.set("n", "<Leader>D", vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, bufopts)
-  vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
+  -- vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "<Leader>F", function()
     vim.lsp.buf.format({ async = true })
   end, bufopts)
 
-  vim.keymap.set("n", "<M-Enter>", ":CodeActionMenu<CR>", opts)
 end
 
 local lsp_flags = {
