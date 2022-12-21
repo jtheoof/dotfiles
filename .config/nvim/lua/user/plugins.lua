@@ -76,8 +76,9 @@ return packer.startup(function(use)
 
   -- LSP
   use({
-    "neovim/nvim-lspconfig", -- Collection of common configurations for the Nvim LSP client
     "williamboman/mason.nvim", -- Portable package manager for Neovim that runs everywhere Neovim runs.
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig", -- Collection of common configurations for the Nvim LSP client
     "folke/trouble.nvim",
     "simrat39/symbols-outline.nvim",
     "j-hui/fidget.nvim", -- Visualize lsp progress
