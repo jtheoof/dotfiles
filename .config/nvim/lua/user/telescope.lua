@@ -1,11 +1,32 @@
 local telescope = require("telescope")
+local config = require("telescope.config")
 local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
 
 local keymap_opt = { silent = true, noremap = true }
 
+-- Clone the default Telescope configuration
+local vimgrep_arguments = { unpack(config.values.vimgrep_arguments) }
+-- I want to search in hidden/dot files.
+table.insert(vimgrep_arguments, "--hidden")
+-- I don't want to search in the `.git` directory.
+table.insert(vimgrep_arguments, "--glob")
+table.insert(vimgrep_arguments, "!**/.git/*")
+
+local extended = {}
+
+extended.git_or_find_files = function()
+  local opts = {} -- define here if you want to define something
+  vim.fn.system("git rev-parse --is-inside-work-tree")
+  if vim.v.shell_error == 0 then
+    builtin.git_files(opts)
+  else
+    builtin.find_files(opts)
+  end
+end
+
 vim.keymap.set("n", "<Leader>fa", builtin.find_files, keymap_opt)
-vim.keymap.set("n", "<Leader>ff", builtin.git_files, keymap_opt)
+vim.keymap.set("n", "<Leader>ff", extended.git_or_find_files, keymap_opt)
 vim.keymap.set("n", "<Leader>fd", builtin.diagnostics, keymap_opt)
 vim.keymap.set("n", "<Leader>fg", builtin.live_grep, keymap_opt)
 vim.keymap.set("n", "<Leader>fb", builtin.buffers, keymap_opt)
@@ -43,6 +64,8 @@ telescope.setup({
     },
 
     sorting_strategy = "ascending",
+
+    vimgrep_arguments = vimgrep_arguments,
 
     mappings = {
       i = {
@@ -126,6 +149,8 @@ telescope.setup({
     find_files = {
       hidden = true,
       previewer = false,
+      -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+      find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
     },
     git_files = {
       previewer = false,
