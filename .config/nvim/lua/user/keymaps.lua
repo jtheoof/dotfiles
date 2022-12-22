@@ -53,6 +53,9 @@ vim.cmd([[
   nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 ]])
 
+-- Strip all trailing whitespace in the current file
+nmap("dW", ":StripWhitespace<CR>")
+
 nmap("-", ":NvimTreeToggle<CR>")
 nmap("<C-b>", ":NvimTreeToggle<CR>")
 
@@ -172,9 +175,6 @@ nmap("<Leader>ent", ":edit ~/.config/nvim/lua/user/telescope.lua<CR>")
 
 -- Reload configuration
 keymap("n", "<Leader>sc", ":lua ReloadConfig()<CR>", { silent = false })
-
--- Strip all trailing whitespace in the current file
-nmap("<Leader>d$", ":StripWhitespace<CR>")
 
 -- Quick toggles
 nmap("<Leader>tb", ":TroubleToggle<CR>")
