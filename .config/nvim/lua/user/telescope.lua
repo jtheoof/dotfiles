@@ -2,6 +2,7 @@ local telescope = require("telescope")
 local config = require("telescope.config")
 local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
+local action_layout = require("telescope.actions.layout")
 
 local keymap_opt = { silent = true, noremap = true }
 
@@ -26,18 +27,22 @@ extended.git_or_find_files = function()
 end
 
 vim.keymap.set("n", "<Leader>fa", builtin.find_files, keymap_opt)
-vim.keymap.set("n", "<Leader>ff", extended.git_or_find_files, keymap_opt)
-vim.keymap.set("n", "<Leader>fd", builtin.diagnostics, keymap_opt)
-vim.keymap.set("n", "<Leader>fg", builtin.live_grep, keymap_opt)
 vim.keymap.set("n", "<Leader>fb", builtin.buffers, keymap_opt)
+vim.keymap.set("n", "<Leader>fc", builtin.commands, keymap_opt)
+vim.keymap.set("n", "<Leader>fd", builtin.diagnostics, keymap_opt)
+vim.keymap.set("n", "<Leader>ff", extended.git_or_find_files, keymap_opt)
+vim.keymap.set("n", "<Leader>fg", builtin.live_grep, keymap_opt)
 vim.keymap.set("n", "<Leader>fh", builtin.help_tags, keymap_opt)
+vim.keymap.set("n", "<Leader>fi", builtin.git_files, keymap_opt)
+vim.keymap.set("n", "<Leader>fk", builtin.keymaps, keymap_opt)
+vim.keymap.set("n", "<Leader>fq", builtin.quickfix, keymap_opt)
 vim.keymap.set("n", "<Leader>fr", telescope.extensions.frecency.frecency, keymap_opt)
 vim.keymap.set("n", "<Leader>ft", builtin.treesitter, keymap_opt)
-vim.keymap.set("n", "<Leader>fc", builtin.commands, keymap_opt)
-vim.keymap.set("n", "<Leader>fq", builtin.quickfix, keymap_opt)
-vim.keymap.set("n", "<Leader>fk", builtin.keymaps, keymap_opt)
+
 vim.keymap.set("n", "<Leader>fR", builtin.lsp_references, keymap_opt)
 vim.keymap.set("n", "<Leader>fS", builtin.lsp_workspace_symbols, keymap_opt)
+
+vim.keymap.set("n", "<Leader>f/", builtin.current_buffer_fuzzy_find, keymap_opt)
 
 vim.keymap.set("n", "<F2>", builtin.buffers, keymap_opt)
 vim.keymap.set("n", "<F3>", builtin.find_files, keymap_opt)
@@ -70,10 +75,11 @@ telescope.setup({
     mappings = {
       i = {
         ["<Esc>"] = actions.close,
+        ["<C-c>"] = actions.close,
 
+        -- Cycle history navigation
         ["<C-n>"] = actions.cycle_history_next,
         ["<C-p>"] = actions.cycle_history_prev,
-
         ["<A-Up>"] = actions.cycle_history_prev,
         ["<A-Down>"] = actions.cycle_history_next,
         ["<C-Up>"] = actions.cycle_history_prev,
@@ -81,8 +87,7 @@ telescope.setup({
 
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
-
-        ["<C-c>"] = actions.close,
+        ["<C-e>"] = action_layout.toggle_preview,
 
         ["<Down>"] = actions.move_selection_next,
         ["<Up>"] = actions.move_selection_previous,
@@ -91,11 +96,15 @@ telescope.setup({
 
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
+        ["<C-F11>"] = actions.select_horizontal,
+        ["<C-F12>"] = actions.select_vertical,
         ["<F36>"] = actions.select_vertical,
         ["<F35>"] = actions.select_horizontal,
         ["<C-t>"] = actions.select_tab,
 
+        ["<C-d>"] = actions.delete_buffer,
         ["<C-u>"] = false,
+        ["<C-BS>"] = actions.delete_buffer,
 
         ["<PageUp>"] = actions.results_scrolling_up,
         ["<PageDown>"] = actions.results_scrolling_down,
