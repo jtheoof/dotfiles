@@ -5,11 +5,6 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup({
   disable_netrw = true,
-  ignore_ft_on_setup = {
-    "startify",
-    "dashboard",
-    "alpha",
-  },
   sync_root_with_cwd = false,
   git = {
     ignore = false,
