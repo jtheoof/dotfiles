@@ -1,8 +1,10 @@
 [Default]
 save_dir=$HOME/Pictures
-line_size=5
-show_panel=false
-text_size=20
-text_font=monospace
 save_filename_format=screenshot-%Y%m%d-%H%M%S.png
+line_size=5
+text_font=monospace
+text_size=25
+show_panel=false
+paint_mode=Brush
 early_exit=true
+fill_shape=true
