@@ -36,7 +36,6 @@ return packer.startup(function(use)
   -- completion
   use({
     "hrsh7th/nvim-cmp", -- The completion plugin
-    "hrsh7th/cmp-nvim-lsp", -- The LSP plugin
     "hrsh7th/cmp-buffer", -- buffer completions
     "hrsh7th/cmp-path", -- path completions
     "hrsh7th/cmp-cmdline", -- cmdline completions
@@ -72,20 +71,6 @@ return packer.startup(function(use)
       "nvim-tree/nvim-web-devicons", -- optional, for file icons
     },
     tag = "nightly", -- optional, updated every week. (see issue #1193)
-  })
-
-  -- LSP
-  use({
-    "williamboman/mason.nvim", -- Portable package manager for Neovim that runs everywhere Neovim runs.
-    "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig", -- Collection of common configurations for the Nvim LSP client
-    "folke/trouble.nvim",
-    "glepnir/lspsaga.nvim",
-    "simrat39/symbols-outline.nvim",
-    "j-hui/fidget.nvim", -- Visualize lsp progress
-    config = function()
-      require("fidget").setup()
-    end,
   })
 
   -- Firefox
