@@ -1,7 +1,8 @@
-local nvim_tree = require("nvim-tree")
-local nvim_tree_config = require("nvim-tree.config")
+local nvim_tree = _G.safe_require("nvim-tree")
 
-local tree_cb = nvim_tree_config.nvim_tree_callback
+if (nvim_tree == nil) then
+    return
+end
 
 nvim_tree.setup({
   disable_netrw = true,
