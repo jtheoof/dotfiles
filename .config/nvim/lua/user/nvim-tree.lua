@@ -18,14 +18,6 @@ nvim_tree.setup({
     update_root = false,
     ignore_list = {},
   },
-  view = {
-    mappings = {
-      custom_only = false,
-      list = {
-        { key = "<Space>", cb = tree_cb("preview") },
-      },
-    },
-  },
   renderer = {
     highlight_git = true,
   },
