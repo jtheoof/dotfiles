@@ -2,9 +2,9 @@
 debug: false
 wait: true
 timeouts:
-    - timeout: 300
-      command: "swaylock -f"
-    - timeout: 900
-      command: 'swaymsg "output * dpms off"'
+  - timeout: 300
+    command: "swaylock -f"
+  - timeout: 900
+    command: 'swaymsg "output * dpms off"'
 resume: 'swaymsg "output * dpms on"'
 before-sleep: "swaylock -f"

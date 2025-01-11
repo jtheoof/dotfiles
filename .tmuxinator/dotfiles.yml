@@ -1,6 +1,6 @@
 project_name: dotfiles
 project_root: ~/.dotfiles
-rvm: 
+rvm:
 pre:
 tabs:
   - shell:

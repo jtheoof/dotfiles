@@ -6,5 +6,5 @@ tabs:
   - code:
       layout: even-horizontal
       panes:
-        - #emty
-        - #emty
+        -  #emty
+        -  #emty

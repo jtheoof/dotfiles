@@ -1,6 +1,6 @@
 project_name: bina
 project_root: ~/dev/bina
-rvm: 
+rvm:
 pre:
 tabs:
   - editor: vim -c OpenSession bina

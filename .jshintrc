@@ -1,96 +1,97 @@
 {
-    /* Enforcing Options {{{ */
+  /* Enforcing Options {{{ */
 
-    "bitwise": true,
-    "camelcase": true,
-    "curly": true,
-    "eqeqeq": true,
-    "forin": true,
-    "immed": true,
-    /*"indent": 4,*/
-    "latedef": true,
-    "newcap": true,
-    "noarg": true,
-    "noempty": true,
-    "nonew": false,
-    "plusplus": false,
-    "quotmark": false,
-    "undef": false,
-    "unused": true,
-    "strict": false,
-    "trailing": true,
-    "maxparams": false,
-    "maxdepth": false,
-    "maxstatements": false,
-    "maxcomplexity": false,
-    "maxlen": false,
-    "maxerr": 50,
+  "bitwise": true,
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "forin": true,
+  "immed": true,
+  /*"indent": 4,*/
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "noempty": true,
+  "nonew": false,
+  "plusplus": false,
+  "quotmark": false,
+  "undef": false,
+  "unused": true,
+  "strict": false,
+  "trailing": true,
+  "maxparams": false,
+  "maxdepth": false,
+  "maxstatements": false,
+  "maxcomplexity": false,
+  "maxlen": false,
+  "maxerr": 50,
 
-    /* }}} */
-    /* Relaxing Options {{{ */
+  /* }}} */
+  /* Relaxing Options {{{ */
 
-    "asi": false,
-    "boss": false,
-    "debug": false,
-    "eqnull": false,
-    "es5": true,
-    "esnext": false,
-    "evil": false,
-    "expr": false,
-    "funcscope": false,
-    "globalstrict": false,
-    "iterator": false,
-    "lastsemic": false,
-    "laxbreak": true,
-    "laxcomma": false,
-    "loopfunc": false,
-    "multistr": false,
-    "proto": false,
-    "scripturl": false,
-    "smarttabs": false,
-    "shadow": false,
-    "sub": false,
-    "supernew": false,
-    "validthis": false,
+  "asi": false,
+  "boss": false,
+  "debug": false,
+  "eqnull": false,
+  "es5": true,
+  "esnext": false,
+  "evil": false,
+  "expr": false,
+  "funcscope": false,
+  "globalstrict": false,
+  "iterator": false,
+  "lastsemic": false,
+  "laxbreak": true,
+  "laxcomma": false,
+  "loopfunc": false,
+  "multistr": false,
+  "proto": false,
+  "scripturl": false,
+  "smarttabs": false,
+  "shadow": false,
+  "sub": false,
+  "supernew": false,
+  "validthis": false,
 
-    /* }}} */
-    /* Environments {{{ */
+  /* }}} */
+  /* Environments {{{ */
 
-    "browser": true,
-    "couch": false,
-    "devel": true,
-    "dojo": false,
-    "jquery": true,
-    "mootools": false,
-    "node": true,
-    "nonstandard": true,
-    "prototypejs": false,
-    "rhino": false,
-    "worker": false,
-    "wsh": false,
-    "yui": false,
+  "browser": true,
+  "couch": false,
+  "devel": true,
+  "dojo": false,
+  "jquery": true,
+  "mootools": false,
+  "node": true,
+  "nonstandard": true,
+  "prototypejs": false,
+  "rhino": false,
+  "worker": false,
+  "wsh": false,
+  "yui": false,
 
-    /* }}} */
-    /* Legacy {{{ */
+  /* }}} */
+  /* Legacy {{{ */
 
-    "nomen": false,
-    "onevar": false,
-    "passfail": false,
-    "white": false,
+  "nomen": false,
+  "onevar": false,
+  "passfail": false,
+  "white": false,
 
-    /* }}} */
-    /* Predefined Globals {{{ */
+  /* }}} */
+  /* Predefined Globals {{{ */
 
-    "predef": [
-        "_",
-        "sprintf",
-        "jQuery", "$",
-        "google",
-        "underscore",
-        "Backbone",
-        "define",
-        "require"
-    ]
+  "predef": [
+    "_",
+    "sprintf",
+    "jQuery",
+    "$",
+    "google",
+    "underscore",
+    "Backbone",
+    "define",
+    "require"
+  ]
 
-    /* }}} */
+  /* }}} */
 }

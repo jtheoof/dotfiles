@@ -1,22 +1,22 @@
 * {
-    border: none;
-    border-radius: 0;
-    font-family: Waybar;
-    font-weight: 800;
-    font-size: 12px;
-    min-height: 0;
+  border: none;
+  border-radius: 0;
+  font-family: Waybar;
+  font-weight: 800;
+  font-size: 12px;
+  min-height: 0;
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 1);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: 0.5s;
+  background-color: rgba(43, 48, 59, 1);
+  border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+  color: #ffffff;
+  transition-property: background-color;
+  transition-duration: 0.5s;
 }
 
 window#waybar.hidden {
-    opacity: 0.2;
+  opacity: 0.2;
 }
 
 /*
@@ -29,36 +29,36 @@ window#waybar.solo {
 */
 
 window#waybar.chromium {
-    background-color: #000000;
-    border: none;
+  background-color: #000000;
+  border: none;
 }
 
 #workspaces button {
-    padding: 5px;
-    background-color: transparent;
-    color: #ffffff;
-    border-bottom: 3px solid transparent;
+  padding: 5px;
+  background-color: transparent;
+  color: #ffffff;
+  border-bottom: 3px solid transparent;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
-    box-shadow: inherit;
-    border-bottom: 3px solid #ffffff;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: inherit;
+  border-bottom: 3px solid #ffffff;
 }
 
 #workspaces button.focused {
-    background-color: #64727d;
-    border-bottom: 3px solid #ffffff;
+  background-color: #64727d;
+  border-bottom: 3px solid #ffffff;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+  background-color: #eb4d4b;
 }
 
 #mode {
-    background-color: #64727d;
-    border-bottom: 3px solid #ffffff;
+  background-color: #64727d;
+  border-bottom: 3px solid #ffffff;
 }
 
 #clock,
@@ -73,83 +73,83 @@ window#waybar.chromium {
 #tray,
 #mode,
 #idle_inhibitor {
-    padding: 10px;
-    color: #ffffff;
-    background-color: transparent;
+  padding: 10px;
+  color: #ffffff;
+  background-color: transparent;
 }
 
 #memory.warning,
 #cpu.warning,
 #temperature.warning {
-    background-color: orange;
+  background-color: orange;
 }
 
 #memory.critical,
 #cpu.critical,
 #temperature.critical {
-    background-color: red;
+  background-color: red;
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #000000;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 #battery.charging {
-    color: #ffffff;
-    background-color: #26a65b;
+  color: #ffffff;
+  background-color: #26a65b;
 }
 
 @keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
+  to {
+    background-color: #ffffff;
+    color: #000000;
+  }
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  background-color: #f53c3c;
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 label:focus {
-    background-color: #000000;
+  background-color: #000000;
 }
 
 #backlight {
-    background-color: #90b1b1;
+  background-color: #90b1b1;
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+  background-color: #f53c3c;
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+  background-color: #90b1b1;
+  color: #2a5c45;
 }
 
 #custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
+  background-color: #66cc99;
+  color: #2a5c45;
+  min-width: 100px;
 }
 
 #custom-media.custom-spotify {
-    background-color: #66cc99;
+  background-color: #66cc99;
 }
 
 #custom-media.custom-vlc {
-    background-color: #ffa000;
+  background-color: #ffa000;
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+  background-color: #eb4d4b;
 }
 
 #idle_inhibitor.deactivated {
@@ -159,18 +159,18 @@ label:focus {
 }
 
 #mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
+  background-color: #66cc99;
+  color: #2a5c45;
 }
 
 #mpd.disconnected {
-    background-color: #f53c3c;
+  background-color: #f53c3c;
 }
 
 #mpd.stopped {
-    background-color: #90b1b1;
+  background-color: #90b1b1;
 }
 
 #mpd.paused {
-    background-color: #51a37a;
+  background-color: #51a37a;
 }

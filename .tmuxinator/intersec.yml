@@ -12,16 +12,16 @@ tabs:
   - mmsx:
       layout: even-horizontal
       panes:
-        - #empty
-        - #empty
+        -  #empty
+        -  #empty
   - logs:
-     layout: even-horizontal
-     panes:
+      layout: even-horizontal
+      panes:
         - tail -F /var/log/apache2/access*.log
         - tail -F /var/log/apache2/error*.log
   - dotfiles:
-     layout: even-horizontal
-     panes:
+      layout: even-horizontal
+      panes:
         - git-unset; cd ~/.dotfiles
         - git-unset; cd ~/.dotfiles
   - ssh: ssh jeremy@basaidai
