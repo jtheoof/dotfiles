@@ -25,25 +25,22 @@ function _G.safe_reload(module)
 	return safe_require(module)
 end
 
-require("user/plugins")
 require("user/options")
 require("user/reload")
+require("user/keymaps")
 require("user/autocommands")
 require("user/neovide")
 
+require("user/lazy")
+
 -- Plugins
-require("user/lualine")
-require("user/cmp")
-require("user/comment")
+-- require("user/plugins")
+-- require("user/lualine")
+-- require("user/cmp")
+-- require("user/comment")
 -- require("user/dashboard")
-require("user/firenvim")
-require("user/nvim-autopairs")
-require("user/nvim-tree")
-require("user/telescope")
-require("user/treesitter")
-
--- Keymaps
-require("user/keymaps")
-
--- Colorscheme
-require("user/colorscheme")
+-- require("user/nvim-autopairs")
+-- require("user/nvim-tree")
+-- require("user/telescope")
+-- require("user/treesitter")
+-- require("user/colorscheme")

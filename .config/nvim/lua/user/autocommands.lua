@@ -5,10 +5,6 @@ vim.cmd([[
     autocmd FileType qf,help,netrw,lspinfo,fugitiveblame,tsplayground nnoremap <silent> <buffer> q :close<CR>
     autocmd FocusLost * execute ":silent! wa"
   augroup end
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
   augroup _git
     autocmd!
     autocmd FileType gitcommit setlocal wrap

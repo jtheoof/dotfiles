@@ -16,4 +16,4 @@ jobs:
           sed -i 's/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers # Enable wheel users to run sudo commands without password
       - name: Install
         run: |
-          sudo -u jtheoof bash -c "cd && ${GITHUB_WORKSPACE}/install.sh"
+          sudo -u jtheoof bash -e -c "cd && ${GITHUB_WORKSPACE}/install.sh"

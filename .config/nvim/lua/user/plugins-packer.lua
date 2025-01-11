@@ -13,7 +13,7 @@ return packer.startup(function(use)
   use("wbthomason/packer.nvim")
 
   -- colorscheme
-  use("shaunsingh/nord.nvim") -- https://github.com/shaunsingh/nord.nvim
+  use("") -- https://github.com/shaunsingh/nord.nvim
   use("nvim-lualine/lualine.nvim") -- https://github.com/nvim-lualine/lualine.nvim
 
   -- utils
@@ -70,13 +70,5 @@ return packer.startup(function(use)
     requires = {
       "nvim-tree/nvim-web-devicons", -- optional, for file icons
     }
-  })
-
-  -- Firefox
-  use({
-    "glacambre/firenvim",
-    run = function()
-      vim.fn["firenvim#install"](0)
-    end,
   })
 end)

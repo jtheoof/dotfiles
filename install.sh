@@ -345,13 +345,7 @@ install_vim_bundles() {
 
 install_neovim_plugins() {
   print_info "installing neovim plugins..."
-  if [ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]; then
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-  else
-    print_info "packer already found skipping packer install"
-  fi
-
-  nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+  timeout 1m nvim --headless -c 'quitall'
 }
 
 install_plist_launchd_darwin() {
@@ -431,11 +425,10 @@ install_all() {
     cd $FILESPATH
   fi
   install_platform
-  install_dotfiles
-  install_tmux_plugins
-  #install_vim_bundles
-  #install_neovim_plugins
-  install_oh_my_zsh
+  #install_dotfiles
+  #install_tmux_plugins
+  install_neovim_plugins
+  #install_oh_my_zsh
 }
 
 if [[ -n $command ]]; then
