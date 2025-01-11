@@ -433,8 +433,8 @@ install_all() {
   install_platform
   install_dotfiles
   install_tmux_plugins
-  install_vim_bundles
-  install_neovim_plugins
+  #install_vim_bundles
+  #install_neovim_plugins
   install_oh_my_zsh
 }
 
