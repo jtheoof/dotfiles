@@ -56,6 +56,7 @@ vim.opt.swapfile = false
 vim.opt.undofile = true
 
 -- Spelling
+vim.opt.spell = false
 vim.opt.spellfile = "~/.config/nvim/spell/en.utf-8.add"
 
 -- Clipboard
