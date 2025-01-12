@@ -345,7 +345,7 @@ install_vim_bundles() {
 
 install_neovim_plugins() {
   print_info "installing neovim plugins..."
-  timeout 1m nvim --headless -c 'quitall'
+  nvim --headless "+Lazy! sync" +qa
 }
 
 install_plist_launchd_darwin() {
@@ -425,10 +425,10 @@ install_all() {
     cd $FILESPATH
   fi
   install_platform
-  #install_dotfiles
-  #install_tmux_plugins
+  install_dotfiles
+  install_tmux_plugins
   install_neovim_plugins
-  #install_oh_my_zsh
+  install_oh_my_zsh
 }
 
 if [[ -n $command ]]; then
