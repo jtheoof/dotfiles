@@ -1,5 +1,5 @@
 if vim.fn.exists("g:neovide") then
-  local default_font_size = 10
+  local default_font_size = 12
   local guifontsize = default_font_size
   local guifont = "CaskaydiaCove Nerd Font"
 
