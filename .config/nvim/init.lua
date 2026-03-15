@@ -2,45 +2,383 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- @USAGE:
--- local foo = safe_require('foo')
--- if not foo then return end
-_G.safe_require = function(module_name)
-	local package_exists, module = pcall(require, module_name)
-	if not package_exists then
-		vim.defer_fn(function()
-			vim.schedule(function()
-				vim.notify('Could not load module: ' .. module_name, 'error', { title = 'Module Not Found' })
-			end)
-		end, 1000)
-		return nil
-	else
-		return module
-	end
+-- Options {{{
+
+-- Vim Options {{{
+
+-- Text editing
+vim.opt.autowrite = true
+vim.opt.autowriteall = true
+vim.opt.formatoptions = "tcqrn1j"
+vim.opt.cmdheight = 1
+vim.opt.wrap = false
+
+-- Format Options
+vim.opt.formatoptions = vim.opt.formatoptions
+  - "a" -- Auto formatting is BAD.
+  - "t" -- Don't auto format my code. I got linters for that.
+  + "c" -- In general, I like it when comments respect textwidth
+  + "q" -- Allow formatting comments w/ gq
+  - "o" -- O and o, don't continue comments
+  + "r" -- But do continue when pressing enter.
+  + "n" -- Indent past the formatlistpat, not underneath it.
+  + "j" -- Auto-remove comments if possible.
+  + "j" -- Auto-remove comments if possible.
+  - "2" -- I'm not in gradeschool anymore
+
+-- Vim specific
+vim.opt.timeoutlen = 2000
+--vim.opt.omnifunc=syntaxcomplete#Complete
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
+-- Display
+vim.opt.diffopt:append({ "vertical" })
+
+vim.opt.cursorline = true
+vim.opt.foldlevel = 0
+vim.opt.foldmethod = "marker"
+vim.opt.lazyredraw = true
+vim.opt.number = true
+vim.opt.scrolloff = 3
+vim.opt.shortmess = "atToO"
+vim.opt.showcmd = true
+vim.opt.showmode = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.termguicolors = true
+vim.opt.title = true
+--vim.opt.ruler=false
+--vim.opt.viminfo='5000,:5000,@5000,/5000,h
+
+--set whichwrap=<,>,h,l,[,]         -- move freely between lines (wrap)
+--vim.opt.wildchar=<Tab> wildmenu wildmode=full
+--vim.opt.wildcharm=<C-Z>
+--vim.opt.wildmode=longest,full
+
+-- Backup
+vim.opt.backup = false
+vim.opt.wb = true
+vim.opt.swapfile = false
+vim.opt.undofile = true
+
+-- Spelling
+vim.opt.spell = false
+vim.opt.spellfile = "~/.config/nvim/spell/en.utf-8.add"
+
+-- Clipboard
+vim.opt.clipboard = "unnamedplus"
+
+-- Search
+vim.opt.gdefault = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.grepprg = "rg --vimgrep"
+
+-- Indentation
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.breakindent = true
+vim.opt.showbreak = "> "
+
+-- Tabs
+vim.opt.expandtab = true
+vim.opt.softtabstop = 2
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+
+-- Tags
+vim.opt.tags = "./tags;/"
+
+-- List invisible chars
+vim.opt.listchars = { tab = "▸ ", trail = "—", extends = ">", precedes = "<", nbsp = "¤" }
+vim.opt.list = true
+
+-- Leader
+vim.g.mapleader = ","
+vim.g.maplocalleader = "\\"
+
+-- }}}
+-- Plugin Options {{{
+-- netrw {{{
+
+vim.g.netrw_keepdir = 0
+vim.g.netrw_sort_options = "i"
+vim.g.netrw_liststyle = 3
+vim.g.netrw_banner = 1
+vim.g.netrw_browse_split = 4
+vim.g.netrw_altv = 1
+vim.g.netrw_winsize = 25
+
+-- }}}
+-- ntpeters/vim-better-whitespace {{{
+
+vim.g.better_whitespace_enabled = 0
+
+-- }}}
+-- christoomey/vim-tmux-navigator {{{
+
+vim.g.tmux_navigator_no_mappings = 1
+vim.g.tmux_navigator_save_on_switch = 2
+
+-- }}}
+-- }}}
+
+-- }}}
+-- Keymaps {{{
+
+-- Helper Functions {{{
+
+function vim.get_visual_selection()
+  vim.cmd('noau normal! "vy"')
+  local text = vim.fn.getreg("v")
+  vim.fn.setreg("v", {})
+
+  text = string.gsub(text, "\n", "")
+  if #text > 0 then
+    return text
+  else
+    return ""
+  end
 end
 
--- @USAGE: :lua safe_reload('foo')
-function _G.safe_reload(module)
-	package.loaded[module] = nil
-	return safe_require(module)
+local function map(mode, shortcut, command)
+  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
 
-require("user/options")
-require("user/reload")
-require("user/keymaps")
-require("user/autocommands")
-require("user/neovide")
+-- Shorten function name
+local keymap = vim.api.nvim_set_keymap
+
+local function nmap(shortcut, command)
+  map("n", shortcut, command)
+end
+
+local function imap(shortcut, command)
+  map("i", shortcut, command)
+end
+
+local function vmap(shortcut, command)
+  map("v", shortcut, command)
+end
+
+local function xmap(shortcut, command)
+  map("x", shortcut, command)
+end
+
+local function cmap(shortcut, command)
+  map("c", shortcut, command)
+end
+
+local function tmap(shortcut, command)
+  map("t", shortcut, command)
+end
+
+-- }}}
+-- Normal Mode {{{
+
+-- Quickly select pasted test remembering the selection type
+-- Not sure how to translate this to lua code
+vim.cmd([[
+  nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+]])
+
+-- Strip all trailing whitespace in the current file
+nmap("dW", ":StripWhitespace<CR>")
+
+nmap("-", ":NvimTreeToggle<CR>")
+nmap("<C-b>", ":NvimTreeToggle<CR>")
+
+-- Normal wrapping navigation
+nmap("j", "gj")
+nmap("k", "gk")
+nmap("gj", "j")
+nmap("gk", "k")
+nmap("<Up>", "gk")
+nmap("<Down>", "gj")
+
+nmap("<C-Right>", "<C-w><Right>")
+nmap("<C-Left>", "<C-w><Left>")
+nmap("<C-Up>", "<C-w><Up>")
+nmap("<C-Down>", "<C-w><Down>")
+
+-- Pane splitting
+nmap("<C-F11>", ":split<CR>")
+nmap("<C-F12>", ":vsplit<CR>")
+-- Alacritty weirdness
+-- According to: nvim -V3log -c ':q' && rg '\[2[34];5~' log
+nmap("<F35>", ":split<CR>") -- <C-F11>
+nmap("<F36>", ":vsplit<CR>") -- <C-F12>
+
+-- Clear search
+nmap("<C-k>", ":set nohlsearch<CR>")
+
+-- Useful navigation
+nmap("<PageUp>", "<C-U>")
+nmap("<PageDown>", "<C-D>")
+nmap("<S-Down>", "<C-E>")
+nmap("<S-Up>", "<C-Y>")
+
+-- Make U more consistent with vim logic
+nmap("U", ":redo<CR>")
+nmap("ycf", ':let @* = expand("%:p")<CR>:let @+ = expand("%:p")<CR>')
+nmap("t", "yyp")
+
+-- Navigate back and forth like in a browser
+nmap("<A-Left>", "<C-o>")
+nmap("<A-Right>", "<C-i>")
+
+-- }}}
+-- Insert Mode {{{
+
+-- Move to first non-blank character
+imap("<Home>", "<Esc>^i")
+
+-- Save the file
+imap("<C-S>", "<Esc>:w<CR>a")
+
+imap("<C-Left>", "<Esc>bi")
+imap("<C-Right>", "<Esc>lea")
+imap("<S-Down>", "<Esc><C-E>a")
+imap("<S-Up>", "<Esc><C-Y>a")
+
+-- map control-backspace to delete the previous word
+imap("<C-BS>", "<C-W>")
+-- map control-del to remove word after cursor
+imap("<C-Del>", '<C-O>"_de')
+
+-- }}}
+-- Visual Mode {{{
+
+-- Better indentation
+vmap("<", "<gv")
+vmap(">", ">gv")
+vmap("<Tab>", ">gv")
+vmap("<S-Tab>", "<gv")
+
+-- Move text up and down
+xmap("J", ":move '>+1<CR>gv-gv")
+xmap("K", ":move '<-2<CR>gv-gv")
+xmap("<A-j>", ":move '>+1<CR>gv-gv")
+xmap("<A-k>", ":move '<-2<CR>gv-gv")
+xmap("<A-Down>", ":move '>+1<CR>gv-gv")
+xmap("<A-Up>", ":move '<-2<CR>gv-gv")
+xmap("<C-j>", ":move '>+1<CR>gv-gv")
+xmap("<C-k>", ":move '<-2<CR>gv-gv")
+xmap("<C-Down>", ":move '>+1<CR>gv-gv")
+xmap("<C-Up>", ":move '<-2<CR>gv-gv")
+
+-- Better paste
+vmap("p", '"_dP')
+
+-- }}}
+-- Command Mode {{{
+
+-- TODO Investigate: does not work
+cmap("<C-BS>", "<C-w>")
+
+-- }}}
+-- Terminal Mode {{{
+
+tmap("<Esc>", "<C-\\><C-n>")
+
+-- }}}
+-- Leader {{{
+
+nmap("<Leader><Leader>", ":wa<CR>")
+nmap("<Leader>w", ":w<CR>")
+nmap("<Leader>q", ":q!<CR>")
+nmap("<Leader>Q", ":qa!<CR>")
+
+-- Quick edit of common files
+nmap("<Leader>ea", ":edit ~/.config/alacritty/alacritty.yml<CR>")
+nmap("<Leader>eg", ":edit ~/.gitconfig<CR>")
+nmap("<Leader>et", ":edit ~/.config/tmux/tmux.conf<CR>")
+nmap("<Leader>ez", ":edit ~/.zshrc<CR>")
+nmap("<Leader>enn", ":edit ~/.config/nvim/init.lua<CR>")
+nmap("<Leader>ena", ":edit ~/.config/nvim/lua/user/autocommands.lua<CR>")
+nmap("<Leader>enk", ":edit ~/.config/nvim/lua/user/keymaps.lua<CR>")
+nmap("<Leader>enl", ":edit ~/.config/nvim/lua/user/lsp.lua<CR>")
+nmap("<Leader>eno", ":edit ~/.config/nvim/lua/user/options.lua<CR>")
+nmap("<Leader>enp", ":edit ~/.config/nvim/lua/user/plugins.lua<CR>")
+nmap("<Leader>ent", ":edit ~/.config/nvim/lua/user/telescope.lua<CR>")
+
+-- Reload configuration
+keymap("n", "<Leader>sc", ":lua ReloadConfig()<CR>", { silent = false })
+
+-- Quick toggles
+nmap("<Leader>tb", ":TroubleToggle<CR>")
+nmap("<Leader>ti", ":set ignorecase!<CR>")
+nmap("<Leader>ts", ":set spell!<CR>")
+nmap("<Leader>tt", ":TSPlaygroundToggle<CR>")
+nmap("<Leader>tl", ":set list!<CR>")
+nmap("<Leader>tw", ":set wrap!<CR>")
+nmap("<Leader>ty", ":SymbolsOutline<CR>")
+
+-- }}}
+-- Plugins {{{
+-- christoomey/vim-tmux-navigator {{{
+
+nmap("<C-Left>", ":<C-U>TmuxNavigateLeft<CR>")
+nmap("<C-Down>", ":<C-U>TmuxNavigateDown<CR>")
+nmap("<C-Up>", ":<C-U>TmuxNavigateUp<CR>")
+nmap("<C-Right>", ":<C-U>TmuxNavigateRight<CR>")
+
+-- }}}
+-- }}}
+
+-- }}}
+-- Autocommands {{{
+
+-- autocmd! remove all autocommands, if entered under a group it will clear that group
+vim.cmd([[
+  augroup _general_settings
+    autocmd!
+    autocmd FileType qf,help,netrw,lspinfo,fugitiveblame,tsplayground nnoremap <silent> <buffer> q :close<CR>
+    autocmd FocusLost * execute ":silent! wa"
+  augroup end
+  augroup _git
+    autocmd!
+    autocmd FileType gitcommit setlocal wrap
+  augroup end
+  augroup _markdown
+    autocmd!
+    autocmd FileType markdown setlocal wrap
+  augroup end
+]])
+
+-- }}}
+-- Plugins {{{
+
+-- Neovide {{{
+if vim.fn.exists("g:neovide") then
+  local default_font_size = 12
+  local guifontsize = default_font_size
+  local guifont = "CaskaydiaCove Nerd Font"
+
+  local function adjust_font_size(amount)
+    guifontsize = guifontsize + amount
+    vim.opt.guifont = { guifont, ":h" .. guifontsize }
+  end
+
+  local function reset_font_size()
+    guifontsize = default_font_size
+    adjust_font_size(0)
+  end
+
+  reset_font_size()
+
+  vim.keymap.set("n", "<C-->", function()
+    adjust_font_size(-2)
+  end)
+  vim.keymap.set("n", "<C-=>", function()
+    adjust_font_size(2)
+  end)
+  vim.keymap.set("n", "<C-0>", function()
+    reset_font_size()
+  end)
+end
+
+-- }}}
+
+-- }}}
 
 require("user/lazy")
-
--- Plugins
--- require("user/plugins")
--- require("user/lualine")
--- require("user/cmp")
--- require("user/comment")
--- require("user/dashboard")
--- require("user/nvim-autopairs")
--- require("user/nvim-tree")
--- require("user/telescope")
--- require("user/treesitter")
--- require("user/colorscheme")
