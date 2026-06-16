@@ -215,6 +215,10 @@ if [[ -s $HOME/.zshrc_work ]]; then
     source $HOME/.zshrc_work
 fi
 
+if (( $+commands[zoxide] )); then
+  eval "$(zoxide init zsh)"
+fi
+
 # }}}
 # Prompt {{{1
 
