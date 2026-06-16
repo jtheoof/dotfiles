@@ -149,7 +149,7 @@
 [pull]
 	rebase = true
 
-[includeIf "gitdir:~/dev/ubisoft/"]
+[includeIf "gitdir:~/dev/gitlab.ubiservices.ubi.com/"]
   path = .gitconfig-ubisoft
 [includeIf "gitdir:~/dev/gitlab-ncsa.ubisoft.org/"]
   path = .gitconfig-ubisoft
