@@ -47,7 +47,7 @@ path=(
     ~/.npm/bin
     ~/.rvm/bin
     ~/.krew/bin
+    ~/go/bin
     /usr/local/bin
     $path
 )
-
