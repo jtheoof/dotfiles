@@ -4,6 +4,8 @@ if [ -x /usr/bin/pbcopy ]; then
   /usr/bin/pbcopy
 elif [ -x /usr/bin/wl-copy ]; then
   /usr/bin/wl-copy
+elif command -v clip.exe >/dev/null 2>&1; then
+  clip.exe
 elif [ -x /usr/bin/xclip ]; then
   /usr/bin/xclip -i -selection clipboard > /dev/null
 fi
