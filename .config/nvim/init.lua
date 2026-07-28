@@ -301,8 +301,6 @@ nmap("<Leader>eno", ":edit ~/.config/nvim/lua/user/options.lua<CR>")
 nmap("<Leader>enp", ":edit ~/.config/nvim/lua/user/plugins.lua<CR>")
 nmap("<Leader>ent", ":edit ~/.config/nvim/lua/user/telescope.lua<CR>")
 
--- Reload configuration
-keymap("n", "<Leader>sc", ":lua ReloadConfig()<CR>", { silent = false })
 
 -- Quick toggles
 nmap("<Leader>tb", ":TroubleToggle<CR>")
