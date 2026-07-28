@@ -13,7 +13,9 @@ return {
 
     telescope.load_extension "frecency"
 
-    local keymap_opt = { silent = true, noremap = true }
+    local function opts(desc)
+      return { silent = true, noremap = true, desc = desc }
+    end
 
     -- Clone the default Telescope configuration
     local vimgrep_arguments = { unpack(config.values.vimgrep_arguments) }
@@ -35,27 +37,27 @@ return {
       end
     end
 
-    vim.keymap.set("n", "<Leader>fa", builtin.find_files, keymap_opt)
-    vim.keymap.set("n", "<Leader>fb", builtin.buffers, keymap_opt)
-    vim.keymap.set("n", "<Leader>fc", builtin.commands, keymap_opt)
-    vim.keymap.set("n", "<Leader>fd", builtin.diagnostics, keymap_opt)
-    vim.keymap.set("n", "<Leader>ff", extended.git_or_find_files, keymap_opt)
-    vim.keymap.set("n", "<Leader>fg", builtin.live_grep, keymap_opt)
-    vim.keymap.set("n", "<Leader>fh", builtin.help_tags, keymap_opt)
-    vim.keymap.set("n", "<Leader>fi", builtin.git_files, keymap_opt)
-    vim.keymap.set("n", "<Leader>fk", builtin.keymaps, keymap_opt)
-    vim.keymap.set("n", "<Leader>fq", builtin.quickfix, keymap_opt)
-    vim.keymap.set("n", "<Leader>fr", telescope.extensions.frecency.frecency, keymap_opt)
-    vim.keymap.set("n", "<Leader>ft", builtin.treesitter, keymap_opt)
+    vim.keymap.set("n", "<Leader>fa", builtin.find_files, opts("Find all files"))
+    vim.keymap.set("n", "<Leader>fb", builtin.buffers, opts("Find buffers"))
+    vim.keymap.set("n", "<Leader>fc", builtin.commands, opts("Find commands"))
+    vim.keymap.set("n", "<Leader>fd", builtin.diagnostics, opts("Find diagnostics"))
+    vim.keymap.set("n", "<Leader>ff", extended.git_or_find_files, opts("Find files (git or all)"))
+    vim.keymap.set("n", "<Leader>fg", builtin.live_grep, opts("Live grep"))
+    vim.keymap.set("n", "<Leader>fh", builtin.help_tags, opts("Find help tags"))
+    vim.keymap.set("n", "<Leader>fi", builtin.git_files, opts("Find git files"))
+    vim.keymap.set("n", "<Leader>fk", builtin.keymaps, opts("Find keymaps"))
+    vim.keymap.set("n", "<Leader>fq", builtin.quickfix, opts("Find quickfix"))
+    vim.keymap.set("n", "<Leader>fr", builtin.resume, opts("Resume last search"))
+    vim.keymap.set("n", "<Leader>fr", telescope.extensions.frecency.frecency, opts("Find by frecency"))
+    vim.keymap.set("n", "<Leader>ft", builtin.treesitter, opts("Find treesitter symbols"))
 
-    vim.keymap.set("n", "<Leader>fR", builtin.lsp_references, keymap_opt)
-    vim.keymap.set("n", "<Leader>fS", builtin.lsp_workspace_symbols, keymap_opt)
+    vim.keymap.set("n", "<Leader>fR", builtin.lsp_references, opts("Find LSP references"))
+    vim.keymap.set("n", "<Leader>fS", builtin.lsp_workspace_symbols, opts("Find workspace symbols"))
 
-    vim.keymap.set("n", "<Leader>f/", builtin.current_buffer_fuzzy_find, keymap_opt)
+    vim.keymap.set("n", "<Leader>f/", builtin.current_buffer_fuzzy_find, opts("Fuzzy find in buffer"))
 
-    vim.keymap.set("n", "<F2>", builtin.buffers, keymap_opt)
-    vim.keymap.set("n", "<F3>", builtin.find_files, keymap_opt)
-    vim.keymap.set("n", "<S-F3>", builtin.git_files, keymap_opt)
+    vim.keymap.set("n", "<F2>", builtin.buffers, opts("Find buffers"))
+    vim.keymap.set("n", "<F3>", builtin.resume, opts("Resume telescope search"))
 
     vim.keymap.set("v", "<Leader>fg", function()
       local selection = vim.get_visual_selection()
