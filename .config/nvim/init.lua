@@ -115,12 +115,6 @@ vim.g.netrw_winsize = 25
 vim.g.better_whitespace_enabled = 0
 
 -- }}}
--- christoomey/vim-tmux-navigator {{{
-
-vim.g.tmux_navigator_no_mappings = 1
-vim.g.tmux_navigator_save_on_switch = 2
-
--- }}}
 -- }}}
 
 -- }}}
@@ -313,14 +307,6 @@ nmap("<Leader>ty", ":SymbolsOutline<CR>")
 
 -- }}}
 -- Plugins {{{
--- christoomey/vim-tmux-navigator {{{
-
-nmap("<C-Left>", ":<C-U>TmuxNavigateLeft<CR>")
-nmap("<C-Down>", ":<C-U>TmuxNavigateDown<CR>")
-nmap("<C-Up>", ":<C-U>TmuxNavigateUp<CR>")
-nmap("<C-Right>", ":<C-U>TmuxNavigateRight<CR>")
-
--- }}}
 -- }}}
 
 -- }}}
