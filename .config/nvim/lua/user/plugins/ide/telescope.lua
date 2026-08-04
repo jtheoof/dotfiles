@@ -115,7 +115,6 @@ return {
 
             ["<C-d>"] = actions.delete_buffer,
             ["<C-u>"] = false,
-            ["<C-BS>"] = actions.delete_buffer,
 
             ["<PageUp>"] = actions.results_scrolling_up,
             ["<PageDown>"] = actions.results_scrolling_down,
