@@ -288,6 +288,7 @@ install_packages_linux() {
     tig \
     tmux \
     tree \
+    tree-sitter-cli \
     unzip \
     vim \
     wget \
