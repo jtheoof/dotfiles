@@ -72,12 +72,12 @@ if vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
     name = "WslClipboard",
     copy = {
-      ["+"] = "clip.exe",
-      ["*"] = "clip.exe",
+      ["+"] = "/mnt/c/WINDOWS/system32/clip.exe",
+      ["*"] = "/mnt/c/WINDOWS/system32/clip.exe",
     },
     paste = {
-      ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-      ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      ["+"] = '/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      ["*"] = '/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
     },
     cache_enabled = 0,
   }
@@ -296,6 +296,13 @@ nmap("<Leader><Leader>", ":wa<CR>")
 nmap("<Leader>w", ":w<CR>")
 nmap("<Leader>q", ":q!<CR>")
 nmap("<Leader>Q", ":qa!<CR>")
+
+-- GitLab / fugitive browsing (open in browser, ! -> yank URL).
+-- `.` pins the link to the cursor line + commit SHA (a stable permalink).
+nmap("<Leader>go", ":.GBrowse<CR>")
+nmap("<Leader>gy", ":.GBrowse!<CR>")
+vmap("<Leader>go", ":'<,'>GBrowse<CR>")
+vmap("<Leader>gy", ":'<,'>GBrowse!<CR>")
 
 -- Quick edit of common files
 nmap("<Leader>ea", ":edit ~/.config/alacritty/alacritty.yml<CR>")
