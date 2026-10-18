@@ -1,6 +1,7 @@
 [Default]
-save_dir=$HOME/Pictures
-save_filename_format=screenshot-%Y%m%d-%H%M%S.png
+save_dir=$HOME/Pictures/Screenshots/
+save_filename_format=swappy-screenshot-%Y%m%d-%H%M%S.png
+custom_color=rgba(10, 24, 175,1)
 line_size=5
 text_font=monospace
 text_size=25
@@ -8,3 +9,4 @@ show_panel=false
 paint_mode=Brush
 early_exit=true
 fill_shape=true
+auto_save=false
