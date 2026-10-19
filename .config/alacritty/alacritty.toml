@@ -95,6 +95,7 @@ bindings = [
     { key = "Up", mods = "Shift|Alt", action = "ScrollLineUp", mode = "~Alt" },
     { key = "Down", mods = "Shift|Alt", action = "ScrollLineDown", mode = "~Alt" },
     { key = "Back", mods = "Control", chars = "\u0017" },
+    { key = "Return", mods = "Shift", chars = "\u001B\r" },
 ]
 
 [selection]
