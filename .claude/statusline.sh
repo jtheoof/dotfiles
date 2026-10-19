@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
-# Claude Code status line (Nord colors, OpenRouter cost).
+# Claude Code status line (Nord colors, OpenRouter / AI Gateway cost).
 # Adapted from https://github.com/daniel3303/ClaudeCodeStatusLine (MIT).
 #
-# Model | dir@branch (+a -d) | tokens (%) | effort | ~$session | $balance left | vX.Y.Z
+# Model | dir@branch (+a -d) | tokens (%) | effort | ~$session | <spend> | vX.Y.Z
 #
-# The OpenRouter balance segment needs OPENROUTER_API_KEY in the environment and
-# is hidden when it is unset. Balance is cached for 60s, shared across sessions.
+# <spend> depends on the backend, and is hidden when neither applies:
+# - OpenRouter: "$balance left", needs OPENROUTER_API_KEY. Cached for 60s, shared
+#   across sessions.
+# - AI Gateway (ANTHROPIC_BASE_URL on localhost): "$spent/$cap today", read from
+#   the gateway's /usage endpoint. The day resets at midnight UTC. The cap
+#   defaults to $50 and can be overridden with CLAUDE_DAILY_CAP_USD.
 
 set -f  # disable globbing
 
@@ -78,6 +82,7 @@ file_mtime() {
 ')
 
 model_name="${model_name#anthropic/}"
+model_name="${model_name#databricks-}"
 model_name=$(echo "$model_name" | sed 's/ *(\([0-9.]*[kKmM]*\) context)/ \1/')  # "(1M context)" → "1M"
 
 [ "$size" -eq 0 ] 2>/dev/null && size=200000
@@ -150,6 +155,16 @@ if [ -n "$OPENROUTER_API_KEY" ]; then
       | (.total_credits - .total_usage) as $left
       | "\($left) \(if .total_credits > 0 then (.total_usage * 100 / .total_credits | floor) else 100 end)"' "$cache_file")
     out+="${sep}$(usage_color "$used_pct")\$$(LC_NUMERIC=C printf '%.2f' "$balance")${reset} ${nord3}left${reset}"
+  fi
+# ===== AI Gateway daily spend (local proxy, no cache needed) =====
+elif [[ "$ANTHROPIC_BASE_URL" =~ ^https?://(127\.0\.0\.1|localhost):[0-9]+/?$ ]]; then
+  daily_cap="${CLAUDE_DAILY_CAP_USD:-50}"
+  # /usage defaults to the current UTC day
+  spent=$(curl -s --max-time 1 "${ANTHROPIC_BASE_URL%/}/usage" 2>/dev/null \
+    | jq -r '.[-1].costUsd // empty' 2>/dev/null)
+  if [ -n "$spent" ]; then
+    spent_pct=$(awk -v s="$spent" -v c="$daily_cap" 'BEGIN {printf "%d", (c > 0 ? s * 100 / c : 0)}')
+    out+="${sep}$(usage_color "$spent_pct")\$$(LC_NUMERIC=C printf '%.2f' "$spent")${reset}${nord3}/\$${daily_cap} today${reset}"
   fi
 fi
 
