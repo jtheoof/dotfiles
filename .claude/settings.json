@@ -2,7 +2,7 @@
   "model": "opus",
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/statusline.sh"
+    "command": "~/.dotfiles/.claude/statusline.sh"
   },
   "theme": "auto"
 }
