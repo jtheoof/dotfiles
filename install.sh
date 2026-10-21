@@ -163,6 +163,7 @@ install_packages_darwin() {
     git \
     graphicsmagick \
     grep \
+    herdr \
     htop \
     httpie \
     jpeg \
@@ -300,6 +301,7 @@ install_packages_linux() {
   "
 
   aur_packages="\
+    herdr-bin \
     zsh-pure-prompt \
   "
 
@@ -391,7 +393,7 @@ shift # removing '--'
 
 install_platform() {
   case "$OSTYPE" in
-    darwin*)
+    darwin*b
       install_packages_darwin
       install_plist_launchd_darwin
 

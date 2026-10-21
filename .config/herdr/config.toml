@@ -1,0 +1,58 @@
+onboarding = false
+
+[ui.toast]
+delivery = "herdr"
+
+[theme]
+name = "nord"
+auto_switch = false
+
+# Keybindings ported from ~/.config/tmux/tmux.conf {{{
+#
+# tmux session -> herdr workspace
+# tmux window  -> herdr tab
+# tmux pane    -> herdr pane
+
+[keys]
+prefix = "alt+a"
+
+# Config
+reload_config = ["prefix+t", "alt+t"]
+
+# Client
+detach = ["prefix+d", "alt+d"]
+
+# Sessions (workspaces)
+close_workspace = ["prefix+q", "alt+q"]
+workspace_picker = ["prefix+s", "alt+s"]
+rename_workspace = ["prefix+shift+w", "alt+e"]
+
+# Windows (tabs)
+new_tab = ["prefix+c", "alt+n"]
+rename_tab = ["prefix+comma", "alt+r"]
+# alt+pageup/pagedown (and their shift variants for moving tabs) are not
+# accepted as config keys by herdr yet
+previous_tab = "prefix+p"
+next_tab = "prefix+n"
+switch_tab = ["prefix+1..9", "alt+1..9"]
+
+# Panes
+close_pane = ["prefix+w", "prefix+x", "alt+w"]
+focus_pane_left = ["prefix+left", "alt+left"]
+focus_pane_down = ["prefix+down", "alt+down"]
+focus_pane_up = ["prefix+up", "alt+up"]
+focus_pane_right = ["prefix+right", "alt+right"]
+zoom = ["prefix+z", "alt+m"]
+split_horizontal = ["prefix+minus", "prefix+double_quote", "alt+f11"]
+split_vertical = ["prefix+v", "prefix+percent", "alt+f12"]
+
+# Resizing
+resize_pane_left = "prefix+h"
+resize_pane_down = "prefix+j"
+resize_pane_up = "prefix+k"
+resize_pane_right = "prefix+l"
+
+# Copy mode
+copy_mode = ["prefix+[", "alt+["]
+
+# }}}
