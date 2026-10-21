@@ -7,3 +7,9 @@
 .DS_Store
 
 .config/tmux/plugins/
+
+.config/herdr/*.log
+.config/herdr/*.sock*
+.config/herdr/session.json
+.config/herdr/session-history.json
+.config/herdr/session-snapshots/
