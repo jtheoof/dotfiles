@@ -393,7 +393,7 @@ shift # removing '--'
 
 install_platform() {
   case "$OSTYPE" in
-    darwin*b
+    darwin*)
       install_packages_darwin
       install_plist_launchd_darwin
 
