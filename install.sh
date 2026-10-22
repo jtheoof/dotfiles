@@ -90,6 +90,7 @@ install_dotfiles() {
    # Claude Code: link individual files only, ~/.claude also holds credentials and history
    [ -d $HOME/.claude ] || mkdir -p $HOME/.claude
    link $FILESPATH/.claude/statusline.sh $HOME/.claude/statusline.sh
+   link $FILESPATH/.claude/CLAUDE.md $HOME/.claude/CLAUDE.md
 }
 
 install_tmux_plugins() {
