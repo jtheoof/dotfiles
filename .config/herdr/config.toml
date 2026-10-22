@@ -1,5 +1,9 @@
 onboarding = false
 
+[ui]
+pane_gaps = false
+prompt_new_tab_name = false
+
 [ui.toast]
 delivery = "herdr"
 
@@ -7,52 +11,89 @@ delivery = "herdr"
 name = "nord"
 auto_switch = false
 
-# Keybindings ported from ~/.config/tmux/tmux.conf {{{
+# Vim-style keybindings {{{
 #
-# tmux session -> herdr workspace
-# tmux window  -> herdr tab
-# tmux pane    -> herdr pane
+# Prefix mirrors vim's <C-w> window commands. hjkl move, arrows alias them.
+# Lowercase acts, shift reverses or goes bigger. Direct aliases use alt+ with
+# the same letter where possible.
+#
+# herdr session -> herdr workspace (buffer)
+# herdr tab     -> herdr tab (tab page)
+# herdr pane    -> herdr pane (window)
 
 [keys]
 prefix = "alt+a"
 
-# Config
-reload_config = ["prefix+t", "alt+t"]
-
-# Client
+# Global and client
+help = ["prefix+?", "alt+?", "alt+/"]
+settings = ["prefix+=", "alt+="]
 detach = ["prefix+d", "alt+d"]
+reload_config = ["prefix+shift+r", "alt+shift+r"]
+open_notification_target = ["prefix+o", "alt+o"]
+workspace_picker = ["prefix+f", "alt+f"]
+goto = ["prefix+g", "alt+g"]
 
-# Sessions (workspaces)
-close_workspace = ["prefix+q", "alt+q"]
-workspace_picker = ["prefix+s", "alt+s"]
-rename_workspace = ["prefix+shift+w", "alt+e"]
+# Workspaces
+new_workspace = ["prefix+shift+o", "alt+shift+o"]
+rename_workspace = ["prefix+a", "alt+shift+a"]
+close_workspace = ["prefix+shift+d", "alt+shift+d"]
+previous_workspace = ["prefix+,", "alt+,"]
+next_workspace = ["prefix+.", "alt+."]
+previous_agent = ["prefix+<", "alt+shift+up"]
+next_agent = ["prefix+>", "alt+shift+down"]
+focus_agent = ["prefix+alt+1..9", "ctrl+alt+1..9"]
+switch_workspace = ["prefix+shift+1..9", "alt+shift+1..9"]
+remote_image_paste = "ctrl+v"
 
-# Windows (tabs)
-new_tab = ["prefix+c", "alt+n"]
-rename_tab = ["prefix+comma", "alt+r"]
-# alt+pageup/pagedown (and their shift variants for moving tabs) are not
-# accepted as config keys by herdr yet
-previous_tab = "prefix+p"
-next_tab = "prefix+n"
+# Tabs
+new_tab = ["prefix+n", "alt+n"]
+rename_tab = ["prefix+t", "alt+t"]
+previous_tab = ["prefix+shift+n", "alt+shift+n", "alt+["]
+next_tab = ["prefix+]", "alt+]"]
+move_tab_previous = ["prefix+shift+[", "alt+shift+["]
+move_tab_next = ["prefix+shift+]", "alt+shift+]"]
 switch_tab = ["prefix+1..9", "alt+1..9"]
+close_tab = ["prefix+shift+x", "alt+shift+x"]
 
 # Panes
-close_pane = ["prefix+w", "prefix+x", "alt+w"]
-focus_pane_left = ["prefix+left", "alt+left"]
-focus_pane_down = ["prefix+down", "alt+down"]
-focus_pane_up = ["prefix+up", "alt+up"]
-focus_pane_right = ["prefix+right", "alt+right"]
-zoom = ["prefix+z", "alt+m"]
-split_horizontal = ["prefix+minus", "prefix+double_quote", "alt+f11"]
-split_vertical = ["prefix+v", "prefix+percent", "alt+f12"]
+rename_pane = ["prefix+i", "alt+i"]
+edit_scrollback = ["prefix+e", "alt+e"]
+clear_pane = ["prefix+ctrl+l", "ctrl+alt+l"]
+focus_pane_left = ["prefix+h", "prefix+left", "alt+h", "alt+left"]
+focus_pane_down = ["prefix+j", "prefix+down", "alt+j", "alt+down"]
+focus_pane_up = ["prefix+k", "prefix+up", "alt+k", "alt+up"]
+focus_pane_right = ["prefix+l", "prefix+right", "alt+l", "alt+right"]
+cycle_pane_next = ["prefix+w", "alt+w"]
+cycle_pane_previous = ["prefix+shift+w", "alt+shift+w"]
+last_pane = ["prefix+p", "alt+p"]
+split_vertical = ["prefix+v", "alt+v"]
+split_horizontal = ["prefix+s", "alt+s"]
+close_pane = ["prefix+q", "alt+q"]
+zoom = ["prefix+z", "alt+z"]
+toggle_sidebar = ["prefix+b", "alt+b"]
 
 # Resizing
-resize_pane_left = "prefix+h"
-resize_pane_down = "prefix+j"
-resize_pane_up = "prefix+k"
-resize_pane_right = "prefix+l"
+resize_mode = ["prefix+r", "alt+r"]
+resize_pane_left = ["prefix+shift+h", "ctrl+shift+alt+left"]
+resize_pane_down = ["prefix+shift+j", "ctrl+shift+alt+down"]
+resize_pane_up = ["prefix+shift+k", "ctrl+shift+alt+up"]
+resize_pane_right = ["prefix+shift+l", "ctrl+shift+alt+right"]
 
-# Copy mode
-copy_mode = ["prefix+[", "alt+["]
+# Worktrees
+new_worktree = ["prefix+shift+g", "alt+shift+g"]
+open_worktree = ["prefix+ctrl+g", "ctrl+alt+g"]
+remove_worktree = ["prefix+ctrl+x", "ctrl+alt+x"]
+
+# Navigate mode (local, only while navigate mode is open)
+navigate_workspace_up = "shift+k"
+navigate_workspace_down = "shift+j"
+navigate_pane_left = "h"
+navigate_pane_down = "j"
+navigate_pane_up = "k"
+navigate_pane_right = "l"
+
+[experimental]
+# Save recent pane screen history across full server restarts.
+pane_history = true
 
 # }}}

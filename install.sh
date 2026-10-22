@@ -267,6 +267,7 @@ install_packages_linux() {
     curl \
     diffutils \
     docker \
+    fzf \
     git \
     gnupg \
     grep \

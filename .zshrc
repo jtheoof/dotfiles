@@ -190,6 +190,21 @@ function chpwd() {
     ls -a
 }
 
+# Name the herdr tab after the folder while it still has a generated name (its
+# number) or the name of the folder we just left, so a tab named by hand is left alone
+function herdr-tab-autoname() {
+    [[ -n $HERDR_TAB_ID && -n $OLDPWD ]] || return
+    local name=${PWD##*/} prev=${OLDPWD##*/} label
+    name=${name#.}
+    prev=${prev#.}
+    [[ -n $name ]] || return
+    label=$(herdr tab list 2>/dev/null | jq -r --arg id "$HERDR_TAB_ID" '.result.tabs[] | select(.tab_id == $id) | .label')
+    [[ $label == <-> || $label == $prev ]] || return
+    herdr tab rename "$HERDR_TAB_ID" "$name" >/dev/null 2>&1
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd herdr-tab-autoname
+
 function strip-color {
     perl -pe 's/\e\[?.*?[\@-~]//g'
 }
