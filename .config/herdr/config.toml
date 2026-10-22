@@ -3,6 +3,7 @@ onboarding = false
 [ui]
 pane_gaps = false
 prompt_new_tab_name = false
+tab_bar_right = [{ type = "datetime", format = "%a %d %b %H:%M" }]
 
 [ui.toast]
 delivery = "herdr"
