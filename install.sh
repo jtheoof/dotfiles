@@ -214,6 +214,7 @@ install_packages_darwin() {
     webp \
     wget \
     yarn \
+    zoxide \
     zsh \
   "
 
@@ -299,6 +300,7 @@ install_packages_linux() {
     unzip \
     vim \
     wget \
+    zoxide \
     zsh \
   "
 
