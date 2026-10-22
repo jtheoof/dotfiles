@@ -7,6 +7,16 @@ return {
     vim.api.nvim_create_user_command("SessionRestore", function()
       require("persistence").load()
     end, { desc = "Restore session for the current directory" })
+
+    -- Restore the session for the current directory when nvim starts without files
+    vim.api.nvim_create_autocmd("VimEnter", {
+      once = true,
+      callback = function()
+        if vim.fn.argc(-1) == 0 then
+          require("persistence").load()
+        end
+      end,
+    })
   end,
   keys = {
     { "<leader>qs", function() require("persistence").load() end, desc = "Restore session" },
