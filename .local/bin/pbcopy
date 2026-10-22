@@ -2,6 +2,9 @@
 
 if [ -x /usr/bin/pbcopy ]; then
   /usr/bin/pbcopy
+elif [[ "$XDG_CURRENT_DESKTOP" == *GNOME* && -n "$DISPLAY" && -x /usr/bin/xclip ]]; then
+  # mutter lacks wlr-data-control: wl-copy would flash a temporary window
+  /usr/bin/xclip -i -selection clipboard > /dev/null
 elif [ -x /usr/bin/wl-copy ]; then
   /usr/bin/wl-copy
 elif command -v clip.exe >/dev/null 2>&1; then

@@ -2,6 +2,9 @@
 
 if [ -x /usr/bin/pbpaste ]; then
   /usr/bin/pbpaste
+elif [[ "$XDG_CURRENT_DESKTOP" == *GNOME* && -n "$DISPLAY" && -x /usr/bin/xclip ]]; then
+  # mutter lacks wlr-data-control: wl-paste would flash a temporary window
+  /usr/bin/xclip -selection clipboard -o
 elif [ -x /usr/bin/wl-paste ]; then
   /usr/bin/wl-paste
 elif [ -x /usr/bin/xclip ]; then
