@@ -209,6 +209,22 @@ function strip-color {
     perl -pe 's/\e\[?.*?[\@-~]//g'
 }
 
+# Fuzzy-pick a Claude session from any project, cd to its cwd and resume it
+function cr() {
+    local f cwd title sel
+    sel=$(
+        for f in ~/.claude/projects/*/*.jsonl(.Nom); do
+            cwd=$(grep -m1 -o '"cwd":"[^"]*"' "$f" | cut -d'"' -f4)
+            title=$(grep -oE '"(customTitle|aiTitle)":"[^"]*"' "$f" | tail -1 | cut -d'"' -f4)
+            printf '%s\t%s\t%s\t%s\n' "$(date -r "$f" '+%F %R')" "${cwd/#$HOME/~}" "${title:-?}" "${f:t:r}"
+        done | fzf --delimiter='\t' --with-nth=1,2,3 --tiebreak=index \
+            --preview 'grep -o "\"role\":\"user\",\"content\":\"[^\"]*" ~/.claude/projects/*/{4}.jsonl | cut -d\" -f8 | head -20' \
+            --preview-window=wrap
+    ) || return
+    cwd=${${sel#*$'\t'}%%$'\t'*}
+    cd "${cwd/#\~/$HOME}" && claude --resume "${sel##*$'\t'}" "$@"
+}
+
 # 1}}}
 # Misc {{{
 
