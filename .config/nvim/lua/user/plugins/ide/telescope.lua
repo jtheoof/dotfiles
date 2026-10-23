@@ -10,6 +10,8 @@ return {
     local builtin = require("telescope.builtin")
     local actions = require("telescope.actions")
     local action_layout = require("telescope.actions.layout")
+    local entry_display = require("telescope.pickers.entry_display")
+    local make_entry = require("telescope.make_entry")
 
     telescope.load_extension "frecency"
 
@@ -37,9 +39,35 @@ return {
       end
     end
 
+    -- Commands picker showing only the name and description
+    extended.commands = function()
+      local displayer = entry_display.create({
+        separator = " ",
+        items = { { width = 0.3 }, { remaining = true } },
+      })
+
+      builtin.commands({
+        entry_maker = function(cmd)
+          local desc = (cmd.definition:gsub("\n", " "))
+          return make_entry.set_default_entry_mt({
+            value = cmd,
+            name = cmd.name,
+            -- Match on both the name and the description
+            ordinal = cmd.name .. " " .. desc,
+            display = function(entry)
+              return displayer({
+                { entry.name, "TelescopeResultsIdentifier" },
+                { desc, "TelescopeResultsComment" },
+              })
+            end,
+          }, {})
+        end,
+      })
+    end
+
     vim.keymap.set("n", "<Leader>fa", builtin.find_files, opts("Find all files"))
     vim.keymap.set("n", "<Leader>fb", builtin.buffers, opts("Find buffers"))
-    vim.keymap.set("n", "<Leader>fc", builtin.commands, opts("Find commands"))
+    vim.keymap.set("n", "<Leader>fc", extended.commands, opts("Find commands"))
     vim.keymap.set("n", "<Leader>fd", builtin.diagnostics, opts("Find diagnostics"))
     vim.keymap.set("n", "<Leader>ff", extended.git_or_find_files, opts("Find files (git or all)"))
     vim.keymap.set("n", "<Leader>fg", builtin.live_grep, opts("Live grep"))
