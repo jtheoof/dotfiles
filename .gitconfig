@@ -121,7 +121,7 @@
 	changed = red
 	untracked = red bold
 [diff]
-	tool = vimdiff
+	tool = nvimdiff
 [difftool]
 	prompt = false
 [github]
@@ -130,7 +130,7 @@
 	cmd = sublime -w $MERGED
 	trustExitCode = false
 [merge]
-	tool = vimdiff
+	tool = nvimdiff
 [push]
 	default = current
 [user]
