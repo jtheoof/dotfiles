@@ -47,7 +47,6 @@ return {
     vim.keymap.set("n", "<Leader>fi", builtin.git_files, opts("Find git files"))
     vim.keymap.set("n", "<Leader>fk", builtin.keymaps, opts("Find keymaps"))
     vim.keymap.set("n", "<Leader>fq", builtin.quickfix, opts("Find quickfix"))
-    vim.keymap.set("n", "<Leader>fr", builtin.resume, opts("Resume last search"))
     vim.keymap.set("n", "<Leader>fr", telescope.extensions.frecency.frecency, opts("Find by frecency"))
     vim.keymap.set("n", "<Leader>ft", builtin.treesitter, opts("Find treesitter symbols"))
 
@@ -64,7 +63,7 @@ return {
       builtin.live_grep({
         default_text = selection,
       })
-    end, keymap_opt)
+    end, opts("Live grep selection"))
 
     telescope.setup({
       defaults = {
