@@ -44,7 +44,7 @@ previous_agent = ["prefix+<", "alt+shift+up"]
 next_agent = ["prefix+>", "alt+shift+down"]
 focus_agent = ["prefix+alt+1..9", "ctrl+alt+1..9"]
 switch_workspace = ["prefix+shift+1..9", "alt+shift+1..9"]
-remote_image_paste = "ctrl+v"
+remote_image_paste = "ctrl+alt+v"
 
 # Tabs
 new_tab = ["prefix+n", "alt+n"]
