@@ -86,3 +86,7 @@ for _, keys in ipairs({ { next = "Page_Down", prev = "Page_Up" }, { next = "U", 
 		end, { description = "Move window to " .. (dir == "next" and "next" or "previous") .. " desktop" })
 	end
 end
+
+hl.on("hyprland.start", function()
+	go_to_desktop(1)
+end)
