@@ -91,6 +91,7 @@ install_dotfiles() {
    [ -d $HOME/.claude ] || mkdir -p $HOME/.claude
    link $FILESPATH/.claude/statusline.sh $HOME/.claude/statusline.sh
    link $FILESPATH/.claude/CLAUDE.md $HOME/.claude/CLAUDE.md
+   link $FILESPATH/.claude/skills $HOME/.claude
 }
 
 install_tmux_plugins() {
