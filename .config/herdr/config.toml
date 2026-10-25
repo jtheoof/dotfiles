@@ -54,7 +54,7 @@ next_tab = ["prefix+]", "alt+]"]
 move_tab_previous = ["prefix+shift+[", "alt+shift+["]
 move_tab_next = ["prefix+shift+]", "alt+shift+]"]
 switch_tab = ["prefix+1..9", "alt+1..9"]
-close_tab = ["prefix+shift+x", "alt+shift+x"]
+close_tab = ["prefix+shift+w", "alt+shift+w"]
 
 # Panes
 rename_pane = ["prefix+i", "alt+i"]
