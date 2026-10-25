@@ -169,7 +169,7 @@ export default Plugin.define({
   id: "jattali.statusline",
   setup(context) {
     return context.ui.slot({
-      after: "prompt.footer",
+      append: "app",
       render: (slot: { sessionID?: string }) => <StatusLine sessionID={slot?.sessionID} />,
     })
   },
