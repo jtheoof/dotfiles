@@ -56,6 +56,10 @@ const refreshBalance = async () => {
 
 function StatusLine(props: { sessionID?: string }) {
   const context = usePlugin()
+  const sessionID = () => {
+    const route = context.ui.router.current() as { type?: string; sessionID?: string } | undefined
+    return props.sessionID ?? (route?.type === "session" ? route.sessionID : undefined)
+  }
   const location = context.location ?? context.data.location.default()
   const directory = location?.directory ?? ""
 
@@ -93,8 +97,8 @@ function StatusLine(props: { sessionID?: string }) {
   const modelName = () => (modelInfo()?.name ?? selected()?.id ?? "OpenCode").replace(/^anthropic\//, "")
 
   const used = () => {
-    if (!props.sessionID) return 0
-    const messages = context.data.session.message.list(props.sessionID) ?? []
+    if (!sessionID()) return 0
+    const messages = context.data.session.message.list(sessionID()) ?? []
     for (let i = messages.length - 1; i >= 0; i--) {
       const m = messages[i] as { type: string; tokens?: { input: number; cache: { read: number; write: number } } }
       if (m.type === "assistant" && m.tokens) return m.tokens.input + m.tokens.cache.read + m.tokens.cache.write
@@ -104,7 +108,7 @@ function StatusLine(props: { sessionID?: string }) {
   const size = () => modelInfo()?.limit.context ?? 200000
   const pct = () => Math.floor((used() * 100) / size())
   const effort = () => selected()?.variant ?? "medium"
-  const cost = () => (props.sessionID ? context.data.session.cost(props.sessionID) : undefined)
+  const cost = () => (sessionID() ? context.data.session.cost(sessionID()) : undefined)
 
   const Sep = () => <span style={{ fg: nord.dim }}>{" | "}</span>
 
