@@ -104,7 +104,6 @@ function StatusLine(props: { sessionID?: string }) {
       (m) => m.modelID === ref.id && m.providerID === ref.providerID,
     )
   }
-  const modelName = () => (modelInfo()?.name ?? selected()?.id ?? "OpenCode").replace(/^anthropic\//, "")
 
   const used = () => {
     if (!sessionID()) return 0
@@ -120,14 +119,33 @@ function StatusLine(props: { sessionID?: string }) {
   const effort = () => selected()?.variant ?? "medium"
   const cost = () => (sessionID() ? context.data.session.cost(sessionID()) : undefined)
 
+  const [frame, setFrame] = createSignal(0)
+  const spin = setInterval(() => setFrame((f) => (f + 1) % 14), 100)
+  onCleanup(() => clearInterval(spin))
+  const busy = () => {
+    const id = sessionID()
+    if (!id) return false
+    const status = context.data.session.status(id) as unknown
+    const kind = typeof status === "string" ? status : (status as { type?: string } | undefined)?.type
+    return kind === "running" || kind === "busy"
+  }
+  const bar = () => {
+    const pos = frame() < 8 ? frame() : 14 - frame()
+    return Array.from({ length: 8 }, (_, i) => (i === pos ? "■" : "⬝")).join("")
+  }
+
   const Sep = () => <span style={{ fg: nord.dim }}>{" | "}</span>
 
   return (
-    <box paddingLeft={2} paddingRight={2}>
+    <box paddingLeft={2} paddingRight={2} flexShrink={0}>
       <text>
-        <span style={{ fg: nord.model }}>{modelName()}</span>
-        <Show when={directory}>
+        <Show when={busy()}>
+          <span style={{ fg: nord.model }}>{bar()}</span>
+          <span style={{ fg: nord.label }}>{" esc"}</span>
+          <span style={{ fg: nord.dim }}>{" interrupt"}</span>
           <Sep />
+        </Show>
+        <Show when={directory}>
           <span style={{ fg: nord.dir }}>{directory.split("/").filter(Boolean).pop() ?? "/"}</span>
           <Show when={gitInfo().branch}>
             <span style={{ fg: nord.dim }}>@</span>
@@ -140,7 +158,9 @@ function StatusLine(props: { sessionID?: string }) {
             </Show>
           </Show>
         </Show>
-        <Sep />
+        <Show when={directory}>
+          <Sep />
+        </Show>
         <span style={{ fg: nord.orange }}>{`${tokens(used())}/${tokens(size())}`}</span>
         <span style={{ fg: nord.dim }}>{" ("}</span>
         <span style={{ fg: usageColor(pct()) }}>{`${pct()}%`}</span>
@@ -160,6 +180,9 @@ function StatusLine(props: { sessionID?: string }) {
         </Show>
         <Sep />
         <span style={{ fg: nord.dim }}>{`v${context.app.version}`}</span>
+        <Sep />
+        <span style={{ fg: nord.label }}>{"ctrl+p"}</span>
+        <span style={{ fg: nord.dim }}>{" commands"}</span>
       </text>
     </box>
   )
@@ -168,9 +191,17 @@ function StatusLine(props: { sessionID?: string }) {
 export default Plugin.define({
   id: "jattali.statusline",
   setup(context) {
-    return context.ui.slot({
+    const stopStatus = context.ui.slot({
       append: "app",
       render: (slot: { sessionID?: string }) => <StatusLine sessionID={slot?.sessionID} />,
     })
+    const stopFooter = context.ui.slot({
+      replace: "prompt.footer",
+      render: () => null,
+    })
+    return () => {
+      stopStatus()
+      stopFooter()
+    }
   },
 })
