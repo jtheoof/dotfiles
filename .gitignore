@@ -13,3 +13,5 @@
 .config/herdr/session.json
 .config/herdr/session-history.json
 .config/herdr/session-snapshots/
+
+.config/opencode/service.json

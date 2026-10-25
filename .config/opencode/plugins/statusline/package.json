@@ -1,0 +1,7 @@
+{
+  "name": "statusline",
+  "type": "module",
+  "exports": {
+    "./tui": "./tui.tsx"
+  }
+}
