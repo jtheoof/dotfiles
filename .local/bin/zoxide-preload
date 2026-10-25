@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Add every git repo under ~/dev to the zoxide database
+find ~/dev -name .git -prune -print0 |
+  while IFS= read -r -d '' git_entry; do
+    zoxide add -- "$(dirname "$git_entry")"
+  done
