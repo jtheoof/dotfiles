@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+# Generate or edit an image with Nano Banana through OpenRouter.
+# usage: nanobanana [-m model] "prompt" output.png [input-image...]
+# Requires OPENROUTER_API_KEY in the environment, plus curl and jq.
+# Environment:
+#   NANOBANANA_MODEL      default model (overridden by -m)
+#   NANOBANANA_ASPECT     output aspect ratio, e.g. 16:9, 9:16, 21:9
+#   NANOBANANA_SIZE       output size for models that support it: 1K, 2K or 4K
+#   NANOBANANA_MAX_INPUT  downscale inputs to this many pixels on the long side
+#                         (default 2048, 0 to send them untouched)
+# The cost and token usage reported by OpenRouter are printed to stderr.
+
+set -euo pipefail
+
+model=${NANOBANANA_MODEL:-google/gemini-3-pro-image-preview}
+
+if [ "${1:-}" = "-m" ]; then
+  model=$2
+  shift 2
+fi
+
+if [ $# -lt 2 ]; then
+  echo "usage: ${0##*/} [-m model] \"prompt\" output.png [input-image...]" >&2
+  exit 2
+fi
+
+prompt=$1
+out=$2
+shift 2
+
+: "${OPENROUTER_API_KEY:?OPENROUTER_API_KEY is not set}"
+
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+
+# Build the content array in files: base64 images are too large for the argument list.
+jq -n --arg p "$prompt" '[{type: "text", text: $p}]' >"$tmp/content.json"
+for img in "$@"; do
+  mime=$(file --brief --mime-type "$img")
+  case $mime in
+    image/*) ;;
+    *) echo "not an image: $img ($mime)" >&2; exit 1 ;;
+  esac
+  # Downscale big inputs (e.g. 4K) to keep the request small; the model doesn't need more.
+  max=${NANOBANANA_MAX_INPUT:-2048}
+  if [ "$max" != 0 ] && command -v magick >/dev/null; then
+    magick "$img" -resize "${max}x${max}>" -quality 90 "$tmp/in.jpg"
+    img=$tmp/in.jpg mime=image/jpeg
+  fi
+  printf 'data:%s;base64,%s' "$mime" "$(base64 -w0 "$img")" >"$tmp/url.txt"
+  jq --rawfile url "$tmp/url.txt" '. + [{type: "image_url", image_url: {url: $url}}]' \
+    "$tmp/content.json" >"$tmp/content.new"
+  mv "$tmp/content.new" "$tmp/content.json"
+done
+
+response=$(jq -n --arg model "$model" --arg aspect "${NANOBANANA_ASPECT:-}" \
+  --arg size "${NANOBANANA_SIZE:-}" --slurpfile content "$tmp/content.json" '{
+  model: $model,
+  modalities: ["image", "text"],
+  messages: [{role: "user", content: $content[0]}]
+} + {image_config: ({aspect_ratio: $aspect, image_size: $size} | with_entries(select(.value != "")))}' | curl -sS https://openrouter.ai/api/v1/chat/completions \
+  -H "Authorization: Bearer $OPENROUTER_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d @-)
+
+jq -r '.usage // empty | "usage: cost=\(.cost // "?") prompt_tokens=\(.prompt_tokens) completion_tokens=\(.completion_tokens)"' \
+  <<<"$response" >&2 || true
+
+data_url=$(jq -r '.choices[0].message.images[0].image_url.url // empty' <<<"$response")
+if [ -z "$data_url" ]; then
+  echo "no image in response:" >&2
+  jq -r '.error.message // .choices[0].message.content // .' <<<"$response" >&2
+  exit 1
+fi
+
+base64 -d <<<"${data_url#*,}" >"$out"
+echo "$out"
