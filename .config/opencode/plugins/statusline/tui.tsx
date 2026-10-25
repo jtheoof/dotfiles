@@ -86,12 +86,22 @@ function StatusLine(props: { sessionID?: string }) {
   const timer = setInterval(() => void refresh(), 15_000)
   onCleanup(() => clearInterval(timer))
 
-  const selected = () => context.ui.model.current()
+  const selected = (): { id: string; providerID: string; variant?: string } | undefined => {
+    const current = context.ui.model.current() as { modelID?: string; id?: string; providerID: string; variant?: string } | undefined
+    if (current) return { id: (current.modelID ?? current.id)!, providerID: current.providerID, variant: current.variant }
+    const id = sessionID()
+    if (!id) return undefined
+    const fromSession = context.data.session.get(id)?.model
+    if (fromSession) return fromSession
+    const messages = (context.data.session.message.list(id) ?? []) as Array<{ type: string; model?: { id: string; providerID: string; variant?: string } }>
+    for (let i = messages.length - 1; i >= 0; i--) if (messages[i].type === "assistant" && messages[i].model) return messages[i].model
+    return undefined
+  }
   const modelInfo = () => {
     const ref = selected()
     if (!ref) return undefined
     return (context.data.location.model.list(location) ?? []).find(
-      (m) => m.modelID === ref.id || m.id === ref.id,
+      (m) => m.modelID === ref.id && m.providerID === ref.providerID,
     )
   }
   const modelName = () => (modelInfo()?.name ?? selected()?.id ?? "OpenCode").replace(/^anthropic\//, "")
