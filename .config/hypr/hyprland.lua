@@ -26,6 +26,9 @@ hl.config({
 		kb_layout = "",
 		numlock_by_default = true,
 		follow_mouse = 1,
+		-- flat = no acceleration, like Windows with "Enhance pointer precision" off
+		accel_profile = "flat",
+		sensitivity = 0,
 		touchpad = {
 			tap_to_click = true,
 			natural_scroll = true,
