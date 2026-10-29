@@ -11,6 +11,8 @@ return {
     -- Restore the session for the current directory when nvim starts without files
     vim.api.nvim_create_autocmd("VimEnter", {
       once = true,
+      -- Needed so the restored buffers trigger BufRead/FileType (filetype detection)
+      nested = true,
       callback = function()
         if vim.fn.argc(-1) == 0 then
           require("persistence").load()
