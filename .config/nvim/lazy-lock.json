@@ -7,6 +7,7 @@
   "fugitive-gitlab.vim": { "branch": "master", "commit": "effc1fcb81803aa9c1322b089c7f7a2b53cf3dcc" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lualine.nvim": { "branch": "master", "commit": "221ce6b2d999187044529f49da6554a92f740a96" },
+  "markview.nvim": { "branch": "main", "commit": "ecc5a8867daa1856f8bcc5fdbceca8f5a5ce5f5d" },
   "nord.nvim": { "branch": "master", "commit": "80c1e5321505aeb22b7a9f23eb82f1e193c12470" },
   "nvim-cmp": { "branch": "main", "commit": "2ffe79f1f021def8dd1fcd81deb16f1bb0d989f3" },
   "nvim-tree.lua": { "branch": "master", "commit": "9a2e0006d42f292eb3ade7dfdff201a7429a780c" },
