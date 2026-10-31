@@ -93,6 +93,8 @@ hl.window_rule({
 	float = true,
 })
 hl.window_rule({ match = { class = "^(zoom)$" }, float = true })
+hl.window_rule({ match = { class = "^(steam_app_8500)$", title = "^(EVE Launcher)$" }, float = true })
+hl.window_rule({ match = { class = "^(steam_app_8500)$", title = "^(EVE( - .*)?)$" }, fullscreen = true })
 hl.layer_rule({ match = { namespace = "^(quickshell)$" }, no_anim = true })
 hl.layer_rule({ match = { namespace = "^dms:.*" }, no_anim = true })
 
