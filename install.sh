@@ -163,6 +163,7 @@ install_packages_darwin() {
     freetype \
     fswatch \
     git \
+    git-delta \
     graphicsmagick \
     grep \
     herdr \
@@ -272,6 +273,7 @@ install_packages_linux() {
     docker \
     fzf \
     git \
+    git-delta \
     gnupg \
     grep \
     gzip \
