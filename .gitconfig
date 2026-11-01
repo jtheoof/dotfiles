@@ -151,6 +151,7 @@
 	line-numbers = true
 	# subtle background tints keep the foreground free for syntax colors
 	syntax-theme = Nord
+	hunk-header-style = omit
 	plus-style = syntax "#2b3a33"
 	minus-style = syntax "#3f2d33"
 	plus-emph-style = syntax "#3e5a4a"
