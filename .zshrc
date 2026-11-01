@@ -225,6 +225,21 @@ function cr() {
     cd "${cwd/#\~/$HOME}" && claude --resume "${sel##*$'\t'}" "$@"
 }
 
+# Run claude with an env profile from ~/.config/claude/<name>.env.
+# Runs in a subshell so nothing leaks into the interactive shell.
+function _claude_with() {
+    local profile="$HOME/.config/claude/$1.env"; shift
+    [[ -r $profile ]] || { print -u2 "claude: missing profile $profile"; return 1 }
+    (
+        unset ANTHROPIC_BASE_URL ANTHROPIC_AUTH_TOKEN ANTHROPIC_API_KEY
+        set -a; source "$profile"; set +a
+        command claude "$@"
+    )
+}
+function claude() { _claude_with anthropic "$@" }   # Pro subscription (/login)
+function claude-or() { _claude_with openrouter "$@" }
+function claude-openrouter() { claude-or "$@" }
+
 # 1}}}
 # Misc {{{
 
