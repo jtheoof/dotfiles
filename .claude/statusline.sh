@@ -2,10 +2,14 @@
 # Claude Code status line (Nord colors, OpenRouter / AI Gateway cost).
 # Adapted from https://github.com/daniel3303/ClaudeCodeStatusLine (MIT).
 #
-# Model | dir@branch (+a -d) | tokens (%) | effort | ~$session | <spend> | vX.Y.Z
+# Model | dir@branch (+a -d) | tokens (%) | effort | <spend> | vX.Y.Z
 #
-# <spend> depends on the backend, and is hidden when neither applies:
-# - OpenRouter: "$balance left", needs OPENROUTER_API_KEY. Cached for 60s, shared
+# <spend> depends on the backend (ANTHROPIC_BASE_URL), and is hidden when
+# none applies:
+# - Subscription (no base URL): "5h N% (resets in 2h13m) | 7d N%", from the
+#   rate_limits object Claude Code passes in. Absent until the first reply.
+# - OpenRouter: "~$session | $balance left", the session cost being Claude
+#   Code's estimate at Anthropic list prices. The balance "$balance left", needs OPENROUTER_API_KEY. Cached for 60s, shared
 #   across sessions.
 # - AI Gateway (ANTHROPIC_BASE_URL on localhost): "$spent/$cap today", read from
 #   the gateway's /usage endpoint. The day resets at midnight UTC. The cap
@@ -61,6 +65,14 @@ file_mtime() {
   stat -c %Y "$1" 2>/dev/null || stat -f %m "$1" 2>/dev/null || echo 0
 }
 
+# Time until an epoch timestamp, e.g. "2h13m" or "42m"
+reset_in() {
+  local left=$(( $1 - $(date +%s) ))
+  [ "$left" -le 0 ] && { printf "now"; return; }
+  if [ "$left" -ge 3600 ]; then printf "%dh%02dm" $((left / 3600)) $((left % 3600 / 60))
+  else printf "%dm" $((left / 60 + 1)); fi
+}
+
 # ===== Extract data from JSON (single jq pass, one value per line) =====
 {
   read -r model_name
@@ -70,6 +82,9 @@ file_mtime() {
   read -r effort_level
   read -r session_cost
   read -r cli_version
+  read -r rl5
+  read -r rl5_reset
+  read -r rl7
 } < <(echo "$input" | jq -r '
   (.model.display_name // .model.id // "Claude"),
   (.workspace.current_dir // .cwd // ""),
@@ -78,7 +93,10 @@ file_mtime() {
     | ($u.input_tokens // 0) + ($u.cache_creation_input_tokens // 0) + ($u.cache_read_input_tokens // 0)),
   (.effort.level // ""),
   (.cost.total_cost_usd // ""),
-  (.version // "")
+  (.version // ""),
+  ((.rate_limits.five_hour.used_percentage // "") | if . == "" then "" else floor end),
+  (.rate_limits.five_hour.resets_at // ""),
+  ((.rate_limits.seven_day.used_percentage // "") | if . == "" then "" else floor end)
 ')
 
 model_name="${model_name#anthropic/}"
@@ -125,13 +143,17 @@ case "$effort_level" in
   *)      out+="${nord14}${effort_level}${reset}" ;;
 esac
 
-# Session cost: Claude Code's estimate at Anthropic list prices, hence "~"
-if [ -n "$session_cost" ]; then
+is_openrouter=0
+[[ "$ANTHROPIC_BASE_URL" == *openrouter.ai* ]] && is_openrouter=1
+
+# Session cost: Claude Code's estimate at Anthropic list prices, hence "~".
+# Only meaningful when pay-per-token; a subscription is not billed per session.
+if [ "$is_openrouter" = 1 ] && [ -n "$session_cost" ]; then
   out+="${sep}${nord4}~\$$(LC_NUMERIC=C printf '%.2f' "$session_cost")${reset} ${nord3}session${reset}"
 fi
 
 # ===== OpenRouter account balance (cached, 60s TTL) =====
-if [ -n "$OPENROUTER_API_KEY" ]; then
+if [ "$is_openrouter" = 1 ] && [ -n "$OPENROUTER_API_KEY" ]; then
   cache_dir="${TMPDIR:-/tmp}/claude"
   cache_file="$cache_dir/statusline-openrouter-credits.json"
   cache_max_age=60
@@ -166,6 +188,15 @@ elif [[ "$ANTHROPIC_BASE_URL" =~ ^https?://(127\.0\.0\.1|localhost):[0-9]+/?$ ]]
     spent_pct=$(awk -v s="$spent" -v c="$daily_cap" 'BEGIN {printf "%d", (c > 0 ? s * 100 / c : 0)}')
     out+="${sep}$(usage_color "$spent_pct")\$$(LC_NUMERIC=C printf '%.2f' "$spent")${reset}${nord3}/\$${daily_cap} today${reset}"
   fi
+fi
+
+# ===== Subscription plan limits (rate_limits from Claude Code) =====
+if [ -z "$ANTHROPIC_BASE_URL" ]; then
+  if [ -n "$rl5" ]; then
+    out+="${sep}${nord4}5h${reset} $(usage_color "$rl5")${rl5}%${reset}"
+    [ -n "$rl5_reset" ] && out+=" ${nord3}(resets in $(reset_in "$rl5_reset"))${reset}"
+  fi
+  [ -n "$rl7" ] && out+="${sep}${nord4}7d${reset} $(usage_color "$rl7")${rl7}%${reset}"
 fi
 
 # Claude Code version
