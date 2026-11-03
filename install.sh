@@ -358,6 +358,7 @@ install_packages_linux() {
     curl
     diffutils
     docker
+    fastfetch
     fzf
     git
     git-delta
@@ -372,7 +373,6 @@ install_packages_linux() {
     less
     lsof
     make
-    neofetch
     neovim
     nodejs
     npm
