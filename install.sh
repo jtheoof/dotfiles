@@ -34,8 +34,8 @@ print_error() {
 # Utils {{{
 
 die() {
-  echo $1
-  exit ${2:-1}
+  echo "$1"
+  exit "${2:-1}"
 }
 
 usage() {
@@ -45,316 +45,212 @@ usage() {
   echo
   echo "Supports"
   echo
-  echo "  macOS"
   echo "  Arch Linux"
+  echo "  macOS (legacy)"
+  echo
+  echo "Environment"
+  echo
+  echo "  FORCE=1  back up conflicting files to <path>.bak.<timestamp> and link anyway"
   echo
 }
 
+# link SRC DEST
+#
+# Idempotent symlink creation. DEST is the full path of the link itself.
+#  * already points to SRC: nothing to do
+#  * nothing at DEST: create the link
+#  * anything else (file, directory, foreign symlink): warn and skip, never
+#    destroy or abort. With FORCE=1 the existing path is moved aside first.
 link() {
-  ln -nsf $1 $2
+  local src=$1
+  local dest=$2
+
+  if [ -L "$dest" ] && [ "$(readlink -- "$dest")" = "$src" ]; then
+    print_noop "already linked: $dest"
+    return 0
+  fi
+
+  if [ -e "$dest" ] || [ -L "$dest" ]; then
+    if [ "${FORCE:-0}" = 1 ]; then
+      local backup
+      backup="$dest.bak.$(date +%Y%m%d%H%M%S)"
+      print_info "backing up $dest to $backup"
+      mv -- "$dest" "$backup"
+    else
+      print_error "skipping $dest: already exists and is not the expected link (re-run with FORCE=1 to back it up and replace it)"
+      return 0
+    fi
+  fi
+
+  mkdir -p -- "$(dirname -- "$dest")"
+  ln -sT -- "$src" "$dest"
+  print_success "linked: $dest -> $src"
 }
 
 # }}}
 # Installers {{{
 
 install_dotfiles() {
-  local dotfiles
+  local f
+  local d
 
   print_info "installing dotfiles and folders"
 
-  dotfiles=$(find $FILESPATH -maxdepth 1 -type f \( -iname '.*' ! -iname '.gitattributes' ! -iname '.gitignore' \))
-  for i in $dotfiles; do
-    link $i $HOME
-  done
+  while IFS= read -r -d '' f; do
+    link "$f" "$HOME/$(basename -- "$f")"
+  done < <(find "$FILESPATH" -maxdepth 1 -type f \( -iname '.*' ! -iname '.gitattributes' ! -iname '.gitignore' \) -print0)
 
   # Link .vim directory
-  link $FILESPATH/.vim $HOME
+  link "$FILESPATH/.vim" "$HOME/.vim"
 
-  [ -d $CONFIG_DIR ] || mkdir -p $CONFIG_DIR
   # .config directories
-  case "$OSTYPE" in
-    *)
-      config_dirs=$(ls -d $FILESPATH/.config/*)
+  mkdir -p -- "$CONFIG_DIR"
+  for d in "$FILESPATH"/.config/*; do
+    link "$d" "$CONFIG_DIR/$(basename -- "$d")"
+  done
 
-      for i in $config_dirs; do
-        link $i $CONFIG_DIR
-      done
+  # .local directories
+  mkdir -p -- "$HOME/.local"
+  link "$FILESPATH/.local/bin" "$HOME/.local/bin"
 
-      ;;
-  esac
-
-   # .local directories
-   [ -d $HOME/.local ] || mkdir -p $HOME/.local
-   link $FILESPATH/.local/bin $HOME/.local
-
-   # Claude Code: link individual files only, ~/.claude also holds credentials and history
-   [ -d $HOME/.claude ] || mkdir -p $HOME/.claude
-   link $FILESPATH/.claude/statusline.sh $HOME/.claude/statusline.sh
-   link $FILESPATH/.claude/CLAUDE.md $HOME/.claude/CLAUDE.md
-   link $FILESPATH/.claude/skills $HOME/.claude
+  # Claude Code: link individual files only, ~/.claude also holds credentials and history
+  mkdir -p -- "$HOME/.claude"
+  link "$FILESPATH/.claude/statusline.sh" "$HOME/.claude/statusline.sh"
+  link "$FILESPATH/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+  link "$FILESPATH/.claude/skills" "$HOME/.claude/skills"
 }
 
 install_tmux_plugins() {
   print_info "installing tmux plugin manager..."
 
-  if [ -d $CONFIG_DIR/tmux/plugins ]; then
+  if [ -d "$CONFIG_DIR/tmux/plugins" ]; then
     print_info "tmux plugins folder found, skipping"
     return
   fi
 
-  git clone https://github.com/tmux-plugins/tpm $CONFIG_DIR/tmux/plugins/tpm
+  git clone https://github.com/tmux-plugins/tpm "$CONFIG_DIR/tmux/plugins/tpm"
 
   print_info "installing tpm plugins..."
-  sh -c "$HOME/.config/tmux/plugins/tpm/bin/install_plugins"
+  sh -c "$CONFIG_DIR/tmux/plugins/tpm/bin/install_plugins"
 }
 
 install_oh_my_zsh() {
+  local zsh_path
+  local current_shell
+
   print_info "installing oh-my-zsh"
-  if [ ! -d $HOME/.oh-my-zsh ]; then
+  if [ ! -d "$HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended --keep-zshrc
   else
     print_info "already found .oh-my-zsh at $HOME/.oh-my-zsh"
   fi
 
   print_info "installing oh-my-zsh plugins"
-  cd $HOME/.oh-my-zsh/custom/
+  cd "$HOME/.oh-my-zsh/custom/"
 
-  ZSH_CUSTOM_PLUGINS_PATH=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins
+  ZSH_CUSTOM_PLUGINS_PATH=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins
 
-  if [ ! -d $ZSH_CUSTOM_PLUGINS_PATH/H-S-MW ]; then
+  if [ ! -d "$ZSH_CUSTOM_PLUGINS_PATH/H-S-MW" ]; then
     print_debug "installing oh-my-zsh H-S-MW plugin"
-    git clone https://github.com/z-shell/H-S-MW $ZSH_CUSTOM_PLUGINS_PATH/H-S-MW
+    git clone https://github.com/z-shell/H-S-MW "$ZSH_CUSTOM_PLUGINS_PATH/H-S-MW"
   fi
 
-  if [ ! -d $ZSH_CUSTOM_PLUGINS_PATH/zsh-autosuggestions ]; then
+  if [ ! -d "$ZSH_CUSTOM_PLUGINS_PATH/zsh-autosuggestions" ]; then
     print_debug "installing oh-my-zsh zsh-autosuggestions plugin"
-    git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM_PLUGINS_PATH/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM_PLUGINS_PATH/zsh-autosuggestions"
   fi
 
-  if [ ! -d $ZSH_CUSTOM_PLUGINS_PATH/zsh-syntax-highlighting ]; then
+  if [ ! -d "$ZSH_CUSTOM_PLUGINS_PATH/zsh-syntax-highlighting" ]; then
     print_debug "installing oh-my-zsh zsh-syntax-highlighting plugin"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM_PLUGINS_PATH/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM_PLUGINS_PATH/zsh-syntax-highlighting"
   fi
 
-  # switch to zsh default shell
-  print_info "switch to zsh..."
-  sudo usermod --shell /usr/bin/zsh $(whoami)
-}
-
-install_packages_darwin() {
-  print_info "installing homebrew"
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-  brew_packages="\
-    asciidoc \
-    bash \
-    certbot \
-    clang-format \
-    cloc \
-    colordiff \
-    ctags \
-    ctop \
-    curl \
-    direnv \
-    docker \
-    docker-compose \
-    dos2unix \
-    doxygen \
-    freetype \
-    fswatch \
-    git \
-    git-delta \
-    graphicsmagick \
-    grep \
-    herdr \
-    htop \
-    httpie \
-    jpeg \
-    jq \
-    kubernetes-cli \
-    kubernetes-helm \
-    lazygit \
-    md5deep \
-    mtr \
-    multimarkdown \
-    ncdu \
-    neofetch \
-    neovim \
-    ninja \
-    nmap \
-    node \
-    nvm \
-    openconnect \
-    openssh \
-    openvpn \
-    optipng \
-    pcre \
-    perl \
-    pidof \
-    pkg-config \
-    pngquant \
-    pure \
-    pyenv \
-    python \
-    python3 \
-    ranger \
-    readline \
-    rename \
-    ripgrep \
-    rsync \
-    snappy \
-    ssh-copy-id \
-    terminal-notifier \
-    tig \
-    tldr \
-    tmux \
-    trash \
-    tree \
-    vim \
-    watch \
-    watchman \
-    webp \
-    wget \
-    yarn \
-    zoxide \
-    zsh \
-  "
-
-brew_cask_packages="\
-    1password \
-    1password-ci \
-    alfred \
-    appcleaner \
-    dropbox \
-    google-chrome \
-    iterm2 \
-    macvim \
-    rectangle \
-    slack \
-    spotify \
-    visual-studio-code \
-  "
-
-  print_info "installing brew packages..."
-  brew install $brew_packages
-
-  print_info "installing brew cask packages..."
-  brew install --cask $brew_cask_packages
+  # switch to zsh default shell (only when it is not already)
+  zsh_path=$(command -v zsh || true)
+  current_shell=$(getent passwd "$(whoami)" | cut -d: -f7)
+  if [ -z "$zsh_path" ]; then
+    print_error "zsh not found, not changing default shell"
+  elif [ "$current_shell" = "$zsh_path" ]; then
+    print_noop "default shell is already $zsh_path"
+  else
+    print_info "switch to zsh..."
+    sudo usermod --shell "$zsh_path" "$(whoami)"
+  fi
 }
 
 install_yay() {
   print_info "installing yay..."
 
   if [ -x "$(command -v yay)" ]; then
-    print_info "found yay at: $(which yay), skipping install"
+    print_info "found yay at: $(command -v yay), skipping install"
   else
-    cd $(mktemp -d)
+    cd "$(mktemp -d)"
     git clone https://aur.archlinux.org/yay-bin.git
     cd yay-bin
     makepkg -sif --noconfirm
-    cd $FILESPATH
+    cd "$FILESPATH"
   fi
 }
 
 install_packages_linux() {
-  local install_command=""
+  local packages=(
+    alacritty
+    bash
+    bat
+    binutils
+    cargo
+    colordiff
+    coreutils
+    cscope
+    curl
+    diffutils
+    docker
+    fzf
+    git
+    git-delta
+    gnupg
+    grep
+    gzip
+    htop
+    httpie
+    imagemagick
+    jq
+    lazygit
+    less
+    lsof
+    make
+    neofetch
+    neovim
+    nodejs
+    npm
+    python
+    python-neovim
+    python-pip
+    python-setuptools
+    ripgrep
+    scdoc
+    sed
+    tig
+    tmux
+    tree
+    tree-sitter-cli
+    unzip
+    vim
+    wget
+    zoxide
+    zsh
+  )
 
-  packages="\
-    alacritty \
-    bash \
-    bat \
-    binutils \
-    cargo \
-    colordiff \
-    coreutils \
-    cscope \
-    curl \
-    diffutils \
-    docker \
-    fzf \
-    git \
-    git-delta \
-    gnupg \
-    grep \
-    gzip \
-    htop \
-    httpie \
-    imagemagick \
-    jq \
-    lazygit \
-    less \
-    lsof \
-    make \
-    neofetch \
-    neovim \
-    nodejs \
-    npm \
-    python \
-    python-neovim \
-    python-pip \
-    python-setuptools \
-    ripgrep \
-    scdoc \
-    sed \
-    tig \
-    tmux \
-    tree \
-    tree-sitter-cli \
-    unzip \
-    vim \
-    wget \
-    zoxide \
-    zsh \
-  "
-
-  aur_packages="\
-    herdr-bin \
-    zsh-pure-prompt \
-  "
-
-  case "$1" in
-    arch | manjaro)
-      install_command="yay -S --needed --noconfirm"
-      ;;
-    pop)
-      install_command="sudo apt install"
-      ;;
-    *)
-      die "install command is unkown for that OS"
-      ;;
-  esac
+  local aur_packages=(
+    herdr-bin
+    zsh-pure-prompt
+  )
 
   print_info "installing packages..."
-  $install_command $packages
+  yay -S --needed --noconfirm "${packages[@]}"
 
-  case "$1" in
-    arch | manjaro)
-      print_info "installing AUR packages..."
-      $install_command $aur_packages
-      ;;
-  esac
-}
-
-install_vim_bundles() {
-  if [ ! -d ~/.local/state/vim/undo ]; then
-    mkdir -p ~/.local/state/vim/undo
-  fi
-
-  if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  fi
-
-  vim -c ":BundleInstall" -c ":qa!"
-
-  coc_folder=$HOME/.vim/bundle/coc.nvim
-
-  # Checkout release branch because Vundle does not allow it
-  if [ -d $coc_folder ]; then
-    old_dir=$(pwd)
-    cd $coc_folder
-    git checkout -B release -t origin/release
-    cd $old_dir
-  fi
+  print_info "installing AUR packages..."
+  yay -S --needed --noconfirm "${aur_packages[@]}"
 }
 
 install_neovim_plugins() {
@@ -362,13 +258,127 @@ install_neovim_plugins() {
   nvim --headless "+Lazy! sync" +qa
 }
 
-install_plist_launchd_darwin() {
-  mkdir -p ~/Library/LaunchAgents
+# macOS (legacy, no longer maintained) {{{
 
-  ln -sf $FILESPATH/launchd/me.jtheoof.launched.brew_update.plist ~/Library/LaunchAgents/
+install_packages_darwin() {
+  local brew_packages=(
+    asciidoc
+    bash
+    certbot
+    clang-format
+    cloc
+    colordiff
+    ctags
+    ctop
+    curl
+    direnv
+    docker
+    docker-compose
+    dos2unix
+    doxygen
+    freetype
+    fswatch
+    git
+    git-delta
+    graphicsmagick
+    grep
+    herdr
+    htop
+    httpie
+    jpeg
+    jq
+    kubernetes-cli
+    kubernetes-helm
+    lazygit
+    md5deep
+    mtr
+    multimarkdown
+    ncdu
+    neofetch
+    neovim
+    ninja
+    nmap
+    node
+    nvm
+    openconnect
+    openssh
+    openvpn
+    optipng
+    pcre
+    perl
+    pidof
+    pkg-config
+    pngquant
+    pure
+    pyenv
+    python
+    python3
+    ranger
+    readline
+    rename
+    ripgrep
+    rsync
+    snappy
+    ssh-copy-id
+    terminal-notifier
+    tig
+    tldr
+    tmux
+    trash
+    tree
+    vim
+    watch
+    watchman
+    webp
+    wget
+    yarn
+    zoxide
+    zsh
+  )
 
-  launchctl load -w ~/Library/LaunchAgents/me.jtheoof.launched.brew_update.plist
+  local brew_cask_packages=(
+    1password
+    1password-ci
+    alfred
+    appcleaner
+    dropbox
+    google-chrome
+    iterm2
+    macvim
+    rectangle
+    slack
+    spotify
+    visual-studio-code
+  )
+
+  if command -v brew > /dev/null 2>&1; then
+    print_info "found homebrew at: $(command -v brew), skipping install"
+  else
+    print_info "installing homebrew"
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+
+  print_info "installing brew packages..."
+  brew install "${brew_packages[@]}"
+
+  print_info "installing brew cask packages..."
+  brew install --cask "${brew_cask_packages[@]}"
 }
+
+install_plist_launchd_darwin() {
+  local label=me.jtheoof.launched.brew_update
+  local plist="$HOME/Library/LaunchAgents/$label.plist"
+
+  link "$FILESPATH/launchd/$label.plist" "$plist"
+
+  if launchctl list | grep -q "$label"; then
+    print_noop "launchd agent $label already loaded"
+  else
+    launchctl load -w "$plist"
+  fi
+}
+
+# }}}
 
 # }}}
 # Global variables {{{
@@ -400,13 +410,6 @@ shift # removing '--'
 
 install_platform() {
   case "$OSTYPE" in
-    darwin*)
-      install_packages_darwin
-      install_plist_launchd_darwin
-
-      # Turn off the character accent selector and re-enable key repetition.
-      defaults write -g ApplePressAndHoldEnabled -bool false
-      ;;
     linux*)
       if [ -f /etc/os-release ]; then
         # freedesktop.org and systemd
@@ -418,10 +421,7 @@ install_platform() {
       case "$OS_ID" in
         arch | manjaro)
           install_yay
-          install_packages_linux $OS_ID
-          ;;
-        pop)
-          install_packages_linux $OS_ID
+          install_packages_linux
           ;;
         *)
           die "OS with ID: $OS_ID is not supported"
@@ -429,14 +429,21 @@ install_platform() {
       esac
 
       ;;
+    darwin*)
+      install_packages_darwin
+      install_plist_launchd_darwin
+
+      # Turn off the character accent selector and re-enable key repetition.
+      defaults write -g ApplePressAndHoldEnabled -bool false
+      ;;
   esac
 }
 
 install_all() {
-  if [ ! -d $FILESPATH ]; then
-    cd $HOME
-    git clone --recursive https://github.com/jtheoof/dotfiles $FILESPATH
-    cd $FILESPATH
+  if [ ! -d "$FILESPATH" ]; then
+    cd "$HOME"
+    git clone --recursive https://github.com/jtheoof/dotfiles "$FILESPATH"
+    cd "$FILESPATH"
   fi
   install_platform
   install_dotfiles
