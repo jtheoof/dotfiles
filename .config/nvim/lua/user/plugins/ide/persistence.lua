@@ -14,9 +14,20 @@ return {
       -- Needed so the restored buffers trigger BufRead/FileType (filetype detection)
       nested = true,
       callback = function()
-        if vim.fn.argc(-1) == 0 then
+        -- Used as a pager (e.g. MANPAGER="nvim +Man!"): stdin is a pipe, so don't touch sessions
+        if vim.uv.guess_handle(0) ~= "tty" then
+          require("persistence").stop()
+        elseif vim.fn.argc(-1) == 0 then
           require("persistence").load()
         end
+      end,
+    })
+
+    -- Never record man pages in a session (covers `:Man` from inside nvim too)
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "man",
+      callback = function()
+        vim.bo.buflisted = false
       end,
     })
   end,
