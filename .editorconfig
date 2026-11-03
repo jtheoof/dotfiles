@@ -1,0 +1,22 @@
+# Main EditorConfig, linked to ~/.editorconfig.
+#
+# Editors look for .editorconfig from the file's directory up to /, nearest first,
+# and stop at a file with "root = true". This one covers everything under $HOME;
+# a project's own .editorconfig takes precedence (and ignores this one if it
+# sets root = true too).
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+
+# Formats where tabs are required or conventional.
+[{Makefile,GNUmakefile,*.mk}]
+indent_style = tab
+
+[*.go]
+indent_style = tab
+
+# scdoc rejects space indentation ("Tabs are required for indentation").
+[*.scd]
+indent_style = tab
