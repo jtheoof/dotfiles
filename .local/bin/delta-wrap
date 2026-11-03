@@ -1,0 +1,130 @@
+#!/usr/bin/env python3
+# Wrap delta's unified output so long code lines continue under the code
+# instead of under the line numbers (delta itself only wraps side by side).
+# usage: delta --line-numbers ... | delta-wrap [width]
+# The width defaults to $COLUMNS, then the terminal width.
+# Continuation rows get blank line number columns, keep the line's
+# indentation and colors, and break at a space when there is one close by.
+# Lines without line numbers (headers, commit messages) are left as they are.
+
+import io
+import os
+import re
+import shutil
+import sys
+import unicodedata
+
+ESCAPE = re.compile(r"\x1b\[[0-9;:?]*[ -/]*[@-~]|\x1b\][^\x07\x1b]*(?:\x07|\x1b\\)|\x1b.")
+# delta's default {nm:^4}⋮{np:^4}│ line number columns
+NUMBERS = re.compile(r"[ \d]*⋮[ \d]*│")
+RESET = re.compile(r"\x1b\[0*m")
+FILL = "\x1b[0K"
+
+
+def char_width(ch):
+    if unicodedata.combining(ch):
+        return 0
+    return 2 if unicodedata.east_asian_width(ch) in "WF" else 1
+
+
+def parse(line):
+    """Split a line into visible chars, each carrying the escapes just before
+    it and the SGR state active before those, plus the trailing escapes."""
+    chars, pending, sgr = [], [], []
+    state = []
+    pos = 0
+    while pos < len(line):
+        m = ESCAPE.match(line, pos)
+        if m:
+            if not pending:
+                state = list(sgr)
+            esc = m.group()
+            pending.append(esc)
+            if RESET.fullmatch(esc):
+                sgr = []
+            elif esc.endswith("m") and esc.startswith("\x1b["):
+                sgr.append(esc)
+            pos = m.end()
+            continue
+        if not pending:
+            state = list(sgr)
+        ch = line[pos]
+        chars.append(("".join(pending), ch, char_width(ch), "".join(state)))
+        pending = []
+        pos += 1
+    return chars, "".join(pending)
+
+
+def split_rows(chars, first, rest):
+    """Greedily cut chars into rows of at most `first` then `rest` columns."""
+    rows, row, col, limit = [], [], 0, first
+    for item in chars:
+        if col + item[2] > limit and row:
+            cut = len(row)
+            space = max((i for i, c in enumerate(row) if c[1] == " "), default=-1)
+            # break after the last space, unless that leaves most of the row empty
+            if space > 0 and space + 1 >= len(row) // 2:
+                cut = space + 1
+            rows.append(row[:cut])
+            row = row[cut:]
+            col = sum(c[2] for c in row)
+            limit = rest
+        row.append(item)
+        col += item[2]
+    rows.append(row)
+    return rows
+
+
+def wrap(line, cols):
+    chars, trailing = parse(line)
+    text = "".join(c[1] for c in chars)
+    m = NUMBERS.match(text)
+    if not m or sum(c[2] for c in chars) <= cols:
+        return line
+
+    split = len(m.group())
+    prefix, code = chars[:split], chars[split:]
+    prefix_width = sum(c[2] for c in prefix)
+    blank = "".join(pre + (" " if ch.isdigit() else ch) for pre, ch, _, _ in prefix)
+
+    code_text = "".join(c[1] for c in code)
+    indent = len(code_text) - len(code_text.lstrip(" "))
+    indent = min(indent, (cols - prefix_width) // 2)
+    first = cols - prefix_width
+    rest = first - indent
+    if rest < 8:
+        return line
+
+    fill = FILL if FILL in line else ""
+    out = []
+    for i, row in enumerate(split_rows(code, first, rest)):
+        if i == 0:
+            head = "".join(pre + ch for pre, ch, _, _ in prefix)
+            body = "".join(pre + ch for pre, ch, _, _ in row)
+        else:
+            body = row[0][3] + " " * indent + "".join(pre + ch for pre, ch, _, _ in row)
+            head = "\x1b[0m" + blank
+        out.append(head + body)
+    return (fill + "\x1b[0m\n").join(out) + trailing
+
+
+def main():
+    if len(sys.argv) > 1:
+        cols = int(sys.argv[1])
+    else:
+        cols = int(os.environ.get("COLUMNS") or shutil.get_terminal_size().columns)
+
+    stdin = io.TextIOWrapper(sys.stdin.buffer, encoding="utf-8", errors="surrogateescape")
+    stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="surrogateescape")
+    try:
+        for line in stdin:
+            end = "\n" if line.endswith("\n") else ""
+            stdout.write(wrap(line.rstrip("\n"), cols) + end)
+        stdout.flush()
+    except BrokenPipeError:
+        # the pager quit early; don't let Python complain on exit
+        os.dup2(os.open(os.devnull, os.O_WRONLY), sys.stdout.fileno())
+
+
+if __name__ == "__main__":
+    main()
