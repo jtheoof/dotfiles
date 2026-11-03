@@ -39,19 +39,40 @@ die() {
 }
 
 usage() {
-  echo "Usage"
-  echo
-  echo "Installs basic tooling for new machine setup"
-  echo
-  echo "Supports"
-  echo
-  echo "  Arch Linux"
-  echo "  macOS (legacy)"
-  echo
-  echo "Environment"
-  echo
-  echo "  FORCE=1  back up conflicting files to <path>.bak.<timestamp> and link anyway"
-  echo
+  cat <<EOF
+Usage: install.sh [OPTIONS] [COMMAND]
+
+Set up a new machine: install packages, symlink dotfiles, install plugins.
+Safe to re-run: existing correct symlinks and installed packages are left
+alone, so it can also be used to pick up newly added packages or links.
+
+Supported systems: Arch Linux (and Manjaro), macOS (legacy)
+
+Commands (default: run all steps):
+  platform    install system packages only (yay on Arch, brew on macOS)
+  dotfiles    create symlinks only (home dotfiles, ~/.config, ~/.local/bin,
+              ~/.claude)
+
+  With no command, the steps run in order: platform, dotfiles, tmux plugins
+  (tpm), neovim plugins (Lazy), oh-my-zsh and its plugins, default shell.
+
+Options:
+  -f, --force   when a link destination already exists and is not the
+                expected symlink (regular file, directory or a symlink to
+                somewhere else), move it to <path>.bak.<timestamp> and link
+                anyway. Without this flag such paths are skipped with a
+                warning and nothing is overwritten.
+  -h, --help    show this help and exit
+
+Environment:
+  XDG_CONFIG_HOME   config directory to link into (default: ~/.config)
+  FORCE=1           same as --force
+
+Examples:
+  ./install.sh                  full setup
+  ./install.sh dotfiles         only (re)create symlinks
+  ./install.sh --force dotfiles replace conflicting files, keeping backups
+EOF
 }
 
 # link SRC DEST
@@ -392,19 +413,35 @@ print_info "config directory: $CONFIG_DIR"
 # }}}
 # Getting options {{{
 
-# Preserving initial argument
-set -- `getopt -l help h $@`
-while [ $1 != -- ]
-do
-  case $1 in
-  -h|--help)
-    shift
-    usage
-    exit 0
-    ;;
+COMMAND=""
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -h | --help)
+      usage
+      exit 0
+      ;;
+    -f | --force)
+      FORCE=1
+      ;;
+    -*)
+      usage
+      die "unknown option: $1"
+      ;;
+    *)
+      [ -z "$COMMAND" ] || die "only one command can be given"
+      COMMAND=$1
+      ;;
   esac
+  shift
 done
-shift # removing '--'
+
+if [ -n "$COMMAND" ]; then
+  case " ${commands[*]} " in
+    *" $COMMAND "*) ;;
+    *) usage; die "unknown command: $COMMAND" ;;
+  esac
+fi
 
 # }}}
 
@@ -452,8 +489,8 @@ install_all() {
   install_oh_my_zsh
 }
 
-if [[ -n $command ]]; then
-  case "$command" in
+if [[ -n $COMMAND ]]; then
+  case "$COMMAND" in
     platform)
       install_platform
       ;;
