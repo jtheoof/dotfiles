@@ -15,3 +15,5 @@
 .config/herdr/session-snapshots/
 
 .config/opencode/service.json
+
+.claude/skills/synced/
