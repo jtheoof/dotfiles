@@ -225,18 +225,28 @@ function cr() {
     cd "${cwd/#\~/$HOME}" && claude --resume "${sel##*$'\t'}" "$@"
 }
 
-# Run claude with an env profile from ~/.config/claude/<name>.env.
+# Run claude with an env profile: ~/.config/claude/<name>.env, or an absolute path.
 # Runs in a subshell so nothing leaks into the interactive shell.
 function _claude_with() {
-    local profile="$HOME/.config/claude/$1.env"; shift
+    local profile=$1; shift
+    [[ $profile == /* ]] || profile="$HOME/.config/claude/$profile.env"
     [[ -r $profile ]] || { print -u2 "claude: missing profile $profile"; return 1 }
     (
-        unset ANTHROPIC_BASE_URL ANTHROPIC_AUTH_TOKEN ANTHROPIC_API_KEY
+        unset -m 'ANTHROPIC_*'
+        unset CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY
         set -a; source "$profile"; set +a
         command claude "$@"
     )
 }
-function claude() { _claude_with anthropic "$@" }   # Pro subscription (/login)
+# Written by `aigateway-cli install` on work machines (Databricks via local AI Gateway)
+_claude_gateway_env=/etc/profile.d/anthropic.sh
+function claude() {
+    if [[ -r $_claude_gateway_env ]]; then
+        _claude_with $_claude_gateway_env "$@"
+    else
+        _claude_with anthropic "$@"   # Pro subscription (/login)
+    fi
+}
 function claude-or() { _claude_with openrouter "$@" }
 function claude-openrouter() { claude-or "$@" }
 
