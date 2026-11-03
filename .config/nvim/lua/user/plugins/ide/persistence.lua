@@ -19,7 +19,10 @@ return {
       nested = true,
       callback = function()
         -- Used as a pager (e.g. MANPAGER="nvim +Man!"): don't touch sessions
-        if piped then
+        -- +Man! has already filled the buffer by now; that check also covers terminals
+        -- where stdin looked like a tty at startup
+        local is_man = vim.bo.filetype == "man" or vim.api.nvim_buf_get_name(0):match("^man://") ~= nil
+        if piped or is_man then
           require("persistence").stop()
         elseif vim.fn.argc(-1) == 0 then
           require("persistence").load()
