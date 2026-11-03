@@ -150,6 +150,10 @@
 [delta]
 	navigate = true
 	line-numbers = true
+	# side-by-side is the only layout where delta wraps long lines itself,
+	# keeping continuations in the code column instead of under the line numbers
+	side-by-side = true
+	wrap-max-lines = unlimited
 	# subtle background tints keep the foreground free for syntax colors
 	syntax-theme = Nord
 	hunk-header-style = omit
