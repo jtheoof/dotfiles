@@ -8,14 +8,18 @@ return {
       require("persistence").load()
     end, { desc = "Restore session for the current directory" })
 
+    -- Captured now: nvim re-points fd 0 at the tty after reading stdin, so checking
+    -- later (e.g. in VimEnter) would always say "tty"
+    local piped = vim.uv.guess_handle(0) ~= "tty"
+
     -- Restore the session for the current directory when nvim starts without files
     vim.api.nvim_create_autocmd("VimEnter", {
       once = true,
       -- Needed so the restored buffers trigger BufRead/FileType (filetype detection)
       nested = true,
       callback = function()
-        -- Used as a pager (e.g. MANPAGER="nvim +Man!"): stdin is a pipe, so don't touch sessions
-        if vim.uv.guess_handle(0) ~= "tty" then
+        -- Used as a pager (e.g. MANPAGER="nvim +Man!"): don't touch sessions
+        if piped then
           require("persistence").stop()
         elseif vim.fn.argc(-1) == 0 then
           require("persistence").load()
@@ -23,11 +27,22 @@ return {
       end,
     })
 
-    -- Never record man pages in a session (covers `:Man` from inside nvim too)
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = "man",
+    -- Never record man pages in a session (covers `:Man` from inside nvim too).
+    -- :mksession records the buffer shown in a window even if it is unlisted, so close them.
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "PersistenceSavePre",
       callback = function()
-        vim.bo.buflisted = false
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          local buf = vim.api.nvim_win_get_buf(win)
+          if vim.bo[buf].filetype == "man" and #vim.api.nvim_list_wins() > 1 then
+            pcall(vim.api.nvim_win_close, win, true)
+          end
+        end
+        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+          if vim.bo[buf].filetype == "man" then
+            pcall(vim.api.nvim_buf_delete, buf, { force = true })
+          end
+        end
       end,
     })
   end,
