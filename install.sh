@@ -2,6 +2,8 @@
 
 set -e
 
+DRY_RUN=${DRY_RUN:-0}
+
 # TODO Install
 #  * Fonts (especially Windows into /usr/share/fonts/truetype/windows)
 
@@ -28,6 +30,10 @@ print_success() {
 
 print_error() {
   echo -e "\033[31m$1\033[0m"
+}
+
+print_dry() {
+  echo -e "\033[36m[dry-run] $1\033[0m"
 }
 
 # }}}
@@ -62,15 +68,21 @@ Options:
                 somewhere else), move it to <path>.bak.<timestamp> and link
                 anyway. Without this flag such paths are skipped with a
                 warning and nothing is overwritten.
+  -n, --dry-run print what would be done (packages that would be installed,
+                links that would be created, skipped or backed up, plugins
+                that would be cloned...) without changing anything
   -h, --help    show this help and exit
 
 Environment:
   XDG_CONFIG_HOME   config directory to link into (default: ~/.config)
   FORCE=1           same as --force
+  DRY_RUN=1         same as --dry-run
 
 Examples:
   ./install.sh                  full setup
+  ./install.sh --dry-run        preview a full setup, change nothing
   ./install.sh dotfiles         only (re)create symlinks
+  ./install.sh -n --force dotfiles  preview what --force would back up
   ./install.sh --force dotfiles replace conflicting files, keeping backups
 EOF
 }
@@ -82,9 +94,12 @@ EOF
 #  * nothing at DEST: create the link
 #  * anything else (file, directory, foreign symlink): warn and skip, never
 #    destroy or abort. With FORCE=1 the existing path is moved aside first.
+# With DRY_RUN=1 only reports what would happen.
 link() {
   local src=$1
   local dest=$2
+  local kind=""
+  local backup
 
   if [ -L "$dest" ] && [ "$(readlink -- "$dest")" = "$src" ]; then
     print_noop "already linked: $dest"
@@ -92,20 +107,71 @@ link() {
   fi
 
   if [ -e "$dest" ] || [ -L "$dest" ]; then
+    if [ -L "$dest" ]; then
+      kind="symlink to $(readlink -- "$dest")"
+    elif [ -d "$dest" ]; then
+      kind="directory"
+    else
+      kind="file"
+    fi
+
     if [ "${FORCE:-0}" = 1 ]; then
-      local backup
       backup="$dest.bak.$(date +%Y%m%d%H%M%S)"
+      if [ "$DRY_RUN" = 1 ]; then
+        print_dry "would back up $dest ($kind) to $backup, then link -> $src"
+        return 0
+      fi
       print_info "backing up $dest to $backup"
       mv -- "$dest" "$backup"
     else
-      print_error "skipping $dest: already exists and is not the expected link (re-run with FORCE=1 to back it up and replace it)"
+      if [ "$DRY_RUN" = 1 ]; then
+        print_dry "would skip $dest: existing $kind (use --force to back it up and replace it)"
+        return 0
+      fi
+      print_error "skipping $dest: already exists ($kind) and is not the expected link (re-run with --force to back it up and replace it)"
       return 0
     fi
+  fi
+
+  if [ "$DRY_RUN" = 1 ]; then
+    print_dry "would link $dest -> $src"
+    return 0
   fi
 
   mkdir -p -- "$(dirname -- "$dest")"
   ln -sT -- "$src" "$dest"
   print_success "linked: $dest -> $src"
+}
+
+# pacman_missing PKG...
+#
+# Prints the packages (one per line) that are not installed. Uses pacman -T,
+# which exits 127 when something is missing, hence the || true.
+pacman_missing() {
+  pacman -T "$@" || true
+}
+
+# report_packages LABEL PKG...
+#
+# Dry-run report of which packages would be installed and which are already
+# there.
+report_packages() {
+  local label=$1
+  shift
+  local missing
+  local total=$#
+  local count=0
+  local p
+
+  missing=$(pacman_missing "$@")
+  if [ -n "$missing" ]; then
+    count=$(printf '%s\n' "$missing" | wc -l)
+  fi
+
+  print_dry "$label: $((total - count)) already installed, $count would be installed"
+  for p in $missing; do
+    print_dry "  would install $p"
+  done
 }
 
 # }}}
@@ -119,23 +185,20 @@ install_dotfiles() {
 
   while IFS= read -r -d '' f; do
     link "$f" "$HOME/$(basename -- "$f")"
-  done < <(find "$FILESPATH" -maxdepth 1 -type f \( -iname '.*' ! -iname '.gitattributes' ! -iname '.gitignore' \) -print0)
+  done < <(find -H "$FILESPATH" -maxdepth 1 -type f \( -iname '.*' ! -iname '.gitattributes' ! -iname '.gitignore' \) -print0)
 
   # Link .vim directory
   link "$FILESPATH/.vim" "$HOME/.vim"
 
   # .config directories
-  mkdir -p -- "$CONFIG_DIR"
   for d in "$FILESPATH"/.config/*; do
     link "$d" "$CONFIG_DIR/$(basename -- "$d")"
   done
 
   # .local directories
-  mkdir -p -- "$HOME/.local"
   link "$FILESPATH/.local/bin" "$HOME/.local/bin"
 
   # Claude Code: link individual files only, ~/.claude also holds credentials and history
-  mkdir -p -- "$HOME/.claude"
   link "$FILESPATH/.claude/statusline.sh" "$HOME/.claude/statusline.sh"
   link "$FILESPATH/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
   link "$FILESPATH/.claude/skills" "$HOME/.claude/skills"
@@ -149,10 +212,31 @@ install_tmux_plugins() {
     return
   fi
 
+  if [ "$DRY_RUN" = 1 ]; then
+    print_dry "would clone tpm into $CONFIG_DIR/tmux/plugins/tpm and install tmux plugins"
+    return
+  fi
+
   git clone https://github.com/tmux-plugins/tpm "$CONFIG_DIR/tmux/plugins/tpm"
 
   print_info "installing tpm plugins..."
   sh -c "$CONFIG_DIR/tmux/plugins/tpm/bin/install_plugins"
+}
+
+# clone_omz_plugin NAME URL
+clone_omz_plugin() {
+  local name=$1
+  local url=$2
+  local dest="$ZSH_CUSTOM_PLUGINS_PATH/$name"
+
+  if [ -d "$dest" ]; then
+    print_noop "oh-my-zsh plugin already installed: $name"
+  elif [ "$DRY_RUN" = 1 ]; then
+    print_dry "would clone oh-my-zsh plugin $name into $dest"
+  else
+    print_debug "installing oh-my-zsh $name plugin"
+    git clone "$url" "$dest"
+  fi
 }
 
 install_oh_my_zsh() {
@@ -160,39 +244,34 @@ install_oh_my_zsh() {
   local current_shell
 
   print_info "installing oh-my-zsh"
-  if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended --keep-zshrc
-  else
+  if [ -d "$HOME/.oh-my-zsh" ]; then
     print_info "already found .oh-my-zsh at $HOME/.oh-my-zsh"
+  elif [ "$DRY_RUN" = 1 ]; then
+    print_dry "would install oh-my-zsh into $HOME/.oh-my-zsh"
+  else
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended --keep-zshrc
   fi
 
   print_info "installing oh-my-zsh plugins"
-  cd "$HOME/.oh-my-zsh/custom/"
-
   ZSH_CUSTOM_PLUGINS_PATH=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins
 
-  if [ ! -d "$ZSH_CUSTOM_PLUGINS_PATH/H-S-MW" ]; then
-    print_debug "installing oh-my-zsh H-S-MW plugin"
-    git clone https://github.com/z-shell/H-S-MW "$ZSH_CUSTOM_PLUGINS_PATH/H-S-MW"
-  fi
-
-  if [ ! -d "$ZSH_CUSTOM_PLUGINS_PATH/zsh-autosuggestions" ]; then
-    print_debug "installing oh-my-zsh zsh-autosuggestions plugin"
-    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM_PLUGINS_PATH/zsh-autosuggestions"
-  fi
-
-  if [ ! -d "$ZSH_CUSTOM_PLUGINS_PATH/zsh-syntax-highlighting" ]; then
-    print_debug "installing oh-my-zsh zsh-syntax-highlighting plugin"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM_PLUGINS_PATH/zsh-syntax-highlighting"
-  fi
+  clone_omz_plugin H-S-MW https://github.com/z-shell/H-S-MW
+  clone_omz_plugin zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions
+  clone_omz_plugin zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
 
   # switch to zsh default shell (only when it is not already)
   zsh_path=$(command -v zsh || true)
   current_shell=$(getent passwd "$(whoami)" | cut -d: -f7)
   if [ -z "$zsh_path" ]; then
-    print_error "zsh not found, not changing default shell"
+    if [ "$DRY_RUN" = 1 ]; then
+      print_dry "zsh not installed yet: default shell would be switched once it is"
+    else
+      print_error "zsh not found, not changing default shell"
+    fi
   elif [ "$current_shell" = "$zsh_path" ]; then
     print_noop "default shell is already $zsh_path"
+  elif [ "$DRY_RUN" = 1 ]; then
+    print_dry "would switch default shell from $current_shell to $zsh_path"
   else
     print_info "switch to zsh..."
     sudo usermod --shell "$zsh_path" "$(whoami)"
@@ -204,6 +283,8 @@ install_yay() {
 
   if [ -x "$(command -v yay)" ]; then
     print_info "found yay at: $(command -v yay), skipping install"
+  elif [ "$DRY_RUN" = 1 ]; then
+    print_dry "would build and install yay-bin from the AUR"
   else
     cd "$(mktemp -d)"
     git clone https://aur.archlinux.org/yay-bin.git
@@ -267,6 +348,12 @@ install_packages_linux() {
     zsh-pure-prompt
   )
 
+  if [ "$DRY_RUN" = 1 ]; then
+    report_packages "packages" "${packages[@]}"
+    report_packages "AUR packages" "${aur_packages[@]}"
+    return
+  fi
+
   print_info "installing packages..."
   yay -S --needed --noconfirm "${packages[@]}"
 
@@ -276,6 +363,10 @@ install_packages_linux() {
 
 install_neovim_plugins() {
   print_info "installing neovim plugins..."
+  if [ "$DRY_RUN" = 1 ]; then
+    print_dry "would run: nvim --headless \"+Lazy! sync\" +qa (installs and updates lazy.nvim plugins)"
+    return
+  fi
   nvim --headless "+Lazy! sync" +qa
 }
 
@@ -374,9 +465,18 @@ install_packages_darwin() {
 
   if command -v brew > /dev/null 2>&1; then
     print_info "found homebrew at: $(command -v brew), skipping install"
+  elif [ "$DRY_RUN" = 1 ]; then
+    print_dry "would install homebrew, then ${#brew_packages[@]} brew packages and ${#brew_cask_packages[@]} casks"
+    return
   else
     print_info "installing homebrew"
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+
+  if [ "$DRY_RUN" = 1 ]; then
+    brew install --dry-run "${brew_packages[@]}" | sed 's/^/[dry-run] /' || true
+    brew install --cask --dry-run "${brew_cask_packages[@]}" | sed 's/^/[dry-run] /' || true
+    return
   fi
 
   print_info "installing brew packages..."
@@ -394,6 +494,8 @@ install_plist_launchd_darwin() {
 
   if launchctl list | grep -q "$label"; then
     print_noop "launchd agent $label already loaded"
+  elif [ "$DRY_RUN" = 1 ]; then
+    print_dry "would load launchd agent $label"
   else
     launchctl load -w "$plist"
   fi
@@ -424,6 +526,9 @@ while [ $# -gt 0 ]; do
     -f | --force)
       FORCE=1
       ;;
+    -n | --dry-run)
+      DRY_RUN=1
+      ;;
     -*)
       usage
       die "unknown option: $1"
@@ -435,6 +540,10 @@ while [ $# -gt 0 ]; do
   esac
   shift
 done
+
+if [ "$DRY_RUN" = 1 ]; then
+  print_dry "DRY RUN: nothing will be installed, linked or modified"
+fi
 
 if [ -n "$COMMAND" ]; then
   case " ${commands[*]} " in
@@ -471,12 +580,20 @@ install_platform() {
       install_plist_launchd_darwin
 
       # Turn off the character accent selector and re-enable key repetition.
-      defaults write -g ApplePressAndHoldEnabled -bool false
+      if [ "$DRY_RUN" = 1 ]; then
+        print_dry "would run: defaults write -g ApplePressAndHoldEnabled -bool false"
+      else
+        defaults write -g ApplePressAndHoldEnabled -bool false
+      fi
       ;;
   esac
 }
 
 install_all() {
+  if [ ! -d "$FILESPATH" ] && [ "$DRY_RUN" = 1 ]; then
+    print_dry "would clone https://github.com/jtheoof/dotfiles into $FILESPATH (nothing else can be previewed before that)"
+    return
+  fi
   if [ ! -d "$FILESPATH" ]; then
     cd "$HOME"
     git clone --recursive https://github.com/jtheoof/dotfiles "$FILESPATH"
