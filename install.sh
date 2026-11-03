@@ -12,28 +12,73 @@ commands=(platform dotfiles)
 
 # Print functions {{{
 
+# Replace the home directory prefix with ~ to keep lines short.
+shorten() {
+  printf '%s' "${1//"$HOME"/'~'}"
+}
+
 print_debug() {
-  echo "$1"
+  echo "$(shorten "$1")"
 }
 
 print_info() {
-  echo -e "\033[33m$1\033[0m"
+  echo -e "\033[33m$(shorten "$1")\033[0m"
 }
 
 print_noop() {
-  echo -e "\033[35m$1\033[0m"
+  echo -e "\033[35m$(shorten "$1")\033[0m"
 }
 
 print_success() {
-  echo -e "\033[32m$1\033[0m"
+  echo -e "\033[32m$(shorten "$1")\033[0m"
 }
 
 print_error() {
-  echo -e "\033[31m$1\033[0m"
+  echo -e "\033[31m$(shorten "$1")\033[0m"
 }
 
 print_dry() {
-  echo -e "\033[36m[dry-run] $1\033[0m"
+  echo -e "\033[36m[dry-run] $(shorten "$1")\033[0m"
+}
+
+# Same as print_dry, and counts the action in the final summary.
+print_dry_step() {
+  DRY_STEPS=$((DRY_STEPS + 1))
+  print_dry "$1"
+}
+
+# Counters for the final summary.
+LINKS_NEW=0
+LINKS_OK=0
+LINKS_SKIP=0
+LINKS_BACKUP=0
+PKGS_NEW=0
+PKGS_OK=0
+DRY_STEPS=0
+
+print_summary() {
+  local total=$((LINKS_NEW + LINKS_OK + LINKS_SKIP + LINKS_BACKUP))
+
+  if [ "$DRY_RUN" = 1 ]; then
+    echo
+    print_dry "Summary (nothing was changed):"
+    if [ "$total" -gt 0 ]; then
+      print_dry "  links:    $LINKS_NEW to create, $LINKS_BACKUP to back up and replace, $LINKS_SKIP to skip, $LINKS_OK already in place"
+    fi
+    if [ $((PKGS_NEW + PKGS_OK)) -gt 0 ]; then
+      print_dry "  packages: $PKGS_NEW to install, $PKGS_OK already installed"
+    fi
+    if [ "$DRY_STEPS" -gt 0 ]; then
+      print_dry "  other:    $DRY_STEPS step(s) would run (plugins, shell, yay, ...)"
+    fi
+  elif [ "$total" -gt 0 ]; then
+    echo
+    print_info "Summary:"
+    print_info "  links: $LINKS_NEW created, $LINKS_BACKUP backed up and replaced, $LINKS_SKIP skipped, $LINKS_OK already in place"
+    if [ "$LINKS_SKIP" -gt 0 ]; then
+      print_error "  $LINKS_SKIP link(s) skipped because something else exists there; see warnings above or re-run with --force"
+    fi
+  fi
 }
 
 # }}}
@@ -103,6 +148,7 @@ link() {
 
   if [ -L "$dest" ] && [ "$(readlink -- "$dest")" = "$src" ]; then
     print_noop "already linked: $dest"
+    LINKS_OK=$((LINKS_OK + 1))
     return 0
   fi
 
@@ -117,6 +163,7 @@ link() {
 
     if [ "${FORCE:-0}" = 1 ]; then
       backup="$dest.bak.$(date +%Y%m%d%H%M%S)"
+      LINKS_BACKUP=$((LINKS_BACKUP + 1))
       if [ "$DRY_RUN" = 1 ]; then
         print_dry "would back up $dest ($kind) to $backup, then link -> $src"
         return 0
@@ -124,6 +171,7 @@ link() {
       print_info "backing up $dest to $backup"
       mv -- "$dest" "$backup"
     else
+      LINKS_SKIP=$((LINKS_SKIP + 1))
       if [ "$DRY_RUN" = 1 ]; then
         print_dry "would skip $dest: existing $kind (use --force to back it up and replace it)"
         return 0
@@ -133,6 +181,7 @@ link() {
     fi
   fi
 
+  LINKS_NEW=$((LINKS_NEW + 1))
   if [ "$DRY_RUN" = 1 ]; then
     print_dry "would link $dest -> $src"
     return 0
@@ -168,6 +217,8 @@ report_packages() {
     count=$(printf '%s\n' "$missing" | wc -l)
   fi
 
+  PKGS_NEW=$((PKGS_NEW + count))
+  PKGS_OK=$((PKGS_OK + total - count))
   print_dry "$label: $((total - count)) already installed, $count would be installed"
   for p in $missing; do
     print_dry "  would install $p"
@@ -213,7 +264,7 @@ install_tmux_plugins() {
   fi
 
   if [ "$DRY_RUN" = 1 ]; then
-    print_dry "would clone tpm into $CONFIG_DIR/tmux/plugins/tpm and install tmux plugins"
+    print_dry_step "would clone tpm into $CONFIG_DIR/tmux/plugins/tpm and install tmux plugins"
     return
   fi
 
@@ -232,7 +283,7 @@ clone_omz_plugin() {
   if [ -d "$dest" ]; then
     print_noop "oh-my-zsh plugin already installed: $name"
   elif [ "$DRY_RUN" = 1 ]; then
-    print_dry "would clone oh-my-zsh plugin $name into $dest"
+    print_dry_step "would clone oh-my-zsh plugin $name into $dest"
   else
     print_debug "installing oh-my-zsh $name plugin"
     git clone "$url" "$dest"
@@ -247,7 +298,7 @@ install_oh_my_zsh() {
   if [ -d "$HOME/.oh-my-zsh" ]; then
     print_info "already found .oh-my-zsh at $HOME/.oh-my-zsh"
   elif [ "$DRY_RUN" = 1 ]; then
-    print_dry "would install oh-my-zsh into $HOME/.oh-my-zsh"
+    print_dry_step "would install oh-my-zsh into $HOME/.oh-my-zsh"
   else
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended --keep-zshrc
   fi
@@ -271,7 +322,7 @@ install_oh_my_zsh() {
   elif [ "$current_shell" = "$zsh_path" ]; then
     print_noop "default shell is already $zsh_path"
   elif [ "$DRY_RUN" = 1 ]; then
-    print_dry "would switch default shell from $current_shell to $zsh_path"
+    print_dry_step "would switch default shell from $current_shell to $zsh_path"
   else
     print_info "switch to zsh..."
     sudo usermod --shell "$zsh_path" "$(whoami)"
@@ -284,7 +335,7 @@ install_yay() {
   if [ -x "$(command -v yay)" ]; then
     print_info "found yay at: $(command -v yay), skipping install"
   elif [ "$DRY_RUN" = 1 ]; then
-    print_dry "would build and install yay-bin from the AUR"
+    print_dry_step "would build and install yay-bin from the AUR"
   else
     cd "$(mktemp -d)"
     git clone https://aur.archlinux.org/yay-bin.git
@@ -364,7 +415,7 @@ install_packages_linux() {
 install_neovim_plugins() {
   print_info "installing neovim plugins..."
   if [ "$DRY_RUN" = 1 ]; then
-    print_dry "would run: nvim --headless \"+Lazy! sync\" +qa (installs and updates lazy.nvim plugins)"
+    print_dry_step "would run: nvim --headless \"+Lazy! sync\" +qa (installs and updates lazy.nvim plugins)"
     return
   fi
   nvim --headless "+Lazy! sync" +qa
@@ -466,7 +517,7 @@ install_packages_darwin() {
   if command -v brew > /dev/null 2>&1; then
     print_info "found homebrew at: $(command -v brew), skipping install"
   elif [ "$DRY_RUN" = 1 ]; then
-    print_dry "would install homebrew, then ${#brew_packages[@]} brew packages and ${#brew_cask_packages[@]} casks"
+    print_dry_step "would install homebrew, then ${#brew_packages[@]} brew packages and ${#brew_cask_packages[@]} casks"
     return
   else
     print_info "installing homebrew"
@@ -495,7 +546,7 @@ install_plist_launchd_darwin() {
   if launchctl list | grep -q "$label"; then
     print_noop "launchd agent $label already loaded"
   elif [ "$DRY_RUN" = 1 ]; then
-    print_dry "would load launchd agent $label"
+    print_dry_step "would load launchd agent $label"
   else
     launchctl load -w "$plist"
   fi
@@ -581,7 +632,7 @@ install_platform() {
 
       # Turn off the character accent selector and re-enable key repetition.
       if [ "$DRY_RUN" = 1 ]; then
-        print_dry "would run: defaults write -g ApplePressAndHoldEnabled -bool false"
+        print_dry_step "would run: defaults write -g ApplePressAndHoldEnabled -bool false"
       else
         defaults write -g ApplePressAndHoldEnabled -bool false
       fi
@@ -618,5 +669,7 @@ if [[ -n $COMMAND ]]; then
 else
   install_all
 fi
+
+print_summary
 
 # vim: sts=2 sw=2 et
