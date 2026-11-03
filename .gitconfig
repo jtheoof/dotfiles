@@ -137,6 +137,7 @@
 [user]
 	name = Jeremy Attali
 	email = contact@jtheoof.me
+	signingkey = F44D05A50F6C9EB5C81BCF966A6B35DBE9442683!
 [grep]
 	extendedRegexp = true
 [gc]
