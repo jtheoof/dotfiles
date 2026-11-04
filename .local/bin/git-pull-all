@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Recursively find git repos under a folder and update them from their remotes,
+# several at a time.
+# Usage: git-pull-all [root-dir]   (default: current directory)
+# Env:   JOBS=N  number of repos updated in parallel (default: 8)
+
+root="${1:-.}"
+jobs="${JOBS:-8}"
+
+update_repo() {
+    repo="$1"
+    red=$'\033[1;31m' green=$'\033[1;32m' dim=$'\033[2m' reset=$'\033[0m'
+
+    # Never prompt for credentials/passphrases: a prompt would hang a worker.
+    export GIT_TERMINAL_PROMPT=0 GIT_SSH_COMMAND="${GIT_SSH_COMMAND:-ssh -o BatchMode=yes}"
+
+    if ! err=$(git -C "$repo" fetch --prune --quiet 2>&1); then
+        printf '%sFAIL%s  %s: fetch failed: %s\n' "$red" "$reset" "$repo" "${err%%$'\n'*}"
+        return
+    fi
+
+    if ! git -C "$repo" rev-parse --abbrev-ref '@{upstream}' >/dev/null 2>&1; then
+        printf '%sskip%s  %s (no upstream, fetched only)\n' "$dim" "$reset" "$repo"
+        return
+    fi
+
+    before=$(git -C "$repo" rev-parse HEAD)
+    # Fast-forward from the already-fetched upstream: no second network round trip.
+    if ! git -C "$repo" merge --ff-only --quiet '@{upstream}' >/dev/null 2>&1; then
+        printf '%sFAIL%s  %s (local changes or diverged branch?)\n' "$red" "$reset" "$repo"
+        return
+    fi
+
+    if [ "$before" != "$(git -C "$repo" rev-parse HEAD)" ]; then
+        printf '%sUPD %s  %s\n' "$green" "$reset" "$repo"
+    else
+        printf '%sok%s    %s\n' "$dim" "$reset" "$repo"
+    fi
+}
+export -f update_repo
+
+find "$root" -type d -name .git -prune -print0 |
+    sed -z 's#/\.git$##' | sort -z |
+    xargs -0 -n1 -P "$jobs" bash -c 'update_repo "$1"' _
