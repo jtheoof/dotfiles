@@ -278,7 +278,7 @@ if (( $+commands[zoxide] )); then
   _z_zoxide() {
     local -a dirs
     dirs=(${(f)"$(zoxide query -l -- ${words[2,-1]} 2>/dev/null)"})
-    compadd -U -Q -- $dirs
+    compadd -J zoxide -o nosort -U -Q -- $dirs
   }
   compdef _z_zoxide z
 fi
