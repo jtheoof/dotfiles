@@ -296,6 +296,8 @@ nmap("<Leader><Leader>", ":wa<CR>")
 nmap("<Leader>w", ":w<CR>")
 nmap("<Leader>q", ":q!<CR>")
 nmap("<Leader>Q", ":qa!<CR>")
+-- Quit everything without saving from any mode (mirrors herdr's alt+q pane kill)
+vim.keymap.set({ "n", "i", "v", "t" }, "<C-q>", "<Cmd>qa!<CR>", { desc = "Quit nvim without saving" })
 
 -- GitLab / fugitive browsing (open in browser, ! -> yank URL).
 -- `.` pins the link to the cursor line + commit SHA (a stable permalink).
