@@ -2,6 +2,19 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Nerd Font detection {{{
+-- The Linux console (TERM=linux) cannot show Nerd Font glyphs, so plugins fall back to
+-- plain text there. NVIM_NO_ICONS=1 forces that anywhere (for example over ssh from a
+-- terminal without a Nerd Font); NVIM_ICONS=1 forces the icons.
+if vim.env.NVIM_ICONS == "1" then
+  vim.g.have_nerd_font = true
+elseif vim.env.NVIM_NO_ICONS == "1" then
+  vim.g.have_nerd_font = false
+else
+  vim.g.have_nerd_font = vim.env.TERM ~= "linux"
+end
+-- }}}
+
 -- Options {{{
 
 -- Vim Options {{{

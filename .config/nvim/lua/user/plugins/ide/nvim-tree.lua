@@ -13,6 +13,7 @@ return {
       },
       diagnostics = {
         enable = true,
+        icons = not vim.g.have_nerd_font and { hint = "H", info = "I", warning = "W", error = "E" } or nil,
       },
       update_focused_file = {
         enable = true,
@@ -21,6 +22,10 @@ return {
       },
       renderer = {
         highlight_git = true,
+        icons = not vim.g.have_nerd_font and {
+          show = { file = false, folder = false, git = false },
+          glyphs = { folder = { arrow_closed = ">", arrow_open = "v" } },
+        } or nil,
       },
     })
   end,

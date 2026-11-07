@@ -20,6 +20,8 @@ end
 
 return {
   "OXY2DEV/markview.nvim",
+  -- An inline renderer built around icons: skipped without a Nerd Font (see init.lua)
+  enabled = vim.g.have_nerd_font == true,
   -- The plugin lazy-loads itself; the author recommends against lazy.nvim's lazy loading
   lazy = false,
   dependencies = {

@@ -13,7 +13,21 @@ return {
     local entry_display = require("telescope.pickers.entry_display")
     local make_entry = require("telescope.make_entry")
 
-    telescope.load_extension "frecency"
+    -- Telescope reads disable_devicons from the options of each picker, not from
+    -- `defaults`, so without a Nerd Font it is set on every picker that shows file icons.
+    local function without_icons(pickers)
+      if vim.g.have_nerd_font then
+        return pickers
+      end
+      for _, name in ipairs({
+        "find_files", "git_files", "oldfiles", "buffers", "live_grep", "grep_string",
+        "current_buffer_fuzzy_find", "diagnostics", "quickfix", "treesitter",
+        "lsp_references", "lsp_workspace_symbols",
+      }) do
+        pickers[name] = vim.tbl_extend("force", pickers[name] or {}, { disable_devicons = true })
+      end
+      return pickers
+    end
 
     local function opts(desc)
       return { silent = true, noremap = true, desc = desc }
@@ -75,7 +89,10 @@ return {
     vim.keymap.set("n", "<Leader>fi", builtin.git_files, opts("Find git files"))
     vim.keymap.set("n", "<Leader>fk", builtin.keymaps, opts("Find keymaps"))
     vim.keymap.set("n", "<Leader>fq", builtin.quickfix, opts("Find quickfix"))
-    vim.keymap.set("n", "<Leader>fr", telescope.extensions.frecency.frecency, opts("Find by frecency"))
+    -- The extension is loaded after setup() below, so look it up when the key is pressed
+    vim.keymap.set("n", "<Leader>fr", function()
+      telescope.extensions.frecency.frecency()
+    end, opts("Find by frecency"))
     vim.keymap.set("n", "<Leader>ft", builtin.treesitter, opts("Find treesitter symbols"))
 
     vim.keymap.set("n", "<Leader>fR", builtin.lsp_references, opts("Find LSP references"))
@@ -95,8 +112,8 @@ return {
 
     telescope.setup({
       defaults = {
-        prompt_prefix = " ",
-        selection_caret = " ",
+        prompt_prefix = vim.g.have_nerd_font and " " or "> ",
+        selection_caret = vim.g.have_nerd_font and " " or "> ",
         path_display = { "smart" },
 
         layout_strategy = "vertical",
@@ -191,7 +208,7 @@ return {
           },
         },
       },
-      pickers = {
+      pickers = without_icons({
         find_files = {
           hidden = true,
           -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
@@ -203,8 +220,13 @@ return {
         buffers = {
           sort_mru = true,
         },
+      }),
+      extensions = {
+        frecency = { disable_devicons = not vim.g.have_nerd_font },
       },
-      extensions = {},
     })
+
+    -- After setup(), so that the extension receives its settings
+    telescope.load_extension "frecency"
   end,
 }
