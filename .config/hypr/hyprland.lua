@@ -83,6 +83,7 @@ hl.window_rule({ match = { class = "^(blueman-manager)$" }, float = true })
 hl.window_rule({ match = { class = "^(org\\.gnome\\.Nautilus)$" }, float = true })
 hl.window_rule({ match = { class = "^(com\\.onepassword\\.OnePassword)$" }, float = true, persistent_size = true })
 hl.window_rule({ match = { class = "^(xdg-desktop-portal)$" }, float = true })
+hl.window_rule({ match = { class = "^(swappy)$" }, float = true })
 hl.window_rule({
 	match = { class = "^(steam)$", title = "^(notificationtoasts)" },
 	no_initial_focus = true,
