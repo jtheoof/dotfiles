@@ -13,6 +13,9 @@
 .config/herdr/session.json
 .config/herdr/session-history.json
 .config/herdr/session-snapshots/
+# Plugins are installed by install.sh, not tracked
+.config/herdr/plugins/
+.config/herdr/plugins.json
 
 .config/opencode/service.json
 

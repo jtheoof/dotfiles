@@ -105,7 +105,8 @@ Commands (default: run all steps):
               ~/.claude)
 
   With no command, the steps run in order: platform, dotfiles, tmux plugins
-  (tpm), neovim plugins (Lazy), oh-my-zsh and its plugins, default shell.
+  (tpm), herdr plugins, neovim plugins (Lazy), oh-my-zsh and its plugins,
+  default shell.
 
 Options:
   -f, --force   when a link destination already exists and is not the
@@ -412,6 +413,42 @@ install_packages_linux() {
   yay -S --needed --noconfirm "${aur_packages[@]}"
 }
 
+install_herdr_plugins() {
+  # owner/repo@commit, pinned so every machine runs the same reviewed code
+  local plugins=(
+    shibayu36/herdr-equalize-panes@0c1d940e9af09c632a48a5b179753ef25056ff13
+  )
+  local installed
+  local entry
+  local repo
+  local ref
+
+  print_info "installing herdr plugins..."
+
+  if ! command -v herdr > /dev/null 2>&1; then
+    if [ "$DRY_RUN" = 1 ]; then
+      print_dry "herdr not installed yet: plugins would be installed once it is"
+    else
+      print_error "herdr not found, not installing herdr plugins"
+    fi
+    return
+  fi
+
+  installed=$(herdr plugin list 2>/dev/null || true)
+
+  for entry in "${plugins[@]}"; do
+    repo=${entry%@*}
+    ref=${entry#*@}
+    if [[ $installed == *"github:$repo@$ref]"* ]]; then
+      print_noop "herdr plugin already installed: $repo@$ref"
+    elif [ "$DRY_RUN" = 1 ]; then
+      print_dry_step "would install herdr plugin $repo@$ref"
+    else
+      herdr plugin install --yes --ref "$ref" "$repo"
+    fi
+  done
+}
+
 install_neovim_plugins() {
   print_info "installing neovim plugins..."
   if [ "$DRY_RUN" = 1 ]; then
@@ -653,6 +690,7 @@ install_all() {
   install_platform
   install_dotfiles
   install_tmux_plugins
+  install_herdr_plugins
   install_neovim_plugins
   install_oh_my_zsh
 }

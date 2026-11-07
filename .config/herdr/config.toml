@@ -93,6 +93,14 @@ navigate_pane_down = "j"
 navigate_pane_up = "k"
 navigate_pane_right = "l"
 
+# Equalize panes, like vim's <C-w>=. Panes are also re-equalized on every
+# split and close. Plugin installed by install.sh.
+[[keys.command]]
+key = "prefix+shift+="
+type = "plugin_action"
+command = "shibayu36.equalize-panes.equalize"
+description = "equalize panes"
+
 [experimental]
 # Save recent pane screen history across full server restarts.
 pane_history = true
