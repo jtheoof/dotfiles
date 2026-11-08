@@ -6,3 +6,6 @@ hl.bind("SUPER + Return", hl.dsp.exec_cmd("alacritty"))
 
 -- Region screenshot into the swappy editor
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
+
+-- Emoji picker (DMS emojiPicker plugin)
+hl.bind("SUPER + period", hl.dsp.exec_cmd("dms ipc call emojiPicker toggle"))
