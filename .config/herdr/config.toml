@@ -35,7 +35,7 @@ workspace_picker = ["prefix+f", "alt+f"]
 goto = ["prefix+g", "alt+g"]
 
 # Workspaces
-new_workspace = ["prefix+shift+o", "alt+shift+o"]
+new_workspace = ["prefix+shift+n", "alt+shift+n"]
 rename_workspace = ["prefix+a", "alt+shift+a"]
 close_workspace = ["prefix+shift+d", "alt+shift+d"]
 previous_workspace = "alt+shift+k"
@@ -49,7 +49,7 @@ remote_image_paste = "ctrl+alt+v"
 # Tabs
 new_tab = ["prefix+n", "alt+n"]
 rename_tab = ["prefix+t", "alt+t"]
-previous_tab = ["prefix+shift+n", "alt+shift+n", "alt+["]
+previous_tab = ["prefix+[", "alt+["]
 next_tab = ["prefix+]", "alt+]"]
 move_tab_previous = ["prefix+shift+[", "alt+shift+["]
 move_tab_next = ["prefix+shift+]", "alt+shift+]"]
