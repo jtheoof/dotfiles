@@ -36,7 +36,7 @@ goto = ["prefix+g", "alt+g"]
 
 # Workspaces
 new_workspace = ["prefix+shift+n", "alt+shift+n"]
-rename_workspace = ["prefix+a", "alt+shift+a"]
+rename_workspace = ["prefix+shift+t", "alt+shift+t"]
 close_workspace = ["prefix+shift+d", "alt+shift+d"]
 previous_workspace = "alt+shift+k"
 next_workspace = "alt+shift+j"
