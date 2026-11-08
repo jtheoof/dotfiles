@@ -1,7 +1,17 @@
 #!/bin/sh
-if [ -z "${ALACRITTY_LOG}" ]; then exit 1; fi
+# Send a full reset (RIS, ESC c) to the tty of the focused terminal.
+# see: https://gist.github.com/avindra/dd2c6f14ec6e03b05261d370ef60c9d8
 
-TERM_PID="${ALACRITTY_LOG//[^0-9]/}"
-tty=$(ps o tty= --ppid $TERM_PID)
+if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+	term_pid=$(hyprctl activewindow -j | jq -r '.pid')
+elif [ -n "$ALACRITTY_LOG" ]; then
+	# ALACRITTY_LOG looks like /tmp/Alacritty-1234.log
+	term_pid=$(echo "$ALACRITTY_LOG" | tr -cd '0-9')
+fi
 
-echo -e "\ec" > /dev/$tty
+[ -n "$term_pid" ] || exit 1
+
+tty=$(ps o tty= --ppid "$term_pid" | grep -m1 pts)
+[ -n "$tty" ] || exit 1
+
+printf '\033c' > "/dev/$tty"
