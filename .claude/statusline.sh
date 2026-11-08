@@ -6,7 +6,8 @@
 #
 # <spend> depends on the backend (ANTHROPIC_BASE_URL), and is hidden when
 # none applies:
-# - Subscription (no base URL): "5h N% (resets in 2h13m) | 7d N%", from the
+# - Subscription (no base URL): "5h N% (resets in 2h13m) | 7d N% (resets in
+#   4d2h)", from the
 #   rate_limits object Claude Code passes in. Absent until the first reply.
 # - OpenRouter: "~$session | $balance left", the session cost being Claude
 #   Code's estimate at Anthropic list prices. The balance "$balance left", needs OPENROUTER_API_KEY. Cached for 60s, shared
@@ -69,7 +70,8 @@ file_mtime() {
 reset_in() {
   local left=$(( $1 - $(date +%s) ))
   [ "$left" -le 0 ] && { printf "now"; return; }
-  if [ "$left" -ge 3600 ]; then printf "%dh%02dm" $((left / 3600)) $((left % 3600 / 60))
+  if [ "$left" -ge 86400 ]; then printf "%dd%dh" $((left / 86400)) $((left % 86400 / 3600))
+  elif [ "$left" -ge 3600 ]; then printf "%dh%02dm" $((left / 3600)) $((left % 3600 / 60))
   else printf "%dm" $((left / 60 + 1)); fi
 }
 
@@ -85,6 +87,7 @@ reset_in() {
   read -r rl5
   read -r rl5_reset
   read -r rl7
+  read -r rl7_reset
 } < <(echo "$input" | jq -r '
   (.model.display_name // .model.id // "Claude"),
   (.workspace.current_dir // .cwd // ""),
@@ -96,7 +99,8 @@ reset_in() {
   (.version // ""),
   ((.rate_limits.five_hour.used_percentage // "") | if . == "" then "" else floor end),
   (.rate_limits.five_hour.resets_at // ""),
-  ((.rate_limits.seven_day.used_percentage // "") | if . == "" then "" else floor end)
+  ((.rate_limits.seven_day.used_percentage // "") | if . == "" then "" else floor end),
+  (.rate_limits.seven_day.resets_at // "")
 ')
 
 model_name="${model_name#anthropic/}"
@@ -196,7 +200,10 @@ if [ -z "$ANTHROPIC_BASE_URL" ]; then
     out+="${sep}${nord4}5h${reset} $(usage_color "$rl5")${rl5}%${reset}"
     [ -n "$rl5_reset" ] && out+=" ${nord3}(resets in $(reset_in "$rl5_reset"))${reset}"
   fi
-  [ -n "$rl7" ] && out+="${sep}${nord4}7d${reset} $(usage_color "$rl7")${rl7}%${reset}"
+  if [ -n "$rl7" ]; then
+    out+="${sep}${nord4}7d${reset} $(usage_color "$rl7")${rl7}%${reset}"
+    [ -n "$rl7_reset" ] && out+=" ${nord3}(resets in $(reset_in "$rl7_reset"))${reset}"
+  fi
 fi
 
 # Claude Code version
