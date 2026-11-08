@@ -86,7 +86,7 @@ bindings = [
 
     # Custom
     { key = "H", mods = "Control|Alt", action = "ClearHistory" },
-    { key = "K", mods = "Control|Alt", command = { program = "sh", args = [
+    { key = "K", mods = "Control|Shift", command = { program = "sh", args = [
         "-c",
         "~/.local/bin/reset-active-tty",
     ] } },
