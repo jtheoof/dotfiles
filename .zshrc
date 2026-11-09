@@ -249,6 +249,8 @@ function claude() {
 }
 function claude-or() { _claude_with openrouter "$@" }
 function claude-openrouter() { claude-or "$@" }
+function claude-sub() { _claude_with anthropic "$@" }             # Pro subscription (/login), even on work machines
+function claude-gw()  { _claude_with $_claude_gateway_env "$@" }  # force the Databricks gateway
 
 # 1}}}
 # Misc {{{
