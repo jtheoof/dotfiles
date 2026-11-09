@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# Open FILE (at LINE) in the nvim pane of the current herdr tab, or in a new
+# vertical split running nvim when the tab has none. Plain nvim outside herdr.
+# Used as lazygit's os.edit / os.editAtLine.
+#
+# Usage: herdr-nvim-open FILE [LINE]
+set -euo pipefail
+
+file=$(realpath -- "$1")
+line=${2:-1}
+
+if [[ ${HERDR_ENV:-} != 1 ]]; then
+  exec nvim "+$line" -- "$file"
+fi
+
+# Print "<pane_id> <socket>" for the first nvim in this tab (man pages excluded).
+# nvim's TUI process forks an `nvim --embed` server that owns the socket, so
+# check the TUI pid and its children.
+find_nvim() {
+  local pane pid child sock
+  for pane in $(herdr pane list --workspace "$HERDR_WORKSPACE_ID" |
+    jq -r --arg tab "$HERDR_TAB_ID" '.result.panes[] | select(.tab_id == $tab) | .pane_id'); do
+    for pid in $(herdr pane process-info --pane "$pane" |
+      jq -r '.result.process_info.foreground_processes[]
+             | select(.name == "nvim" and (any(.argv[]; . == "+Man!") | not)) | .pid'); do
+      for child in "$pid" $(pgrep -P "$pid"); do
+        sock="${XDG_RUNTIME_DIR:-/run/user/$UID}/nvim.$child.0"
+        if [[ -S $sock ]]; then
+          echo "$pane $sock"
+          return 0
+        fi
+      done
+    done
+  done
+  return 1
+}
+
+# The CLI's `pane focus` only moves by direction; the socket API focuses by id.
+focus_pane() {
+  python3 -I - "$1" <<'EOF'
+import json, os, socket, sys
+s = socket.socket(socket.AF_UNIX)
+s.connect(os.environ["HERDR_SOCKET_PATH"])
+req = {"id": "herdr-nvim-open", "method": "pane.focus", "params": {"pane_id": sys.argv[1]}}
+s.sendall((json.dumps(req) + "\n").encode())
+s.recv(65536)
+EOF
+}
+
+if read -r pane sock < <(find_nvim); then
+  nvim --server "$sock" --remote "$file"
+  nvim --server "$sock" --remote-send "<C-\\><C-N>:$line<CR>zz"
+  focus_pane "$pane"
+else
+  pane=$(herdr pane split --current --direction right --cwd "$PWD" --focus |
+    jq -r '.result.pane.pane_id')
+  herdr pane run "$pane" "nvim +$line -- $(printf '%q' "$file")"
+fi

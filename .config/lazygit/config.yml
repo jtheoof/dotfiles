@@ -3,3 +3,8 @@ git:
     - colorArg: always
       # delta-wrap keeps wrapped lines in the code column, not under the line numbers
       command: delta --dark --paging=never --line-numbers --width={{width}} | delta-wrap {{width}}
+os:
+  # open in the herdr tab's nvim pane (or a new split) instead of suspending lazygit
+  edit: 'herdr-nvim-open {{filename}}'
+  editAtLine: 'herdr-nvim-open {{filename}} {{line}}'
+  editInTerminal: false
