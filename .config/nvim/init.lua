@@ -82,18 +82,41 @@ vim.opt.spellfile = "~/.config/nvim/spell/en.utf-8.add"
 vim.opt.clipboard = "unnamedplus"
 
 if vim.fn.has("wsl") == 1 then
+  -- pbcopy sets the Windows clipboard of this machine. Its OSC 52 can't reach
+  -- the terminal from here (nvim's server has no controlling tty), so send
+  -- OSC 52 through nvim's UI too: yanks then reach the client over ssh/herdr.
+  -- Always the "c" clipboard, Windows Terminal ignores the "p" selection.
+  local osc52 = require("vim.ui.clipboard.osc52").copy("+")
+  local function copy(lines, regtype)
+    pcall(vim.system, { "pbcopy" }, { stdin = table.concat(lines, "\n") })
+    osc52(lines, regtype)
+  end
   vim.g.clipboard = {
     name = "WslClipboard",
-    copy = {
-      ["+"] = "/mnt/c/WINDOWS/system32/clip.exe",
-      ["*"] = "/mnt/c/WINDOWS/system32/clip.exe",
-    },
-    paste = {
-      ["+"] = '/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-      ["*"] = '/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    },
+    copy = { ["+"] = copy, ["*"] = copy },
+    -- not OSC 52: Windows Terminal never answers reads, it would hang 10s
+    paste = { ["+"] = "pbpaste", ["*"] = "pbpaste" },
     cache_enabled = 0,
   }
+
+  -- Reading the Windows clipboard costs ~0.5s, too slow for every p/P: keep
+  -- p/P on nvim's own register and push yanks to the clipboard instead.
+  -- Use "+p or ctrl+shift+v (insert mode) to paste from outside nvim.
+  vim.opt.clipboard = ""
+  vim.api.nvim_create_autocmd("TextYankPost", {
+    group = vim.api.nvim_create_augroup("WslYankToClipboard", {}),
+    callback = function()
+      local ev = vim.v.event
+      if ev.operator ~= "y" or ev.regname ~= "" then
+        return -- deletes stay local; "+y already went through the provider
+      end
+      local lines = vim.deepcopy(ev.regcontents)
+      if ev.regtype == "V" then
+        table.insert(lines, "") -- keep the trailing newline of linewise yanks
+      end
+      copy(lines, ev.regtype)
+    end,
+  })
 end
 
 -- Search
