@@ -7,6 +7,9 @@ elif [[ "$XDG_CURRENT_DESKTOP" == *GNOME* && -n "$DISPLAY" && -x /usr/bin/xclip 
   /usr/bin/xclip -selection clipboard -o
 elif [ -x /usr/bin/wl-paste ]; then
   /usr/bin/wl-paste
+elif command -v powershell.exe >/dev/null 2>&1; then
+  powershell.exe -NoProfile -NonInteractive -Command \
+    '[Console]::OutputEncoding = New-Object Text.UTF8Encoding $false; [Console]::Out.Write((Get-Clipboard -Raw) -replace "`r", "")'
 elif [ -x /usr/bin/xclip ]; then
   /usr/bin/xclip -selection clipboard -o
 fi
