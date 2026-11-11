@@ -100,7 +100,8 @@ alone, so it can also be used to pick up newly added packages or links.
 Supported systems: Arch Linux (and Manjaro), macOS (legacy)
 
 Commands (default: run all steps):
-  platform    install system packages only (yay on Arch, brew on macOS)
+  platform    install system packages only (yay and the [jtheoof] pacman
+              repository on Arch, brew on macOS)
   dotfiles    create symlinks only (home dotfiles, ~/.config, ~/.local/bin,
               ~/.claude)
 
@@ -346,6 +347,44 @@ install_yay() {
   fi
 }
 
+# Personal pacman repository with patched packages, built and signed by
+# GitHub Actions from https://github.com/jtheoof/PKGBUILDs.
+# Setup instructions: https://pkg.jtheoof.me
+JTHEOOF_REPO_KEY=F44D05A50F6C9EB5C81BCF966A6B35DBE9442683
+
+install_jtheoof_repo() {
+  print_info "setting up the jtheoof pacman repository..."
+
+  if pacman-key --list-keys "$JTHEOOF_REPO_KEY" > /dev/null 2>&1; then
+    print_noop "jtheoof signing key already trusted"
+  elif [ "$DRY_RUN" = 1 ]; then
+    print_dry_step "would import and locally sign key $JTHEOOF_REPO_KEY"
+  else
+    curl -fsSL https://pkg.jtheoof.me/jtheoof.gpg | sudo pacman-key --add -
+    sudo pacman-key --lsign-key "$JTHEOOF_REPO_KEY"
+  fi
+
+  if grep -q '^\[jtheoof\]' /etc/pacman.conf; then
+    print_noop "jtheoof repository already in /etc/pacman.conf"
+  elif [ "$DRY_RUN" = 1 ]; then
+    print_dry_step "would add the [jtheoof] repository to /etc/pacman.conf"
+  else
+    # single quotes: $arch is expanded by pacman, not the shell
+    printf '\n[jtheoof]\nSigLevel = Required DatabaseRequired\nServer = https://pkg.jtheoof.me/$arch\n' |
+      sudo tee -a /etc/pacman.conf > /dev/null
+  fi
+
+  # Sync with a full upgrade (never a bare -Sy) so a newly added repository
+  # does not leave the system partially upgraded.
+  if [ -f /var/lib/pacman/sync/jtheoof.db ]; then
+    print_noop "jtheoof repository database already synced"
+  elif [ "$DRY_RUN" = 1 ]; then
+    print_dry_step "would sync the jtheoof repository database (pacman -Syu)"
+  else
+    sudo pacman -Syu --noconfirm
+  fi
+}
+
 install_packages_linux() {
   local packages=(
     alacritty
@@ -396,13 +435,18 @@ install_packages_linux() {
   )
 
   local aur_packages=(
-    herdr-bin
     zsh-pure-prompt
+  )
+
+  # From the [jtheoof] repository (see install_jtheoof_repo)
+  local jtheoof_packages=(
+    herdr-navkeys
   )
 
   if [ "$DRY_RUN" = 1 ]; then
     report_packages "packages" "${packages[@]}"
     report_packages "AUR packages" "${aur_packages[@]}"
+    report_packages "jtheoof packages" "${jtheoof_packages[@]}"
     return
   fi
 
@@ -411,6 +455,9 @@ install_packages_linux() {
 
   print_info "installing AUR packages..."
   yay -S --needed --noconfirm "${aur_packages[@]}"
+
+  print_info "installing jtheoof packages..."
+  sudo pacman -S --needed --noconfirm "${jtheoof_packages[@]/#/jtheoof/}"
 }
 
 install_herdr_plugins() {
@@ -655,6 +702,7 @@ install_platform() {
       case "$OS_ID" in
         arch | manjaro)
           install_yay
+          install_jtheoof_repo
           install_packages_linux
           ;;
         *)
