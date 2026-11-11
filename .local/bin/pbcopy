@@ -1,14 +1,28 @@
 #!/bin/bash
 
+data=$(cat; printf x); data=${data%x}  # the x keeps trailing newlines
+
+# OSC 52 asks the terminal itself to set its clipboard, so a copy made over
+# ssh (through herdr) lands on the machine you are typing on. The pane's env
+# is from when herdr started, so don't trust SSH_CONNECTION to know if the
+# current client is remote: emit it whenever in herdr or ssh.
+osc52() {
+  [ -n "$HERDR_PANE_ID$SSH_TTY" ] || return 0
+  { printf '\e]52;c;%s\a' "$(printf '%s' "$data" | base64 | tr -d '\n')" > /dev/tty; } 2>/dev/null
+}
+
 if [ -x /usr/bin/pbcopy ]; then
-  /usr/bin/pbcopy
+  printf '%s' "$data" | /usr/bin/pbcopy
 elif [[ "$XDG_CURRENT_DESKTOP" == *GNOME* && -n "$DISPLAY" && -x /usr/bin/xclip ]]; then
   # mutter lacks wlr-data-control: wl-copy would flash a temporary window
-  /usr/bin/xclip -i -selection clipboard > /dev/null
+  printf '%s' "$data" | /usr/bin/xclip -i -selection clipboard > /dev/null
 elif [ -x /usr/bin/wl-copy ]; then
-  /usr/bin/wl-copy
+  printf '%s' "$data" | /usr/bin/wl-copy
 elif command -v clip.exe >/dev/null 2>&1; then
-  clip.exe
+  # clip.exe mangles UTF-8 as ANSI but detects UTF-16LE (a BOM would be kept as text)
+  printf '%s' "$data" | iconv -f utf-8 -t utf-16le | clip.exe
 elif [ -x /usr/bin/xclip ]; then
-  /usr/bin/xclip -i -selection clipboard > /dev/null
+  printf '%s' "$data" | /usr/bin/xclip -i -selection clipboard > /dev/null
 fi
+
+osc52
