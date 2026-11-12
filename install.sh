@@ -254,6 +254,7 @@ install_dotfiles() {
   # Claude Code: link individual files only, ~/.claude also holds credentials and history
   link "$FILESPATH/.claude/statusline.sh" "$HOME/.claude/statusline.sh"
   link "$FILESPATH/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+  link "$FILESPATH/.claude/keybindings.json" "$HOME/.claude/keybindings.json"
   link "$FILESPATH/.claude/skills" "$HOME/.claude/skills"
 }
 
