@@ -8,6 +8,14 @@
 -- check is needed. Buttons, unlike the tilt wheel, aren't throttled by
 -- Hyprland's binds:scroll_event_delay.
 
+-- A side-button press usually jiggles the mouse. If that lands in the
+-- ~30 ms before Hyprland swaps fullscreen to the newly focused client,
+-- follow_mouse = 1 refocuses the old client (still fullscreen under the
+-- cursor): the new one shows but stays unfocused at background FPS, and
+-- Nicotine still highlights the old one. Only refocus on hover when the
+-- cursor crosses into another window. This is global, not EVE-only.
+hl.config({ input = { mouse_refocus = false } })
+
 local BTN_SIDE = 275 -- back side button
 local BTN_EXTRA = 276 -- forward side button
 
