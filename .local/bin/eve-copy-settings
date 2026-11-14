@@ -1,0 +1,189 @@
+#!/usr/bin/env bash
+# Copy EVE Online settings from one character to others.
+#
+# EVE keeps two settings files per login in its settings profile folder:
+#   core_char_<characterID>.dat  per character: window positions and sizes,
+#                                overlay, chat windows, other UI layout
+#   core_user_<accountID>.dat    per account: keyboard shortcuts and
+#                                general settings
+# Character IDs are matched to names through the game logs. Account files
+# carry no name: a character's account file is the one EVE wrote at the
+# same moment as its character file when it logged out.
+#
+# Dry run by default. Close every EVE client before --apply: EVE rewrites
+# these files when it exits.
+set -euo pipefail
+
+prefix=${EVE_PREFIX:-$HOME/.local/share/Steam/steamapps/compatdata/8500/pfx}/drive_c/users/steamuser
+settings_dir=${EVE_SETTINGS_DIR:-$prefix/AppData/Local/CCP/EVE/c_ccp_eve_tq_tranquility/settings_Default}
+logs_dir=${EVE_LOGS_DIR:-$prefix/Documents/EVE/logs/Gamelogs}
+backup_root=${XDG_STATE_HOME:-$HOME/.local/state}/eve-copy-settings
+
+usage() {
+  cat <<EOF
+usage: ${0##*/} [options] SOURCE [TARGET...]
+       ${0##*/} --list
+
+Copy the settings of character SOURCE to each TARGET (character names,
+case-insensitive; default: every other character).
+
+  -a, --apply      copy (default: only show what would be copied)
+  -c, --char-only  only character settings (windows, overlay, UI layout)
+  -u, --user-only  only account settings (keyboard shortcuts, general)
+  -l, --list       list known characters and their files
+  -h, --help       show this help
+
+Settings: $settings_dir
+Logs:     $logs_dir
+Backups:  $backup_root
+EOF
+}
+
+die() { echo "${0##*/}: $*" >&2; exit 1; }
+
+apply=0 do_char=1 do_user=1 list=0
+args=()
+while (($#)); do
+  case $1 in
+    -a|--apply) apply=1 ;;
+    -c|--char-only) do_user=0 ;;
+    -u|--user-only) do_char=0 ;;
+    -l|--list) list=1 ;;
+    -h|--help) usage; exit 0 ;;
+    --) shift; args+=("$@"); break ;;
+    -*) die "unknown option: $1 (see --help)" ;;
+    *) args+=("$1") ;;
+  esac
+  shift
+done
+((do_char || do_user)) || die "--char-only and --user-only exclude each other"
+[[ -d $settings_dir ]] || die "no settings folder at $settings_dir (set EVE_SETTINGS_DIR)"
+[[ -d $logs_dir ]] || die "no game logs at $logs_dir (set EVE_LOGS_DIR)"
+
+# Character ID -> name, from the "Listener:" header of each game log
+# (<date>_<time>_<characterID>.txt). Newest log wins.
+declare -A name_of=() id_of=()
+while IFS= read -r line; do
+  file=${line%%:*}
+  id=${file##*_}
+  id=${id%.txt}
+  name=${line#*Listener:}
+  name=${name//$'\r'/}
+  name=${name#"${name%%[![:space:]]*}"}
+  name=${name%"${name##*[![:space:]]}"}
+  [[ $id =~ ^[0-9]+$ && -n $name ]] && name_of[$id]=$name
+done < <(grep -m1 -H 'Listener:' "$logs_dir"/*.txt 2>/dev/null | sort)
+
+# The account file EVE saved within 5 seconds of this character file.
+user_file_for() {
+  local t
+  t=$(stat -c %.3Y "$1")
+  stat -c '%.3Y %n' "$settings_dir"/core_user_[0-9]*.dat 2>/dev/null \
+    | awk -v t="$t" '{
+        d = $1 - t; if (d < 0) d = -d
+        if (d <= 5 && (best == "" || d < bd)) { bd = d; best = substr($0, index($0, " ") + 1) }
+      } END { print best }'
+}
+
+declare -A char_file=() user_file=()
+ids=()
+for f in "$settings_dir"/core_char_[0-9]*.dat; do
+  [[ -e $f ]] || continue
+  id=${f##*core_char_}
+  id=${id%.dat}
+  ids+=("$id")
+  char_file[$id]=$f
+  user_file[$id]=$(user_file_for "$f")
+  [[ -n ${name_of[$id]:-} ]] && id_of[${name_of[$id],,}]=$id
+done
+((${#ids[@]})) || die "no character settings in $settings_dir"
+
+if ((list)); then
+  for id in "${ids[@]}"; do
+    u=${user_file[$id]##*/}
+    printf '%-24s %-28s %s\n' "${name_of[$id]:-(unknown: $id)}" "${char_file[$id]##*/}" "${u:-(account file not found)}"
+  done
+  exit 0
+fi
+
+((${#args[@]})) || { usage >&2; exit 2; }
+
+resolve() {
+  local id=${id_of[${1,,}]:-}
+  [[ -n $id ]] || die "unknown character '$1' (see --list)"
+  printf '%s' "$id"
+}
+
+src=$(resolve "${args[0]}")
+targets=()
+if ((${#args[@]} > 1)); then
+  for n in "${args[@]:1}"; do targets+=("$(resolve "$n")"); done
+else
+  for id in "${ids[@]}"; do [[ $id != "$src" ]] && targets+=("$id"); done
+fi
+
+src_user=${user_file[$src]}
+if ((do_user)) && [[ -z $src_user ]]; then
+  die "cannot tell which account file belongs to ${name_of[$src]}; log that character in and out once, or use --char-only"
+fi
+
+# Plan: pairs of "source|target".
+plan=()
+declare -A planned=()
+for id in "${targets[@]}"; do
+  name=${name_of[$id]}
+  [[ $id == "$src" ]] && { echo "skip $name: same as the source"; continue; }
+  if ((do_char)); then
+    plan+=("${char_file[$src]}|${char_file[$id]}")
+  fi
+  if ((do_user)); then
+    u=${user_file[$id]}
+    if [[ -z $u ]]; then
+      echo "skip account settings of $name: account file not found (log in and out once)"
+    elif [[ $u == "$src_user" ]]; then
+      echo "skip account settings of $name: same account as ${name_of[$src]}"
+    elif [[ -z ${planned[$u]:-} ]]; then
+      plan+=("$src_user|$u")
+      planned[$u]=1
+    fi
+  fi
+done
+((${#plan[@]})) || { echo "nothing to copy"; exit 0; }
+
+echo "From ${name_of[$src]}:"
+for p in "${plan[@]}"; do
+  s=${p%%|*} t=${p#*|}
+  tid=${t##*_}
+  tid=${tid%.dat}
+  label=${name_of[$tid]:-}
+  if [[ -z $label ]]; then
+    for id in "${targets[@]}"; do
+      [[ ${user_file[$id]} == "$t" ]] && label+="${label:+, }${name_of[$id]}"
+    done
+    label="account of $label"
+  fi
+  printf '  %-26s -> %-28s (%s)\n' "${s##*/}" "${t##*/}" "$label"
+done
+
+if ((!apply)); then
+  echo
+  echo "Dry run. Close every EVE client, then rerun with --apply."
+  exit 0
+fi
+
+if pgrep -i '^exefile' >/dev/null; then
+  die "an EVE client is running; close every client first (EVE rewrites its settings on exit)"
+fi
+
+backup=$backup_root/$(date +%Y%m%d-%H%M%S)
+mkdir -p "$backup"
+for p in "${plan[@]}"; do
+  s=${p%%|*} t=${p#*|}
+  cp -p -- "$t" "$backup/"
+  cp -- "$s" "$t"
+  # Keep the target's own timestamp: it is how its account file is found.
+  touch -r "$backup/${t##*/}" -- "$t"
+done
+echo
+echo "Done. Backup of the replaced files: $backup"
+echo "Undo: cp -p '$backup'/*.dat '$settings_dir/'"
