@@ -16,8 +16,8 @@
 -- cursor crosses into another window. This is global, not EVE-only.
 hl.config({ input = { mouse_refocus = false } })
 
-local BTN_SIDE = 275 -- back side button
-local BTN_EXTRA = 276 -- forward side button
+local BTN_BACKWARD = 275 -- back side button
+local BTN_FORWARD = 277 -- forward side button
 
 local function nicotine(direction)
   return function()
@@ -26,8 +26,8 @@ local function nicotine(direction)
 end
 
 local binds = {
-  hl.bind("CTRL + mouse:" .. BTN_EXTRA, nicotine("forward")),
-  hl.bind("CTRL + mouse:" .. BTN_SIDE, nicotine("backward")),
+  hl.bind("CTRL + mouse:" .. BTN_FORWARD, nicotine("forward")),
+  hl.bind("CTRL + mouse:" .. BTN_BACKWARD, nicotine("backward")),
 }
 
 local function is_eve(window)
