@@ -89,6 +89,11 @@ hl.window_rule({
 	no_initial_focus = true,
 	pin = true,
 })
+-- Steam's startup windows position themselves using XWayland's monitor positions, which
+-- don't match Hyprland's, so they open off-center or off-screen
+hl.window_rule({ match = { class = "^(steam)$", title = "^(Sign in to Steam)$" }, float = true, center = true })
+-- The self-updater is also titled "Steam", like the main window; only the updater floats
+hl.window_rule({ match = { class = "^(steam)$", title = "^(Steam)$", float = true }, center = true })
 hl.window_rule({
 	match = { class = "^(firefox)$", title = "^(Picture-in-Picture)$" },
 	float = true,
