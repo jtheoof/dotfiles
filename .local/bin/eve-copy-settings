@@ -7,8 +7,10 @@
 #   core_user_<accountID>.dat    per account: keyboard shortcuts and
 #                                general settings
 # Character IDs are matched to names through the game logs. Account files
-# carry no name: a character's account file is the one EVE wrote at the
-# same moment as its character file when it logged out.
+# carry no name, and their save times don't reliably match the character's
+# (EVE saves them at different moments, and several clients often close at
+# once), so the account of each character is read from the accounts file:
+# one "<accountID> <character name>" per line.
 #
 # Dry run by default. Close every EVE client before --apply: EVE rewrites
 # these files when it exits.
@@ -18,6 +20,7 @@ prefix=${EVE_PREFIX:-$HOME/.local/share/Steam/steamapps/compatdata/8500/pfx}/dri
 settings_dir=${EVE_SETTINGS_DIR:-$prefix/AppData/Local/CCP/EVE/c_ccp_eve_tq_tranquility/settings_Default}
 logs_dir=${EVE_LOGS_DIR:-$prefix/Documents/EVE/logs/Gamelogs}
 backup_root=${XDG_STATE_HOME:-$HOME/.local/state}/eve-copy-settings
+accounts_file=${EVE_ACCOUNTS_FILE:-${XDG_CONFIG_HOME:-$HOME/.config}/eve-copy-settings/accounts}
 
 usage() {
   cat <<EOF
@@ -36,6 +39,7 @@ case-insensitive; default: every other character).
 Settings: $settings_dir
 Logs:     $logs_dir
 Backups:  $backup_root
+Accounts: $accounts_file
 EOF
 }
 
@@ -75,15 +79,25 @@ while IFS= read -r line; do
   [[ $id =~ ^[0-9]+$ && -n $name ]] && name_of[$id]=$name
 done < <(grep -a -m1 -H 'Listener:' "$logs_dir"/*.txt 2>/dev/null | sort)
 
-# The account file EVE saved within 5 seconds of this character file.
+# Character name (lowercase) -> account ID, from the accounts file.
+declare -A account_of=()
+if [[ -f $accounts_file ]]; then
+  while read -r acct name; do
+    [[ $acct =~ ^[0-9]+$ && -n $name ]] || continue
+    account_of[${name,,}]=$acct
+  done < <(sed -e 's/#.*//' -e 's/\r$//' "$accounts_file")
+fi
+
+# The account file of character $1 (ID), or nothing if it isn't mapped
+# or the file doesn't exist.
 user_file_for() {
-  local t
-  t=$(stat -c %.3Y "$1")
-  stat -c '%.3Y %n' "$settings_dir"/core_user_[0-9]*.dat 2>/dev/null \
-    | awk -v t="$t" '{
-        d = $1 - t; if (d < 0) d = -d
-        if (d <= 5 && (best == "" || d < bd)) { bd = d; best = substr($0, index($0, " ") + 1) }
-      } END { print best }'
+  local name=${name_of[$1]:-} acct f
+  [[ -n $name ]] || return 0
+  acct=${account_of[${name,,}]:-}
+  [[ -n $acct ]] || return 0
+  f=$settings_dir/core_user_$acct.dat
+  [[ -e $f ]] && printf '%s' "$f"
+  return 0
 }
 
 declare -A char_file=() user_file=()
@@ -94,7 +108,7 @@ for f in "$settings_dir"/core_char_[0-9]*.dat; do
   id=${id%.dat}
   ids+=("$id")
   char_file[$id]=$f
-  user_file[$id]=$(user_file_for "$f")
+  user_file[$id]=$(user_file_for "$id")
   [[ -n ${name_of[$id]:-} ]] && id_of[${name_of[$id],,}]=$id
 done
 ((${#ids[@]})) || die "no character settings in $settings_dir"
@@ -102,7 +116,7 @@ done
 if ((list)); then
   for id in "${ids[@]}"; do
     u=${user_file[$id]##*/}
-    printf '%-24s %-28s %s\n' "${name_of[$id]:-(unknown: $id)}" "${char_file[$id]##*/}" "${u:-(account file not found)}"
+    printf '%-24s %-28s %s\n' "${name_of[$id]:-(unknown: $id)}" "${char_file[$id]##*/}" "${u:-(no account: not in $accounts_file)}"
   done
   exit 0
 fi
@@ -125,7 +139,7 @@ fi
 
 src_user=${user_file[$src]}
 if ((do_user)) && [[ -z $src_user ]]; then
-  die "cannot tell which account file belongs to ${name_of[$src]}; log that character in and out once, or use --char-only"
+  die "no account file for ${name_of[$src]}: add \"<accountID> ${name_of[$src]}\" to $accounts_file, or use --char-only"
 fi
 
 # Plan: pairs of "source|target".
@@ -140,7 +154,7 @@ for id in "${targets[@]}"; do
   if ((do_user)); then
     u=${user_file[$id]}
     if [[ -z $u ]]; then
-      echo "skip account settings of $name: account file not found (log in and out once)"
+      echo "skip account settings of $name: not in $accounts_file"
     elif [[ $u == "$src_user" ]]; then
       echo "skip account settings of $name: same account as ${name_of[$src]}"
     elif [[ -z ${planned[$u]:-} ]]; then
@@ -182,8 +196,6 @@ for p in "${plan[@]}"; do
   s=${p%%|*} t=${p#*|}
   cp -p -- "$t" "$backup/"
   cp -- "$s" "$t"
-  # Keep the target's own timestamp: it is how its account file is found.
-  touch -r "$backup/${t##*/}" -- "$t"
 done
 echo
 echo "Done. Backup of the replaced files: $backup"
