@@ -30,6 +30,7 @@ usage() {
   cat <<EOF
 usage: ${0##*/} [options] SOURCE [TARGET...]
        ${0##*/} --list
+       ${0##*/} --detect
 
 Copy the settings of SOURCE to each TARGET. Each is a character name, or
 an account name for all of the account's characters (case-insensitive).
@@ -39,6 +40,9 @@ TARGET defaults to every other character.
   -c, --char-only  only character settings (windows, overlay, UI layout)
   -u, --user-only  only account settings (keyboard shortcuts, general)
   -l, --list       list accounts, their characters and their files
+  -d, --detect     watch one client session, report the account and
+                   characters it saved, and offer to add them to the
+                   accounts file
   -h, --help       show this help
 
 Settings: $settings_dir
@@ -56,7 +60,7 @@ trim() {
   printf '%s' "${s%"${s##*[![:space:]]}"}"
 }
 
-apply=0 do_char=1 do_user=1 list=0
+apply=0 do_char=1 do_user=1 list=0 detect=0
 args=()
 while (($#)); do
   case $1 in
@@ -64,6 +68,7 @@ while (($#)); do
     -c|--char-only) do_user=0 ;;
     -u|--user-only) do_char=0 ;;
     -l|--list) list=1 ;;
+    -d|--detect) detect=1 ;;
     -h|--help) usage; exit 0 ;;
     --) shift; args+=("$@"); break ;;
     -*) die "unknown option: $1 (see --help)" ;;
@@ -168,8 +173,129 @@ user_file_for() {
   return 0
 }
 
+# Watch one client session, report the account file and character files it
+# saved, and offer to write the account's line to the accounts file.
+detect() {
+  local f acct label line old answer tmp c key
+  local -A before=() seen=()
+  local users=() chars=() names=() merged=()
+  pgrep -i '^exefile' >/dev/null && die "close every EVE client first, then rerun --detect"
+  for f in "$settings_dir"/core_char_[0-9]*.dat "$settings_dir"/core_user_[0-9]*.dat; do
+    [[ -e $f ]] && before[$f]=$(stat -c %.9Y "$f")
+  done
+  echo "Start ONE client, log in the character(s) of one account, then quit"
+  echo "the game. Waiting for a client to start (Ctrl-C to stop)..."
+  until pgrep -i '^exefile' >/dev/null; do sleep 2; done
+  echo "Client running. Waiting for every client to close..."
+  while pgrep -i '^exefile' >/dev/null; do sleep 2; done
+  sleep 2 # let the last writes land
+
+  for f in "$settings_dir"/core_char_[0-9]*.dat "$settings_dir"/core_user_[0-9]*.dat; do
+    [[ -e $f ]] || continue
+    [[ ${before[$f]:-} == "$(stat -c %.9Y "$f")" ]] && continue
+    case ${f##*/} in
+      core_user_*) users+=("$f") ;;
+      *) chars+=("$f") ;;
+    esac
+  done
+  ((${#users[@]})) || die "no account file was saved; did the client quit normally?"
+  ((${#users[@]} == 1)) || die "${#users[@]} account files were saved; was more than one client open?"
+
+  load_names # the session may have written a new character's first log
+  acct=${users[0]##*core_user_}
+  acct=${acct%.dat}
+  echo
+  echo "Account file: ${users[0]##*/}"
+  for f in "${chars[@]}"; do
+    c=${f##*core_char_}
+    c=${c%.dat}
+    if [[ -n ${name_of[$c]:-} ]]; then
+      names+=("${name_of[$c]}")
+      echo "Character:    ${name_of[$c]} (${f##*/})"
+    else
+      echo "Character:    unknown, no game log names $c (${f##*/}); left out"
+    fi
+  done
+  ((${#chars[@]})) || echo "No character file was saved (no character logged in?)"
+
+  # This account's characters: those already listed, then the new ones.
+  while IFS= read -r c; do
+    [[ -n $c ]] || continue
+    merged+=("$c")
+    seen[${c,,}]=1
+  done <<<"${acct_chars[$acct]:-}"
+  old=${#merged[@]}
+  for c in "${names[@]}"; do
+    key=${c,,}
+    [[ -n ${seen[$key]:-} ]] && continue
+    if [[ -n ${account_of[$key]:-} ]]; then
+      die "$c is listed under account $(label_of "${account_of[$key]}") in $accounts_file, not $acct; fix that line by hand"
+    fi
+    merged+=("$c")
+    seen[$key]=1
+  done
+  if [[ -n ${acct_name[$acct]+set} ]] && ((${#merged[@]} == old)); then
+    echo
+    echo "Already in $accounts_file, nothing to add."
+    return 0
+  fi
+
+  label=${acct_name[$acct]:-}
+  if [[ -z $label ]]; then
+    if [[ -t 0 ]]; then
+      read -r -p "Account name (e.g. your launcher login), empty for none: " label
+      label=$(trim "$label")
+    fi
+    [[ $label != *[:,#]* ]] || die "an account name can't contain ':', ',' or '#'"
+    if [[ -n $label && -n ${acct_by_name[${label,,}]:-} ]]; then
+      die "account name $label is already used by account ${acct_by_name[${label,,}]}"
+    fi
+  fi
+  printf -v line '%s, ' "${merged[@]}"
+  line="$acct${label:+ $label}: ${line%, }"
+  echo
+  if [[ -n ${acct_name[$acct]+set} ]]; then
+    echo "Replace account $acct's line in $accounts_file with:"
+  else
+    echo "Add to $accounts_file:"
+  fi
+  echo "  $line"
+  if [[ ! -t 0 ]]; then
+    echo "Not asking: stdin is not a terminal. Add the line by hand."
+    return 0
+  fi
+  read -r -p "Write it? [y/N] " answer
+  [[ $answer == [yY]* ]] || { echo "Nothing written."; return 0; }
+
+  mkdir -p -- "${accounts_file%/*}"
+  if [[ ! -e $accounts_file ]]; then
+    cat >"$accounts_file" <<'EOF'
+# eve-copy-settings: EVE accounts and their characters, one account per line:
+#   <accountID> <account name>: <character>, <character>, ...
+# The account ID is the number in core_user_<ID>.dat. To find it, run
+# eve-copy-settings --detect and play one account in a single client.
+EOF
+  fi
+  # Put the line where the account was listed (dropping its other lines),
+  # or at the end.
+  tmp=$(mktemp "$accounts_file.XXXXXX")
+  awk -v acct="$acct" -v line="$line" '
+    { s = $0; sub(/#.*/, "", s) }
+    s ~ "^[[:space:]]*" acct "([[:space:]:]|$)" { if (!done) print line; done = 1; next }
+    { print }
+    END { if (!done) print line }
+  ' "$accounts_file" >"$tmp"
+  mv -- "$tmp" "$accounts_file"
+  echo "Written."
+}
+
 load_names
 load_accounts
+
+if ((detect)); then
+  detect
+  exit 0
+fi
 
 declare -A char_file=() user_file=() id_of=()
 ids=()
@@ -269,7 +395,7 @@ fi
 
 src_user=${user_file[$src]}
 if ((do_user)) && [[ -z $src_user ]]; then
-  die "no account file for ${name_of[$src]}: add it to $accounts_file, or use --char-only"
+  die "no account file for ${name_of[$src]}: add it to $accounts_file (see --detect), or use --char-only"
 fi
 
 # Account name of an account file.
