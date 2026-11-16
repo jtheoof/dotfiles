@@ -9,3 +9,7 @@ hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -
 
 -- Emoji picker (DMS emojiPicker plugin)
 hl.bind("SUPER + period", hl.dsp.exec_cmd("dms ipc call emojiPicker toggle"))
+
+-- Screen color picker (replaces the default DPMS toggle)
+hl.unbind("SUPER + SHIFT + P")
+hl.bind("SUPER + SHIFT + P", hl.dsp.exec_cmd("dms color pick -a --hex"))
