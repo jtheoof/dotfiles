@@ -61,7 +61,8 @@ done
 [[ -d $logs_dir ]] || die "no game logs at $logs_dir (set EVE_LOGS_DIR)"
 
 # Character ID -> name, from the "Listener:" header of each game log
-# (<date>_<time>_<characterID>.txt). Newest log wins.
+# (<date>_<time>_<characterID>.txt). Newest log wins. -a: a log EVE has
+# not finished writing ends in NUL bytes, which grep would take for binary.
 declare -A name_of=() id_of=()
 while IFS= read -r line; do
   file=${line%%:*}
@@ -72,7 +73,7 @@ while IFS= read -r line; do
   name=${name#"${name%%[![:space:]]*}"}
   name=${name%"${name##*[![:space:]]}"}
   [[ $id =~ ^[0-9]+$ && -n $name ]] && name_of[$id]=$name
-done < <(grep -m1 -H 'Listener:' "$logs_dir"/*.txt 2>/dev/null | sort)
+done < <(grep -a -m1 -H 'Listener:' "$logs_dir"/*.txt 2>/dev/null | sort)
 
 # The account file EVE saved within 5 seconds of this character file.
 user_file_for() {
