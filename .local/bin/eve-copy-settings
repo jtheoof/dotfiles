@@ -6,11 +6,15 @@
 #                                overlay, chat windows, other UI layout
 #   core_user_<accountID>.dat    per account: keyboard shortcuts and
 #                                general settings
+# An account can hold several characters (multiple character training);
+# they all share its core_user file.
+#
 # Character IDs are matched to names through the game logs. Account files
 # carry no name, and their save times don't reliably match the character's
 # (EVE saves them at different moments, and several clients often close at
-# once), so the account of each character is read from the accounts file:
-# one "<accountID> <character name>" per line.
+# once), so accounts and their characters are read from the accounts file,
+# one account per line:
+#   <accountID> <account name>: <character>, <character>, ...
 #
 # Dry run by default. Close every EVE client before --apply: EVE rewrites
 # these files when it exits.
@@ -27,13 +31,14 @@ usage() {
 usage: ${0##*/} [options] SOURCE [TARGET...]
        ${0##*/} --list
 
-Copy the settings of character SOURCE to each TARGET (character names,
-case-insensitive; default: every other character).
+Copy the settings of SOURCE to each TARGET. Each is a character name, or
+an account name for all of the account's characters (case-insensitive).
+TARGET defaults to every other character.
 
   -a, --apply      copy (default: only show what would be copied)
   -c, --char-only  only character settings (windows, overlay, UI layout)
   -u, --user-only  only account settings (keyboard shortcuts, general)
-  -l, --list       list known characters and their files
+  -l, --list       list accounts, their characters and their files
   -h, --help       show this help
 
 Settings: $settings_dir
@@ -44,6 +49,12 @@ EOF
 }
 
 die() { echo "${0##*/}: $*" >&2; exit 1; }
+
+trim() {
+  local s=$1
+  s=${s#"${s%%[![:space:]]*}"}
+  printf '%s' "${s%"${s##*[![:space:]]}"}"
+}
 
 apply=0 do_char=1 do_user=1 list=0
 args=()
@@ -67,29 +78,86 @@ done
 # Character ID -> name, from the "Listener:" header of each game log
 # (<date>_<time>_<characterID>.txt). Newest log wins. -a: a log EVE has
 # not finished writing ends in NUL bytes, which grep would take for binary.
-declare -A name_of=() id_of=()
-while IFS= read -r line; do
-  file=${line%%:*}
-  id=${file##*_}
-  id=${id%.txt}
-  name=${line#*Listener:}
-  name=${name//$'\r'/}
-  name=${name#"${name%%[![:space:]]*}"}
-  name=${name%"${name##*[![:space:]]}"}
-  [[ $id =~ ^[0-9]+$ && -n $name ]] && name_of[$id]=$name
-done < <(grep -a -m1 -H 'Listener:' "$logs_dir"/*.txt 2>/dev/null | sort)
+declare -A name_of=()
+load_names() {
+  local line file id name
+  name_of=()
+  while IFS= read -r line; do
+    file=${line%%:*}
+    id=${file##*_}
+    id=${id%.txt}
+    name=${line#*Listener:}
+    name=$(trim "${name//$'\r'/}")
+    [[ $id =~ ^[0-9]+$ && -n $name ]] && name_of[$id]=$name
+  done < <(grep -a -m1 -H 'Listener:' "$logs_dir"/*.txt 2>/dev/null | sort)
+  return 0
+}
 
-# Character name (lowercase) -> account ID, from the accounts file.
-declare -A account_of=()
-if [[ -f $accounts_file ]]; then
-  while read -r acct name; do
-    [[ $acct =~ ^[0-9]+$ && -n $name ]] || continue
-    account_of[${name,,}]=$acct
-  done < <(sed -e 's/#.*//' -e 's/\r$//' "$accounts_file")
-fi
+# Accounts file. acct_ids: account IDs in file order. acct_name: ID ->
+# account name (may be empty). acct_chars: ID -> its characters, one per
+# line. account_of / acct_by_name: lowercase character / account name -> ID.
+# A line without ":" is the older "<accountID> <character name>" format.
+declare -A acct_name=() acct_chars=() account_of=() acct_by_name=()
+acct_ids=()
+load_accounts() {
+  local line n=0 acct rest label chars c key list
+  [[ -f $accounts_file ]] || return 0
+  while IFS= read -r line || [[ -n $line ]]; do
+    n=$((n + 1))
+    line=${line%%#*}
+    line=$(trim "${line//$'\r'/}")
+    [[ -n $line ]] || continue
+    acct=${line%%[[:space:]:]*}
+    [[ $acct =~ ^[0-9]+$ ]] || die "$accounts_file:$n: expected \"<accountID> <account name>: <character>, ...\""
+    rest=${line#"$acct"}
+    if [[ $rest == *:* ]]; then
+      label=$(trim "${rest%%:*}")
+      chars=${rest#*:}
+    else
+      label=
+      chars=$rest
+    fi
+    if [[ -n ${acct_name[$acct]+set} ]]; then
+      # The same account on several lines: merge, unless the names differ.
+      if [[ -n $label && -n ${acct_name[$acct]} && ${label,,} != "${acct_name[$acct],,}" ]]; then
+        die "$accounts_file:$n: account $acct is already listed as ${acct_name[$acct]}"
+      fi
+      [[ -n $label ]] || label=${acct_name[$acct]}
+    else
+      acct_ids+=("$acct")
+      acct_chars[$acct]=
+    fi
+    if [[ -n $label ]]; then
+      key=${label,,}
+      if [[ -n ${acct_by_name[$key]:-} && ${acct_by_name[$key]} != "$acct" ]]; then
+        die "$accounts_file:$n: account name $label is already used by account ${acct_by_name[$key]}"
+      fi
+      acct_by_name[$key]=$acct
+    fi
+    acct_name[$acct]=$label
+    IFS=, read -ra list <<<"$chars"
+    for c in "${list[@]}"; do
+      c=$(trim "$c")
+      [[ -n $c ]] || continue
+      key=${c,,}
+      if [[ -n ${account_of[$key]:-} ]]; then
+        [[ ${account_of[$key]} == "$acct" ]] && continue
+        die "$accounts_file:$n: $c is already listed under account $(label_of "${account_of[$key]}")"
+      fi
+      account_of[$key]=$acct
+      acct_chars[$acct]+=$c$'\n'
+    done
+  done <"$accounts_file"
+}
 
-# The account file of character $1 (ID), or nothing if it isn't mapped
-# or the file doesn't exist.
+# Account name, or its ID when it has none.
+label_of() {
+  local name=${acct_name[$1]:-}
+  printf '%s' "${name:-$1}"
+}
+
+# The account file of character $1 (ID), or nothing if it isn't in the
+# accounts file or the file doesn't exist.
 user_file_for() {
   local name=${name_of[$1]:-} acct f
   [[ -n $name ]] || return 0
@@ -100,7 +168,10 @@ user_file_for() {
   return 0
 }
 
-declare -A char_file=() user_file=()
+load_names
+load_accounts
+
+declare -A char_file=() user_file=() id_of=()
 ids=()
 for f in "$settings_dir"/core_char_[0-9]*.dat; do
   [[ -e $f ]] || continue
@@ -114,39 +185,104 @@ done
 ((${#ids[@]})) || die "no character settings in $settings_dir"
 
 if ((list)); then
-  for id in "${ids[@]}"; do
-    u=${user_file[$id]##*/}
-    printf '%-24s %-28s %s\n' "${name_of[$id]:-(unknown: $id)}" "${char_file[$id]##*/}" "${u:-(no account: not in $accounts_file)}"
+  declare -A listed=()
+  for acct in "${acct_ids[@]}"; do
+    f=$settings_dir/core_user_$acct.dat
+    if [[ -e $f ]]; then f=${f##*/}; else f="(no core_user_$acct.dat yet)"; fi
+    printf '%-24s %s\n' "$(label_of "$acct")" "$f"
+    while IFS= read -r c; do
+      [[ -n $c ]] || continue
+      id=${id_of[${c,,}]:-}
+      if [[ -n $id ]]; then
+        listed[$id]=1
+        f=${char_file[$id]##*/}
+      else
+        f="(no settings yet)"
+      fi
+      printf '  %-22s %s\n' "$c" "$f"
+    done <<<"${acct_chars[$acct]}"
   done
+  missing=()
+  for f in "$settings_dir"/core_user_[0-9]*.dat; do
+    [[ -e $f ]] || continue
+    acct=${f##*core_user_}
+    acct=${acct%.dat}
+    [[ -n ${acct_name[$acct]+set} ]] || missing+=("$(printf '  %-22s %s' "(account $acct)" "${f##*/}")")
+  done
+  for id in "${ids[@]}"; do
+    [[ -n ${listed[$id]:-} ]] && continue
+    missing+=("$(printf '  %-22s %s' "${name_of[$id]:-(unknown: $id)}" "${char_file[$id]##*/}")")
+  done
+  if ((${#missing[@]})); then
+    echo "Not in $accounts_file:"
+    printf '%s\n' "${missing[@]}"
+  fi
   exit 0
 fi
 
 ((${#args[@]})) || { usage >&2; exit 2; }
 
+# Character IDs (one per line) for a character or account name.
 resolve() {
-  local id=${id_of[${1,,}]:-}
-  [[ -n $id ]] || die "unknown character '$1' (see --list)"
-  printf '%s' "$id"
+  local key=${1,,} id acct c n=0
+  id=${id_of[$key]:-}
+  acct=${acct_by_name[$key]:-}
+  [[ -n $id && -n $acct ]] && die "'$1' is both a character and an account name"
+  if [[ -n $id ]]; then
+    printf '%s\n' "$id"
+    return 0
+  fi
+  [[ -n $acct ]] || die "unknown character or account '$1' (see --list)"
+  while IFS= read -r c; do
+    [[ -n $c ]] || continue
+    id=${id_of[${c,,}]:-}
+    if [[ -n $id ]]; then
+      printf '%s\n' "$id"
+      n=$((n + 1))
+    else
+      echo "skip $c (account $1): no settings yet" >&2
+    fi
+  done <<<"${acct_chars[$acct]}"
+  ((n)) || die "account $1 has no character with settings yet"
 }
 
-src=$(resolve "${args[0]}")
+out=$(resolve "${args[0]}")
+mapfile -t got <<<"$out"
+((${#got[@]} == 1)) || die "account ${args[0]} has several characters; name the one to copy from"
+src=${got[0]}
+
 targets=()
+declare -A is_target=()
 if ((${#args[@]} > 1)); then
-  for n in "${args[@]:1}"; do targets+=("$(resolve "$n")"); done
+  for n in "${args[@]:1}"; do
+    out=$(resolve "$n")
+    mapfile -t got <<<"$out"
+    for id in "${got[@]}"; do
+      [[ -n ${is_target[$id]:-} ]] && continue
+      is_target[$id]=1
+      targets+=("$id")
+    done
+  done
 else
   for id in "${ids[@]}"; do [[ $id != "$src" ]] && targets+=("$id"); done
 fi
 
 src_user=${user_file[$src]}
 if ((do_user)) && [[ -z $src_user ]]; then
-  die "no account file for ${name_of[$src]}: add \"<accountID> ${name_of[$src]}\" to $accounts_file, or use --char-only"
+  die "no account file for ${name_of[$src]}: add it to $accounts_file, or use --char-only"
 fi
+
+# Account name of an account file.
+user_label() {
+  local acct=${1##*core_user_}
+  label_of "${acct%.dat}"
+}
 
 # Plan: pairs of "source|target".
 plan=()
 declare -A planned=()
 for id in "${targets[@]}"; do
-  name=${name_of[$id]}
+  name=${name_of[$id]:-$id}
   [[ $id == "$src" ]] && { echo "skip $name: same as the source"; continue; }
   if ((do_char)); then
     plan+=("${char_file[$src]}|${char_file[$id]}")
@@ -156,7 +292,8 @@ for id in "${targets[@]}"; do
     if [[ -z $u ]]; then
       echo "skip account settings of $name: not in $accounts_file"
     elif [[ $u == "$src_user" ]]; then
-      echo "skip account settings of $name: same account as ${name_of[$src]}"
+      [[ -z ${planned[$u]:-} ]] && echo "skip account settings of $name: same account ($(user_label "$u")) as ${name_of[$src]}"
+      planned[$u]=1
     elif [[ -z ${planned[$u]:-} ]]; then
       plan+=("$src_user|$u")
       planned[$u]=1
@@ -168,15 +305,13 @@ done
 echo "From ${name_of[$src]}:"
 for p in "${plan[@]}"; do
   s=${p%%|*} t=${p#*|}
-  tid=${t##*_}
-  tid=${tid%.dat}
-  label=${name_of[$tid]:-}
-  if [[ -z $label ]]; then
-    for id in "${targets[@]}"; do
-      [[ ${user_file[$id]} == "$t" ]] && label+="${label:+, }${name_of[$id]}"
-    done
-    label="account of $label"
-  fi
+  case ${t##*/} in
+    core_user_*) label="account $(user_label "$t")" ;;
+    *)
+      tid=${t##*core_char_}
+      label=${name_of[${tid%.dat}]:-${tid%.dat}}
+      ;;
+  esac
   printf '  %-26s -> %-28s (%s)\n' "${s##*/}" "${t##*/}" "$label"
 done
 
