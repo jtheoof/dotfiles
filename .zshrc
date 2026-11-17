@@ -205,6 +205,9 @@ function herdr-tab-autoname() {
 autoload -Uz add-zsh-hook
 add-zsh-hook chpwd herdr-tab-autoname
 
+# Keep the sidebar workspace numbers ($n) fresh; a lock keeps it to one watcher.
+[[ -n $HERDR_ENV ]] && (herdr-number-workspaces --watch &) > /dev/null 2>&1
+
 function strip-color {
     perl -pe 's/\e\[?.*?[\@-~]//g'
 }

@@ -6,6 +6,10 @@ pane_gaps = false
 prompt_new_tab_name = false
 tab_bar_right = [{ type = "datetime", format = "%a %d %b %H:%M" }]
 
+[ui.sidebar.spaces]
+# $n is the workspace number, reported by herdr-number-workspaces.
+rows = [["$n", "state_icon", "workspace"]]
+
 [ui.toast]
 delivery = "herdr"
 
@@ -44,7 +48,7 @@ next_workspace = ["prefix+pagedown", "alt+pagedown", "alt+shift+j"]
 previous_agent = ["prefix+<", "alt+home"]
 next_agent = ["prefix+>", "alt+end"]
 focus_agent = ["prefix+alt+1..9", "ctrl+alt+1..9"]
-switch_workspace = ["prefix+shift+1..9", "alt+shift+1..9"]
+switch_workspace = ["prefix+shift+1..9", "alt+1..9"]
 remote_image_paste = "ctrl+alt+v"
 
 # Tabs
@@ -54,7 +58,7 @@ previous_tab = ["prefix+[", "alt+["]
 next_tab = ["prefix+]", "alt+]"]
 move_tab_previous = ["prefix+shift+[", "alt+shift+["]
 move_tab_next = ["prefix+shift+]", "alt+shift+]"]
-switch_tab = ["prefix+1..9", "alt+1..9"]
+switch_tab = ["prefix+1..9", "alt+shift+1..9"]
 close_tab = ["prefix+shift+w", "alt+shift+w"]
 
 # Panes
