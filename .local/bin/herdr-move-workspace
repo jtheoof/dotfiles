@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Move the focused herdr workspace one position up or down in the sidebar.
+# herdr has no keybinding or CLI command for it, so this talks to the socket
+# API (workspace.move) directly.
+#
+# Usage: herdr-move-workspace up|down
+set -euo pipefail
+
+dir=${1:?usage: herdr-move-workspace up|down}
+
+read -r id n count < <(herdr workspace list |
+  jq -r '.result.workspaces as $w
+         | ($w[] | select(.focused)) as $f
+         | "\($f.workspace_id) \($f.number) \($w | length)"')
+
+case $dir in
+  up) idx=$((n - 2)) ;;
+  # insert_index counts slots before the workspace is lifted out, so moving
+  # down one means inserting past the neighbour (n + 1), not at n.
+  down) idx=$((n + 1)) ;;
+  *) echo "usage: herdr-move-workspace up|down" >&2; exit 2 ;;
+esac
+((idx >= 0 && idx <= count)) || exit 0
+
+sock=${HERDR_SOCKET_PATH:-$HOME/.config/herdr/herdr.sock}
+python3 -I - "$sock" "$id" "$idx" << 'PY'
+import json, socket, sys
+sock, wid, idx = sys.argv[1], sys.argv[2], int(sys.argv[3])
+s = socket.socket(socket.AF_UNIX)
+s.connect(sock)
+req = {"id": "herdr-move-workspace", "method": "workspace.move",
+       "params": {"workspace_id": wid, "insert_index": idx}}
+s.sendall(json.dumps(req).encode() + b"\n")
+resp = json.loads(s.makefile().readline())
+if "error" in resp:
+    sys.exit(resp["error"])
+PY

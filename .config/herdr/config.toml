@@ -106,6 +106,19 @@ type = "plugin_action"
 command = "shibayu36.equalize-panes.equalize"
 description = "equalize panes"
 
+# Move the focused workspace up or down in the sidebar (no native action).
+[[keys.command]]
+key = "alt+shift+pageup"
+type = "shell"
+command = "herdr-move-workspace up"
+description = "move workspace up"
+
+[[keys.command]]
+key = "alt+shift+pagedown"
+type = "shell"
+command = "herdr-move-workspace down"
+description = "move workspace down"
+
 [experimental]
 # Save recent pane screen history across full server restarts.
 pane_history = true
