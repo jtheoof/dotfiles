@@ -392,6 +392,7 @@ install_packages_linux() {
     bash
     bat
     binutils
+    btop
     cargo
     colordiff
     coreutils
