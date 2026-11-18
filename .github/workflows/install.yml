@@ -12,6 +12,8 @@ jobs:
         run: |
           pacman --noconfirm -Sy # Generate database file
           pacman --noconfirm --needed -S base-devel git sudo # Install basic required packages
+          pacman-key --init # Generate the local signing key, which the archlinux image ships without
+          pacman-key --populate # Trust the Arch master keys with that key
           useradd -m -G wheel -s /bin/bash jtheoof # Create a non root user
           sed -i 's/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers # Enable wheel users to run sudo commands without password
       - name: Install
