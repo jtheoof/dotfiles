@@ -37,7 +37,7 @@ detach = ["prefix+d", "alt+d"]
 reload_config = ["prefix+shift+r", "alt+shift+r"]
 open_notification_target = ["prefix+o", "alt+o"]
 workspace_picker = ["prefix+f", "alt+f"]
-goto = ["prefix+g", "alt+g"]
+goto = ["prefix+g", "alt+g", "alt+space"]
 
 # Workspaces
 new_workspace = ["prefix+shift+n", "alt+shift+n"]
@@ -64,6 +64,7 @@ close_tab = ["prefix+shift+w", "alt+shift+w"]
 # Panes
 rename_pane = ["prefix+i", "alt+i"]
 edit_scrollback = ["prefix+e", "alt+e"]
+copy_mode = ["alt+c", "prefix+c"]
 clear_pane = ["alt+k", "prefix+k"]
 focus_pane_left = ["prefix+left", "alt+left"]
 focus_pane_down = ["prefix+down", "alt+down"]
