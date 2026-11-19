@@ -418,13 +418,18 @@ install_packages_linux() {
     neovim
     nodejs
     npm
+    prettier
     python
     python-neovim
     python-pip
     python-setuptools
     ripgrep
+    ruff
     scdoc
     sed
+    shfmt
+    stylua
+    taplo-cli
     tig
     tmux
     tree
