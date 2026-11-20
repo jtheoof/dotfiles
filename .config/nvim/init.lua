@@ -161,11 +161,6 @@ vim.g.netrw_altv = 1
 vim.g.netrw_winsize = 25
 
 -- }}}
--- ntpeters/vim-better-whitespace {{{
-
-vim.g.better_whitespace_enabled = 0
-
--- }}}
 -- }}}
 
 -- }}}
@@ -225,9 +220,6 @@ end
 vim.cmd([[
   nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 ]])
-
--- Strip all trailing whitespace in the current file
-nmap("dW", ":StripWhitespace<CR>")
 
 nmap("-", ":NvimTreeToggle<CR>")
 nmap("<C-b>", ":NvimTreeToggle<CR>")
@@ -343,27 +335,19 @@ vmap("<Leader>go", ":'<,'>GBrowse<CR>")
 vmap("<Leader>gy", ":'<,'>GBrowse!<CR>")
 
 -- Quick edit of common files
-nmap("<Leader>ea", ":edit ~/.config/alacritty/alacritty.yml<CR>")
+nmap("<Leader>ea", ":edit ~/.config/alacritty/alacritty.toml<CR>")
 nmap("<Leader>eg", ":edit ~/.gitconfig<CR>")
 nmap("<Leader>et", ":edit ~/.config/tmux/tmux.conf<CR>")
 nmap("<Leader>ez", ":edit ~/.zshrc<CR>")
 nmap("<Leader>enn", ":edit ~/.config/nvim/init.lua<CR>")
-nmap("<Leader>ena", ":edit ~/.config/nvim/lua/user/autocommands.lua<CR>")
-nmap("<Leader>enk", ":edit ~/.config/nvim/lua/user/keymaps.lua<CR>")
-nmap("<Leader>enl", ":edit ~/.config/nvim/lua/user/lsp.lua<CR>")
-nmap("<Leader>eno", ":edit ~/.config/nvim/lua/user/options.lua<CR>")
-nmap("<Leader>enp", ":edit ~/.config/nvim/lua/user/plugins.lua<CR>")
-nmap("<Leader>ent", ":edit ~/.config/nvim/lua/user/telescope.lua<CR>")
-
+nmap("<Leader>enp", ":edit ~/.config/nvim/lua/user/lazy.lua<CR>")
+nmap("<Leader>ent", ":edit ~/.config/nvim/lua/user/plugins/ide/telescope.lua<CR>")
 
 -- Quick toggles
-nmap("<Leader>tb", ":TroubleToggle<CR>")
 nmap("<Leader>ti", ":set ignorecase!<CR>")
 nmap("<Leader>ts", ":set spell!<CR>")
-nmap("<Leader>tt", ":TSPlaygroundToggle<CR>")
 nmap("<Leader>tl", ":set list!<CR>")
 nmap("<Leader>tw", ":set wrap!<CR>")
-nmap("<Leader>ty", ":SymbolsOutline<CR>")
 
 -- }}}
 -- Plugins {{{
