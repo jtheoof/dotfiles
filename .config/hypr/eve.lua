@@ -17,7 +17,7 @@
 hl.config({ input = { mouse_refocus = false } })
 
 local BTN_BACKWARD = 275 -- back side button
-local BTN_FORWARD = 277 -- forward side button
+local BTN_FORWARD = 276 -- forward side button
 
 local function nicotine(direction)
   return function()
