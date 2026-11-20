@@ -6,7 +6,8 @@
       "context": "Chat",
       "bindings": {
         "shift+up": null,
-        "shift+down": null
+        "shift+down": null,
+        "ctrl+u": "chat:clearInput"
       }
     },
     {
