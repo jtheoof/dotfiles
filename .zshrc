@@ -73,6 +73,7 @@ bindkey "^H" backward-delete-word
 bindkey "^[[3;5~" delete-word
 bindkey "^[[1;5H" beginning-of-line
 bindkey "^[[1;5F" end-of-line
+bindkey "^U" kill-buffer
 
 # 1}}}
 # Exports {{{
