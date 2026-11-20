@@ -149,19 +149,6 @@ vim.g.mapleader = ","
 vim.g.maplocalleader = "\\"
 
 -- }}}
--- Plugin Options {{{
--- netrw {{{
-
-vim.g.netrw_keepdir = 0
-vim.g.netrw_sort_options = "i"
-vim.g.netrw_liststyle = 3
-vim.g.netrw_banner = 1
-vim.g.netrw_browse_split = 4
-vim.g.netrw_altv = 1
-vim.g.netrw_winsize = 25
-
--- }}}
--- }}}
 
 -- }}}
 -- Keymaps {{{
@@ -360,7 +347,7 @@ nmap("<Leader>tw", ":set wrap!<CR>")
 vim.cmd([[
   augroup _general_settings
     autocmd!
-    autocmd FileType qf,help,netrw,lspinfo,fugitiveblame,tsplayground nnoremap <silent> <buffer> q :close<CR>
+    autocmd FileType qf,help,lspinfo,fugitiveblame nnoremap <silent> <buffer> q :close<CR>
     autocmd FocusLost * execute ":silent! wa"
   augroup end
   augroup _git
