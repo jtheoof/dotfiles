@@ -14,7 +14,15 @@
 # (EVE saves them at different moments, and several clients often close at
 # once), so accounts and their characters are read from the accounts file,
 # one account per line:
-#   <accountID> <account name>: <character>, <character>, ...
+#   <accountID> <account name> [@<profile>]: <character>, <character>, ...
+#
+# Settings profiles: the launcher can run an account with another settings
+# profile, a settings_<profile> folder next to settings_Default with its own
+# copy of these files and its own graphics settings (core_public__.yaml),
+# e.g. full graphics for a main and low graphics for alts. An account
+# tagged @<profile> has its files read from and written to that folder;
+# untagged accounts use settings_Default. Graphics are never copied
+# between characters; --graphics copies them between profiles.
 #
 # Some settings hold the item IDs of a character's own ships, modules and
 # drones: module positions in the ship HUD, weapon groups, drone groups,
@@ -27,6 +35,8 @@ set -euo pipefail
 
 prefix=${EVE_PREFIX:-$HOME/.local/share/Steam/steamapps/compatdata/8500/pfx}/drive_c/users/steamuser
 settings_dir=${EVE_SETTINGS_DIR:-$prefix/AppData/Local/CCP/EVE/c_ccp_eve_tq_tranquility/settings_Default}
+settings_dir=${settings_dir%/}
+profiles_root=${settings_dir%/*}
 logs_dir=${EVE_LOGS_DIR:-$prefix/Documents/EVE/logs/Gamelogs}
 backup_root=${XDG_STATE_HOME:-$HOME/.local/state}/eve-copy-settings
 accounts_file=${EVE_ACCOUNTS_FILE:-${XDG_CONFIG_HOME:-$HOME/.config}/eve-copy-settings/accounts}
@@ -35,12 +45,14 @@ merge=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")/eve-settings-merge
 usage() {
   cat <<EOF
 usage: ${0##*/} [options] SOURCE [TARGET...]
+       ${0##*/} --graphics [--apply] FROM_PROFILE TO_PROFILE
        ${0##*/} --list
        ${0##*/} --detect
 
 Copy the settings of SOURCE to each TARGET. Each is a character name, or
 an account name for all of the account's characters (case-insensitive).
-TARGET defaults to every other character.
+TARGET defaults to every other character. Each character's files are read
+from and written to its account's settings profile.
 
   -a, --apply      copy (default: only show what would be copied)
   -c, --char-only  only character settings (windows, overlay, UI layout)
@@ -48,13 +60,20 @@ TARGET defaults to every other character.
   -f, --full       also copy the settings each target keeps by default:
                    ship HUD module positions, weapon groups, drone groups,
                    module auto-repeat
-  -l, --list       list accounts, their characters and their files
-  -d, --detect     watch one client session, report the account and
-                   characters it saved, and offer to add them to the
+  -g, --graphics   copy the graphics settings (the "device" section of
+                   core_public__.yaml: quality, resolution, window mode, UI
+                   scale) from one settings profile to another
+  -l, --list       list accounts, their profiles, characters and files
+  -d, --detect     watch one client session, report the account, profile
+                   and characters it saved, and offer to add them to the
                    accounts file
   -h, --help       show this help
 
+Accounts file lines: <accountID> <account name> [@<profile>]: <character>, ...
+An account without @<profile> uses the Default profile.
+
 Settings: $settings_dir
+Profiles: $profiles_root/settings_*
 Logs:     $logs_dir
 Backups:  $backup_root
 Accounts: $accounts_file
@@ -69,7 +88,7 @@ trim() {
   printf '%s' "${s%"${s##*[![:space:]]}"}"
 }
 
-apply=0 do_char=1 do_user=1 full=0 list=0 detect=0
+apply=0 do_char=1 do_user=1 full=0 list=0 detect=0 graphics=0
 args=()
 while (($#)); do
   case $1 in
@@ -77,6 +96,7 @@ while (($#)); do
     -c|--char-only) do_user=0 ;;
     -u|--user-only) do_char=0 ;;
     -f|--full) full=1 ;;
+    -g|--graphics) graphics=1 ;;
     -l|--list) list=1 ;;
     -d|--detect) detect=1 ;;
     -h|--help) usage; exit 0 ;;
@@ -87,8 +107,51 @@ while (($#)); do
   shift
 done
 ((do_char || do_user)) || die "--char-only and --user-only exclude each other"
+((graphics + list + detect <= 1)) || die "--graphics, --list and --detect exclude each other"
 [[ -d $settings_dir ]] || die "no settings folder at $settings_dir (set EVE_SETTINGS_DIR)"
 [[ -d $logs_dir ]] || die "no game logs at $logs_dir (set EVE_LOGS_DIR)"
+
+# Settings profiles. "" and "Default" (any case) are the Default profile,
+# $settings_dir. Other profiles are settings_<profile> folders next to it,
+# matched case-insensitively.
+is_default() { [[ -z $1 || ${1,,} == default ]]; }
+
+# The folder of profile $1 (it may not exist yet).
+profile_dir() {
+  local d n
+  is_default "$1" && { printf '%s' "$settings_dir"; return 0; }
+  for d in "$profiles_root"/settings_*/; do
+    d=${d%/}
+    n=${d##*/settings_}
+    [[ ${n,,} == "${1,,}" ]] && { printf '%s' "$d"; return 0; }
+  done
+  printf '%s' "$profiles_root/settings_$1"
+}
+
+# The profile name of folder $1.
+profile_name() {
+  [[ $1 == "$settings_dir" ]] && { printf 'Default'; return 0; }
+  printf '%s' "${1##*/settings_}"
+}
+
+# Every existing profile folder, Default first, one per line.
+profile_dirs() {
+  local d
+  printf '%s\n' "$settings_dir"
+  for d in "$profiles_root"/settings_*/; do
+    d=${d%/}
+    [[ -d $d && $d != "$settings_dir" ]] && printf '%s\n' "$d"
+  done
+  return 0
+}
+
+# A settings file for display: its name, prefixed with its profile unless
+# it is in the Default profile.
+show() {
+  local d=${1%/*}
+  [[ $d == "$settings_dir" ]] && { printf '%s' "${1##*/}"; return 0; }
+  printf '%s/%s' "$(profile_name "$d")" "${1##*/}"
+}
 
 # Character ID -> name, from the "Listener:" header of each game log
 # (<date>_<time>_<characterID>.txt). Newest log wins. -a: a log EVE has
@@ -109,13 +172,14 @@ load_names() {
 }
 
 # Accounts file. acct_ids: account IDs in file order. acct_name: ID ->
-# account name (may be empty). acct_chars: ID -> its characters, one per
-# line. account_of / acct_by_name: lowercase character / account name -> ID.
+# account name (may be empty). acct_profile: ID -> settings profile (empty
+# for Default). acct_chars: ID -> its characters, one per line. account_of
+# / acct_by_name: lowercase character / account name -> ID.
 # A line without ":" is the older "<accountID> <character name>" format.
-declare -A acct_name=() acct_chars=() account_of=() acct_by_name=()
+declare -A acct_name=() acct_profile=() acct_chars=() account_of=() acct_by_name=()
 acct_ids=()
 load_accounts() {
-  local line n=0 acct rest label chars c key list
+  local line n=0 acct rest label profile chars c key list
   [[ -f $accounts_file ]] || return 0
   while IFS= read -r line || [[ -n $line ]]; do
     n=$((n + 1))
@@ -123,21 +187,33 @@ load_accounts() {
     line=$(trim "${line//$'\r'/}")
     [[ -n $line ]] || continue
     acct=${line%%[[:space:]:]*}
-    [[ $acct =~ ^[0-9]+$ ]] || die "$accounts_file:$n: expected \"<accountID> <account name>: <character>, ...\""
+    [[ $acct =~ ^[0-9]+$ ]] || die "$accounts_file:$n: expected \"<accountID> <account name> [@<profile>]: <character>, ...\""
     rest=${line#"$acct"}
+    profile=
     if [[ $rest == *:* ]]; then
       label=$(trim "${rest%%:*}")
       chars=${rest#*:}
+      if [[ $label == *@* ]]; then
+        profile=$(trim "${label#*@}")
+        label=$(trim "${label%%@*}")
+        [[ -n $profile ]] || die "$accounts_file:$n: empty profile after '@'"
+        is_default "$profile" && profile=
+      fi
     else
       label=
       chars=$rest
     fi
     if [[ -n ${acct_name[$acct]+set} ]]; then
-      # The same account on several lines: merge, unless the names differ.
+      # The same account on several lines: merge, unless the names or
+      # profiles differ.
       if [[ -n $label && -n ${acct_name[$acct]} && ${label,,} != "${acct_name[$acct],,}" ]]; then
         die "$accounts_file:$n: account $acct is already listed as ${acct_name[$acct]}"
       fi
+      if [[ -n $profile && -n ${acct_profile[$acct]} && ${profile,,} != "${acct_profile[$acct],,}" ]]; then
+        die "$accounts_file:$n: account $acct is already listed with profile ${acct_profile[$acct]}"
+      fi
       [[ -n $label ]] || label=${acct_name[$acct]}
+      [[ -n $profile ]] || profile=${acct_profile[$acct]}
     else
       acct_ids+=("$acct")
       acct_chars[$acct]=
@@ -150,6 +226,7 @@ load_accounts() {
       acct_by_name[$key]=$acct
     fi
     acct_name[$acct]=$label
+    acct_profile[$acct]=$profile
     IFS=, read -ra list <<<"$chars"
     for c in "${list[@]}"; do
       c=$(trim "$c")
@@ -171,28 +248,54 @@ label_of() {
   printf '%s' "${name:-$1}"
 }
 
-# The account file of character $1 (ID), or nothing if it isn't in the
-# accounts file or the file doesn't exist.
-user_file_for() {
-  local name=${name_of[$1]:-} acct f
+# Account name and, unless Default, its profile.
+label_profile() {
+  local p=${acct_profile[$1]:-}
+  printf '%s%s' "$(label_of "$1")" "${p:+ @$p}"
+}
+
+# The account ID of character $1 (ID), or nothing if it isn't in the
+# accounts file.
+account_for() {
+  local name=${name_of[$1]:-}
   [[ -n $name ]] || return 0
-  acct=${account_of[${name,,}]:-}
-  [[ -n $acct ]] || return 0
-  f=$settings_dir/core_user_$acct.dat
-  [[ -e $f ]] && printf '%s' "$f"
+  printf '%s' "${account_of[${name,,}]:-}"
+}
+
+# The settings folder of character $1 (ID): its account's profile, or
+# Default if it isn't in the accounts file.
+char_dir() {
+  local acct profile=
+  acct=$(account_for "$1")
+  [[ -n $acct ]] && profile=${acct_profile[$acct]:-}
+  profile_dir "$profile"
+}
+
+# File $1 if it exists, else the same file in the Default profile (a
+# profile the character hasn't played in yet has no copy of it), else
+# nothing.
+existing() {
+  local d=$settings_dir/${1##*/}
+  if [[ -e $1 ]]; then
+    printf '%s' "$1"
+  elif [[ -e $d ]]; then
+    printf '%s' "$d"
+  fi
   return 0
 }
 
 # Watch one client session, report the account file and character files it
 # saved, and offer to write the account's line to the accounts file.
 detect() {
-  local f acct label line old answer tmp c key
+  local d f acct label profile cur line old answer tmp c key
   local -A before=() seen=()
   local users=() chars=() names=() merged=()
   pgrep -i '^exefile' >/dev/null && die "close every EVE client first, then rerun --detect"
-  for f in "$settings_dir"/core_char_[0-9]*.dat "$settings_dir"/core_user_[0-9]*.dat; do
-    [[ -e $f ]] && before[$f]=$(stat -c %.9Y "$f")
-  done
+  while IFS= read -r d; do
+    for f in "$d"/core_char_[0-9]*.dat "$d"/core_user_[0-9]*.dat; do
+      [[ -e $f ]] && before[$f]=$(stat -c %.9Y "$f")
+    done
+  done < <(profile_dirs)
   echo "Start ONE client, log in the character(s) of one account, then quit"
   echo "the game. Waiting for a client to start (Ctrl-C to stop)..."
   until pgrep -i '^exefile' >/dev/null; do sleep 2; done
@@ -200,30 +303,36 @@ detect() {
   while pgrep -i '^exefile' >/dev/null; do sleep 2; done
   sleep 2 # let the last writes land
 
-  for f in "$settings_dir"/core_char_[0-9]*.dat "$settings_dir"/core_user_[0-9]*.dat; do
-    [[ -e $f ]] || continue
-    [[ ${before[$f]:-} == "$(stat -c %.9Y "$f")" ]] && continue
-    case ${f##*/} in
-      core_user_*) users+=("$f") ;;
-      *) chars+=("$f") ;;
-    esac
-  done
+  # Rescan: the session may have created a new profile folder.
+  while IFS= read -r d; do
+    for f in "$d"/core_char_[0-9]*.dat "$d"/core_user_[0-9]*.dat; do
+      [[ -e $f ]] || continue
+      [[ ${before[$f]:-} == "$(stat -c %.9Y "$f")" ]] && continue
+      case ${f##*/} in
+        core_user_*) users+=("$f") ;;
+        *) chars+=("$f") ;;
+      esac
+    done
+  done < <(profile_dirs)
   ((${#users[@]})) || die "no account file was saved; did the client quit normally?"
   ((${#users[@]} == 1)) || die "${#users[@]} account files were saved; was more than one client open?"
 
   load_names # the session may have written a new character's first log
   acct=${users[0]##*core_user_}
   acct=${acct%.dat}
+  profile=$(profile_name "${users[0]%/*}")
+  is_default "$profile" && profile=
   echo
-  echo "Account file: ${users[0]##*/}"
+  echo "Account file: $(show "${users[0]}")"
+  echo "Profile:      ${profile:-Default}"
   for f in "${chars[@]}"; do
     c=${f##*core_char_}
     c=${c%.dat}
     if [[ -n ${name_of[$c]:-} ]]; then
       names+=("${name_of[$c]}")
-      echo "Character:    ${name_of[$c]} (${f##*/})"
+      echo "Character:    ${name_of[$c]} ($(show "$f"))"
     else
-      echo "Character:    unknown, no game log names $c (${f##*/}); left out"
+      echo "Character:    unknown, no game log names $c ($(show "$f")); left out"
     fi
   done
   ((${#chars[@]})) || echo "No character file was saved (no character logged in?)"
@@ -244,7 +353,8 @@ detect() {
     merged+=("$c")
     seen[$key]=1
   done
-  if [[ -n ${acct_name[$acct]+set} ]] && ((${#merged[@]} == old)); then
+  cur=${acct_profile[$acct]:-}
+  if [[ -n ${acct_name[$acct]+set} && ${profile,,} == "${cur,,}" ]] && ((${#merged[@]} == old)); then
     echo
     echo "Already in $accounts_file, nothing to add."
     return 0
@@ -256,13 +366,13 @@ detect() {
       read -r -p "Account name (e.g. your launcher login), empty for none: " label
       label=$(trim "$label")
     fi
-    [[ $label != *[:,#]* ]] || die "an account name can't contain ':', ',' or '#'"
+    [[ $label != *[:,#@]* ]] || die "an account name can't contain ':', ',', '#' or '@'"
     if [[ -n $label && -n ${acct_by_name[${label,,}]:-} ]]; then
       die "account name $label is already used by account ${acct_by_name[${label,,}]}"
     fi
   fi
   printf -v line '%s, ' "${merged[@]}"
-  line="$acct${label:+ $label}: ${line%, }"
+  line="$acct${label:+ $label}${profile:+ @$profile}: ${line%, }"
   echo
   if [[ -n ${acct_name[$acct]+set} ]]; then
     echo "Replace account $acct's line in $accounts_file with:"
@@ -281,9 +391,11 @@ detect() {
   if [[ ! -e $accounts_file ]]; then
     cat >"$accounts_file" <<'EOF'
 # eve-copy-settings: EVE accounts and their characters, one account per line:
-#   <accountID> <account name>: <character>, <character>, ...
+#   <accountID> <account name> [@<profile>]: <character>, <character>, ...
 # The account ID is the number in core_user_<ID>.dat. To find it, run
 # eve-copy-settings --detect and play one account in a single client.
+# @<profile>: the launcher settings profile the account runs with (its
+# settings_<profile> folder); without it, the Default profile.
 EOF
   fi
   # Put the line where the account was listed (dropping its other lines),
@@ -299,6 +411,96 @@ EOF
   echo "Written."
 }
 
+# Back up file $1 (if it exists) into $backup/<its folder name>, and
+# remember the folder for the undo hint. A file that doesn't exist yet is
+# remembered as created.
+declare -A backup_dirs=()
+created=()
+backup_file() {
+  local d=${1%/*} sub
+  sub=${d##*/}
+  if [[ -e $1 ]]; then
+    backup_dirs[$sub]=$d
+    mkdir -p -- "$backup/$sub"
+    cp -p -- "$1" "$backup/$sub/"
+  else
+    created+=("$1")
+  fi
+}
+
+undo_hint() {
+  local sub f
+  echo "Undo:"
+  for sub in "${!backup_dirs[@]}"; do
+    echo "  cp -p '$backup/$sub'/* '${backup_dirs[$sub]}/'"
+  done
+  for f in "${created[@]}"; do
+    echo "  rm '$f'"
+  done
+}
+
+# Copy the "device" section of profile FROM's core_public__.yaml into
+# profile TO's.
+copy_graphics() {
+  local from to sf tf block new
+  ((${#args[@]} == 2)) || die "--graphics takes two profiles: FROM TO (e.g. Default Potato)"
+  from=$(profile_dir "${args[0]}")
+  to=$(profile_dir "${args[1]}")
+  [[ $from != "$to" ]] || die "FROM and TO are the same profile"
+  [[ -d $from ]] || die "no profile ${args[0]} (no folder $from)"
+  [[ -d $to ]] || die "no profile ${args[1]} (no folder $to); create it in the launcher first"
+  sf=$from/core_public__.yaml
+  tf=$to/core_public__.yaml
+  [[ -e $sf ]] || die "no $(show "$sf") yet; log in once with profile ${args[0]}"
+
+  stage=$(mktemp -d)
+  trap 'rm -rf -- "$stage"' EXIT
+  block=$stage/device
+  new=$stage/core_public__.yaml
+  awk '/^device:/ { on = 1; print; next } on && /^[^ -]/ { on = 0 } on' "$sf" >"$block"
+  [[ -s $block ]] || die "no device section in $(show "$sf")"
+  if [[ -e $tf ]]; then
+    awk -v blockfile="$block" '
+      BEGIN { while ((getline l < blockfile) > 0) blk = blk l "\n" }
+      /^device:/ { printf "%s", blk; skip = 1; done = 1; next }
+      skip && /^[^ -]/ { skip = 0 }
+      skip { next }
+      { print }
+      END { if (!done) printf "%s", blk }
+    ' "$tf" >"$new"
+  else
+    # No settings yet in TO: start from FROM's whole file, so audio and UI
+    # settings are there too.
+    cp -- "$sf" "$new"
+  fi
+
+  echo "Graphics from $(show "$sf") to $(show "$tf"):"
+  if [[ -e $tf ]]; then
+    if cmp -s -- "$tf" "$new"; then
+      echo "  already the same, nothing to copy"
+      return 0
+    fi
+    diff -u --label "$(show "$tf")" --label "new" -- "$tf" "$new" | sed 's/^/  /' || true
+  else
+    echo "  (new file, a copy of $(show "$sf"))"
+  fi
+
+  if ((!apply)); then
+    echo
+    echo "Dry run. Close every EVE client, then rerun with --apply."
+    return 0
+  fi
+  if pgrep -i '^exefile' >/dev/null; then
+    die "an EVE client is running; close every client first (EVE rewrites its settings on exit)"
+  fi
+  backup=$backup_root/$(date +%Y%m%d-%H%M%S)
+  backup_file "$tf"
+  cp -- "$new" "$tf"
+  echo
+  echo "Done. Backup of the replaced file: $backup"
+  undo_hint
+}
+
 load_names
 load_accounts
 
@@ -307,47 +509,86 @@ if ((detect)); then
   exit 0
 fi
 
-declare -A char_file=() user_file=() id_of=()
+if ((graphics)); then
+  copy_graphics
+  exit 0
+fi
+
+# Characters with settings in any profile. char_file: ID -> its file in its
+# account's profile (may not exist yet). user_file: ID -> its account file
+# there (empty if its account isn't known).
+declare -A char_file=() user_file=() id_of=() found=()
 ids=()
-for f in "$settings_dir"/core_char_[0-9]*.dat; do
-  [[ -e $f ]] || continue
-  id=${f##*core_char_}
-  id=${id%.dat}
-  ids+=("$id")
-  char_file[$id]=$f
-  user_file[$id]=$(user_file_for "$id")
+while IFS= read -r d; do
+  for f in "$d"/core_char_[0-9]*.dat; do
+    [[ -e $f ]] || continue
+    id=${f##*core_char_}
+    id=${id%.dat}
+    [[ -n ${found[$id]:-} ]] && continue
+    found[$id]=1
+    ids+=("$id")
+  done
+done < <(profile_dirs)
+((${#ids[@]})) || die "no character settings in $settings_dir"
+for id in "${ids[@]}"; do
+  d=$(char_dir "$id")
+  char_file[$id]=$d/core_char_$id.dat
+  acct=$(account_for "$id")
+  user_file[$id]=${acct:+$d/core_user_$acct.dat}
   [[ -n ${name_of[$id]:-} ]] && id_of[${name_of[$id],,}]=$id
 done
-((${#ids[@]})) || die "no character settings in $settings_dir"
 
 if ((list)); then
-  declare -A listed=()
+  declare -A listed=() missing_acct=()
   for acct in "${acct_ids[@]}"; do
-    f=$settings_dir/core_user_$acct.dat
-    if [[ -e $f ]]; then f=${f##*/}; else f="(no core_user_$acct.dat yet)"; fi
-    printf '%-24s %s\n' "$(label_of "$acct")" "$f"
+    p=${acct_profile[$acct]:-}
+    d=$(profile_dir "$p")
+    f=$d/core_user_$acct.dat
+    if [[ ! -d $d ]]; then
+      f="(profile $p has no folder yet)"
+    elif [[ -e $f ]]; then
+      f=$(show "$f")
+    elif [[ -e $settings_dir/${f##*/} ]]; then
+      f="(none in $p yet; Default has ${f##*/})"
+    else
+      f="(no core_user_$acct.dat yet)"
+    fi
+    printf '%-24s %s\n' "$(label_profile "$acct")" "$f"
     while IFS= read -r c; do
       [[ -n $c ]] || continue
       id=${id_of[${c,,}]:-}
-      if [[ -n $id ]]; then
-        listed[$id]=1
-        f=${char_file[$id]##*/}
-      else
+      if [[ -z $id ]]; then
         f="(no settings yet)"
+      else
+        listed[$id]=1
+        f=${char_file[$id]}
+        if [[ -e $f ]]; then
+          f=$(show "$f")
+        elif [[ -e $settings_dir/${f##*/} ]]; then
+          f="(none in $p yet; Default has ${f##*/})"
+        else
+          f="(no settings in ${p:-Default} yet)"
+        fi
       fi
       printf '  %-22s %s\n' "$c" "$f"
     done <<<"${acct_chars[$acct]}"
   done
   missing=()
-  for f in "$settings_dir"/core_user_[0-9]*.dat; do
-    [[ -e $f ]] || continue
-    acct=${f##*core_user_}
-    acct=${acct%.dat}
-    [[ -n ${acct_name[$acct]+set} ]] || missing+=("$(printf '  %-22s %s' "(account $acct)" "${f##*/}")")
-  done
+  while IFS= read -r d; do
+    for f in "$d"/core_user_[0-9]*.dat; do
+      [[ -e $f ]] || continue
+      acct=${f##*core_user_}
+      acct=${acct%.dat}
+      [[ -n ${acct_name[$acct]+set} || -n ${missing_acct[$acct]:-} ]] && continue
+      missing_acct[$acct]=1
+      missing+=("$(printf '  %-22s %s' "(account $acct)" "$(show "$f")")")
+    done
+  done < <(profile_dirs)
   for id in "${ids[@]}"; do
     [[ -n ${listed[$id]:-} ]] && continue
-    missing+=("$(printf '  %-22s %s' "${name_of[$id]:-(unknown: $id)}" "${char_file[$id]##*/}")")
+    f=$(existing "${char_file[$id]}")
+    [[ -n $f ]] || f=$(compgen -G "$profiles_root/settings_*/core_char_$id.dat" | head -n1)
+    missing+=("$(printf '  %-22s %s' "${name_of[$id]:-(unknown: $id)}" "$(show "${f:-?/core_char_$id.dat}")")")
   done
   if ((${#missing[@]})); then
     echo "Not in $accounts_file:"
@@ -403,9 +644,17 @@ else
   for id in "${ids[@]}"; do [[ $id != "$src" ]] && targets+=("$id"); done
 fi
 
-src_user=${user_file[$src]}
-if ((do_user)) && [[ -z $src_user ]]; then
-  die "no account file for ${name_of[$src]}: add it to $accounts_file (see --detect), or use --char-only"
+# The source's files: in its profile, or in Default if it hasn't played in
+# its profile yet.
+src_char=$(existing "${char_file[$src]}")
+if ((do_char)) && [[ -z $src_char ]]; then
+  die "no character settings for ${name_of[$src]} in its profile yet; log in once"
+fi
+src_user=
+if ((do_user)); then
+  [[ -n ${user_file[$src]} ]] || die "no account file for ${name_of[$src]}: add it to $accounts_file (see --detect), or use --char-only"
+  src_user=$(existing "${user_file[$src]}")
+  [[ -n $src_user ]] || die "no account file for ${name_of[$src]} yet; log in once, or use --char-only"
 fi
 
 # Account name of an account file.
@@ -414,24 +663,39 @@ user_label() {
   label_of "${acct%.dat}"
 }
 
-# Plan: pairs of "source|target".
+# Plan: "source|base|target": write source to target, keeping base's
+# settings in KEEP. base is the target, or its Default copy when the
+# target's profile has none yet (empty with --full).
 plan=()
 declare -A planned=()
+add() {
+  local s=$1 t=$2 name=$3 base d=${2%/*}
+  if [[ ! -d $d ]]; then
+    echo "skip $name: profile $(profile_name "$d") has no folder yet (create it in the launcher)"
+    return 0
+  fi
+  base=$(existing "$t")
+  if [[ -z $base ]] && ((!full)); then
+    echo "skip $name: no settings yet in $(show "$t") (log in once, or use --full)"
+    return 0
+  fi
+  plan+=("$s|$base|$t")
+}
 for id in "${targets[@]}"; do
   name=${name_of[$id]:-$id}
   [[ $id == "$src" ]] && { echo "skip $name: same as the source"; continue; }
   if ((do_char)); then
-    plan+=("${char_file[$src]}|${char_file[$id]}")
+    add "$src_char" "${char_file[$id]}" "$name"
   fi
   if ((do_user)); then
     u=${user_file[$id]}
     if [[ -z $u ]]; then
       echo "skip account settings of $name: not in $accounts_file"
-    elif [[ $u == "$src_user" ]]; then
+    elif [[ $u == "${user_file[$src]}" ]]; then
       [[ -z ${planned[$u]:-} ]] && echo "skip account settings of $name: same account ($(user_label "$u")) as ${name_of[$src]}"
       planned[$u]=1
     elif [[ -z ${planned[$u]:-} ]]; then
-      plan+=("$src_user|$u")
+      add "$src_user" "$u" "account $(user_label "$u")"
       planned[$u]=1
     fi
   fi
@@ -440,7 +704,7 @@ done
 
 echo "From ${name_of[$src]}:"
 for p in "${plan[@]}"; do
-  s=${p%%|*} t=${p#*|}
+  IFS='|' read -r s b t <<<"$p"
   case ${t##*/} in
     core_user_*) label="account $(user_label "$t")" ;;
     *)
@@ -448,7 +712,12 @@ for p in "${plan[@]}"; do
       label=${name_of[${tid%.dat}]:-${tid%.dat}}
       ;;
   esac
-  printf '  %-26s -> %-28s (%s)\n' "${s##*/}" "${t##*/}" "$label"
+  if [[ -z $b ]]; then
+    label+=", new file"
+  elif [[ $b != "$t" ]]; then
+    label+=", new file, keeps from $(profile_name "${b%/*}")"
+  fi
+  printf '  %-26s -> %-28s (%s)\n' "$(show "$s")" "$(show "$t")" "$label"
 done
 if ((!full)); then
   echo "Each target keeps its own ship HUD module positions, weapon groups,"
@@ -461,12 +730,12 @@ stage=$(mktemp -d)
 trap 'rm -rf -- "$stage"' EXIT
 i=0
 for p in "${plan[@]}"; do
-  s=${p%%|*} t=${p#*|}
+  IFS='|' read -r s b t <<<"$p"
   i=$((i + 1))
   if ((full)); then
     cp -- "$s" "$stage/$i"
-  elif ! "$merge" "$s" "$t" "$stage/$i" >/dev/null; then
-    die "could not merge ${s##*/} into ${t##*/}; nothing changed (--full copies the whole file)"
+  elif ! "$merge" "$s" "$b" "$stage/$i" >/dev/null; then
+    die "could not merge $(show "$s") into $(show "$b"); nothing changed (--full copies the whole file)"
   fi
 done
 
@@ -481,14 +750,13 @@ if pgrep -i '^exefile' >/dev/null; then
 fi
 
 backup=$backup_root/$(date +%Y%m%d-%H%M%S)
-mkdir -p "$backup"
 i=0
 for p in "${plan[@]}"; do
-  t=${p#*|}
+  IFS='|' read -r s b t <<<"$p"
   i=$((i + 1))
-  cp -p -- "$t" "$backup/"
+  backup_file "$t"
   cp -- "$stage/$i" "$t"
 done
 echo
 echo "Done. Backup of the replaced files: $backup"
-echo "Undo: cp -p '$backup'/*.dat '$settings_dir/'"
+undo_hint
