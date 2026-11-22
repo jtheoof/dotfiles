@@ -7,6 +7,9 @@ hl.bind("SUPER + Return", hl.dsp.exec_cmd("alacritty"))
 -- Region screenshot into the swappy editor
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
 
+-- Region screen recording (toggle) into ~/Videos/Recordings
+hl.bind("SUPER + SHIFT + V", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.local/bin/screenrec"))
+
 -- Emoji picker (DMS emojiPicker plugin)
 hl.bind("SUPER + period", hl.dsp.exec_cmd("dms ipc call emojiPicker toggle"))
 

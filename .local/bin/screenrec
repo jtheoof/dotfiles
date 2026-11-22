@@ -1,0 +1,13 @@
+#!/bin/sh
+# Toggle a region screen recording into ~/Videos/Recordings
+pkill -INT -x wf-recorder && exit 0
+
+dir="$HOME/Videos/Recordings"
+mkdir -p "$dir"
+geom=$(slurp) || exit 1
+file="$dir/$(date +%Y-%m-%d_%H-%M-%S).mp4"
+
+notify-send -t 1500 "Recording started" "Super+Shift+V to stop"
+wf-recorder -g "$geom" -c libx264 -p preset=veryfast -p crf=23 \
+  -F "scale=trunc(iw/2)*2:trunc(ih/2)*2" -f "$file" &&
+  notify-send "Recording saved" "$file"
