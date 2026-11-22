@@ -89,6 +89,21 @@ hl.window_rule({
 	no_initial_focus = true,
 	pin = true,
 })
+-- RIFT re-creates its notification popup for every alert. Without this, each
+-- new popup takes focus and EVE drops to its background FPS cap. Rift lets
+-- the compositor place it, so it follows the focused monitor: put it in the
+-- top-right corner of the Intel Map window (tiled at 4,48 on DP-1, 1432 wide).
+-- A silent workspace rule, not a monitor rule: opening on another monitor
+-- focused that monitor's last window and warped the cursor there. Pinned, so
+-- it shows on DP-1 whichever desktop is active (31 is desktop 3 on DP-1).
+hl.window_rule({
+	match = { class = "^(dev-nohus-rift-MainKt)$", title = "^(Notification)$" },
+	no_initial_focus = true,
+	float = true,
+	workspace = "31 silent",
+	pin = true,
+	move = "1436-window_w-16 110",
+})
 -- Steam's startup windows position themselves using XWayland's monitor positions, which
 -- don't match Hyprland's, so they open off-center or off-screen
 hl.window_rule({ match = { class = "^(steam)$", title = "^(Sign in to Steam)$" }, float = true, center = true })
