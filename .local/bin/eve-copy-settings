@@ -16,6 +16,11 @@
 # one account per line:
 #   <accountID> <account name>: <character>, <character>, ...
 #
+# Some settings hold the item IDs of a character's own ships, modules and
+# drones: module positions in the ship HUD, weapon groups, drone groups,
+# module auto-repeat. Each target keeps its own (see KEEP in
+# eve-settings-merge, which does the copy); --full copies them too.
+#
 # Dry run by default. Close every EVE client before --apply: EVE rewrites
 # these files when it exits.
 set -euo pipefail
@@ -25,6 +30,7 @@ settings_dir=${EVE_SETTINGS_DIR:-$prefix/AppData/Local/CCP/EVE/c_ccp_eve_tq_tran
 logs_dir=${EVE_LOGS_DIR:-$prefix/Documents/EVE/logs/Gamelogs}
 backup_root=${XDG_STATE_HOME:-$HOME/.local/state}/eve-copy-settings
 accounts_file=${EVE_ACCOUNTS_FILE:-${XDG_CONFIG_HOME:-$HOME/.config}/eve-copy-settings/accounts}
+merge=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")/eve-settings-merge
 
 usage() {
   cat <<EOF
@@ -39,6 +45,9 @@ TARGET defaults to every other character.
   -a, --apply      copy (default: only show what would be copied)
   -c, --char-only  only character settings (windows, overlay, UI layout)
   -u, --user-only  only account settings (keyboard shortcuts, general)
+  -f, --full       also copy the settings each target keeps by default:
+                   ship HUD module positions, weapon groups, drone groups,
+                   module auto-repeat
   -l, --list       list accounts, their characters and their files
   -d, --detect     watch one client session, report the account and
                    characters it saved, and offer to add them to the
@@ -60,13 +69,14 @@ trim() {
   printf '%s' "${s%"${s##*[![:space:]]}"}"
 }
 
-apply=0 do_char=1 do_user=1 list=0 detect=0
+apply=0 do_char=1 do_user=1 full=0 list=0 detect=0
 args=()
 while (($#)); do
   case $1 in
     -a|--apply) apply=1 ;;
     -c|--char-only) do_user=0 ;;
     -u|--user-only) do_char=0 ;;
+    -f|--full) full=1 ;;
     -l|--list) list=1 ;;
     -d|--detect) detect=1 ;;
     -h|--help) usage; exit 0 ;;
@@ -440,6 +450,25 @@ for p in "${plan[@]}"; do
   esac
   printf '  %-26s -> %-28s (%s)\n' "${s##*/}" "${t##*/}" "$label"
 done
+if ((!full)); then
+  echo "Each target keeps its own ship HUD module positions, weapon groups,"
+  echo "drone groups and module auto-repeat (--full to copy them too)."
+fi
+
+# Build every new file before replacing any, so a file that can't be read
+# leaves everything as it was.
+stage=$(mktemp -d)
+trap 'rm -rf -- "$stage"' EXIT
+i=0
+for p in "${plan[@]}"; do
+  s=${p%%|*} t=${p#*|}
+  i=$((i + 1))
+  if ((full)); then
+    cp -- "$s" "$stage/$i"
+  elif ! "$merge" "$s" "$t" "$stage/$i" >/dev/null; then
+    die "could not merge ${s##*/} into ${t##*/}; nothing changed (--full copies the whole file)"
+  fi
+done
 
 if ((!apply)); then
   echo
@@ -453,10 +482,12 @@ fi
 
 backup=$backup_root/$(date +%Y%m%d-%H%M%S)
 mkdir -p "$backup"
+i=0
 for p in "${plan[@]}"; do
-  s=${p%%|*} t=${p#*|}
+  t=${p#*|}
+  i=$((i + 1))
   cp -p -- "$t" "$backup/"
-  cp -- "$s" "$t"
+  cp -- "$stage/$i" "$t"
 done
 echo
 echo "Done. Backup of the replaced files: $backup"

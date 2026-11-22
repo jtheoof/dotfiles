@@ -1,0 +1,363 @@
+#!/usr/bin/env python3
+"""Copy EVE Online settings from one file to another, keeping some of the
+target's own.
+
+usage: eve-settings-merge SOURCE TARGET OUTPUT
+
+Writes SOURCE to OUTPUT, except for the settings in KEEP, which come from
+TARGET (or are left out if TARGET has none). Used by eve-copy-settings.
+
+The core_char_*.dat and core_user_*.dat files are EVE's binary marshal
+format: "~", a uint32 count of shared objects, one object, then that many
+uint32 slots. The object is a dict of groups ("ui", "windows", ...), each a
+dict of key -> (last access time, value).
+
+Values are decoded only as far as needed to rebuild the stream: scalars
+keep their exact bytes, containers are rebuilt. References to shared
+objects are written out in full, so OUTPUT has no shared objects (EVE
+writes such files too, e.g. core_user__.dat).
+"""
+import fnmatch
+import os
+import struct
+import sys
+
+# Paths of settings to keep from the target: a group, then keys (shell
+# patterns), each level inside the previous one's value. These hold item
+# IDs of the target's own ships, modules and drones, so the source's
+# don't apply to it.
+KEEP = [
+    # Account file (core_user)
+    ('ui', 'slotOrder'),                 # module positions in the ship HUD, per ship
+    ('ui', 'linkedWeapons_groupsDict'),  # grouped weapons, per ship
+    ('ui', 'droneBlah2'),                # drone groups of the drone window
+    ('ui', 'drones_favoriteGroupID_*'),  # drone group per ship type
+    # Character file (core_char)
+    ('autorepeat',),                     # auto-repeat of each module
+    ('autoreload',),                     # auto-reload of each module
+    ('ui', 'listgroups', 'dronegroups'), # drone window: bay/space groups open or closed
+]
+
+SHARED = 0x40
+MARKER = 0x2D
+
+
+class Error(Exception):
+    pass
+
+
+# Nodes:
+#   ('raw', bytes, key)        scalar: its opcode and payload, as read;
+#                              key is its value as a str or int (for matching)
+#   ('seq', op, [node])        tuple or list
+#   ('dict', [(knode, vnode)])
+#   ('obj', node, node)        0x17 instance
+#   ('objex', op, hdr, [node], [(node, node)])
+
+class Reader:
+    def __init__(self, data):
+        if len(data) < 5 or data[0] != 0x7E:
+            raise Error('not an EVE settings file')
+        self.d = data
+        n = struct.unpack_from('<I', data, 1)[0]
+        self.end = len(data) - 4 * n
+        if self.end < 5:
+            raise Error('bad shared object count')
+        self.slots = struct.unpack_from('<%dI' % n, data, self.end)
+        self.saved = [None] * n
+        self.count = 0
+        self.p = 5
+
+    def byte(self):
+        if self.p >= self.end:
+            raise Error('truncated')
+        b = self.d[self.p]
+        self.p += 1
+        return b
+
+    def take(self, n):
+        if self.p + n > self.end:
+            raise Error('truncated')
+        b = self.d[self.p:self.p + n]
+        self.p += n
+        return b
+
+    def size(self):
+        n = self.byte()
+        if n == 0xFF:
+            n = struct.unpack('<I', self.take(4))[0]
+        return n
+
+    def sized(self):
+        start = self.p
+        n = self.size()
+        return n, self.d[start:self.p]
+
+    def top(self):
+        node = self.load()
+        if self.p != self.end:
+            raise Error('%d bytes left over' % (self.end - self.p))
+        if self.count != len(self.saved):
+            raise Error('%d of %d shared objects read' % (self.count, len(self.saved)))
+        return node
+
+    def load(self):
+        op = self.byte()
+        if op & 0x80:
+            raise Error('unknown opcode %#x at %d' % (op, self.p - 1))
+        node = self.node(op & 0x3F)
+        if op & SHARED:
+            if self.count >= len(self.saved):
+                raise Error('too many shared objects')
+            slot = self.slots[self.count] - 1
+            if not 0 <= slot < len(self.saved):
+                raise Error('bad shared slot %d' % (slot + 1))
+            self.saved[slot] = node
+            self.count += 1
+        return node
+
+    def raw(self, op, payload, key=None):
+        return ('raw', bytes([op]) + payload, key)
+
+    def node(self, op):
+        fixed = {0x01: 0, 0x03: 8, 0x04: 4, 0x05: 2, 0x06: 1, 0x07: 0,
+                 0x08: 0, 0x09: 0, 0x0A: 8, 0x0B: 0, 0x0E: 0, 0x0F: 1,
+                 0x11: 1, 0x1F: 0, 0x20: 0, 0x28: 0, 0x29: 2}
+        if op in fixed:
+            b = self.take(fixed[op])
+            key = None
+            if op in (0x03, 0x04, 0x05, 0x06):
+                key = int.from_bytes(b, 'little', signed=True)
+            elif op in (0x07, 0x08, 0x09):
+                key = {0x07: -1, 0x08: 0, 0x09: 1}[op]
+            elif op in (0x0E, 0x0F):
+                key = b.decode('latin-1')
+            elif op in (0x28, 0x29):
+                key = b.decode('utf-16-le')
+            return self.raw(op, b, key)
+        if op in (0x02, 0x10, 0x13, 0x2E, 0x2F, 0x2B):
+            n, sz = self.sized()
+            b = self.take(n)
+            if op == 0x2F:
+                key = int.from_bytes(b, 'little', signed=True)
+            elif op == 0x2E:
+                key = b.decode('utf-8')
+            elif op == 0x2B:
+                key = None
+            else:
+                key = b.decode('latin-1')
+            return self.raw(op, sz + b, key)
+        if op == 0x12:
+            n, sz = self.sized()
+            b = self.take(2 * n)
+            return self.raw(op, sz + b, b.decode('utf-16-le'))
+        if op in (0x14, 0x15):
+            return ('seq', op, [self.load() for _ in range(self.size())])
+        if op in (0x24, 0x26):
+            return ('seq', op, [])
+        if op in (0x25, 0x27):
+            return ('seq', op, [self.load()])
+        if op == 0x2C:
+            return ('seq', op, [self.load(), self.load()])
+        if op == 0x16:
+            items = []
+            for _ in range(self.size()):
+                v = self.load()  # value first, then key
+                items.append((self.load(), v))
+            return ('dict', items)
+        if op == 0x17:
+            return ('obj', self.load(), self.load())
+        if op == 0x1B:
+            i = self.size()
+            if not 1 <= i <= len(self.saved) or self.saved[i - 1] is None:
+                raise Error('bad shared reference %d at %d' % (i, self.p))
+            return self.saved[i - 1]
+        if op in (0x22, 0x23):
+            hdr = self.load()
+            items = []
+            while self.peek() != MARKER:
+                items.append(self.load())
+            self.p += 1
+            pairs = []
+            while self.peek() != MARKER:
+                pairs.append((self.load(), self.load()))
+            self.p += 1
+            return ('objex', op, hdr, items, pairs)
+        raise Error('unsupported opcode %#x at %d' % (op, self.p - 1))
+
+    def peek(self):
+        if self.p >= self.end:
+            raise Error('truncated')
+        return self.d[self.p]
+
+
+def size(n):
+    return bytes([n]) if n < 0xFF else b'\xff' + struct.pack('<I', n)
+
+
+def encode(node, out):
+    kind = node[0]
+    if kind == 'raw':
+        out += node[1]
+    elif kind == 'seq':
+        op, items = node[1], node[2]
+        if op in (0x14, 0x15):
+            out += bytes([op]) + size(len(items))
+        else:
+            out.append(op)
+        for x in items:
+            encode(x, out)
+    elif kind == 'dict':
+        out += b'\x16' + size(len(node[1]))
+        for k, v in node[1]:
+            encode(v, out)
+            encode(k, out)
+    elif kind == 'obj':
+        out.append(0x17)
+        encode(node[1], out)
+        encode(node[2], out)
+    elif kind == 'objex':
+        out.append(node[1])
+        encode(node[2], out)
+        for x in node[3]:
+            encode(x, out)
+        out.append(MARKER)
+        for k, v in node[4]:
+            encode(k, out)
+            encode(v, out)
+        out.append(MARKER)
+    else:
+        raise Error('bad node %r' % (kind,))
+
+
+def dump(node):
+    out = bytearray(b'~\0\0\0\0')
+    encode(node, out)
+    return bytes(out)
+
+
+def load(path):
+    with open(path, 'rb') as f:
+        data = f.read()
+    try:
+        return Reader(data).top()
+    except (Error, struct.error, UnicodeDecodeError) as e:
+        raise Error('%s: %s' % (path, e)) from None
+
+
+def key_of(node):
+    return node[2] if node[0] == 'raw' else None
+
+
+def matches(node, pattern):
+    k = key_of(node)
+    return isinstance(k, str) and fnmatch.fnmatchcase(k, pattern)
+
+
+def inner(node):
+    """The dict in a setting: the node itself, or the value of a
+    (time, value) pair. None if neither."""
+    if node[0] == 'dict':
+        return node
+    if node[0] == 'seq' and len(node[2]) == 2 and node[2][1][0] == 'dict':
+        return node[2][1]
+    return None
+
+
+def rewrap(node, d):
+    if node[0] == 'dict':
+        return d
+    return ('seq', node[1], [node[2][0], d])
+
+
+def keep(src, tgt, path, prefix, kept):
+    """src with the entries at path taken from tgt (both dict nodes).
+    Returns a new node; src and tgt are left alone (shared objects may
+    appear in several places)."""
+    pattern, rest = path[0], path[1:]
+    tgt_items = tgt[1] if tgt else []
+    items = []
+    for k, v in src[1]:
+        if not matches(k, pattern):
+            items.append((k, v))
+            continue
+        tv = next((tv for tk, tv in tgt_items if key_of(tk) == key_of(k)), None)
+        name = prefix + [key_of(k)]
+        if not rest:
+            if tv is not None:
+                items.append((k, tv))
+            kept.append('/'.join(name))
+            continue
+        sd = inner(v)
+        if sd is None:
+            items.append((k, v))
+            continue
+        td = inner(tv) if tv is not None else None
+        items.append((k, rewrap(v, keep(sd, td, rest, name, kept))))
+    if not rest:
+        have = {key_of(k) for k, _ in src[1]}
+        for k, v in tgt_items:
+            if matches(k, pattern) and key_of(k) not in have:
+                items.append((k, v))
+                kept.append('/'.join(prefix + [key_of(k)]))
+    return ('dict', items)
+
+
+def same(a, b):
+    """Structural equality, for checking what was written."""
+    if a[0] != b[0]:
+        return False
+    if a[0] == 'raw':
+        return a[1] == b[1]
+    if a[0] == 'seq':
+        return a[1] == b[1] and len(a[2]) == len(b[2]) and all(map(same, a[2], b[2]))
+    if a[0] == 'dict':
+        return len(a[1]) == len(b[1]) and all(
+            same(ak, bk) and same(av, bv) for (ak, av), (bk, bv) in zip(a[1], b[1]))
+    if a[0] == 'obj':
+        return same(a[1], b[1]) and same(a[2], b[2])
+    if a[0] == 'objex':
+        return (a[1] == b[1] and same(a[2], b[2]) and len(a[3]) == len(b[3])
+                and all(map(same, a[3], b[3])) and len(a[4]) == len(b[4])
+                and all(same(ak, bk) and same(av, bv)
+                        for (ak, av), (bk, bv) in zip(a[4], b[4])))
+    return False
+
+
+def merge(src_path, tgt_path, out_path):
+    src, tgt = load(src_path), load(tgt_path)
+    if src[0] != 'dict' or tgt[0] != 'dict':
+        raise Error('unexpected settings layout')
+    kept = []
+    for path in KEEP:
+        src = keep(src, tgt, path, [], kept)
+    data = dump(src)
+    try:
+        check = Reader(data).top()
+    except Error as e:
+        raise Error('re-reading the merged settings failed: %s' % e) from None
+    if not same(check, src):
+        raise Error('the merged settings do not read back the same')
+    tmp = out_path + '.tmp'
+    with open(tmp, 'wb') as f:
+        f.write(data)
+    os.replace(tmp, out_path)
+    return kept
+
+
+def main():
+    if len(sys.argv) != 4:
+        print(__doc__.split('\n\n')[1], file=sys.stderr)
+        return 2
+    try:
+        kept = merge(*sys.argv[1:])
+    except (Error, OSError) as e:
+        print('eve-settings-merge: %s' % e, file=sys.stderr)
+        return 1
+    for k in dict.fromkeys(kept):
+        print(k)
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
